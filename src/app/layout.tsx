@@ -1,15 +1,22 @@
+import localFont from 'next/font/local'
+import { clsx } from 'clsx'
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import './globals.css'
+import '@/styles/globals.css'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const funnelSans = localFont({
+  src: '../fonts/Funnel_Sans/FunnelSans[wght].woff2',
+  display: 'swap',
+  variable: '--font-funnel-sans',
+  fallback: ['Arial', 'Helvetica', 'sans-serif'],
+  preload: true,
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const aspekta = localFont({
+  src: '../fonts/Aspekta/AspektaVF.woff2',
+  display: 'swap',
+  variable: '--font-aspekta',
+  fallback: ['Arial', 'Helvetica', 'sans-serif'],
+  preload: true,
 })
 
 export const metadata: Metadata = {
@@ -25,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={clsx(funnelSans.variable, aspekta.variable, 'antialiased')}
       >
         {children}
       </body>

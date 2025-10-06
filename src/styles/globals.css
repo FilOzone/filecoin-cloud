@@ -12,6 +12,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@theme inline {
+  --font-sans: var(--font-funnel-sans);
+  --font-heading: var(--font-aspekta);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
