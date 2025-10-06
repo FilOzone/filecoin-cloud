@@ -5,6 +5,10 @@
   --font-heading: var(--font-aspekta);
 }
 
+@theme {
+  --color-brand: rgba(0, 144, 255);
+}
+
 body {
   background: var(--color-zinc-950);
   color: var(--color-zinc-50);
