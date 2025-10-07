@@ -20,4 +20,27 @@ export const footerLinks = {
     { label: 'Privacy Policy', url: `${ffSite}privacy-policy/` },
     { label: 'Terms of Use', url: `${ffSite}terms-of-use/` },
   ],
-} as const
+}
+
+export const homeLinks = [
+  {
+    label: 'Filecoin Pin',
+    cta: 'Coming Soon',
+    link: 'https://pin.filecoin.io/',
+  },
+  {
+    label: 'Read the Docs',
+    cta: 'Synapse SDK',
+    link: 'https://synapse.filecoin.services/',
+  },
+  {
+    label: 'Join the Community',
+    cta: 'FOC Slack',
+    link: 'https://filecoinproject.slack.com/archives/C07CGTXHHT4',
+  },
+  {
+    label: 'Discover Filecoin',
+    cta: 'filecoin.io',
+    link: 'https://filecoin.io/',
+  },
+]
