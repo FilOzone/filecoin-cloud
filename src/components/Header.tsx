@@ -10,7 +10,7 @@ export function Header() {
         <Link
           href="/"
           aria-label="Go to homepage"
-          className="focus:brand-outline"
+          className="focus:brand-outline inline-block p-1"
         >
           <Icon component={Logo} width={40} />
         </Link>

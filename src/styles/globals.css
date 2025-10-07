@@ -73,7 +73,7 @@ body {
       }
 
       &:focus {
-        @apply outline-2 outline-offset-0 transition-none;
+        @apply brand-outline;
       }
     }
 

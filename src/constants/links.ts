@@ -3,6 +3,8 @@ import FilecoinFoundationLogo from '@/public/filecoin-foundation-logo.svg'
 
 const ffSite = 'https://fil.org/'
 
+export const BASE_URL = 'https://www.filecoin.services/'
+
 export const footerLinks = {
   createdBy: [
     {
