@@ -37,6 +37,12 @@ body {
   font-family: var(--font-sans);
 }
 
+@utility brand-outline {
+  outline: 2px solid var(--color-zinc-50);
+  outline-offset: 0px;
+  border-color: transparent;
+}
+
 @layer components {
   .button {
     @apply relative rounded-full border-2 border-transparent bg-zinc-950/25 px-6 py-4 font-medium text-zinc-50;

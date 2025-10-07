@@ -7,7 +7,11 @@ export function Header() {
   return (
     <header className="py-9">
       <Container>
-        <Link href="/" aria-label="Go to homepage">
+        <Link
+          href="/"
+          aria-label="Go to homepage"
+          className="focus:brand-outline"
+        >
           <Icon component={Logo} width={40} />
         </Link>
       </Container>
