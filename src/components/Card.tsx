@@ -22,7 +22,7 @@ export function Card({ title, description, link }: CardProps) {
       >
         <span className="absolute bottom-8 left-8 inline-flex items-center gap-2">
           {description}
-          <Icon component={CaretRightIcon} color="color-zinc-500" size={20} />
+          <Icon component={CaretRightIcon} color="text-zinc-500" width={20} />
         </span>
       </a>
     </article>

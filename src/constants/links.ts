@@ -1,0 +1,23 @@
+import FilozLogo from '@/public/filoz-logo.svg'
+import FilecoinFoundationLogo from '@/public/filecoin-foundation-logo.svg'
+
+const ffSite = 'https://fil.org/'
+
+export const footerLinks = {
+  createdBy: [
+    {
+      icon: FilecoinFoundationLogo,
+      url: ffSite,
+      label: 'Filecoin Foundation',
+    },
+    {
+      icon: FilozLogo,
+      url: 'https://www.filoz.org/',
+      label: 'Filoz',
+    },
+  ],
+  legal: [
+    { label: 'Privacy Policy', url: `${ffSite}privacy-policy/` },
+    { label: 'Terms of Use', url: `${ffSite}terms-of-use/` },
+  ],
+} as const

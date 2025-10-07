@@ -5,10 +5,10 @@ import Logo from '@/public/foc-logo.svg'
 
 export function Header() {
   return (
-    <header className="my-9">
+    <header className="py-9">
       <Container>
         <Link href="/" aria-label="Go to homepage">
-          <Icon component={Logo} size={40} />
+          <Icon component={Logo} width={40} />
         </Link>
       </Container>
     </header>
