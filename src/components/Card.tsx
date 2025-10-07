@@ -10,7 +10,7 @@ export type CardProps = {
 export function Card({ title, description, link }: CardProps) {
   return (
     <article
-      className="border-brand/50 hover:border-brand/90 relative rounded-2xl border bg-zinc-800/70 p-8 focus-within:bg-zinc-800/90 focus-within:ring-2 focus-within:ring-zinc-50 hover:bg-zinc-800/90"
+      className="border-brand-700/50 hover:border-brand-700/90 relative rounded-2xl border bg-zinc-800/70 p-8 focus-within:bg-zinc-800/90 focus-within:ring-2 focus-within:ring-zinc-50 hover:bg-zinc-800/90"
       aria-label={title + ': ' + description}
     >
       <h3 className="mb-12 text-xl font-medium">{title}</h3>
