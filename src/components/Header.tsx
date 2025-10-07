@@ -5,7 +5,7 @@ import Logo from '@/public/foc-logo.svg'
 
 export function Header() {
   return (
-    <header className="pt-9">
+    <header className="my-9">
       <Container>
         <Link href="/" aria-label="Go to homepage">
           <Icon component={Logo} size={40} />
