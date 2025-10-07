@@ -3,6 +3,7 @@ import { clsx } from 'clsx'
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
 import { ReactNode } from 'react'
+import { Header } from '@/components/Header'
 
 const funnelSans = localFont({
   src: '../fonts/Funnel_Sans/FunnelSans[wght].woff2',
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={clsx(funnelSans.variable, aspekta.variable, 'antialiased')}
       >
+        <Header />
         {children}
       </body>
     </html>
