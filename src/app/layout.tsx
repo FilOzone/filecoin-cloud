@@ -5,6 +5,7 @@ import '@/styles/globals.css'
 import { ReactNode } from 'react'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import BackgroundVideo from '@/components/BackgroundVideo'
 
 const funnelSans = localFont({
   src: '../fonts/Funnel_Sans/FunnelSans[wght].woff2',
@@ -36,9 +37,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={clsx(
           funnelSans.variable,
           aspekta.variable,
-          'flex min-h-screen flex-col antialiased',
+          'relative flex min-h-screen flex-col antialiased',
         )}
       >
+        <BackgroundVideo />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
