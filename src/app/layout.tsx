@@ -6,6 +6,7 @@ import { ReactNode } from 'react'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import BackgroundVideo from '@/components/BackgroundVideo'
+import { BreakpointDebugger } from '@/components/BreakpointDebugger'
 
 const funnelSans = localFont({
   src: '../fonts/Funnel_Sans/FunnelSans[wght].woff2',
@@ -45,6 +46,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <main className="flex-1">{children}</main>
         <Footer />
       </body>
+
+      {process.env.NODE_ENV === 'development' && <BreakpointDebugger />}
     </html>
   )
 }

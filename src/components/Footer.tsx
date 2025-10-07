@@ -1,4 +1,4 @@
-import Container from './Container'
+import { Container } from './Container'
 import { Icon } from './Icon'
 import { footerLinks } from '@/constants/links'
 import { ExternalLink } from './ExternalLink'
@@ -24,7 +24,7 @@ export function Footer() {
             )}
           </div>
 
-          <div className="-order-1 flex items-center gap-16 md:order-1">
+          {/* <div className="-order-1 flex items-center gap-16 md:order-1">
             {footerLinks.legal.map(({ label, url }) => (
               <ExternalLink
                 key={label}
@@ -34,7 +34,7 @@ export function Footer() {
                 {label}
               </ExternalLink>
             ))}
-          </div>
+          </div> */}
         </div>
       </Container>
     </footer>
