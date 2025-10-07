@@ -10,7 +10,7 @@ export default function BackgroundVideo() {
 
   return (
     <div className="absolute inset-0 isolate -z-10">
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-black/40" />
       {videoError ? (
         <Image
           src={BackgroundVideoPoster}
@@ -20,7 +20,7 @@ export default function BackgroundVideo() {
       ) : (
         <video
           aria-hidden="true"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-center"
           autoPlay
           muted
           loop
