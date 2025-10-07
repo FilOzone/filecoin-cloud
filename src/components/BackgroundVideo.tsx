@@ -9,7 +9,7 @@ export default function BackgroundVideo() {
   const [videoError, setVideoError] = useState(false)
 
   return (
-    <div className="absolute inset-0 isolate -z-10">
+    <div className="absolute inset-0 -left-1 isolate -z-10">
       <div className="absolute inset-0 bg-black/40" />
       {videoError ? (
         <Image
