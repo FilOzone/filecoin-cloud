@@ -8,14 +8,14 @@ export const BASE_URL = 'https://www.filecoin.services/'
 export const footerLinks = {
   createdBy: [
     {
-      icon: FilecoinFoundationLogo,
-      url: ffSite,
-      label: 'Filecoin Foundation',
-    },
-    {
       icon: FilozLogo,
       url: 'https://www.filoz.org/',
       label: 'Filoz',
+    },
+    {
+      icon: FilecoinFoundationLogo,
+      url: ffSite,
+      label: 'Filecoin Foundation',
     },
   ],
   legal: [

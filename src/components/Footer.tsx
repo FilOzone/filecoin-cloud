@@ -5,7 +5,7 @@ import { ExternalLink } from './ExternalLink'
 
 export function Footer() {
   return (
-    <footer className="py-15 text-[#9F9FA9]">
+    <footer className="py-15 text-zinc-400">
       <Container>
         <div className="flex flex-col items-center justify-between gap-10 md:mx-10 md:flex-row">
           <div className="flex items-center gap-6">
@@ -17,6 +17,7 @@ export function Footer() {
                   key={label}
                   href={url}
                   aria-label={`Visit ${label}'s website`}
+                  className="p-1 hover:text-zinc-100 focus:text-zinc-100"
                 >
                   <Icon component={IconComponent} width={80} />
                 </ExternalLink>
