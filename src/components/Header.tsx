@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Container from './Container'
+import { Container } from './Container'
 import { Icon } from './Icon'
 import Logo from '@/public/foc-logo.svg'
 

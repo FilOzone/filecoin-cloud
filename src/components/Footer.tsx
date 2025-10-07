@@ -1,4 +1,4 @@
-import Container from './Container'
+import { Container } from './Container'
 import { Icon } from './Icon'
 import { footerLinks } from '@/constants/links'
 import { ExternalLink } from './ExternalLink'
