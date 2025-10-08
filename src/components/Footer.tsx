@@ -5,7 +5,7 @@ import { ExternalLink } from './ExternalLink'
 
 export function Footer() {
   return (
-    <footer className="py-15 text-zinc-400">
+    <footer className="pt-20 pb-15 text-zinc-400">
       <Container>
         <div className="flex flex-col items-center justify-between gap-10 md:mx-10 md:flex-row">
           <div className="flex items-center gap-6">
