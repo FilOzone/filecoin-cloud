@@ -10,7 +10,7 @@ export default function BackgroundVideo() {
 
   return (
     <div className="absolute inset-0 -left-1 isolate -z-10">
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/55" />
       {videoError ? (
         <Image
           src={BackgroundVideoPoster}
