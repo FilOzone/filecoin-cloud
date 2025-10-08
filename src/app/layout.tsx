@@ -43,9 +43,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        {process.env.NODE_ENV === 'development' && <BreakpointDebugger />}
       </body>
-
-      {process.env.NODE_ENV === 'development' && <BreakpointDebugger />}
     </html>
   )
 }
