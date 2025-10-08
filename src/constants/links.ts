@@ -31,7 +31,6 @@ export const homeLinks = [
   {
     label: 'Filecoin Pin',
     cta: 'Coming Soon',
-    link: 'https://pin.filecoin.io/',
   },
   {
     label: 'Read the Docs',

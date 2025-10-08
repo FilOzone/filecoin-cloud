@@ -1,30 +1,43 @@
 import { Icon } from './Icon'
 import { CaretRightIcon } from '@phosphor-icons/react/dist/ssr'
+import { clsx } from 'clsx'
+import { ExternalLink } from './ExternalLink'
 
 export type CardProps = {
   title: string
   description: string
-  link: string
+  link?: string
 }
 
 export function Card({ title, description, link }: CardProps) {
   return (
     <article
-      className="border-brand-700/50 hover:border-brand-700/90 focus-within:brand-outline relative rounded-2xl border bg-zinc-800/75 p-8 focus-within:bg-zinc-800/95 hover:bg-zinc-800/90"
-      aria-label={title + ': ' + description}
+      className={clsx(
+        'border-brand-700/50 rounded-2xl border bg-zinc-800/75 p-8 text-left',
+        link &&
+          'hover:border-brand-700/90 focus-within:brand-outline relative focus-within:bg-zinc-800/95 hover:bg-zinc-800/90',
+      )}
+      {...(link && {
+        'aria-label': `Visit ${description}`,
+      })}
     >
-      <h3 className="mb-12 text-left text-xl font-medium">{title}</h3>
+      <h3 className={clsx('text-xl font-medium', link ? 'mb-12' : 'mb-6')}>
+        {title}
+      </h3>
 
-      <a
-        href={link}
-        rel="noopener noreferrer"
-        className="absolute inset-0 font-medium text-zinc-400 focus:outline-none"
-      >
-        <span className="absolute bottom-8 left-8 inline-flex items-center gap-2">
-          {description}
-          <Icon component={CaretRightIcon} color="text-zinc-500" width={20} />
-        </span>
-      </a>
+      {link ? (
+        <ExternalLink
+          href={link}
+          className="absolute inset-0 font-medium text-zinc-400 focus:outline-none"
+        >
+          <span className="absolute bottom-8 left-8 inline-flex items-center gap-2">
+            {description}
+            <Icon component={CaretRightIcon} color="text-zinc-500" width={20} />
+          </span>
+        </ExternalLink>
+      ) : (
+        <p className="font-medium text-zinc-400">{description}</p>
+      )}
     </article>
   )
 }
