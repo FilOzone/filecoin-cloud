@@ -5,6 +5,9 @@ const ffSite = 'https://fil.org/'
 
 export const BASE_URL = 'https://www.filecoin.services/'
 
+export const waitlistFormLink =
+  'https://ct2xy.share.hsforms.com/2WWxi-evaTTeHM0O-uXAu3Q'
+
 export const footerLinks = {
   createdBy: [
     {

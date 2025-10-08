@@ -1,8 +1,8 @@
 import { Container } from '@/components/Container'
 import { Announcement } from '@/components/Announcement'
-import { Button } from '@/components/Button'
-import { homeLinks } from '@/constants/links'
+import { homeLinks, waitlistFormLink } from '@/constants/links'
 import { Card } from '@/components/Card'
+import { ExternalLink } from '@/components/ExternalLink'
 
 export default function Home() {
   return (
@@ -20,7 +20,9 @@ export default function Home() {
           </p>
         </div>
 
-        <Button>Join the waitlist</Button>
+        <ExternalLink href={waitlistFormLink} className="button">
+          Join the waitlist
+        </ExternalLink>
 
         <div className="grid w-full grid-cols-1 gap-10 px-0 sm:px-15 md:grid-cols-2 md:px-0">
           {homeLinks.map(({ label, cta, link }) => (
