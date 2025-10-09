@@ -39,7 +39,7 @@ export const homeLinks = [
   },
   {
     label: 'Join the Community',
-    cta: 'FOC Slack',
+    cta: '#fil-services Slack',
     link: 'https://filecoinproject.slack.com/archives/C07CGTXHHT4',
   },
   {
