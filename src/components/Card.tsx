@@ -13,7 +13,7 @@ export function Card({ title, description, link }: CardProps) {
   return (
     <article
       className={clsx(
-        'border-brand-700/50 rounded-2xl border bg-zinc-800/75 p-8 text-left',
+        'border-brand-700/50 rounded-2xl border bg-zinc-800/75 p-6 text-left',
         link &&
           'hover:border-brand-700/90 focus-within:brand-outline relative focus-within:bg-zinc-800/95 hover:bg-zinc-800/90',
       )}
@@ -21,7 +21,7 @@ export function Card({ title, description, link }: CardProps) {
         'aria-label': `Visit ${description}`,
       })}
     >
-      <h3 className={clsx('text-xl font-medium', link ? 'mb-12' : 'mb-6')}>
+      <h3 className={clsx('text-xl font-medium', link ? 'mb-8' : 'mb-4')}>
         {title}
       </h3>
 
@@ -30,7 +30,7 @@ export function Card({ title, description, link }: CardProps) {
           href={link}
           className="absolute inset-0 font-medium text-zinc-400 focus:outline-none"
         >
-          <span className="absolute bottom-8 left-8 inline-flex items-center gap-2">
+          <span className="absolute bottom-6 left-6 inline-flex items-center gap-2">
             {description}
             <Icon component={CaretRightIcon} color="text-zinc-500" width={20} />
           </span>
