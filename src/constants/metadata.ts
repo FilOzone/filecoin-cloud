@@ -15,12 +15,12 @@ export const METADATA: Metadata = {
     description: META_DESCRIPTION,
     url: BASE_URL,
     siteName: META_TITLE,
-    images: [{ url: '/background-video-poster.webp' }],
+    images: [{ url: '/open-graph-image.webp' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: META_TITLE,
     description: META_DESCRIPTION,
-    images: ['/background-video-poster.webp'],
+    images: ['/open-graph-image.webp'],
   },
 }
