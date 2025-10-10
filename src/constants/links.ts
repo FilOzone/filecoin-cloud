@@ -1,9 +1,12 @@
 import FilozLogo from '@/public/filoz-logo.svg'
 import FilecoinFoundationLogo from '@/public/filecoin-foundation-logo.svg'
 
-const ffSite = 'https://fil.org/'
+if (!process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+  throw new Error('VERCEL_PROJECT_PRODUCTION_URL is not defined')
+}
 
-export const BASE_URL = 'https://www.filecoin.services/'
+const FF_URL = 'https://fil.org/'
+export const BASE_URL = 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL
 
 export const waitlistFormLink =
   'https://ct2xy.share.hsforms.com/2WWxi-evaTTeHM0O-uXAu3Q'
@@ -17,13 +20,13 @@ export const footerLinks = {
     },
     {
       icon: FilecoinFoundationLogo,
-      url: ffSite,
+      url: FF_URL,
       label: 'Filecoin Foundation',
     },
   ],
   legal: [
-    { label: 'Privacy Policy', url: `${ffSite}privacy-policy/` },
-    { label: 'Terms of Use', url: `${ffSite}terms-of-use/` },
+    { label: 'Privacy Policy', url: `${FF_URL}privacy-policy/` },
+    { label: 'Terms of Use', url: `${FF_URL}terms-of-use/` },
   ],
 }
 

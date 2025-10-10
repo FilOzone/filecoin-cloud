@@ -8,6 +8,8 @@ import { Footer } from '@/components/Footer'
 import BackgroundVideo from '@/components/BackgroundVideo'
 import { BreakpointDebugger } from '@/components/BreakpointDebugger'
 import { METADATA } from '@/constants/metadata'
+import { Banner } from '@/components/Banner'
+import { ExternalLink } from '@/components/ExternalLink'
 
 const funnelSans = localFont({
   src: '../fonts/Funnel_Sans/FunnelSans[wght].woff2',
@@ -40,6 +42,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <BackgroundVideo />
+        <ExternalLink
+          href="https://www.fildev.io/FDS-7"
+          aria-label="Register for Fil Dev Summit #7"
+          className="group/link focus:outline-none"
+        >
+          <Banner label="Filecoin Dev Summit 7">
+            Happening Now: Learn more at{' '}
+            <span className="text-brand-500 group-focus/link:brand-outline inline-block group-hover/link:underline">
+              Filecoin Dev Summit 7
+            </span>
+          </Banner>
+        </ExternalLink>
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -1,12 +1,19 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 
 import BackgroundVideoPoster from '@/public/background-video-poster.webp'
 
 export default function BackgroundVideo() {
   const [videoError, setVideoError] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.6
+    }
+  }, [])
 
   return (
     <div className="absolute inset-0 -left-1 isolate -z-10">
@@ -19,6 +26,7 @@ export default function BackgroundVideo() {
         />
       ) : (
         <video
+          ref={videoRef}
           aria-hidden="true"
           className="h-full w-full object-cover object-center"
           autoPlay
