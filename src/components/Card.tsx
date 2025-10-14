@@ -1,43 +1,36 @@
 import { Icon } from './Icon'
-import { CaretRightIcon } from '@phosphor-icons/react/dist/ssr'
-import { clsx } from 'clsx'
 import { ExternalLink } from './ExternalLink'
+import type { Icon as PhosphorIcon } from '@phosphor-icons/react'
 
 export type CardProps = {
-  title: string
-  description: string
-  link?: string
+  text: string
+  icon: PhosphorIcon
+  link: string
 }
 
-export function Card({ title, description, link }: CardProps) {
+export function Card({ text, icon: IconComponent, link }: CardProps) {
   return (
     <article
-      className={clsx(
-        'group border-brand-700/20 rounded-xl border bg-zinc-800/75 p-6 text-left',
-        link &&
-          'hover:border-brand-700/80 focus-within:brand-outline relative focus-within:bg-zinc-800/95 hover:bg-zinc-800/90',
-      )}
-      {...(link && {
-        'aria-label': `Visit ${description}`,
-      })}
+      className="group/card focus-within:brand-outline relative border-t border-zinc-50/25 from-zinc-400/5 to-zinc-400/0 pt-9 hover:border-zinc-50/80 hover:bg-linear-to-b"
+      aria-label={`Visit ${text}`}
     >
-      <h3 className={clsx('text-xl font-medium', link ? 'mb-8' : 'mb-4')}>
-        {title}
-      </h3>
+      <div className="flex items-center gap-4">
+        <div
+          className="bg-brand-700 group-hover/card:bg-brand-600 group-focus-within/card:bg-brand-600 rounded-full p-2 text-zinc-50"
+          aria-hidden="true"
+        >
+          <Icon component={IconComponent} width={20} />
+        </div>
 
-      {link ? (
         <ExternalLink
           href={link}
-          className="group-hover:text-brand-500 group-focus-within:text-brand-500 absolute inset-0 font-medium text-zinc-400 focus:outline-none"
+          className="absolute inset-0 text-zinc-50 focus:outline-none"
         >
-          <span className="absolute bottom-6 left-6 inline-flex items-center gap-2">
-            {description}
-            <Icon component={CaretRightIcon} width={20} />
-          </span>
+          <h3 className="absolute top-9 left-14 font-sans text-lg font-medium">
+            {text}
+          </h3>
         </ExternalLink>
-      ) : (
-        <p className="font-medium text-zinc-400">{description}</p>
-      )}
+      </div>
     </article>
   )
 }
