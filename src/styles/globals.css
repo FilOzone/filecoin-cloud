@@ -70,6 +70,7 @@ body {
           linear-gradient(var(--color-white)) content-box,
           linear-gradient(var(--color-white));
         mask-composite: exclude;
+        -webkit-mask-composite: xor; /* Safari < 15.4 */
       }
 
       &:focus {
