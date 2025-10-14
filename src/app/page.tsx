@@ -15,8 +15,9 @@ export default function Home() {
             Filecoin Onchain Cloud
           </h1>
           <p className="mx-auto max-w-md text-center text-xl text-pretty text-zinc-300">
-            The future of the cloud starts with all of us. Are you ready to take
-            back the cloud?
+            The future of the cloud starts with all of us.{' '}
+            <br className="hidden sm:block" />
+            Are you ready to take back the cloud?
           </p>
         </div>
 
