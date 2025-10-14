@@ -49,12 +49,12 @@ body {
 
     &:not(:disabled) {
       &::before {
-        background: var(--gradient-brand-dark) border-box;
+        background: var(--gradient-brand-dark);
       }
 
       &::after {
         @apply opacity-0 transition-opacity duration-200;
-        background: var(--gradient-brand-light) border-box;
+        background: var(--gradient-brand-light);
       }
 
       &:hover::after,
@@ -66,11 +66,14 @@ body {
       &::after {
         @apply absolute -inset-0.5 rounded-full border-2 border-transparent;
         content: '';
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
         mask:
-          linear-gradient(var(--color-white)) content-box,
-          linear-gradient(var(--color-white));
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
         mask-composite: exclude;
-        -webkit-mask-composite: xor; /* Safari < 15.4 */
       }
 
       &:focus {
