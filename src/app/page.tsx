@@ -14,7 +14,7 @@ export default function Home() {
           <h1 className="font-heading text-4xl font-medium text-pretty md:text-6xl">
             Filecoin Onchain Cloud
           </h1>
-          <p className="mx-auto max-w-md text-center text-xl text-pretty text-zinc-300">
+          <p className="mx-auto max-w-md text-center font-sans text-xl text-pretty text-zinc-100">
             The future of the cloud starts with all of us.{' '}
             <br className="hidden sm:block" />
             Are you ready to take back the cloud?

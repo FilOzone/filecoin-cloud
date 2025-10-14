@@ -6,7 +6,7 @@ type BannerProps = {
 export function Banner({ children, label }: BannerProps) {
   return (
     <section
-      className="w-full bg-[#0C0C18] py-2.5 text-center text-sm sm:py-3.5 sm:text-base"
+      className="w-full bg-[#0C0C18] py-2.5 text-center font-sans text-sm sm:py-3.5 sm:text-base"
       role="banner"
       aria-label={`Banner: ${label}`}
     >

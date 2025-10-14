@@ -38,7 +38,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={clsx(
           funnelSans.variable,
           aspekta.variable,
-          'relative flex min-h-screen flex-col antialiased',
+          'relative flex min-h-screen flex-col font-sans antialiased',
         )}
       >
         <BackgroundVideo />

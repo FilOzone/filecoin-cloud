@@ -45,7 +45,7 @@ body {
 
 @layer components {
   .button {
-    @apply relative rounded-full border-2 border-transparent bg-black/40 px-6 py-4 font-medium text-zinc-50 hover:bg-black/50;
+    @apply relative rounded-full border-2 border-transparent bg-black/40 px-6 py-4 font-sans font-medium text-zinc-50 hover:bg-black/50;
 
     &:not(:disabled) {
       &::before {
