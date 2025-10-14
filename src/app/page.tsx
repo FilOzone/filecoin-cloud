@@ -25,7 +25,7 @@ export default function Home() {
           Join the waitlist
         </ExternalLink>
 
-        <div className="mt-12 grid w-full max-w-7xl grid-cols-1 gap-8 px-0 sm:px-8 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-6 grid w-full max-w-7xl grid-cols-1 gap-8 px-0 sm:px-8 md:grid-cols-2 xl:grid-cols-4">
           {homeLinks.map(({ text, icon, link }) => (
             <Card key={text} text={text} icon={icon} link={link} />
           ))}
