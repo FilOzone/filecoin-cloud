@@ -10,6 +10,7 @@ import { BreakpointDebugger } from '@/components/BreakpointDebugger'
 import { METADATA } from '@/constants/metadata'
 import { Banner } from '@/components/Banner'
 import { ExternalLink } from '@/components/ExternalLink'
+import PlausibleProvider from 'next-plausible'
 
 const funnelSans = localFont({
   src: '../fonts/Funnel_Sans/FunnelSans[wght].woff2',
@@ -34,6 +35,14 @@ type RootLayoutProps = Readonly<{ children: ReactNode }>
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
+      <head>
+        <PlausibleProvider
+          trackOutboundLinks
+          hash
+          trackFileDownloads
+          domain={'filecoin.cloud'}
+        />
+      </head>
       <body
         className={clsx(
           funnelSans.variable,
