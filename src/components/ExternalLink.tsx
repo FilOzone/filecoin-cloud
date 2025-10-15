@@ -11,6 +11,7 @@ export function ExternalLink({ className, href, ...rest }: ExternalLinkProps) {
       href={`${href}?utm_source=${PRODUCTION_URL}`}
       rel="noopener noreferrer"
       className={clsx(className, 'focus:brand-outline')}
+      target="_blank"
     />
   )
 }
