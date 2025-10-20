@@ -2,6 +2,7 @@ import { Announcement } from '@/components/Announcement'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import { ExternalLink } from '@/components/ExternalLink'
+
 import { homeLinks, waitlistFormLink } from '@/constants/links'
 
 export default function Home() {

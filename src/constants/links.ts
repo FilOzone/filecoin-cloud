@@ -4,6 +4,7 @@ import {
   PushPinSimpleIcon,
   UsersThreeIcon,
 } from '@phosphor-icons/react/dist/ssr'
+
 import FilecoinFoundationLogo from '@/public/filecoin-foundation-logo.svg'
 import FilozLogo from '@/public/filoz-logo.svg'
 

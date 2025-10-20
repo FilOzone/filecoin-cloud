@@ -4,12 +4,14 @@ import localFont from 'next/font/local'
 import '@/styles/globals.css'
 import PlausibleProvider from 'next-plausible'
 import type { ReactNode } from 'react'
+
 import BackgroundVideo from '@/components/BackgroundVideo'
 import { Banner } from '@/components/Banner'
 import { BreakpointDebugger } from '@/components/BreakpointDebugger'
 import { ExternalLink } from '@/components/ExternalLink'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+
 import { METADATA } from '@/constants/metadata'
 
 const funnelSans = localFont({

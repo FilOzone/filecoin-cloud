@@ -1,4 +1,5 @@
 import { footerLinks } from '@/constants/links'
+
 import { Container } from './Container'
 import { ExternalLink } from './ExternalLink'
 import { Icon } from './Icon'

@@ -91,7 +91,20 @@
     "enabled": true,
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              ":PACKAGE:",
+              ":BLANK_LINE:",
+              ["@/components/**", "@/components/*"],
+              ":BLANK_LINE:",
+              ["@/**", "@/*"],
+              ":BLANK_LINE:",
+              ["./**", "./*"]
+            ]
+          }
+        }
       }
     }
   },
