@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
 
 import BackgroundVideoPoster from '@/public/background-video-poster.webp'
 
@@ -27,7 +27,6 @@ export default function BackgroundVideo() {
       ) : (
         <video
           ref={videoRef}
-          aria-hidden="true"
           className="h-full w-full object-cover object-center"
           autoPlay
           muted

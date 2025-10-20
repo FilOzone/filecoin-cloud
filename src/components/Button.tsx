@@ -1,5 +1,5 @@
-import { ComponentProps } from 'react'
 import { clsx } from 'clsx'
+import type { ComponentProps } from 'react'
 
 export type ButtonProps = ComponentProps<'button'>
 

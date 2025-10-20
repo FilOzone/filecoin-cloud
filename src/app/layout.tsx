@@ -1,16 +1,16 @@
-import localFont from 'next/font/local'
 import { clsx } from 'clsx'
 import type { Metadata } from 'next'
+import localFont from 'next/font/local'
 import '@/styles/globals.css'
-import { ReactNode } from 'react'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
-import BackgroundVideo from '@/components/BackgroundVideo'
-import { BreakpointDebugger } from '@/components/BreakpointDebugger'
-import { METADATA } from '@/constants/metadata'
-import { Banner } from '@/components/Banner'
-import { ExternalLink } from '@/components/ExternalLink'
 import PlausibleProvider from 'next-plausible'
+import type { ReactNode } from 'react'
+import BackgroundVideo from '@/components/BackgroundVideo'
+import { Banner } from '@/components/Banner'
+import { BreakpointDebugger } from '@/components/BreakpointDebugger'
+import { ExternalLink } from '@/components/ExternalLink'
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
+import { METADATA } from '@/constants/metadata'
 
 const funnelSans = localFont({
   src: '../fonts/Funnel_Sans/FunnelSans[wght].woff2',
@@ -56,7 +56,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           aria-label="Register for Fil Dev Summit #7"
           className="group/link focus:outline-none"
         >
-          <Banner label="Filecoin Dev Summit 7">
+          <Banner>
             Happening Now: Learn more at{' '}
             <span className="text-brand-500 group-focus/link:brand-outline inline-block group-hover/link:underline">
               Filecoin Dev Summit 7

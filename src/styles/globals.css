@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme inline {
   --font-sans: var(--font-funnel-sans);
@@ -65,7 +65,7 @@ body {
       &::before,
       &::after {
         @apply absolute -inset-0.5 rounded-full border-2 border-transparent;
-        content: '';
+        content: "";
         -webkit-mask:
           linear-gradient(#fff 0 0) content-box,
           linear-gradient(#fff 0 0);
