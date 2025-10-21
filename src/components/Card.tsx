@@ -11,10 +11,7 @@ export type CardProps = {
 
 export function Card({ text, icon: IconComponent, link }: CardProps) {
   return (
-    <article
-      className="group/card focus-within:brand-outline relative border-t border-zinc-50/25 from-zinc-400/5 to-zinc-400/0 pt-9 hover:border-zinc-50/80 hover:bg-linear-to-b"
-      aria-label={`Visit ${text}`}
-    >
+    <article className="group/card focus-within:brand-outline relative border-t border-zinc-50/25 from-zinc-400/5 to-zinc-400/0 pt-9 hover:border-zinc-50/80 hover:bg-linear-to-b">
       <div className="flex items-center gap-4">
         <div
           className="bg-brand-700 group-hover/card:bg-brand-600 group-focus-within/card:bg-brand-600 rounded-full p-2 text-zinc-50"
