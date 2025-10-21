@@ -11,6 +11,8 @@ export default function Home() {
       <div className="mx-auto flex flex-col items-center gap-15 text-center">
         <Announcement>Coming soon</Announcement>
 
+        <a href="https://www.sjdklajsdkaskdjalksjdkla.com/">Broken Link</a>
+
         <div className="space-y-6">
           <h1 className="font-heading text-4xl font-medium text-pretty md:text-6xl">
             Filecoin Onchain Cloud
