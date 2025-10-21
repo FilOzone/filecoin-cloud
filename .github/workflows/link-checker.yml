@@ -1,0 +1,45 @@
+name: Link Checker
+
+on:
+  schedule:
+    - cron: "0 2 * * 0"
+  workflow_dispatch:
+
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+
+    env:
+      BASE_URL: https://filecoin.cloud
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v5
+
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v2.6.1
+        id: lychee
+        with:
+          args: |
+            --accept 100..=103,200..=299,403,429
+            --base ${{ env.BASE_URL }}
+            --retry-wait-time 3
+            --max-retries 3
+            --timeout 30
+            --user-agent "Mozilla/5.0 (compatible; LinkChecker/1.0)"
+            --verbose
+            "src/**/*.{md,tsx,ts}"
+          format: markdown
+          output: ./lychee-report.md
+          fail: false
+
+      - name: Create Issue on Link Check Failure
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: Link Checker Report
+          content-filepath: ./lychee-report.md
+          labels: broken-links
