@@ -13,7 +13,7 @@ jobs:
       issues: write
 
     env:
-      BASE_URL: https://filecoin.cloud
+      BASE_URL: https://www.filecoin.cloud
 
     steps:
       - name: Check out code
@@ -25,13 +25,16 @@ jobs:
         with:
           args: |
             --accept 100..=103,200..=299,403,429
-            --base ${{ env.BASE_URL }}
+            --base-url ${{ env.BASE_URL }}
             --retry-wait-time 3
             --max-retries 3
             --timeout 30
             --user-agent "Mozilla/5.0 (compatible; LinkChecker/1.0)"
             --verbose
-            "src/**/*.{md,tsx,ts}"
+            --no-progress
+            "src/**/*.md"
+            "src/**/*.tsx"
+            "src/**/*.ts"
           format: markdown
           output: ./lychee-report.md
           fail: false
