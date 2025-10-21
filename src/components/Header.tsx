@@ -1,11 +1,13 @@
 import Link from 'next/link'
+
+import Logo from '@/public/foc-logo.svg'
+
 import { Container } from './Container'
 import { Icon } from './Icon'
-import Logo from '@/public/foc-logo.svg'
 
 export function Header() {
   return (
-    <header className="py-9">
+    <nav className="py-9">
       <Container>
         <Link
           href="/"
@@ -15,6 +17,6 @@ export function Header() {
           <Icon component={Logo} width={40} />
         </Link>
       </Container>
-    </header>
+    </nav>
   )
 }

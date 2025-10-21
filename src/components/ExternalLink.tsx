@@ -1,5 +1,6 @@
 import { clsx } from 'clsx'
-import { ComponentProps } from 'react'
+import type { ComponentProps } from 'react'
+
 import { PRODUCTION_URL } from '@/constants/links'
 
 type ExternalLinkProps = ComponentProps<'a'>

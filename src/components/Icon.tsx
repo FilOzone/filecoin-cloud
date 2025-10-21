@@ -1,6 +1,5 @@
+import type { IconWeight, Icon as PhosphorIcon } from '@phosphor-icons/react'
 import type { ComponentType, SVGProps } from 'react'
-
-import type { Icon as PhosphorIcon, IconWeight } from '@phosphor-icons/react'
 
 export type IconProps = {
   component: PhosphorIcon | ComponentType<SVGProps<SVGSVGElement>>
