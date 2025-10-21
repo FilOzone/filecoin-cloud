@@ -16,7 +16,15 @@ jobs:
         uses: actions/checkout@v5
         with:
           persist-credentials: false
+
+      - name: Cache Biome
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/biome
+          key: ${{ runner.os }}-biome-${{ hashFiles('**/biome.json') }}
+
       - name: Setup Biome
         uses: biomejs/setup-biome@v2
+
       - name: Run Biome
         run: biome ci .
