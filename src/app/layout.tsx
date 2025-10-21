@@ -1,34 +1,11 @@
-import { clsx } from 'clsx'
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
 import '@/styles/globals.css'
 import PlausibleProvider from 'next-plausible'
 import type { ReactNode } from 'react'
 
-import BackgroundVideo from '@/components/BackgroundVideo'
-import { Banner } from '@/components/Banner'
-import { BreakpointDebugger } from '@/components/BreakpointDebugger'
-import { ExternalLink } from '@/components/ExternalLink'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import { SiteLayout } from '@/components/SiteLayout'
 
 import { METADATA } from '@/constants/metadata'
-
-const funnelSans = localFont({
-  src: '../fonts/Funnel_Sans/FunnelSans[wght].woff2',
-  display: 'swap',
-  variable: '--font-funnel-sans',
-  fallback: ['Arial', 'Helvetica', 'sans-serif'],
-  preload: true,
-})
-
-const aspekta = localFont({
-  src: '../fonts/Aspekta/AspektaVF.woff2',
-  display: 'swap',
-  variable: '--font-aspekta',
-  fallback: ['Arial', 'Helvetica', 'sans-serif'],
-  preload: true,
-})
 
 export const metadata: Metadata = METADATA
 
@@ -36,40 +13,13 @@ type RootLayoutProps = Readonly<{ children: ReactNode }>
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <head>
-        <PlausibleProvider
-          trackOutboundLinks
-          hash
-          trackFileDownloads
-          domain={'filecoin.cloud'}
-        />
-      </head>
-      <body
-        className={clsx(
-          funnelSans.variable,
-          aspekta.variable,
-          'relative flex min-h-screen flex-col font-sans antialiased',
-        )}
-      >
-        <BackgroundVideo />
-        <ExternalLink
-          href="https://www.fildev.io/FDS-7"
-          aria-label="Register for Fil Dev Summit #7"
-          className="group/link focus:outline-none"
-        >
-          <Banner>
-            Happening Now: Learn more at{' '}
-            <span className="text-brand-500 group-focus/link:brand-outline inline-block group-hover/link:underline">
-              Filecoin Dev Summit 7
-            </span>
-          </Banner>
-        </ExternalLink>
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        {process.env.NODE_ENV === 'development' && <BreakpointDebugger />}
-      </body>
-    </html>
+    <PlausibleProvider
+      trackOutboundLinks
+      hash
+      trackFileDownloads
+      domain={'filecoin.cloud'}
+    >
+      <SiteLayout>{children}</SiteLayout>
+    </PlausibleProvider>
   )
 }
