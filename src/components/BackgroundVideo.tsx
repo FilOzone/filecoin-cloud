@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import BackgroundVideoPoster from '@/public/background-video-poster.webp'
 
-export default function BackgroundVideo() {
+export function BackgroundVideo() {
   const [videoError, setVideoError] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 

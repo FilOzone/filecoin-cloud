@@ -3,7 +3,7 @@ import localFont from 'next/font/local'
 import '@/styles/globals.css'
 import type { ReactNode } from 'react'
 
-import BackgroundVideo from '@/components/BackgroundVideo'
+import { BackgroundVideo } from '@/components/BackgroundVideo'
 import { Banner } from '@/components/Banner'
 import { BreakpointDebugger } from '@/components/BreakpointDebugger'
 import { ExternalLink } from '@/components/ExternalLink'
