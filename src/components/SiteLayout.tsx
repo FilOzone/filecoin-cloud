@@ -38,8 +38,6 @@ export function SiteLayout({ children }: SiteLayoutProps) {
           'relative flex min-h-screen flex-col font-sans antialiased',
         )}
       >
-        <BackgroundVideo />
-
         <ExternalLink
           href="https://www.fildev.io/FDS-7"
           aria-label="Register for Fil Dev Summit #7"
