@@ -34,7 +34,7 @@ export function BackgroundVideo() {
           playsInline
           preload="auto"
           disablePictureInPicture
-          poster="/background-video-poster.webp"
+          poster={BackgroundVideoPoster.src}
           onError={() => setVideoError(true)}
         >
           <source src="/background-video.mp4" type="video/mp4" />
