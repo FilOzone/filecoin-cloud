@@ -17,7 +17,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       trackOutboundLinks
       hash
       trackFileDownloads
-      domain={'filecoin.cloud'}
+      domain="filecoin.cloud"
     >
       <SiteLayout>{children}</SiteLayout>
     </PlausibleProvider>
