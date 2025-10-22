@@ -24,9 +24,9 @@ export function Card({ text, icon: IconComponent, link }: CardProps) {
           href={link}
           className="absolute inset-0 text-zinc-50 focus:outline-none"
         >
-          <h3 className="absolute top-10 left-14 font-sans text-lg font-medium">
+          <p className="absolute top-10 left-14 font-sans text-lg font-medium">
             {text}
-          </h3>
+          </p>
         </ExternalLink>
       </div>
     </article>
