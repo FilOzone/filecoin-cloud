@@ -3,7 +3,10 @@ import type { ComponentProps } from 'react'
 
 import { PRODUCTION_URL } from '@/constants/links'
 
-type ExternalLinkProps = { href: string } & Omit<ComponentProps<'a'>, 'href'>
+type ExternalLinkProps = { href: string } & Omit<
+  ComponentProps<'a'>,
+  'href' | 'rel' | 'target'
+>
 
 export function ExternalLink({ className, href, ...rest }: ExternalLinkProps) {
   return (
