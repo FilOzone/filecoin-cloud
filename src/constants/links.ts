@@ -18,6 +18,8 @@ export const BASE_URL = `https://${PRODUCTION_URL}`
 export const waitlistFormLink =
   'https://ct2xy.share.hsforms.com/2WWxi-evaTTeHM0O-uXAu3Q'
 
+export const fds7Link = 'https://www.fildev.io/FDS-7'
+
 export const footerLinks = {
   createdBy: [
     {

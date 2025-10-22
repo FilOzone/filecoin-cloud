@@ -3,12 +3,13 @@ import localFont from 'next/font/local'
 import '@/styles/globals.css'
 import type { ReactNode } from 'react'
 
-import { BackgroundVideo } from '@/components/BackgroundVideo'
 import { Banner } from '@/components/Banner'
 import { BreakpointDebugger } from '@/components/BreakpointDebugger'
 import { ExternalLink } from '@/components/ExternalLink'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+
+import { fds7Link } from '@/constants/links'
 
 const funnelSans = localFont({
   src: '../fonts/Funnel_Sans/FunnelSans[wght].woff2',
@@ -38,18 +39,16 @@ export function SiteLayout({ children }: SiteLayoutProps) {
           'relative flex min-h-screen flex-col font-sans antialiased',
         )}
       >
-        <ExternalLink
-          href="https://www.fildev.io/FDS-7"
-          aria-label="Register for Fil Dev Summit #7"
-          className="group/link focus:outline-none"
-        >
-          <Banner>
-            Happening Now: Learn more at{' '}
-            <span className="text-brand-500 group-focus/link:brand-outline inline-block group-hover/link:underline">
-              Filecoin Dev Summit 7
-            </span>
-          </Banner>
-        </ExternalLink>
+        <Banner>
+          Happening Now: Learn more at{' '}
+          <ExternalLink
+            href={fds7Link}
+            aria-label="Register for Fil Dev Summit #7"
+            className="text-brand-500 focus:brand-outline inline-block hover:underline"
+          >
+            Filecoin Dev Summit 7
+          </ExternalLink>
+        </Banner>
 
         <Header />
         <main className="flex-1">{children}</main>
