@@ -41,13 +41,15 @@ export function SiteLayout({ children }: SiteLayoutProps) {
         )}
       >
         <Banner>
-          Happening Now: Learn more at{' '}
-          <ExternalTextLink
-            href={fds7Link}
-            aria-label="Register for Fil Dev Summit #7"
-          >
-            Filecoin Dev Summit 7
-          </ExternalTextLink>
+          <p className="font-medium text-white">
+            Happening Now: Learn more at{' '}
+            <ExternalTextLink
+              href={fds7Link}
+              aria-label="Register for Fil Dev Summit #7"
+            >
+              Filecoin Dev Summit 7
+            </ExternalTextLink>
+          </p>
         </Banner>
 
         <Header />
