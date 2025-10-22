@@ -5,11 +5,12 @@ import type { ReactNode } from 'react'
 
 import { BreakpointDebugger } from '@/components/_BreakpointDebugger'
 import { Banner } from '@/components/Banner'
-import { ExternalLink } from '@/components/ExternalLink'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 
 import { fds7Link } from '@/constants/links'
+
+import { ExternalTextLink } from './ExternalTextLink'
 
 const funnelSans = localFont({
   src: '../fonts/Funnel_Sans/FunnelSans[wght].woff2',
@@ -41,13 +42,12 @@ export function SiteLayout({ children }: SiteLayoutProps) {
       >
         <Banner>
           Happening Now: Learn more at{' '}
-          <ExternalLink
+          <ExternalTextLink
             href={fds7Link}
             aria-label="Register for Fil Dev Summit #7"
-            className="text-brand-500 focus:brand-outline inline-block hover:underline"
           >
             Filecoin Dev Summit 7
-          </ExternalLink>
+          </ExternalTextLink>
         </Banner>
 
         <Header />
