@@ -1,35 +1,72 @@
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-} from '@headlessui/react'
 import { CaretDownIcon } from '@phosphor-icons/react/dist/ssr'
+import * as AccordionPrimitive from '@radix-ui/react-accordion'
+import { clsx } from 'clsx'
+import type * as React from 'react'
 
 import { Icon } from './Icon'
 
-type AccordionProps = {
-  title: string
-  description: string
+export function Accordion({
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Root>) {
+  return <AccordionPrimitive.Root data-slot="accordion" {...props} />
 }
 
-export function Accordion({ title, description }: AccordionProps) {
+Accordion.Item = AccordionItem
+Accordion.Trigger = AccordionTrigger
+Accordion.Content = AccordionContent
+
+function AccordionItem({
+  className,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Item>) {
   return (
-    <Disclosure key={title} as="div" className="py-6 first:pt-0 last:pb-0">
-      <dt>
-        <DisclosureButton className="group flex w-full items-start justify-between text-left text-zinc-50 py-2">
-          <span className="text-xl font-medium">{title}</span>
-          <span className="group-data-open:rotate-180 transition-transform">
-            <Icon component={CaretDownIcon} width={20} />
-          </span>
-        </DisclosureButton>
-      </dt>
-      <DisclosurePanel
-        transition
-        as="dd"
-        className="pr-12 origin-top transition duration-200 ease-out data-closed:-translate-y-6 data-closed:opacity-0"
+    <AccordionPrimitive.Item
+      data-slot="accordion-item"
+      className={clsx(
+        'group/accordion border-b last:border-b-0 py-4',
+        className,
+      )}
+      {...props}
+    />
+  )
+}
+
+function AccordionTrigger({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
+  return (
+    <AccordionPrimitive.Header className="flex">
+      <AccordionPrimitive.Trigger
+        data-slot="accordion-trigger"
+        className={clsx(
+          'focus-visible:brand-outline flex flex-1 items-center justify-between gap-4 text-left text-xl font-medium hover:underline py-4',
+          className,
+        )}
+        {...props}
       >
-        <p className="text-zinc-200">{description}</p>
-      </DisclosurePanel>
-    </Disclosure>
+        {children}
+        <span className="transition-transform duration-200 group-data-[state=open]/accordion:rotate-180">
+          <Icon width={20} component={CaretDownIcon} color="text-zinc-200" />
+        </span>
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  )
+}
+
+function AccordionContent({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Content>) {
+  return (
+    <AccordionPrimitive.Content
+      data-slot="accordion-content"
+      className="data-[state=closed]:animate-slide-up data-[state=open]:animate-slide-down overflow-hidden text-zinc-300"
+      {...props}
+    >
+      <div className={clsx('pb-4', className)}>{children}</div>
+    </AccordionPrimitive.Content>
   )
 }

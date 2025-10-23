@@ -13,11 +13,21 @@ export function FAQ({ questions }: FAQProps) {
         <h2 className="text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
           Frequently asked questions
         </h2>
-        <dl className="mt-16 divide-y divide-white/20">
-          {questions.map(({ question, answer }) => (
-            <Accordion key={question} title={question} description={answer} />
-          ))}
-        </dl>
+
+        <Accordion
+          type="single"
+          collapsible
+          className="mt-16 divide-y divide-white/20"
+        >
+          {questions.map(({ question, answer }) => {
+            return (
+              <Accordion.Item key={question} value={question} className="py-4">
+                <Accordion.Trigger>{question}</Accordion.Trigger>
+                <Accordion.Content>{answer}</Accordion.Content>
+              </Accordion.Item>
+            )
+          })}
+        </Accordion>
       </Container>
     </div>
   )
