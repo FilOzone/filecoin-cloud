@@ -41,7 +41,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={clsx(
-          'focus-visible:brand-outline flex flex-1 items-center justify-between gap-4 text-left text-xl font-medium hover:underline py-4',
+          'focus-visible:brand-outline flex flex-1 items-center justify-between gap-4 text-left text-lg sm:text-xl font-medium hover:underline py-4',
           className,
         )}
         {...props}
