@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+@import "./accordion.css";
+@import "./button.css";
+
 @theme inline {
   --font-sans: var(--font-funnel-sans);
   --font-heading: var(--font-aspekta);
@@ -29,6 +32,9 @@
     var(--color-brand-300),
     var(--color-brand-500)
   );
+
+  --animate-slide-down: slideDown 300ms ease-out;
+  --animate-slide-up: slideUp 300ms ease-out;
 }
 
 body {
@@ -41,48 +47,4 @@ body {
   outline: 2px solid var(--color-zinc-50);
   outline-offset: 0px;
   border-color: transparent;
-}
-
-@layer components {
-  .button {
-    @apply relative rounded-full border-2 border-transparent bg-black/40 px-6 py-4 font-sans font-medium text-zinc-50 hover:bg-black/50;
-
-    &:not(:disabled) {
-      &::before {
-        background: var(--gradient-brand-dark);
-      }
-
-      &::after {
-        @apply opacity-0 transition-opacity duration-200;
-        background: var(--gradient-brand-light);
-      }
-
-      &:hover::after,
-      &:focus::after {
-        @apply opacity-100;
-      }
-
-      &::before,
-      &::after {
-        @apply absolute -inset-0.5 rounded-full border-2 border-transparent;
-        content: "";
-        -webkit-mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: destination-out;
-        mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-      }
-
-      &:focus {
-        @apply brand-outline bg-black/50;
-      }
-    }
-
-    &:disabled {
-      @apply border-zinc-500 bg-zinc-800 text-zinc-500;
-    }
-  }
 }
