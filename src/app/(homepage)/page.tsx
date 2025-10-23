@@ -4,7 +4,7 @@ import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import { ExternalLink } from '@/components/ExternalLink'
 
-import { homeLinks, waitlistFormLink } from '@/constants/links'
+import { homeLinks } from '@/constants/links'
 
 export default function Home() {
   return (
@@ -25,7 +25,10 @@ export default function Home() {
             </p>
           </div>
 
-          <ExternalLink href={waitlistFormLink} className="button">
+          <ExternalLink
+            href="https://ct2xy.share.hsforms.com/2WWxi-evaTTeHM0O-uXAu3Q"
+            className="button"
+          >
             Join the waitlist
           </ExternalLink>
 

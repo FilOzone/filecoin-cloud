@@ -8,16 +8,7 @@ import {
 import FilecoinFoundationLogo from '@/public/filecoin-foundation-logo.svg'
 import FilozLogo from '@/public/filoz-logo.svg'
 
-export const PRODUCTION_URL =
-  process.env.VERCEL_PROJECT_PRODUCTION_URL || `www.filecoin.cloud`
-
 const FF_URL = 'https://fil.org/'
-export const BASE_URL = `https://${PRODUCTION_URL}`
-
-export const waitlistFormLink =
-  'https://ct2xy.share.hsforms.com/2WWxi-evaTTeHM0O-uXAu3Q'
-
-export const fds7Link = 'https://www.fildev.io/FDS-7'
 
 export const footerLinks = {
   createdBy: [

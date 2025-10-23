@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import type { ComponentProps } from 'react'
 
-import { PRODUCTION_URL } from '@/constants/links'
+import { PRODUCTION_URL } from '@/constants/metadata'
 
 export type ExternalLinkProps = { href: string } & Omit<
   ComponentProps<'a'>,

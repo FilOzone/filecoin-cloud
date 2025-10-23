@@ -8,8 +8,6 @@ import { Banner } from '@/components/Banner'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 
-import { fds7Link } from '@/constants/links'
-
 import { ExternalTextLink } from './ExternalTextLink'
 
 const funnelSans = localFont({
@@ -44,7 +42,7 @@ export function SiteLayout({ children }: SiteLayoutProps) {
           <p className="font-medium text-white">
             Happening Now: Learn more at{' '}
             <ExternalTextLink
-              href={fds7Link}
+              href="https://www.fildev.io/FDS-7"
               aria-label="Register for Fil Dev Summit #7"
             >
               Filecoin Dev Summit 7

@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
 
-import { BASE_URL } from './links'
-
 const META_TITLE = 'Filecoin Onchain Cloud'
 const META_DESCRIPTION =
   'Filecoin Onchain Cloud provides transparent storage, retrieval, and payments on the Filecoin network. Launching soon!'
+
+export const PRODUCTION_URL =
+  process.env.VERCEL_PROJECT_PRODUCTION_URL || `www.filecoin.cloud`
+export const BASE_URL = `https://${PRODUCTION_URL}`
 
 export const METADATA: Metadata = {
   metadataBase: new URL(BASE_URL),
