@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import BackgroundVideoPoster from '@/public/background-video-poster.webp'
 
-export default function BackgroundVideo() {
+export function BackgroundVideo() {
   const [videoError, setVideoError] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -34,7 +34,7 @@ export default function BackgroundVideo() {
           playsInline
           preload="auto"
           disablePictureInPicture
-          poster="/background-video-poster.webp"
+          poster={BackgroundVideoPoster.src}
           onError={() => setVideoError(true)}
         >
           <source src="/background-video.mp4" type="video/mp4" />
