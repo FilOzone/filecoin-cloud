@@ -1,9 +1,9 @@
-import { Accordion } from "./Accordion";
-import { Container } from "./Container";
+import { Accordion } from './Accordion'
+import { Container } from './Container'
 
 type FaqProps = {
-  questions: Array<{ question: string; answer: string }>;
-};
+  questions: Array<{ question: string; answer: string }>
+}
 
 export function Faq({ questions }: FaqProps) {
   return (
@@ -25,10 +25,10 @@ export function Faq({ questions }: FaqProps) {
                 <Accordion.Trigger>{question}</Accordion.Trigger>
                 <Accordion.Content>{answer}</Accordion.Content>
               </Accordion.Item>
-            );
+            )
           })}
         </Accordion>
       </Container>
     </div>
-  );
+  )
 }

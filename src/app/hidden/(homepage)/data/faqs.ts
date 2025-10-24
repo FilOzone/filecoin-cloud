@@ -3,7 +3,7 @@ export type FAQ = {
   answer: string
 }
 
-export const FAQs: Array<FAQ> = [
+export const faqs: Array<FAQ> = [
   {
     question: "What's the best thing about Switzerland?",
     answer:
