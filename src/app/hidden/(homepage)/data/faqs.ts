@@ -1,6 +1,9 @@
-import { FAQ } from '@/components/FAQ'
+export type FAQ = {
+  question: string
+  answer: string
+}
 
-const faqs = [
+export const faqs: Array<FAQ> = [
   {
     question: "What's the best thing about Switzerland?",
     answer:
@@ -32,7 +35,3 @@ const faqs = [
       "He couldn't see himself doing it. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet perspiciatis officiis corrupti tenetur. Temporibus ut voluptatibus, perferendis sed unde rerum deserunt eius.",
   },
 ]
-
-export default function Story() {
-  return <FAQ questions={faqs} />
-}

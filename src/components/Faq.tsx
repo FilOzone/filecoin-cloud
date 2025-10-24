@@ -1,11 +1,11 @@
 import { Accordion } from './Accordion'
 import { Container } from './Container'
 
-type FAQProps = {
+type FaqProps = {
   questions: Array<{ question: string; answer: string }>
 }
 
-export function FAQ({ questions }: FAQProps) {
+export function Faq({ questions }: FaqProps) {
   return (
     <div className="bg-zinc-950">
       <Container>
