@@ -120,7 +120,7 @@
       }
     },
     {
-      "includes": ["src/styles/globals.css"],
+      "includes": ["src/styles/*.css"],
       "linter": {
         "rules": {
           "suspicious": {
