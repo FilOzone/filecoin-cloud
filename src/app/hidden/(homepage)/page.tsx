@@ -1,7 +1,7 @@
+import { Faq } from "@/components/Faq";
+
 import { FAQs } from "./data/faqs";
 
-import { FAQ } from "@/components/FAQ";
-
 export default function HiddenHomepage() {
-  return <FAQ questions={FAQs} />;
+  return <Faq questions={FAQs} />;
 }

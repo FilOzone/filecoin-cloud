@@ -1,11 +1,11 @@
-import { Accordion } from './Accordion'
-import { Container } from './Container'
+import { Accordion } from "./Accordion";
+import { Container } from "./Container";
 
-type FAQProps = {
-  questions: Array<{ question: string; answer: string }>
-}
+type FaqProps = {
+  questions: Array<{ question: string; answer: string }>;
+};
 
-export function FAQ({ questions }: FAQProps) {
+export function Faq({ questions }: FaqProps) {
   return (
     <div className="bg-zinc-950">
       <Container>
@@ -25,10 +25,10 @@ export function FAQ({ questions }: FAQProps) {
                 <Accordion.Trigger>{question}</Accordion.Trigger>
                 <Accordion.Content>{answer}</Accordion.Content>
               </Accordion.Item>
-            )
+            );
           })}
         </Accordion>
       </Container>
     </div>
-  )
+  );
 }
