@@ -5,6 +5,7 @@ import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 
 import { homeLinks } from '@/constants/links'
+import { BASE_DOMAIN } from '@/constants/siteMetadata'
 
 export default function Home() {
   return (
@@ -27,7 +28,7 @@ export default function Home() {
 
           <Button
             variant="primary"
-            href="https://ct2xy.share.hsforms.com/2WWxi-evaTTeHM0O-uXAu3Q"
+            href={`https://ct2xy.share.hsforms.com/2WWxi-evaTTeHM0O-uXAu3Q?utm_source=${BASE_DOMAIN}`}
           >
             Join the waitlist
           </Button>
