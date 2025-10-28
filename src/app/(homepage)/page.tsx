@@ -1,8 +1,8 @@
 import { Announcement } from '@/components/Announcement'
 import { BackgroundVideo } from '@/components/BackgroundVideo'
+import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
-import { ExternalLink } from '@/components/ExternalLink'
 
 import { homeLinks } from '@/constants/links'
 
@@ -25,12 +25,12 @@ export default function Home() {
             </p>
           </div>
 
-          <ExternalLink
+          <Button
+            variant="primary"
             href="https://ct2xy.share.hsforms.com/2WWxi-evaTTeHM0O-uXAu3Q"
-            className="button"
           >
             Join the waitlist
-          </ExternalLink>
+          </Button>
 
           <div className="mt-6 grid w-full max-w-7xl grid-cols-1 gap-8 sm:px-8 md:grid-cols-2 xl:grid-cols-4">
             {homeLinks.map(({ text, icon, link }) => (
