@@ -1,7 +1,10 @@
 @import "tailwindcss";
+@import "@filecoin-foundation/ui-filecoin/styles";
 
 @import "./accordion.css";
-@import "./button.css";
+
+@source "../../node_modules/@filecoin-foundation/ui";
+@source "../../node_modules/@filecoin-foundation/ui-filecoin";
 
 @theme inline {
   --font-sans: var(--font-funnel-sans);

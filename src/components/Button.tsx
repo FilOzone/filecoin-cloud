@@ -1,15 +1,19 @@
-import { type ButtonProps, Button as HeadlessUIButton } from '@headlessui/react'
-import { clsx } from 'clsx'
+import {
+  Button as SharedButton,
+  type ButtonProps as SharedButtonProps,
+} from '@filecoin-foundation/ui-filecoin/Button'
 
-export function Button({ className, ...rest }: ButtonProps) {
+import { BASE_DOMAIN } from '@/constants/siteMetadata'
+
+export type ButtonProps = Omit<
+  SharedButtonProps,
+  'baseDomain' | 'LinkComponent'
+>
+
+export function Button({ children, ...props }: ButtonProps) {
   return (
-    <HeadlessUIButton
-      className={clsx(
-        'button',
-        rest.disabled ? 'cursor-not-allowed' : 'cursor-pointer',
-        className,
-      )}
-      {...rest}
-    />
+    <SharedButton baseDomain={BASE_DOMAIN} {...props}>
+      {children}
+    </SharedButton>
   )
 }

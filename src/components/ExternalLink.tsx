@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import type { ComponentProps } from 'react'
 
-import { PRODUCTION_URL } from '@/constants/metadata'
+import { BASE_DOMAIN } from '@/constants/siteMetadata'
 
 export type ExternalLinkProps = { href: string } & Omit<
   ComponentProps<'a'>,
@@ -12,7 +12,7 @@ export function ExternalLink({ className, href, ...rest }: ExternalLinkProps) {
   return (
     <a
       {...rest}
-      href={`${href}?utm_source=${PRODUCTION_URL}`}
+      href={`${href}?utm_source=${BASE_DOMAIN}`}
       rel="noopener noreferrer"
       className={clsx(className, 'focus:brand-outline')}
       target="_blank"
