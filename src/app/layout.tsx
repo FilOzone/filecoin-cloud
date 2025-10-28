@@ -5,7 +5,7 @@ import type { ReactNode } from 'react'
 
 import { SiteLayout } from '@/components/SiteLayout'
 
-import { METADATA, PRODUCTION_URL } from '@/constants/siteMetadata'
+import { BASE_DOMAIN, METADATA } from '@/constants/siteMetadata'
 
 export const metadata: Metadata = METADATA
 
@@ -17,7 +17,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       trackOutboundLinks
       hash
       trackFileDownloads
-      domain={PRODUCTION_URL.replace('www.', '')}
+      domain={BASE_DOMAIN.replace('www.', '')}
     >
       <SiteLayout>{children}</SiteLayout>
     </PlausibleProvider>

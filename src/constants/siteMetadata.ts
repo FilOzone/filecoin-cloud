@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
 
+const BASE_DOMAIN = 'www.filecoin.cloud'
+const BASE_URL = `https://${BASE_DOMAIN}`
+const ORGANIZATION_NAME = 'FilOz'
+
 const META_TITLE = 'Filecoin Onchain Cloud'
 const META_DESCRIPTION =
   'Filecoin Onchain Cloud provides transparent storage, retrieval, and payments on the Filecoin network. Launching soon!'
 
-export const PRODUCTION_URL =
-  process.env.VERCEL_PROJECT_PRODUCTION_URL || `www.filecoin.cloud`
-export const BASE_URL = `https://${PRODUCTION_URL}`
-
-export const METADATA: Metadata = {
+const METADATA: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: META_TITLE,
   description: META_DESCRIPTION,
@@ -27,3 +27,5 @@ export const METADATA: Metadata = {
     images: ['/open-graph-image.webp'],
   },
 }
+
+export { BASE_DOMAIN, BASE_URL, ORGANIZATION_NAME, METADATA }
