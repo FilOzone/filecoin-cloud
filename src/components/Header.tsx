@@ -1,13 +1,13 @@
 'use client'
 
 import { HomeLogoLink } from '@filecoin-foundation/ui-filecoin/HomeLogoLink'
+import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { usePathname } from 'next/navigation'
 
 import Logo from '@/public/foc-logo.svg'
 
 import { Banner } from './Banner'
 import { Container } from './Container'
-import { ExternalTextLink } from './ExternalTextLink'
 
 export function Header() {
   const pathname = usePathname()
