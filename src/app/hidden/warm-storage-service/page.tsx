@@ -49,7 +49,7 @@ export default function WarmStorageService() {
         </CardGrid>
       </PageSection>
 
-      <PageSection backgroundVariant="light">
+      <PageSection backgroundVariant="light" paddingVariant="topOnly">
         <SectionContent
           centerCTA
           centerTitle
@@ -61,6 +61,20 @@ export default function WarmStorageService() {
               variant="primary"
             >
               Get started with our SDK
+            </Button>
+          }
+        />
+      </PageSection>
+
+      <PageSection backgroundVariant="light">
+        <SectionContent
+          centerCTA
+          centerTitle
+          title="Warm Storage Service"
+          description="Lorem ipsum dolor sit amet consectetur."
+          cta={
+            <Button href="https://github.com/filecoin-project" variant="ghost">
+              View all service providers
             </Button>
           }
         />
