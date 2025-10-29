@@ -25,7 +25,7 @@ export const developerResources = [
     icon: BookOpenIcon,
   },
   {
-    title: 'Github',
+    title: 'GitHub',
     href: '#todo',
     icon: GithubLogoIcon,
   },

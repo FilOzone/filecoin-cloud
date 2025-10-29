@@ -5,6 +5,8 @@ import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
+// import { SimpleCard } from '@filecoin-foundation/ui-filecoin/SimpleCard'
+
 import { Button } from '@/components/Button'
 import { Faq } from '@/components/Faq'
 
@@ -147,7 +149,6 @@ export default function HiddenHomepage() {
             {developerResources.map(({ title, href, icon }) => (
               <div key={title}>
                 <div>{title}</div>
-                <div>{href}</div>
               </div>
               // <LinkCard
               //   key={title}
