@@ -8,6 +8,7 @@ export type IconProps = {
   weight?: IconWeight
 }
 
+// TODO: Delete this component
 export function Icon({
   component: Component,
   color = 'inherit',
