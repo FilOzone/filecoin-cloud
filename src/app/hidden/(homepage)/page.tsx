@@ -1,4 +1,4 @@
-// import { Card } from '@filecoin-foundation/ui-filecoin/Card'
+import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 // import {LogoSection} from '@filecoin-foundation/ui-filecoin/LogoSection'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
@@ -58,17 +58,13 @@ export default function HiddenHomepage() {
         >
           <CardGrid as="ul" variant="smTwoLgThreeWider">
             {focFeatures.map(({ title, description, icon }) => (
-              <div key={title}>
-                <div>{title}</div>
-                <div>{description}</div>
-              </div>
-              // <Card
-              //   key={title}
-              //   as="li"
-              //   title={title}
-              //   description={description}
-              //   icon={icon}
-              // />
+              <Card
+                key={title}
+                as="li"
+                title={title}
+                description={description}
+                icon={icon}
+              />
             ))}
           </CardGrid>
         </SectionContent>
