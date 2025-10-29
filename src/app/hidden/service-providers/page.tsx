@@ -1,6 +1,8 @@
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
+import { BecomeProviderSection } from '@/components/BecomeProviderSection'
+
 export default function ServiceProviders() {
   return (
     <>
@@ -10,6 +12,8 @@ export default function ServiceProviders() {
           description="Explore registered service providers offering verifiable storage and data services on the Filecoin network."
         />
       </PageSection>
+
+      <BecomeProviderSection />
     </>
   )
 }
