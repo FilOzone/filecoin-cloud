@@ -96,6 +96,19 @@ export default function HiddenHomepage() {
         </SectionContent>
       </PageSection>
 
+      <PageSection backgroundVariant="light">
+        <SectionContent
+          centerCTA
+          title="Build with us"
+          description="Join us in shaping the next wave of open, verifiable cloud services."
+          cta={
+            <Button href="#" variant="primary">
+              Join the community
+            </Button>
+          }
+        />
+      </PageSection>
+
       <Faq questions={faqs} />
     </>
   )
