@@ -1,5 +1,6 @@
 // import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
+// import {LogoSection} from '@filecoin-foundation/ui-filecoin/LogoSection'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
@@ -25,6 +26,15 @@ export default function HiddenHomepage() {
             </Button>,
           ]}
         />
+      </PageSection>
+
+      <PageSection backgroundVariant="dark" paddingVariant="none">
+        <div className="py-24" />
+        {/* <LogoSection
+          headingTag="h2"
+          title="Built on Filecoin Onchain Cloud"
+          logos={buildersLogos}
+        /> */}
       </PageSection>
 
       <PageSection backgroundVariant="dark">
