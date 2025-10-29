@@ -5,17 +5,17 @@ import { BASE_DOMAIN } from '@/constants/siteMetadata'
 
 export type ExternalLinkProps = { href: string } & Omit<
   ComponentProps<'a'>,
-  'href' | 'rel' | 'target'
+  'href' | 'target' | 'rel'
 >
 
 export function ExternalLink({ className, href, ...rest }: ExternalLinkProps) {
   return (
     <a
+      className={clsx(className, 'focus:brand-outline')}
       {...rest}
       href={`${href}?utm_source=${BASE_DOMAIN}`}
-      rel="noopener noreferrer"
-      className={clsx(className, 'focus:brand-outline')}
       target="_blank"
+      rel="noopener noreferrer"
     />
   )
 }
