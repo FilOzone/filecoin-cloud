@@ -10,6 +10,7 @@ import { Faq } from '@/components/Faq'
 
 import { faqs } from './data/faqs'
 import { focFeatures } from './data/focFeatures'
+import { runningOnFilecoinOnchainCloud } from './data/runningOnFilecoinOnchainCloud'
 
 export default function HiddenHomepage() {
   return (
@@ -65,6 +66,32 @@ export default function HiddenHomepage() {
               //   icon={icon}
               // />
             ))}
+          </CardGrid>
+        </SectionContent>
+      </PageSection>
+
+      <PageSection backgroundVariant="light">
+        <SectionContent
+          centerCTA
+          title="Running on Filecoin Onchain Cloud"
+          description="Projects using Filecoin Onchain Cloud to power verifiable, onchain applications and infrastructure."
+        >
+          <CardGrid as="ul" variant="mdTwoWider">
+            {runningOnFilecoinOnchainCloud.map(
+              ({ title, description, image }) => (
+                <div key={title}>
+                  <div>{title}</div>
+                  <div>{description}</div>
+                </div>
+                // <Card
+                //   key={title}
+                //   as="li"
+                //   title={title}
+                //   description={description}
+                //   image={image}
+                // />
+              ),
+            )}
           </CardGrid>
         </SectionContent>
       </PageSection>
