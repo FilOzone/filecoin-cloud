@@ -38,18 +38,6 @@ export function SiteLayout({ children }: SiteLayoutProps) {
           'relative flex min-h-screen flex-col font-sans antialiased',
         )}
       >
-        <Banner>
-          <p className="font-medium text-white">
-            Happening Now: Learn more at{' '}
-            <ExternalTextLink
-              href="https://www.fildev.io/FDS-7"
-              aria-label="Register for Fil Dev Summit #7"
-            >
-              Filecoin Dev Summit 7
-            </ExternalTextLink>
-          </p>
-        </Banner>
-
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
