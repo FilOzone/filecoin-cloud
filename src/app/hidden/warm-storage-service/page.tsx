@@ -54,7 +54,7 @@ export default function WarmStorageService() {
           centerCTA
           centerTitle
           title="Pricing"
-          description="Choose the plan that fits your storage needs"
+          description="Choose the plan that fits your storage needs."
           cta={
             <Button
               href="https://github.com/filecoin-project"
@@ -78,6 +78,27 @@ export default function WarmStorageService() {
             </Button>
           }
         />
+      </PageSection>
+
+      <PageSection backgroundVariant="dark">
+        <SectionContent
+          centerCTA
+          centerTitle
+          title="Become a PDP Storage Provider"
+          description="Join the network to offer verifiable warm storage service."
+          cta={
+            <Button
+              href="https://github.com/filecoin-project"
+              variant="primary"
+            >
+              View SP documentation
+            </Button>
+          }
+        >
+          <p className="text-center text-sm text-zinc-400">
+            Learn how to set up and run a storage provider node.
+          </p>
+        </SectionContent>
       </PageSection>
     </>
   )
