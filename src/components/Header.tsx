@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { HomeLogoLink } from '@filecoin-foundation/ui-filecoin/HomeLogoLink'
 import { usePathname } from 'next/navigation'
 
 import Logo from '@/public/foc-logo.svg'
@@ -8,7 +8,6 @@ import Logo from '@/public/foc-logo.svg'
 import { Banner } from './Banner'
 import { Container } from './Container'
 import { ExternalTextLink } from './ExternalTextLink'
-import { Icon } from './Icon'
 
 export function Header() {
   const pathname = usePathname()
@@ -32,13 +31,7 @@ export function Header() {
 
       <nav className="py-9">
         <Container>
-          <Link
-            href="/"
-            aria-label="Go to homepage"
-            className="focus:brand-outline inline-block p-1"
-          >
-            <Icon component={Logo} width={40} />
-          </Link>
+          <HomeLogoLink logo={Logo} height={40} />
         </Container>
       </nav>
     </>
