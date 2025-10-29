@@ -4,11 +4,8 @@ import '@/styles/globals.css'
 import type { ReactNode } from 'react'
 
 import { BreakpointDebugger } from '@/components/_BreakpointDebugger'
-import { Banner } from '@/components/Banner'
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header'
-
-import { ExternalTextLink } from './ExternalTextLink'
 
 const funnelSans = localFont({
   src: '../fonts/Funnel_Sans/FunnelSans[wght].woff2',
