@@ -40,10 +40,7 @@ export const filecoinOnchainCloudProducts = [
   {
     title: 'Service Providers',
     description:
-      'A global network of operators running the nodes that power Filecoin Onchain Cloud. Together, they deliver resilient, high-availability infrastructure — open, decentralized, and proven in real time.',
-    cta: {
-      href: '#todo',
-      text: 'Learn more',
-    },
+      'A global network of operators running Filecoin Onchain Cloud nodes delivering resilient, high-availability storage infrastructure.',
+    cta: { href: '#todo', text: 'Learn more' },
   },
 ] as const satisfies Array<SimpleCardData>
