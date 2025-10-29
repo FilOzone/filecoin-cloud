@@ -1,17 +1,10 @@
+import type { LinkCardData } from '@filecoin-foundation/ui-filecoin/LinkCard'
 import {
   BookOpenIcon,
   ChatsCircleIcon,
   CodeIcon,
   GithubLogoIcon,
 } from '@phosphor-icons/react/dist/ssr'
-
-// import type { LinkCardData } from '@/components/LinkCard'
-
-type LinkCardData = {
-  title: string
-  href: string
-  icon: typeof BookOpenIcon
-}
 
 export const developerResources = [
   {

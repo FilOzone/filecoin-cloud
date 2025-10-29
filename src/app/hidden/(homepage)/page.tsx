@@ -9,6 +9,7 @@ import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
 import { Button } from '@/components/Button'
 import { Faq } from '@/components/Faq'
+import { LinkCard } from '@/components/LinkCard'
 
 import { developerResources } from './data/developerResources'
 import { faqs } from './data/faqs'
@@ -141,22 +142,19 @@ export default function HiddenHomepage() {
 
       <PageSection backgroundVariant="dark">
         <SectionContent
-          title="Feugiat non pulvinar senectus bibendum vitae"
-          description="Lorem ipsum dolor sit amet consectetur. Feugiat non pulvinar senectus bibendum vitae."
+          title="Everything you need to build on Filecoin"
+          description="SDKs, docs, and a builder community working together to take back the cloud."
         >
           <CardGrid as="ul" variant="mdTwo">
             {developerResources.map(({ title, href, icon }) => (
-              <div key={title}>
-                <div>{title}</div>
-              </div>
-              // <LinkCard
-              //   key={title}
-              //   as="li"
-              //   title={title}
-              //   headingTag="h3"
-              //   href={href}
-              //   icon={{ component: icon, variant: 'filled' }}
-              // />
+              <LinkCard
+                key={title}
+                as="li"
+                title={title}
+                headingTag="h3"
+                href={href}
+                icon={{ component: icon, variant: 'filled' }}
+              />
             ))}
           </CardGrid>
         </SectionContent>
