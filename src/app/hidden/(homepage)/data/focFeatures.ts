@@ -1,5 +1,9 @@
 import type { CardData } from '@filecoin-foundation/ui-filecoin/Card'
-import { CodeIcon, GlobeIcon, WalletIcon } from '@phosphor-icons/react/dist/ssr'
+import {
+  CodeIcon,
+  GlobeIcon,
+  HandCoinsIcon,
+} from '@phosphor-icons/react/dist/ssr'
 
 export const focFeatures = [
   {
@@ -16,6 +20,6 @@ export const focFeatures = [
     title: 'Pay only when its proven',
     description:
       'Unified wallet with automatic onchain payments for verified delivery.',
-    icon: WalletIcon,
+    icon: HandCoinsIcon,
   },
 ] as const satisfies Array<CardData>
