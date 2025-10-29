@@ -9,6 +9,7 @@ import { Button } from '@/components/Button'
 import { Faq } from '@/components/Faq'
 
 import { faqs } from './data/faqs'
+import { filecoinOnchainCloudProducts } from './data/filecoinOnchainCloudProducts'
 import { focFeatures } from './data/focFeatures'
 import { runningOnFilecoinOnchainCloud } from './data/runningOnFilecoinOnchainCloud'
 
@@ -16,16 +17,15 @@ export default function HiddenHomepage() {
   return (
     <>
       <PageSection backgroundVariant="dark" paddingVariant="none">
-        {/* TODO: Check button key issue  */}
         <PageHeader
           centered
           title="Cloud services with onchain guarantees — ownership, verifiability, and programmability"
           description="Build applications that own their data, payments, and logic."
-          cta={[
-            <Button key="start-building" href="#" variant="primary">
+          cta={
+            <Button href="#" variant="primary">
               Start building
-            </Button>,
-          ]}
+            </Button>
+          }
         />
       </PageSection>
 
@@ -38,6 +38,7 @@ export default function HiddenHomepage() {
         /> */}
       </PageSection>
 
+      {/* TODO: Check button key issue  */}
       <PageSection backgroundVariant="dark">
         <SectionContent
           centerCTA
@@ -72,7 +73,6 @@ export default function HiddenHomepage() {
 
       <PageSection backgroundVariant="light">
         <SectionContent
-          centerCTA
           title="Running on Filecoin Onchain Cloud"
           description="Projects using Filecoin Onchain Cloud to power verifiable, onchain applications and infrastructure."
         >
@@ -92,6 +92,30 @@ export default function HiddenHomepage() {
                 // />
               ),
             )}
+          </CardGrid>
+        </SectionContent>
+      </PageSection>
+
+      <PageSection backgroundVariant="dark">
+        <SectionContent
+          centerCTA
+          title="Compose the Building Blocks"
+          description="Modular services you can mix, match, and deploy, all built for openness, performance, and control."
+        >
+          <CardGrid as="ul" variant="smTwoXlFourWider">
+            {filecoinOnchainCloudProducts.map(({ title, description, cta }) => (
+              <div key={title}>
+                <div>{title}</div>
+                <div>{description}</div>
+              </div>
+              // <SimpleCard
+              //   key={title}
+              //   as="li"
+              //   title={title}
+              //   description={description}
+              //   cta={cta}
+              // />
+            ))}
           </CardGrid>
         </SectionContent>
       </PageSection>
