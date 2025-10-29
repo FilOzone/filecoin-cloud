@@ -9,6 +9,7 @@ export type CardProps = {
   link: string
 }
 
+// TODO: Delete this component
 export function Card({ text, icon: IconComponent, link }: CardProps) {
   return (
     <div className="group/card focus-within:brand-outline relative border-t border-zinc-50/25 from-zinc-400/5 to-zinc-400/0 pt-9 hover:border-zinc-50/80 hover:bg-linear-to-b">

@@ -1,8 +1,8 @@
-import { footerLinks } from '@/constants/links'
+import { Container } from '@/components/Container'
+import { ExternalLink } from '@/components/ExternalLink'
+import { Icon } from '@/components/Icon'
 
-import { Container } from './Container'
-import { ExternalLink } from './ExternalLink'
-import { Icon } from './Icon'
+import { footerLinks } from './data/footerLinks'
 
 export function Footer() {
   return (

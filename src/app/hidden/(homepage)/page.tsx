@@ -125,7 +125,10 @@ export default function HiddenHomepage() {
           title="Build with us"
           description="Join us in shaping the next wave of open, verifiable cloud services."
           cta={
-            <Button href="#" variant="primary">
+            <Button
+              href="https://filecoinproject.slack.com/archives/C07CGTXHHT4"
+              variant="primary"
+            >
               Join the community
             </Button>
           }
