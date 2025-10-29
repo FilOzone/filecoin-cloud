@@ -4,8 +4,6 @@ import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 
-import { BASE_DOMAIN } from '@/constants/siteMetadata'
-
 import { quickLinks } from './data/quickLinks'
 
 export default function Home() {
@@ -29,7 +27,7 @@ export default function Home() {
 
           <Button
             variant="primary"
-            href={`https://ct2xy.share.hsforms.com/2WWxi-evaTTeHM0O-uXAu3Q?utm_source=${BASE_DOMAIN}`}
+            href="https://ct2xy.share.hsforms.com/2WWxi-evaTTeHM0O-uXAu3Q"
           >
             Join the waitlist
           </Button>
