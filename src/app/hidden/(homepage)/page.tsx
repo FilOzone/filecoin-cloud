@@ -109,7 +109,9 @@ export default function HiddenHomepage() {
         />
       </PageSection>
 
-      <Faq questions={faqs} />
+      <PageSection backgroundVariant="dark">
+        <Faq questions={faqs} />
+      </PageSection>
     </>
   )
 }
