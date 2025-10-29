@@ -40,12 +40,6 @@
   --animate-slide-up: slideUp 300ms ease-out;
 }
 
-body {
-  background: var(--color-zinc-950);
-  color: var(--color-zinc-50);
-  font-family: var(--font-sans);
-}
-
 @utility brand-outline {
   outline: 2px solid var(--color-zinc-50);
   outline-offset: 0px;

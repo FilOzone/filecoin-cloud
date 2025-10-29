@@ -32,7 +32,7 @@ export function SiteLayout({ children }: SiteLayoutProps) {
         className={clsx(
           funnelSans.variable,
           aspekta.variable,
-          'relative flex min-h-screen flex-col font-sans antialiased',
+          'relative flex min-h-screen flex-col font-sans antialiased bg-zinc-950 text-zinc-50',
         )}
       >
         <Header />
