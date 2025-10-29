@@ -1,10 +1,14 @@
+// import { Card } from '@filecoin-foundation/ui-filecoin/Card'
+import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
+import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
 import { Button } from '@/components/Button'
 import { Faq } from '@/components/Faq'
 
 import { faqs } from './data/faqs'
+import { focFeatures } from './data/focFeatures'
 
 export default function HiddenHomepage() {
   return (
@@ -21,6 +25,38 @@ export default function HiddenHomepage() {
             </Button>,
           ]}
         />
+      </PageSection>
+
+      <PageSection backgroundVariant="dark">
+        <SectionContent
+          centerCTA
+          title="Own every part of what you build—verifiable by design"
+          description="Ship faster. Trust your stack. Scale without dependencies. Build products people can trust because every action proves itself."
+          cta={[
+            <Button key="start-building" href="#" variant="primary">
+              Start building
+            </Button>,
+            <Button key="view-source-code" href="#" variant="ghost">
+              View source code
+            </Button>,
+          ]}
+        >
+          <CardGrid as="ul" variant="smTwoLgThreeWider">
+            {focFeatures.map(({ title, description, icon }) => (
+              <div key={title}>
+                <div>{title}</div>
+                <div>{description}</div>
+              </div>
+              // <Card
+              //   key={title}
+              //   as="li"
+              //   title={title}
+              //   description={description}
+              //   icon={icon}
+              // />
+            ))}
+          </CardGrid>
+        </SectionContent>
       </PageSection>
 
       <Faq questions={faqs} />
