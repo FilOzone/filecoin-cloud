@@ -4,8 +4,9 @@ import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 
-import { homeLinks } from '@/constants/links'
 import { BASE_DOMAIN } from '@/constants/siteMetadata'
+
+import { quickLinks } from './data/quickLinks'
 
 export default function Home() {
   return (
@@ -34,7 +35,7 @@ export default function Home() {
           </Button>
 
           <div className="mt-6 grid w-full max-w-7xl grid-cols-1 gap-8 sm:px-8 md:grid-cols-2 xl:grid-cols-4">
-            {homeLinks.map(({ text, icon, link }) => (
+            {quickLinks.map(({ text, icon, link }) => (
               <Card key={text} text={text} icon={icon} link={link} />
             ))}
           </div>
