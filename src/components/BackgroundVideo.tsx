@@ -29,20 +29,23 @@ export function BackgroundVideo({
       {videoError ? (
         <Image src={poster} alt="" className="h-full w-full object-cover" />
       ) : (
-        <video
-          ref={videoRef}
-          className="h-full w-full object-cover object-center"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          disablePictureInPicture
-          poster={poster.src}
-          onError={() => setVideoError(true)}
-        >
-          <source src={videoPath} type="video/mp4" />
-        </video>
+        <>
+          <video
+            ref={videoRef}
+            className="h-full w-full object-cover object-center"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            disablePictureInPicture
+            poster={poster.src}
+            onError={() => setVideoError(true)}
+          >
+            <source src={videoPath} type="video/mp4" />
+          </video>
+          <div className="absolute inset-x-0 bottom-0 h-64 bg-linear-to-b from-transparent to-zinc-950" />
+        </>
       )}
     </div>
   )

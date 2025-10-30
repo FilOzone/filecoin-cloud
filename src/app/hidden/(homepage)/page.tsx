@@ -26,7 +26,7 @@ import { runningOnFilecoinOnchainCloud } from './data/runningOnFilecoinOnchainCl
 export default function HiddenHomepage() {
   return (
     <>
-      <div className="isolate relative min-h-screen">
+      <div className="isolate relative">
         <BackgroundVideo
           videoPath="/comet-video.mp4"
           // To be replaced with actual poster image
@@ -36,9 +36,9 @@ export default function HiddenHomepage() {
         <Header />
         <PageSection
           backgroundVariant="transparentDark"
-          paddingVariant="compact"
+          paddingVariant="medium"
         >
-          <div className="space-y-10 pb-25">
+          <div className="space-y-10">
             <Announcement baseDomain={BASE_DOMAIN} href="#" centered>
               Announcing Filecoin Onchain Cloud
             </Announcement>
@@ -53,17 +53,15 @@ export default function HiddenHomepage() {
               }
             />
           </div>
-
-          <LogoSection
-            headingTag="h2"
-            title="Built on Filecoin Onchain Cloud"
-            logos={buildersLogos}
-          />
         </PageSection>
       </div>
 
       <PageSection backgroundVariant="dark" paddingVariant="none">
-        <div className="py-24" />
+        <LogoSection
+          headingTag="h2"
+          title="Built on Filecoin Onchain Cloud"
+          logos={buildersLogos}
+        />
       </PageSection>
 
       {/* TODO: Check button key issue  */}
@@ -152,7 +150,7 @@ export default function HiddenHomepage() {
         />
       </PageSection>
 
-      <PageSection backgroundVariant="dark">
+      <PageSection backgroundVariant="dark" paddingVariant="topOnly">
         <Faq questions={faqs} />
       </PageSection>
 
