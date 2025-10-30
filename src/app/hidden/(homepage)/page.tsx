@@ -15,7 +15,7 @@ import { Phase } from '@/components/Phase'
 import { SimpleCard } from '@/components/SimpleCard'
 
 import { BASE_DOMAIN } from '@/constants/siteMetadata'
-import BackgroundVideoPoster from '@/public/background-video-poster.webp'
+import CometVideoPoster from '@/public/assets/comet-video-poster.webp'
 
 import { buildersLogos } from './data/buildersLogos'
 import { buildPhases } from './data/buildPhases'
@@ -31,8 +31,7 @@ export default function HiddenHomepage() {
       <div className="isolate relative">
         <BackgroundVideo
           videoPath="/comet-video.mp4"
-          // To be replaced with actual poster image
-          poster={BackgroundVideoPoster}
+          poster={CometVideoPoster}
         />
 
         <Header />
