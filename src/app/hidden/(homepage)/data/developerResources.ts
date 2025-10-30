@@ -1,4 +1,4 @@
-import type { LinkCardData } from '@filecoin-foundation/ui-filecoin/LinkCard'
+import type { LinkCardData } from '@/components/LinkCard'
 import {
   BookOpenIcon,
   ChatsCircleIcon,
