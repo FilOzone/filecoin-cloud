@@ -13,7 +13,6 @@ import { Header } from '@/components/Header'
 import { LinkCard } from '@/components/LinkCard'
 import { SimpleCard } from '@/components/SimpleCard'
 
-import { trustedBy } from '@/app/(homepage)/data/trustedBy'
 import { BASE_DOMAIN } from '@/constants/siteMetadata'
 import BackgroundVideoPoster from '@/public/background-video-poster.webp'
 
@@ -58,18 +57,13 @@ export default function HiddenHomepage() {
           <LogoSection
             headingTag="h2"
             title="Built on Filecoin Onchain Cloud"
-            logos={trustedBy}
+            logos={buildersLogos}
           />
         </PageSection>
       </div>
 
       <PageSection backgroundVariant="dark" paddingVariant="none">
         <div className="py-24" />
-        <LogoSection
-          headingTag="h2"
-          title="Built on Filecoin Onchain Cloud"
-          logos={buildersLogos}
-        />
       </PageSection>
 
       {/* TODO: Check button key issue  */}
