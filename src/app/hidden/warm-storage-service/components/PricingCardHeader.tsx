@@ -1,10 +1,12 @@
 import { Badge } from '@filecoin-foundation/ui-filecoin/Badge'
 import { Heading } from '@filecoin-foundation/ui-filecoin/Heading'
 
+import type { PricingCardProps } from './PricingCard'
+
 type PricingCardHeaderProps = {
-  name: string
-  description: string
-  recommended: boolean
+  name: PricingCardProps['name']
+  description: PricingCardProps['description']
+  recommended: PricingCardProps['recommended']
 }
 
 export function PricingCardHeader({

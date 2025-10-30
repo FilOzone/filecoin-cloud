@@ -4,7 +4,7 @@ import { PricingCardFeatures } from './PricingCardFeatures'
 import { PricingCardHeader } from './PricingCardHeader'
 
 const pricingCardStyles = cva(
-  'focus-within:brand-outline relative flex h-full flex-col overflow-hidden rounded-2xl space-y-10 border p-10 focus-within:bg-zinc-50 border-(--color-border-muted) ',
+  'relative flex h-full flex-col overflow-hidden rounded-2xl space-y-10 border p-10 border-(--color-border-muted)',
   {
     variants: {
       recommended: {
