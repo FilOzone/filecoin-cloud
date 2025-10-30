@@ -80,17 +80,13 @@ export default function HiddenHomepage() {
           <CardGrid as="ul" variant="mdTwoWider">
             {runningOnFilecoinOnchainCloud.map(
               ({ title, description, image }) => (
-                <div key={title}>
-                  <div>{title}</div>
-                  <div>{description}</div>
-                </div>
-                // <Card
-                //   key={title}
-                //   as="li"
-                //   title={title}
-                //   description={description}
-                //   image={image}
-                // />
+                <Card
+                  key={title}
+                  as="li"
+                  title={title}
+                  description={description}
+                  image={image}
+                />
               ),
             )}
           </CardGrid>
