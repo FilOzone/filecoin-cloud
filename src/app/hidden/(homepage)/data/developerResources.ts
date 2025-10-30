@@ -5,13 +5,7 @@ import {
   GithubLogoIcon,
 } from '@phosphor-icons/react/dist/ssr'
 
-// import type { LinkCardData } from '@/components/LinkCard'
-
-type LinkCardData = {
-  title: string
-  href: string
-  icon: typeof BookOpenIcon
-}
+import type { LinkCardData } from '@/components/LinkCard'
 
 export const developerResources = [
   {
