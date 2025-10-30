@@ -1,6 +1,6 @@
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
-// import {LogoSection} from '@filecoin-foundation/ui-filecoin/LogoSection'
+import { LogoSection } from '@filecoin-foundation/ui-filecoin/LogoSection'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
@@ -11,6 +11,7 @@ import { Button } from '@/components/Button'
 import { Faq } from '@/components/Faq'
 import { LinkCard } from '@/components/LinkCard'
 
+import { buildersLogos } from './data/buildersLogos'
 import { developerResources } from './data/developerResources'
 import { faqs } from './data/faqs'
 import { filecoinOnchainCloudProducts } from './data/filecoinOnchainCloudProducts'
@@ -35,11 +36,11 @@ export default function HiddenHomepage() {
 
       <PageSection backgroundVariant="dark" paddingVariant="none">
         <div className="py-24" />
-        {/* <LogoSection
+        <LogoSection
           headingTag="h2"
           title="Built on Filecoin Onchain Cloud"
           logos={buildersLogos}
-        /> */}
+        />
       </PageSection>
 
       {/* TODO: Check button key issue  */}
