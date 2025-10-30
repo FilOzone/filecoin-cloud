@@ -1,3 +1,4 @@
+import { Announcement } from '@filecoin-foundation/ui-filecoin/Announcement'
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { LogoSection } from '@filecoin-foundation/ui-filecoin/LogoSection'
@@ -5,10 +6,16 @@ import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
+import { BackgroundVideo } from '@/components/BackgroundVideo'
 import { Button } from '@/components/Button'
 import { Faq } from '@/components/Faq'
+import { Header } from '@/components/Header'
 import { LinkCard } from '@/components/LinkCard'
 import { SimpleCard } from '@/components/SimpleCard'
+
+import { trustedBy } from '@/app/(homepage)/data/trustedBy'
+import { BASE_DOMAIN } from '@/constants/siteMetadata'
+import BackgroundVideoPoster from '@/public/background-video-poster.webp'
 
 import { buildersLogos } from './data/buildersLogos'
 import { developerResources } from './data/developerResources'
@@ -20,18 +27,41 @@ import { runningOnFilecoinOnchainCloud } from './data/runningOnFilecoinOnchainCl
 export default function HiddenHomepage() {
   return (
     <>
-      <PageSection backgroundVariant="dark" paddingVariant="none">
-        <PageHeader
-          centered
-          title="Cloud services with onchain guarantees — ownership, verifiability, and programmability"
-          description="Build applications that own their data, payments, and logic."
-          cta={
-            <Button href="#" variant="primary">
-              Start building
-            </Button>
-          }
+      <div className="isolate relative min-h-screen">
+        <BackgroundVideo
+          videoPath="/comet-video.mp4"
+          // To be replaced with actual poster image
+          poster={BackgroundVideoPoster}
         />
-      </PageSection>
+
+        <Header />
+        <PageSection
+          backgroundVariant="transparentDark"
+          paddingVariant="compact"
+        >
+          <div className="space-y-10 pb-25">
+            <Announcement baseDomain={BASE_DOMAIN} href="#" centered>
+              Announcing Filecoin Onchain Cloud
+            </Announcement>
+            <PageHeader
+              centered
+              title="Cloud services with onchain guarantees — ownership, verifiability, and programmability"
+              description="Build applications that own their data, payments, and logic."
+              cta={
+                <Button href="#" variant="primary">
+                  Start building
+                </Button>
+              }
+            />
+          </div>
+
+          <LogoSection
+            headingTag="h2"
+            title="Built on Filecoin Onchain Cloud"
+            logos={trustedBy}
+          />
+        </PageSection>
+      </div>
 
       <PageSection backgroundVariant="dark" paddingVariant="none">
         <div className="py-24" />
