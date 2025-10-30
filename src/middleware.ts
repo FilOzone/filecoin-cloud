@@ -4,6 +4,10 @@ import { NextResponse } from 'next/server'
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
+  if (process.env.NODE_ENV !== 'production') {
+    return NextResponse.next()
+  }
+
   if (pathname.startsWith('/hidden')) {
     const password = request.nextUrl.searchParams.get('password')
     const authCookie = request.cookies.get('hidden_pages_auth')?.value
