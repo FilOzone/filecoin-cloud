@@ -1,3 +1,5 @@
+import type { CardData } from '@filecoin-foundation/ui-filecoin/Card'
+
 import {
   default as akaveImage,
   default as ensImage,
@@ -14,10 +16,6 @@ export const runningOnFilecoinOnchainCloud = [
       data: filecoinPinImage,
       alt: 'Filecoin Pin project card showing IPFS integration',
     },
-    cta: {
-      href: '#todo',
-      text: 'Explore',
-    },
   },
   {
     title: 'Akave',
@@ -26,10 +24,6 @@ export const runningOnFilecoinOnchainCloud = [
     image: {
       data: akaveImage,
       alt: 'Akave project visualization',
-    },
-    cta: {
-      href: '#todo',
-      text: 'Explore',
     },
   },
   {
@@ -40,10 +34,6 @@ export const runningOnFilecoinOnchainCloud = [
       data: erc8004Image,
       alt: 'ERC8004 AI agent activity verification',
     },
-    cta: {
-      href: '#todo',
-      text: 'Explore',
-    },
   },
   {
     title: 'ENS',
@@ -53,9 +43,5 @@ export const runningOnFilecoinOnchainCloud = [
       data: ensImage,
       alt: 'ENS domain storage and verification',
     },
-    cta: {
-      href: '#todo',
-      text: 'Explore',
-    },
   },
-]
+] as const satisfies Array<CardData>
