@@ -5,7 +5,9 @@ import {
 
 import { BaseLink } from './BaseLink'
 
-export type LinkCardProps = Omit<SharedLinkCardProps, 'BaseLinkComponent'>
+export type { LinkCardData } from '@filecoin-foundation/ui-filecoin/LinkCard'
+
+type LinkCardProps = Omit<SharedLinkCardProps, 'BaseLinkComponent'>
 
 export function LinkCard(props: LinkCardProps) {
   return <SharedLinkCard {...props} BaseLinkComponent={BaseLink} />
