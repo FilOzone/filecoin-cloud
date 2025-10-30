@@ -8,9 +8,11 @@ import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { Button } from '@/components/Button'
 import { Faq } from '@/components/Faq'
 import { LinkCard } from '@/components/LinkCard'
+import { Phase } from '@/components/Phase'
 import { SimpleCard } from '@/components/SimpleCard'
 
 import { buildersLogos } from './data/buildersLogos'
+import { buildPhases } from './data/buildPhases'
 import { developerResources } from './data/developerResources'
 import { faqs } from './data/faqs'
 import { filecoinOnchainCloudProducts } from './data/filecoinOnchainCloudProducts'
@@ -125,7 +127,29 @@ export default function HiddenHomepage() {
               Join the community
             </Button>
           }
-        />
+        >
+          <div className="flex flex-col sm:flex-row flex-wrap xl:flex-nowrap">
+            {buildPhases.map((phase, index) => {
+              const { date, title, description, status } = phase
+              const isLast = index === buildPhases.length - 1
+
+              return (
+                <div
+                  key={title}
+                  className="sm:basis-1/2 lg:basis-1/3 last:grow"
+                >
+                  <Phase
+                    date={date}
+                    title={title}
+                    description={description}
+                    status={status}
+                    isLast={isLast}
+                  />
+                </div>
+              )
+            })}
+          </div>
+        </SectionContent>
       </PageSection>
 
       <PageSection backgroundVariant="dark">
