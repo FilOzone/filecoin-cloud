@@ -1,10 +1,11 @@
-import type { LinkCardData } from '@/components/LinkCard'
 import {
   BookOpenIcon,
   ChatsCircleIcon,
   CodeIcon,
   GithubLogoIcon,
 } from '@phosphor-icons/react/dist/ssr'
+
+import type { LinkCardData } from '@/components/LinkCard'
 
 export const developerResources = [
   {
