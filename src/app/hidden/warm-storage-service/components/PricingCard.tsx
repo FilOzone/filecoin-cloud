@@ -1,80 +1,54 @@
-import { Badge } from '@filecoin-foundation/ui-filecoin/Badge'
-import { Heading } from '@filecoin-foundation/ui-filecoin/Heading'
-import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
-import type { ComponentType, SVGProps } from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
 
-import { CTALink } from '@/components/CTALink'
+import { PricingCardFeatures } from './PricingCardFeatures'
+import { PricingCardHeader } from './PricingCardHeader'
 
-import { PricingCardKeyFeature } from './PricingCardKeyFeature'
-import { PricingCardSection } from './PricingCardSection'
+const pricingCardStyles = cva(
+  'focus-within:brand-outline relative flex h-full flex-col overflow-hidden rounded-2xl space-y-10 border p-10 focus-within:bg-zinc-50 border-(--color-border-muted) ',
+  {
+    variants: {
+      recommended: {
+        true: 'shadow-[0_4px_20px_0_rgba(0,0,0,0.1)]',
+        false: 'bg-zinc-50',
+      },
+    },
+    defaultVariants: {
+      recommended: false,
+    },
+  },
+)
 
 export type PricingCardProps = {
   as: 'li' | 'div'
-  featured: boolean
+  recommended: boolean
   name: string
   description: string
-  bestFor: Array<string>
-  keyFeatures: Array<string>
-  url: string
-  logo: ComponentType<SVGProps<SVGSVGElement>>
-}
+  price: string
+  pricingFeatures: Array<string>
+} & VariantProps<typeof pricingCardStyles>
 
 export function PricingCard({
   as: Tag,
-  featured,
+  recommended,
   name,
   description,
-  bestFor,
-  keyFeatures,
-  url,
-  logo,
+  price,
+  pricingFeatures,
 }: PricingCardProps) {
   return (
     <Tag>
-      <article className="focus-within:brand-outline relative flex h-full flex-col justify-between space-y-8 overflow-hidden rounded-2xl border border-[var(--color-border-muted)] p-8 pb-16 focus-within:bg-zinc-50 hover:bg-zinc-50">
-        <div className="flex flex-col justify-between gap-10 sm:flex-row sm:items-center">
-          {featured && (
-            <span className="sm:order-2 sm:flex-row">
-              <Badge variant="solid">Featured</Badge>
-            </span>
-          )}
+      <article className={pricingCardStyles({ recommended })}>
+        <PricingCardHeader
+          name={name}
+          description={description}
+          recommended={recommended}
+        />
 
-          <div className="flex items-center gap-3">
-            <Icon component={logo} size={40} />
-
-            <Heading tag="h3" variant="card-heading">
-              {name}
-            </Heading>
-          </div>
-        </div>
-
-        <p className="text-[var(--color-paragraph-text)]" title={description}>
-          {description}
+        <p title={price}>
+          <span className="font-medium text-4xl">{price}</span> USDFC/TiB/month
         </p>
 
-        <PricingCardSection title="Best For">
-          <ul className="flex flex-wrap gap-2.5">
-            {bestFor.map((text) => (
-              <li key={text}>
-                <Badge>{text}</Badge>
-              </li>
-            ))}
-          </ul>
-        </PricingCardSection>
-
-        <PricingCardSection title="Key Features">
-          <ul className="space-y-2.5">
-            {keyFeatures.map((feature) => (
-              <li key={feature}>
-                <PricingCardKeyFeature feature={feature} />
-              </li>
-            ))}
-          </ul>
-        </PricingCardSection>
-
-        <CTALink inset href={url} textClassName="bottom-8 left-8">
-          {`Learn more about ${name}`}
-        </CTALink>
+        <PricingCardFeatures features={pricingFeatures} />
       </article>
     </Tag>
   )

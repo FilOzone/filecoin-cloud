@@ -7,6 +7,8 @@ import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
 
+import { PricingCard } from './components/PricingCard'
+import { pricing } from './data/pricing'
 import { storageFeatures } from './data/storageFeatures'
 
 export default function WarmStorageService() {
@@ -55,7 +57,7 @@ export default function WarmStorageService() {
           centerCTA
           centerTitle
           title="Pricing"
-          description="Choose the plan that fits your storage needs."
+          description="Choose the plan that fits your storage needs"
           cta={
             <Button
               href="https://github.com/filecoin-project"
@@ -64,7 +66,32 @@ export default function WarmStorageService() {
               Get started with our SDK
             </Button>
           }
-        />
+        >
+          <div className="m-auto w-full max-w-sm md:max-w-4xl">
+            <CardGrid as="ul" variant="mdTwo">
+              {pricing.map(
+                ({
+                  as,
+                  recommended,
+                  name,
+                  description,
+                  price,
+                  pricingFeatures,
+                }) => (
+                  <PricingCard
+                    key={name}
+                    as={as}
+                    recommended={recommended}
+                    name={name}
+                    description={description}
+                    price={price}
+                    pricingFeatures={pricingFeatures}
+                  />
+                ),
+              )}
+            </CardGrid>
+          </div>
+        </SectionContent>
       </PageSection>
 
       <PageSection backgroundVariant="light">
