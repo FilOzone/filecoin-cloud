@@ -3,13 +3,21 @@ import { BackgroundVideo } from '@/components/BackgroundVideo'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
+import { Header } from '@/components/Header'
+
+import BackgroundVideoPoster from '@/public/background-video-poster.webp'
 
 import { quickLinks } from './data/quickLinks'
 
 export default function Home() {
   return (
     <>
-      <BackgroundVideo />
+      <BackgroundVideo
+        videoPath="/background-video.mp4"
+        poster={BackgroundVideoPoster}
+        playbackRate={0.6}
+      />
+      <Header />
       <Container>
         <div className="mx-auto flex flex-col items-center gap-15 text-center">
           <Announcement>Coming soon</Announcement>
