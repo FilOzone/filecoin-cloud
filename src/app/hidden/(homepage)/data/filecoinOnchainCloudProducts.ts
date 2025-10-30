@@ -1,17 +1,14 @@
-// import type { SimpleCardData } from '@/components/SimpleCard'
-
-type SimpleCardData = {
-  title: string
-  description: string
-  cta: {
-    href: string
-    text: string
-  }
-}
+import type { SimpleCardData } from '@filecoin-foundation/ui-filecoin/SimpleCard'
 
 export const filecoinOnchainCloudProducts = [
   {
-    title: 'Filecoin Warm Storage',
+    title: 'Service Providers',
+    description:
+      'A global network of operators running Filecoin Onchain Cloud nodes delivering resilient, high-availability storage infrastructure.',
+    cta: { href: '#todo', text: 'Learn more' },
+  },
+  {
+    title: 'Warm Storage',
     description:
       'A storage layer that keeps data accessible while maintaining verifiable persistence across the Filecoin network. Powered by onchain contracts for storage and payments.',
     cta: {
@@ -36,11 +33,5 @@ export const filecoinOnchainCloudProducts = [
       href: '#todo',
       text: 'Learn more',
     },
-  },
-  {
-    title: 'Service Providers',
-    description:
-      'A global network of operators running Filecoin Onchain Cloud nodes delivering resilient, high-availability storage infrastructure.',
-    cta: { href: '#todo', text: 'Learn more' },
   },
 ] as const satisfies Array<SimpleCardData>
