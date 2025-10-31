@@ -19,37 +19,34 @@ const pricingCardStyles = cva(
 )
 
 export type PricingCardProps = {
-  as: 'li' | 'div'
-  recommended: boolean
   name: string
   description: string
   price: string
   pricingFeatures: Array<string>
+  recommended: boolean
 } & VariantProps<typeof pricingCardStyles>
 
 export function PricingCard({
-  as: Tag,
-  recommended,
   name,
   description,
   price,
   pricingFeatures,
+  recommended,
 }: PricingCardProps) {
   return (
-    <Tag>
-      <article className={pricingCardStyles({ recommended })}>
-        <PricingCardHeader
-          name={name}
-          description={description}
-          recommended={recommended}
-        />
+    <article className={pricingCardStyles({ recommended })}>
+      <PricingCardHeader
+        name={name}
+        description={description}
+        recommended={recommended}
+      />
 
-        <p title={price}>
-          <span className="font-medium text-4xl">{price}</span> USDFC/TiB/month
-        </p>
+      <p>
+        <span className="font-medium text-4xl">{price}</span>{' '}
+        <span className="text-zinc-600"> USDFC/TiB/month</span>
+      </p>
 
-        <PricingCardFeatures features={pricingFeatures} />
-      </article>
-    </Tag>
+      <PricingCardFeatures features={pricingFeatures} />
+    </article>
   )
 }

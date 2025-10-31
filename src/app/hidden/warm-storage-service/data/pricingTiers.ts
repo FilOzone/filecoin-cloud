@@ -1,9 +1,7 @@
 import type { PricingCardProps } from '../components/PricingCard'
 
-export const pricing = [
+export const pricingTiers = [
   {
-    as: 'li',
-    recommended: false,
     name: 'Basic Tier',
     description: 'Essential verifiable storage',
     price: '5',
@@ -11,18 +9,18 @@ export const pricing = [
       'Store and retrieve from Filecoin SP',
       'Proof of Data Possession verification',
     ],
+    recommended: false,
   },
   {
-    as: 'li',
-    recommended: true,
     name: 'Enhanced Tier',
     description: 'Fast retrieval using Filecoin Beam',
     price: '6',
     pricingFeatures: [
       'Everything in Basic Tier',
-      'Data delivery layer w/ Filecoin Beam',
+      'Data delivery layer with Filecoin Beam',
       'Fast content delivery',
       'Optimized for applications',
     ],
+    recommended: true,
   },
 ] as const satisfies Array<PricingCardProps>

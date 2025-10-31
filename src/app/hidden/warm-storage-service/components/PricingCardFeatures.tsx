@@ -9,13 +9,13 @@ export type PricingCardFeaturesProps = {
 
 export function PricingCardFeatures({ features }: PricingCardFeaturesProps) {
   return (
-    <ul className="space-y-2.5">
+    <ul className="space-y-3">
       {features.map((feature) => (
-        <li key={feature}>
-          <div className="flex items-center gap-2.5 text-brand-600">
+        <li key={feature} className="flex items-center gap-2">
+          <span className="text-brand-600">
             <Icon component={CheckIcon} color="inherit" size={16} />
-            <span className="text-sm text-zinc-950">{feature}</span>
-          </div>
+          </span>
+          <span>{feature}</span>
         </li>
       ))}
     </ul>

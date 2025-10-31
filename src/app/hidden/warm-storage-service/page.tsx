@@ -8,7 +8,7 @@ import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
 
 import { PricingCard } from './components/PricingCard'
-import { pricing } from './data/pricing'
+import { pricingTiers } from './data/pricingTiers'
 import { storageFeatures } from './data/storageFeatures'
 
 export default function WarmStorageService() {
@@ -68,28 +68,27 @@ export default function WarmStorageService() {
           }
         >
           <div className="m-auto w-full max-w-sm md:max-w-4xl">
-            <CardGrid as="ul" variant="mdTwo">
-              {pricing.map(
+            {/* TODO: Replace with CardGrid once as="div" is supported */}
+            <div className="grid gap-8 md:grid-cols-2 md:gap-x-15">
+              {pricingTiers.map(
                 ({
-                  as,
-                  recommended,
                   name,
                   description,
                   price,
                   pricingFeatures,
+                  recommended,
                 }) => (
                   <PricingCard
                     key={name}
-                    as={as}
-                    recommended={recommended}
                     name={name}
                     description={description}
                     price={price}
                     pricingFeatures={pricingFeatures}
+                    recommended={recommended}
                   />
                 ),
               )}
-            </CardGrid>
+            </div>
           </div>
         </SectionContent>
       </PageSection>
