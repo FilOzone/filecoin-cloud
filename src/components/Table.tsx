@@ -8,7 +8,7 @@ export function Table({ className, ...props }: React.ComponentProps<'table'>) {
     >
       <table
         data-slot="table"
-        className={clsx('w-full caption-bottom text-sm', className)}
+        className={clsx('w-full caption-bottom', className)}
         {...props}
       />
     </div>
@@ -18,10 +18,10 @@ export function Table({ className, ...props }: React.ComponentProps<'table'>) {
 Table.Header = TableHeader
 Table.Body = TableBody
 Table.Footer = TableFooter
+
 Table.Row = TableRow
 Table.Head = TableHead
 Table.Cell = TableCell
-Table.Caption = TableCaption
 
 function TableHeader({ className, ...props }: React.ComponentProps<'thead'>) {
   return (
@@ -90,19 +90,6 @@ function TableCell({ className, ...props }: React.ComponentProps<'td'>) {
         'p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5',
         className,
       )}
-      {...props}
-    />
-  )
-}
-
-function TableCaption({
-  className,
-  ...props
-}: React.ComponentProps<'caption'>) {
-  return (
-    <caption
-      data-slot="table-caption"
-      className={clsx('text-forground-subtle mt-4 text-sm', className)}
       {...props}
     />
   )
