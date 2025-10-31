@@ -1,0 +1,71 @@
+{
+  "calibration": {
+    "name": "Calibration Testnet",
+    "rpcUrl": "https://api.calibration.node.glif.io/rpc/v1",
+    "chainId": 314159,
+    "explorerUrl": "https://filecoin-testnet.blockscout.com/address/",
+    "versions": [
+      {
+        "version": "v0.1.0",
+        "status": "active",
+        "isNew": false,
+        "linkToRelease": "https://github.com/FilOzone/filecoin-services/releases/tag/alpha%2Fcalibnet%2F0x80617b65FD2EEa1D7fDe2B4F85977670690ed348-v2",
+        "contracts": {
+          "warmStorage": {
+            "implementation": "0x88449EcAd119B6c05fa5eFB18C80d86d5781fc10",
+            "proxy": "0x80617b65FD2EEa1D7fDe2B4F85977670690ed348",
+            "stateView": "0x87EDE87cEF4BfeFE0374c3470cB3F5be18b739d5"
+          },
+          "serviceProviderRegistry": {
+            "proxy": "0xA8a7e2130C27e4f39D1aEBb3D538D5937bCf8ddb",
+            "implementation": "0xEdc9A41371d69a736bEfBa7678007BDBA61425E5"
+          }
+        }
+      },
+      {
+        "version": "v1.0.0",
+        "status": "testing",
+        "isNew": true,
+        "linkToRelease": "",
+        "contracts": {
+          "warmStorage": {
+            "implementation": "0x4BCc752555Bf08A5Bd9a4Ce467a12607277450bA",
+            "proxy": "0x02925630df557F957f70E112bA06e50965417CA0",
+            "stateView": "0xA5D87b04086B1d591026cCE10255351B5AA4689B"
+          },
+          "serviceProviderRegistry": {
+            "proxy": "0x839e5c9988e4e9977d40708d0094103c0839Ac9D",
+            "implementation": "0xb32Bb530638d20f1B59B40CDD2Ce4208430f7DE3"
+          }
+        }
+      }
+    ]
+  },
+  "mainnet": {
+    "name": "Mainnet",
+    "rpcUrl": "https://api.node.glif.io/rpc/v1",
+    "chainId": 314,
+    "explorerUrl": "https://filecoin.blockscout.com/address/",
+    "versions": [
+      {
+        "version": "v0.1.0",
+        "status": "inactive",
+        "isNew": false,
+        "linkToRelease": "https://github.com/FilOzone/filecoin-services/releases/tag/alpha%2Fcalibnet%2F0x80617b65FD2EEa1D7fDe2B4F85977670690ed348-v2",
+        "contracts": {
+          "warmStorage": {
+            "implementation": "0x5Bf32A0f947B5731E991E1054748487623f40FEc",
+            "proxy": "0x81DFD9813aDd354f03704F31419b0c6268d46232",
+            "stateView": "0x1f4B10FFf972Cd429e4007ac2c77fC9e2315ca2f",
+            "pdpVerifierImplementation": "0x839823b96f68f368F349Bab72068ABCB08AE5B6d",
+            "pdpVerifierProxy": "0x1790d465d1FABE85b530B116f385091d52a12a3b"
+          },
+          "serviceProviderRegistry": {
+            "proxy": "0x93b48FeEB7fF9a6D4d745c9EE28Bfa129E6E6676",
+            "implementation": "0x4A57d833A62E9146F86f70408D9E64515849B003"
+          }
+        }
+      }
+    ]
+  }
+}
