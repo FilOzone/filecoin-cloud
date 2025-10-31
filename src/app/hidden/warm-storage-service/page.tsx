@@ -7,6 +7,10 @@ import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
 
+import { FOC_URLS } from '@/constants/siteMetadata'
+
+import { PricingCard } from './components/PricingCard'
+import { pricingTiers } from './data/pricingTiers'
 import { storageFeatures } from './data/storageFeatures'
 
 export default function WarmStorageService() {
@@ -19,15 +23,15 @@ export default function WarmStorageService() {
           description="Verifiable storage powered by Filecoin PDP, with optional fast content delivery through Filecoin Beam, a CDN gateway add-on."
           cta={[
             <Button
-              key="learn-more"
-              href="https://github.com/filecoin-project"
+              key="get-started-with-our-sdk"
+              href={FOC_URLS.warmStorageService.synapseSdk}
               variant="primary"
             >
               Get started with our SDK
             </Button>,
             <Button
-              key="view-source-code"
-              href="https://github.com/filecoin-project"
+              key="view-contract-source-code"
+              href={FOC_URLS.warmStorageService.sourceCode}
               variant="ghost"
             >
               View contract source code
@@ -55,16 +59,31 @@ export default function WarmStorageService() {
           centerCTA
           centerTitle
           title="Pricing"
-          description="Choose the plan that fits your storage needs."
+          description="Choose the plan that fits your storage needs"
           cta={
             <Button
-              href="https://github.com/filecoin-project"
+              href={FOC_URLS.warmStorageService.synapseSdk}
               variant="primary"
             >
               Get started with our SDK
             </Button>
           }
-        />
+        >
+          <div className="grid gap-6 lg:grid-cols-2 lg:max-w-4xl lg:mx-auto">
+            {pricingTiers.map(
+              ({ name, description, price, pricingFeatures, recommended }) => (
+                <PricingCard
+                  key={name}
+                  name={name}
+                  description={description}
+                  price={price}
+                  pricingFeatures={pricingFeatures}
+                  recommended={recommended}
+                />
+              ),
+            )}
+          </div>
+        </SectionContent>
       </PageSection>
 
       <PageSection backgroundVariant="light">
