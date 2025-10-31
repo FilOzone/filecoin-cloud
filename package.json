@@ -35,5 +35,19 @@
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@filecoin-foundation/utils": {
+      "next": "$next"
+    },
+    "@filecoin-foundation/hooks": {
+      "next": "$next"
+    },
+    "@filecoin-foundation/ui": {
+      "next": "$next"
+    },
+    "@filecoin-foundation/ui-filecoin": {
+      "next": "$next"
+    }
   }
 }
