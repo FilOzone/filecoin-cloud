@@ -10,6 +10,15 @@ const META_DESCRIPTION =
 
 const FILECOIN_FOUNDATION_URL = 'https://fil.org/'
 
+const FOC_URLS = {
+  warmStorageService: {
+    synapseSdk: 'https://synapse.filecoin.services/',
+    sourceCode:
+      'https://github.com/FilOzone/filecoin-services/releases/tag/alpha%2Fcalibnet%2F0x80617b65FD2EEa1D7fDe2B4F85977670690ed348-v2',
+    spDocumentation: 'https://docs.filecoin.io/storage-providers/pdp/',
+  },
+}
+
 const METADATA: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: META_TITLE,
@@ -34,6 +43,7 @@ export {
   BASE_DOMAIN,
   BASE_URL,
   FILECOIN_FOUNDATION_URL,
+  FOC_URLS,
   ORGANIZATION_NAME,
   METADATA,
 }
