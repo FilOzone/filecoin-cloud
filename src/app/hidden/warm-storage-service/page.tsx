@@ -1,3 +1,5 @@
+'use client'
+
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
@@ -7,9 +9,15 @@ import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
 
+import { ContractCard } from './components/ContractCard'
+import { ContractCardGrid } from './components/ContractCardGrid'
 import { storageFeatures } from './data/storageFeatures'
+import { useContractsData } from './hooks/useContractsData'
 
 export default function WarmStorageService() {
+  const { currentNetwork, activeVersion, activeContracts } = useContractsData()
+
+  console.log(activeContracts)
   return (
     <>
       <PageSection backgroundVariant="dark">
@@ -78,7 +86,17 @@ export default function WarmStorageService() {
               View all service providers
             </Button>
           }
-        />
+        >
+          <ContractCardGrid>
+            {activeContracts.map((contract) => (
+              <ContractCard
+                key={contract.label}
+                label={contract.label}
+                address={contract.address}
+              />
+            ))}
+          </ContractCardGrid>
+        </SectionContent>
       </PageSection>
 
       <BecomeProviderSection />
