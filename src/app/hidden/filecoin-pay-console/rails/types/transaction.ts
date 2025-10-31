@@ -3,7 +3,7 @@ export type Transaction = {
   payer: string
   payee: string
   operator: string
-  status: 'Active' | 'Inactive'
+  status: 'active' | 'inactive'
   paymentRate: string
   settledAmount: string
   date: string

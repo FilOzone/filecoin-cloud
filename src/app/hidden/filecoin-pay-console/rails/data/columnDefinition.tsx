@@ -1,6 +1,8 @@
 import { createColumnHelper } from '@tanstack/react-table'
 
+import { CompactAddress } from '@/components/CompactAddress'
 import { ID } from '@/components/ID'
+import { StatusBadge } from '@/components/StatusBadge'
 
 import type { Transaction } from '../types/transaction'
 
@@ -14,24 +16,19 @@ export const columns = [
   }),
   columnHelper.accessor('payer', {
     header: 'Payer',
-    cell: (info) => info.getValue(),
+    cell: (info) => <CompactAddress address={info.getValue()} />,
   }),
   columnHelper.accessor('payee', {
     header: 'Payee',
-    cell: (info) => info.getValue(),
+    cell: (info) => <CompactAddress address={info.getValue()} />,
   }),
   columnHelper.accessor('operator', {
     header: 'Operator',
-    cell: (info) => info.getValue(),
+    cell: (info) => <CompactAddress address={info.getValue()} />,
   }),
   columnHelper.accessor('status', {
     header: 'Status',
-    cell: (info) => (
-      <div className="flex items-center gap-2">
-        <span className="w-2 h-2 bg-blue-500 rounded-full" />
-        {info.getValue()}
-      </div>
-    ),
+    cell: (info) => <StatusBadge status={info.getValue()} />,
   }),
   columnHelper.accessor('paymentRate', {
     header: 'Payment Rate',
