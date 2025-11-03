@@ -1,7 +1,7 @@
-import { getAddress } from 'viem'
+import { type Address, getAddress } from 'viem'
 
 export function truncateAddress(
-  address: string,
+  address: Address,
   startLength = 6,
   endLength = 4,
 ) {

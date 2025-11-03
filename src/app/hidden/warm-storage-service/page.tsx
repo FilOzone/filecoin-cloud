@@ -5,6 +5,7 @@ import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
+import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
@@ -13,6 +14,7 @@ import { FOC_URLS } from '@/constants/siteMetadata'
 
 import { ContractCard } from './components/ContractCard'
 import { ContractCardGrid } from './components/ContractCardGrid'
+import { IconLink } from './components/IconLink'
 import { PricingCard } from './components/PricingCard'
 import { pricingTiers } from './data/pricingTiers'
 import { storageFeatures } from './data/storageFeatures'
@@ -105,16 +107,24 @@ export default function WarmStorageService() {
             </Button>
           }
         >
-          <ContractCardGrid>
-            {contractsData.map(({ label, address, href }) => (
-              <ContractCard
-                key={label}
-                label={label}
-                address={address}
-                href={href}
-              />
-            ))}
-          </ContractCardGrid>
+          <div className="flex flex-col gap-6">
+            <ContractCardGrid>
+              {contractsData.map(({ label, address, href }) => (
+                <ContractCard
+                  key={label}
+                  label={label}
+                  address={address}
+                  href={href}
+                />
+              ))}
+            </ContractCardGrid>
+
+            <IconLink
+              icon={GithubLogoIcon}
+              href="https://github.com/FilOzone/filecoin-services/releases/tag/alpha%2Fcalibnet%2F0x80617b65FD2EEa1D7fDe2B4F85977670690ed348-v2"
+              label="View contract source code"
+            />
+          </div>
         </SectionContent>
       </PageSection>
 
