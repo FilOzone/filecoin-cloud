@@ -10,7 +10,7 @@ export function Table({ className, ...props }: React.ComponentProps<'table'>) {
     >
       <table
         data-slot="table"
-        className={clsx('w-full caption-bottom', className)}
+        className={clsx('w-full', className)}
         {...props}
       />
     </div>
