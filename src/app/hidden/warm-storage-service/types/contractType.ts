@@ -18,6 +18,8 @@ export type WarmStorage = {
   implementation: string
   proxy: string
   stateView: string
+  pdpVerifierImplementation?: string
+  pdpVerifierProxy?: string
 }
 
 export type NetworkConfig = {
