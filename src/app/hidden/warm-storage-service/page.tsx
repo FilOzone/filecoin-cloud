@@ -15,9 +15,8 @@ import { storageFeatures } from './data/storageFeatures'
 import { useContractsData } from './hooks/useContractsData'
 
 export default function WarmStorageService() {
-  const { activeContracts } = useContractsData()
+  const { contractsData } = useContractsData()
 
-  console.log(activeContracts)
   return (
     <>
       <PageSection backgroundVariant="dark">
@@ -88,7 +87,7 @@ export default function WarmStorageService() {
           }
         >
           <ContractCardGrid>
-            {activeContracts.map((contract) => {
+            {contractsData.map((contract) => {
               const { label, address, href } = contract
               return (
                 <ContractCard
