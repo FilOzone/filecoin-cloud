@@ -6,7 +6,7 @@ export type ContractVersion = {
   status: VersionStatus
   isNew?: boolean
   linkToRelease?: string
-  contracts: WarmStorage & ServiceProviderRegistry
+  contracts: Contracts
 }
 
 export type ServiceProviderRegistry = {
@@ -25,4 +25,9 @@ export type NetworkConfig = {
   rpcUrl: string
   explorerUrl: string
   versions: ContractVersion[]
+}
+
+export type Contracts = {
+  warmStorage: WarmStorage
+  serviceProviderRegistry: ServiceProviderRegistry
 }

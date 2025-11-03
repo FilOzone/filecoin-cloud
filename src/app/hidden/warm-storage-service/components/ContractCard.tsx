@@ -3,7 +3,7 @@ import type { Address } from 'viem'
 
 import { truncateAddress } from '../utils/truncateAddress'
 
-type ContractCardProps = {
+export type ContractCardProps = {
   label: string
   address: Address
   href: string
