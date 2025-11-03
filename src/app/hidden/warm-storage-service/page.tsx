@@ -106,17 +106,14 @@ export default function WarmStorageService() {
           }
         >
           <ContractCardGrid>
-            {contractsData.map((contract) => {
-              const { label, address, href } = contract
-              return (
-                <ContractCard
-                  key={label}
-                  label={label}
-                  address={address}
-                  href={href}
-                />
-              )
-            })}
+            {contractsData.map(({ label, address, href }) => (
+              <ContractCard
+                key={label}
+                label={label}
+                address={address}
+                href={href}
+              />
+            ))}
           </ContractCardGrid>
         </SectionContent>
       </PageSection>

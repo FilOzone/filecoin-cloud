@@ -1,50 +1,60 @@
 'use client'
 
+import { useMemo } from 'react'
+import type { Address } from 'viem'
+
 import type { ContractCardProps } from '../components/ContractCard'
 import contracts from '../config/contracts.json'
 import type { WarmStorage } from '../types/contractType'
 
-export function useContractsData() {
-  const activeVersion = contracts.calibration.versions.find(
-    (v) => v.status === 'active',
-  )
-
-  if (!activeVersion?.contracts) {
-    return { contractsData: [] }
-  }
-
-  const { warmStorage, serviceProviderRegistry } = activeVersion.contracts
-
-  const { explorerUrl } = contracts.calibration
-
-  const warmStorageContracts = Object.entries(warmStorage)
-    .filter(([_, address]) => address)
-    .map(([key, address]) =>
-      createContractCard(
-        formatContractLabel(key as keyof WarmStorage),
-        address as string,
-        explorerUrl,
-      ),
+export function useContractsData(
+  network: keyof typeof contracts = 'calibration',
+) {
+  return useMemo(() => {
+    const networkConfig = contracts[network]
+    const activeVersion = networkConfig.versions.find(
+      (v) => v.status === 'active',
     )
 
-  const serviceRegistryProxy = serviceProviderRegistry?.proxy
-    ? [
+    if (!activeVersion?.contracts) {
+      console.warn(`No active version found for network: ${network}`)
+      return { contractsData: [] }
+    }
+
+    const { warmStorage, serviceProviderRegistry } = activeVersion.contracts
+    const { explorerUrl } = networkConfig
+
+    const warmStorageContracts = Object.entries(warmStorage)
+      .filter((entry): entry is [keyof WarmStorage, string] =>
+        Boolean(entry[1]),
+      )
+      .map(([key, address]) =>
         createContractCard(
-          'Service Registry',
-          serviceProviderRegistry.proxy,
+          formatContractLabel(key),
+          address as Address,
           explorerUrl,
         ),
-      ]
-    : []
+      )
 
-  const contractsData = [...warmStorageContracts, ...serviceRegistryProxy]
+    const serviceRegistryContracts = serviceProviderRegistry?.proxy
+      ? [
+          createContractCard(
+            'Service Registry',
+            serviceProviderRegistry.proxy as Address,
+            explorerUrl,
+          ),
+        ]
+      : []
 
-  return { contractsData }
+    return {
+      contractsData: [...warmStorageContracts, ...serviceRegistryContracts],
+    }
+  }, [network])
 }
 
 function createContractCard(
   label: string,
-  address: string,
+  address: Address,
   explorerUrl: string,
 ): ContractCardProps {
   return {
@@ -61,5 +71,5 @@ function formatContractLabel(key: keyof WarmStorage) {
     stateView: 'FWSS State View',
   }
 
-  return labelMap[key] ?? key
+  return labelMap[key] ?? key.replace(/([A-Z])/g, ' $1').trim()
 }

@@ -4,7 +4,7 @@ import { ExternalLink } from '@/components/ExternalLink'
 
 import { truncateAddress } from '../utils/truncateAddress'
 
-type ContractCardProps = {
+export type ContractCardProps = {
   label: string
   address: Address
   href: string
