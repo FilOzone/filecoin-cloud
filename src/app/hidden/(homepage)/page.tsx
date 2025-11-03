@@ -12,7 +12,7 @@ import { Faq } from '@/components/Faq'
 import { Header } from '@/components/Header'
 import { LinkCard } from '@/components/LinkCard'
 import { Phase } from '@/components/Phase'
-import { SimpleCard } from '@/components/SimpleCard'
+import { SimpleCardWithImage } from '@/components/SimpleCardWithImage'
 
 import { BASE_DOMAIN } from '@/constants/siteMetadata'
 import CometVideoPoster from '@/public/assets/comet-video-poster.webp'
@@ -122,15 +122,17 @@ export default function HiddenHomepage() {
           description="Modular services you can mix, match, and deploy, all built for openness, performance, and control."
         >
           <CardGrid as="ul" variant="smTwoXlFourWider">
-            {filecoinOnchainCloudProducts.map(({ title, description, cta }) => (
-              <SimpleCard
-                key={title}
-                as="li"
-                title={title}
-                description={description}
-                cta={cta}
-              />
-            ))}
+            {filecoinOnchainCloudProducts.map(
+              ({ title, description, cta, image }) => (
+                <SimpleCardWithImage
+                  key={title}
+                  title={title}
+                  description={description}
+                  cta={cta}
+                  image={image}
+                />
+              ),
+            )}
           </CardGrid>
         </SectionContent>
       </PageSection>
