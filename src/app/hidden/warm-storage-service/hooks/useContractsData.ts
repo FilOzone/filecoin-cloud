@@ -2,10 +2,14 @@
 
 import type { ContractCardProps } from '../components/ContractCard'
 import { NETWORK_CONFIG } from '../data/networkConfig'
-import type { Network, NetworkConfig } from '../types/contractType'
+import type {
+  ContractVersion,
+  Network,
+  NetworkConfig,
+} from '../types/contractType'
 
-function formatContractLabel(key: string): string {
-  const labelMap: Record<string, string> = {
+function formatContractLabel(key: keyof ContractVersion['contracts']) {
+  const labelMap: Record<keyof ContractVersion['contracts'], string> = {
     implementation: 'FWSS Implementation',
     proxy: 'FWSS Proxy',
     stateView: 'FWSS State View',
@@ -28,8 +32,9 @@ export function useContractsData() {
     ? Object.entries(activeVersion.contracts)
         .filter(([_, address]) => address)
         .map(([key, address]) => ({
-          label: formatContractLabel(key),
+          label: formatContractLabel(key as keyof ContractVersion['contracts']),
           address: address,
+          href: `${currentNetwork.explorerUrl}${address}`,
         }))
     : []
 
