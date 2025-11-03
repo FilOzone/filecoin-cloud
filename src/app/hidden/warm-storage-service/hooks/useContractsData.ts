@@ -1,15 +1,11 @@
-'use client'
-
 import { useMemo } from 'react'
 import type { Address } from 'viem'
 
 import type { ContractCardProps } from '../components/ContractCard'
 import contracts from '../config/contracts.json'
-import type { WarmStorage } from '../types/contractType'
+import type { Network, WarmStorage } from '../types/contractType'
 
-export function useContractsData(
-  network: keyof typeof contracts = 'calibration',
-) {
+export function useContractsData(network: Network = 'calibration') {
   return useMemo(() => {
     const networkConfig = contracts[network]
     const activeVersion = networkConfig.versions.find(
@@ -25,11 +21,11 @@ export function useContractsData(
     const { explorerUrl } = networkConfig
 
     const warmStorageContracts = Object.entries(warmStorage)
-      .filter((entry): entry is [keyof WarmStorage, string] =>
+      .filter((entry): entry is [keyof WarmStorage, Address] =>
         Boolean(entry[1]),
       )
       .map(([key, address]) =>
-        createContractCard(
+        formatContractForCard(
           formatContractLabel(key),
           address as Address,
           explorerUrl,
@@ -38,7 +34,7 @@ export function useContractsData(
 
     const serviceRegistryContracts = serviceProviderRegistry?.proxy
       ? [
-          createContractCard(
+          formatContractForCard(
             'Service Registry',
             serviceProviderRegistry.proxy as Address,
             explorerUrl,
@@ -52,7 +48,7 @@ export function useContractsData(
   }, [network])
 }
 
-function createContractCard(
+function formatContractForCard(
   label: string,
   address: Address,
   explorerUrl: string,
@@ -69,6 +65,8 @@ function formatContractLabel(key: keyof WarmStorage) {
     implementation: 'FWSS Implementation',
     proxy: 'FWSS Proxy',
     stateView: 'FWSS State View',
+    pdpVerifierImplementation: 'PDP Verifier Implementation',
+    pdpVerifierProxy: 'PDP Verifier Proxy',
   }
 
   return labelMap[key] ?? key.replace(/([A-Z])/g, ' $1').trim()
