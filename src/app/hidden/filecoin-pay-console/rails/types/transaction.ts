@@ -6,5 +6,5 @@ export type Transaction = {
   status: 'active' | 'inactive'
   paymentRate: string
   settledAmount: string
-  date: string
+  date: Date
 }

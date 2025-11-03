@@ -40,6 +40,11 @@ export const columns = [
   }),
   columnHelper.accessor('date', {
     header: 'Date',
-    cell: (info) => info.getValue(),
+    cell: (info) =>
+      info.getValue().toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      }),
   }),
 ]

@@ -10,5 +10,5 @@ export const dummyData: Array<Transaction> = Array(40)
     status: 'active' as const,
     paymentRate: '0 USDFC',
     settledAmount: '0 USDFC',
-    date: 'Oct 23, 2025',
+    date: new Date(2025, index % 3, (index % 30) + 1),
   }))
