@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-foreground: var(--color-zinc-950);
-  --color-forground-subtle: var(--color-zinc-600);
-  --color-muted: var(--color-zinc-100);
-  --color-muted-foreground: var(--color-zinc-200);
+  --color-table-foreground: var(--color-zinc-950);
+  --color-table-foreground-muted: var(--color-zinc-600);
+  --color-table-background: var(--color-zinc-100);
+  --color-table-border: var(--color-zinc-200);
 }
