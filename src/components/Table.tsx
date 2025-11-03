@@ -1,5 +1,7 @@
 import { clsx } from 'clsx'
 
+const cellPadding = 'px-8 lg:px-4'
+
 export function Table({ className, ...props }: React.ComponentProps<'table'>) {
   return (
     <div
@@ -65,7 +67,8 @@ function TableHead({ className, ...props }: React.ComponentProps<'th'>) {
     <th
       data-slot="table-head"
       className={clsx(
-        'px-4 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5',
+        'text-left align-middle font-medium whitespace-nowrap',
+        cellPadding,
         className,
       )}
       {...props}
@@ -77,10 +80,7 @@ function TableCell({ className, ...props }: React.ComponentProps<'td'>) {
   return (
     <td
       data-slot="table-cell"
-      className={clsx(
-        'px-4 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 *:[[role=checkbox]]:translate-y-0.5',
-        className,
-      )}
+      className={clsx('align-middle whitespace-nowrap', cellPadding, className)}
       {...props}
     />
   )
