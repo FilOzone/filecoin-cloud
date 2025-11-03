@@ -2,6 +2,7 @@
 @import "@filecoin-foundation/ui-filecoin/styles";
 
 @import "./accordion.css";
+@import "./table.css";
 
 @source "../../node_modules/@filecoin-foundation/ui";
 @source "../../node_modules/@filecoin-foundation/ui-filecoin";
