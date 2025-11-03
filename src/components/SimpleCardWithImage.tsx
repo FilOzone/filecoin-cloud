@@ -8,8 +8,8 @@ export type SimpleCardWithImageProps = {
     data: StaticImageData
     alt: string
   }
-  title: string
-  description: string
+  title: string // TODO: Change to CardContentProps['title']
+  description: string // TODO: Change to CardContentProps['description']
   cta: {
     href: CTALinkProps['href']
     text: CTALinkProps['children']
@@ -29,7 +29,7 @@ export function SimpleCardWithImage({
         alt={image.alt}
         className="aspect-13/5 rounded-t-2xl object-cover"
       />
-      <div className="p-8 ">
+      <div className="p-8">
         <CardContent title={title} description={description} border="all" />
         <CTALink inset href={cta.href} textClassName="bottom-8 left-8">
           {cta.text}

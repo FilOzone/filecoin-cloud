@@ -118,7 +118,7 @@ export default function HiddenHomepage() {
       <PageSection backgroundVariant="dark">
         <SectionContent
           centerCTA
-          title="FOC Building Blocks"
+          title="Filecoin Onchain Cloud Building Blocks"
           description="Modular services you can mix, match, and deploy, all built for openness, performance, and control."
         >
           <CardGrid as="ul" variant="smTwoXlFourWider">
