@@ -6,13 +6,18 @@ export type ContractVersion = {
   status: VersionStatus
   isNew?: boolean
   linkToRelease?: string
-  contracts: {
-    implementation: string
-    proxy: string
-    stateView: string
-    pdpVerifierImplementation?: string
-    pdpVerifierProxy?: string
-  }
+  contracts: WarmStorage & ServiceProviderRegistry
+}
+
+export type ServiceProviderRegistry = {
+  proxy: string
+  implementation: string
+}
+
+export type WarmStorage = {
+  implementation: string
+  proxy: string
+  stateView: string
 }
 
 export type NetworkConfig = {
@@ -21,5 +26,3 @@ export type NetworkConfig = {
   explorerUrl: string
   versions: ContractVersion[]
 }
-
-// ! check file naming
