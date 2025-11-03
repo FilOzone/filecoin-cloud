@@ -6,7 +6,6 @@ import { StatusBadge } from '@/components/StatusBadge'
 
 import type { Transaction } from '../types/transaction'
 
-// Column definitions
 const columnHelper = createColumnHelper<Transaction>()
 
 export const columns = [
