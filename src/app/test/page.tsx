@@ -69,12 +69,12 @@ export default function TableDemo() {
             </Table.Row>
           ))}
         </Table.Body>
-        <Table.Footer>
+        {/* <Table.Footer>
           <Table.Row>
             <Table.Cell colSpan={3}>Total</Table.Cell>
             <Table.Cell className="text-right">$2,500.00</Table.Cell>
           </Table.Row>
-        </Table.Footer>
+        </Table.Footer> */}
       </Table>
     </div>
   )
