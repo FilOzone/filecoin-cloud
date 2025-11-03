@@ -4,8 +4,8 @@ type ContractCardGridProps = {
 
 export function ContractCardGrid({ children }: ContractCardGridProps) {
   return (
-    <div className="grid lg:grid-rows-1 lg:grid-flow-col lg:auto-cols-[1fr] gap-4 grid-cols-1 sm:grid-cols-2">
+    <ul className="sm:grid-cols-2 grid grid-cols-1 gap-4 lg:auto-cols-[1fr] lg:grid-flow-col lg:grid-rows-1">
       {children}
-    </div>
+    </ul>
   )
 }
