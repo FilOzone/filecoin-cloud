@@ -8,7 +8,7 @@ import { BASE_DOMAIN } from '@/constants/siteMetadata'
 
 type SmartTextLinkProps = Omit<
   SharedSmartTextLinkProps,
-  'baseDomain' | 'LinkComponent' | 'InternalLinkComponent'
+  'baseDomain' | 'InternalLinkComponent'
 >
 
 export function SmartTextLink(props: SmartTextLinkProps) {
@@ -16,6 +16,7 @@ export function SmartTextLink(props: SmartTextLinkProps) {
     <SharedSmartTextLink
       {...props}
       baseDomain={BASE_DOMAIN}
+      // @ts-expect-error: Types of property 'href' are incompatible: string vs RouteImpl | UrlObject
       InternalLinkComponent={Link}
     />
   )
