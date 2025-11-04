@@ -107,6 +107,8 @@ export default function WarmStorageService() {
           }
         >
           <div className="flex flex-col gap-6">
+            <h3 className="text-2xl font-medium">Contract Addresses</h3>
+
             <ContractCardGrid>
               {contractsData.map(({ label, address, href }) => (
                 <ContractCard
@@ -120,7 +122,7 @@ export default function WarmStorageService() {
 
             <IconLink
               icon={GithubLogoIcon}
-              href="https://github.com/FilOzone/filecoin-services/releases/tag/alpha%2Fcalibnet%2F0x80617b65FD2EEa1D7fDe2B4F85977670690ed348-v2"
+              href={FOC_URLS.warmStorageService.sourceCode}
               label="View contract source code"
             />
           </div>
