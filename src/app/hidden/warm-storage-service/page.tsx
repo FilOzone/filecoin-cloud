@@ -1,19 +1,28 @@
+'use client'
+
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
+import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
 
 import { FOC_URLS } from '@/constants/siteMetadata'
 
+import { ContractCard } from './components/ContractCard'
+import { ContractCardGrid } from './components/ContractCardGrid'
+import { IconLink } from './components/IconLink'
 import { PricingCard } from './components/PricingCard'
 import { pricingTiers } from './data/pricingTiers'
 import { storageFeatures } from './data/storageFeatures'
+import { useContractsData } from './hooks/useContractsData'
 
 export default function WarmStorageService() {
+  const { contractsData } = useContractsData()
+
   return (
     <>
       <PageSection backgroundVariant="dark">
@@ -97,7 +106,32 @@ export default function WarmStorageService() {
               View all service providers
             </Button>
           }
-        />
+        >
+          <div className="flex flex-col gap-6">
+            <h3 className="text-2xl font-medium">Contract Addresses</h3>
+
+            <ContractCardGrid>
+              {contractsData.map(({ label, address, href }) => (
+                <ContractCard
+                  key={label}
+                  label={label}
+                  address={address}
+                  href={href}
+                />
+              ))}
+            </ContractCardGrid>
+
+            <IconLink
+              icon={GithubLogoIcon}
+              href={FOC_URLS.warmStorageService.sourceCode}
+              label="View contract source code"
+            />
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <h3 className="text-2xl font-medium">Warm Storage Providers</h3>
+          </div>
+        </SectionContent>
       </PageSection>
 
       <BecomeProviderSection />
