@@ -50,10 +50,6 @@ export const columns = [
   }),
   columnHelper.accessor('ipniIpfs', {
     header: 'Publish to IPNI',
-    cell: (info) => (
-      <div className="flex justify-end">
-        <ProviderTableInpiStatus published={info.getValue()} />
-      </div>
-    ),
+    cell: (info) => <ProviderTableInpiStatus published={info.getValue()} />,
   }),
 ]
