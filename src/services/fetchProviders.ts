@@ -1,4 +1,5 @@
 import { SPRegistryService } from '@filoz/synapse-sdk/sp-registry'
+import bs58 from 'bs58'
 import { ethers } from 'ethers'
 
 import {
@@ -10,7 +11,6 @@ import {
 } from '@/config/abis'
 import contracts from '@/config/contracts.json'
 import { providersSchema, type ServiceProvider } from '@/schemas/providerSchema'
-import { bytesToBase58 } from '@/utils/bytesToBase58'
 import { bytesToString } from '@/utils/bytesToString'
 import { capabilitiesListToObject } from '@/utils/capabilitiesListToObject'
 import { isVersionV031OrAbove } from '@/utils/isVersionV031OrAbove'
@@ -180,7 +180,7 @@ export async function fetchAllProviders() {
               }
 
               if (bytes.length > 0) {
-                peerId = bytesToBase58(bytes)
+                peerId = bs58.encode(bytes)
               }
             } catch (error) {
               console.error(
@@ -269,7 +269,7 @@ export async function fetchAllProviders() {
               }
 
               if (bytes.length > 0) {
-                peerId = bytesToBase58(bytes)
+                peerId = bs58.encode(bytes)
               }
             } catch (error) {
               console.error(
