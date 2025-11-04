@@ -321,8 +321,8 @@ export async function fetchAllProviders(): Promise<Array<ServiceProvider>> {
             serviceProviderAddress: providerInfo.serviceProvider || '',
             payeeAddress: providerInfo.payee || '',
             serviceUrl: pdpData?.serviceURL || '',
-            pricingPerTb: pdpData?.storagePricePerTibPerDay
-              ? ethers.formatUnits(pdpData.storagePricePerTibPerDay, 18)
+            pricingPerTb: pdpData?.storagePricePerTibPerMonth
+              ? ethers.formatUnits(pdpData.storagePricePerTibPerMonth, 18)
               : '0',
             minPieceSize: pdpData?.minPieceSizeInBytes?.toString() || '256',
             maxPieceSize:
