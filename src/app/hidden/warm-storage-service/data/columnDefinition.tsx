@@ -5,6 +5,8 @@ import { ID } from '@/components/ID'
 
 import type { ServiceProvider } from '@/schemas/providerSchema'
 
+import { ProviderTableOverview } from '../components/ProviderTableOverview'
+
 const columnHelper = createColumnHelper<ServiceProvider>()
 
 export const columns = [
@@ -26,16 +28,12 @@ export const columns = [
         const { name, description, serviceUrl, softwareVersion } =
           info.getValue()
         return (
-          <div className="flex flex-col gap-1">
-            <div className="font-semibold">{name}</div>
-            <div className="text-sm text-gray-600">{description}</div>
-            {serviceUrl && (
-              <div className="text-sm text-gray-500">{serviceUrl}</div>
-            )}
-            {softwareVersion && softwareVersion !== 'unknown' && (
-              <div className="text-xs text-gray-400">v{softwareVersion}</div>
-            )}
-          </div>
+          <ProviderTableOverview
+            name={name}
+            description={description}
+            serviceUrl={serviceUrl}
+            softwareVersion={softwareVersion}
+          />
         )
       },
     },

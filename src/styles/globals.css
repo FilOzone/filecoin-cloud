@@ -17,3 +17,7 @@
   outline-offset: 0px;
   border-color: transparent;
 }
+
+text-link {
+  @apply text-brand-600 hover:text-brand-800 hover:underline;
+}
