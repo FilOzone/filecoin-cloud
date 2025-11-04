@@ -126,6 +126,10 @@ export default function WarmStorageService() {
               label="View contract source code"
             />
           </div>
+
+          <div className="flex flex-col gap-6">
+            <h3 className="text-2xl font-medium">Warm Storage Providers</h3>
+          </div>
         </SectionContent>
       </PageSection>
 
