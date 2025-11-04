@@ -16,13 +16,6 @@ import { capabilitiesListToObject } from '@/utils/capabilitiesListToObject'
 import { isVersionV031OrAbove } from '@/utils/isVersionV031OrAbove'
 import { parseLocation } from '@/utils/parseLocation'
 
-/**
- * Fetches all service providers from the Calibration network
- * Uses the first active version from contracts.json
- * @returns Array of ServiceProvider objects
- * @throws Error if unable to fetch providers
- */
-
 const TESTNET_CONFIG = contracts.calibration
 
 export async function fetchAllProviders() {
