@@ -1,3 +1,5 @@
+'use client'
+
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
@@ -10,20 +12,19 @@ import { Button } from '@/components/Button'
 import { Navigation } from '@/components/Navigation/Navigation'
 
 import { FOC_URLS } from '@/constants/siteMetadata'
-import { fetchAllProviders } from '@/services/fetchProviders'
 
 import { ContractCard } from './components/ContractCard'
 import { ContractCardGrid } from './components/ContractCardGrid'
 import { PricingCard } from './components/PricingCard'
+import { WarmStorageProvidersTable } from './components/WarmStorageProvidersTable'
 import { pricingTiers } from './data/pricingTiers'
 import { storageFeatures } from './data/storageFeatures'
 import { useContractsData } from './hooks/useContractsData'
+import { useProviders } from './hooks/useProviders'
 
-export default async function WarmStorageService() {
+export default function WarmStorageService() {
   const { contractsData } = useContractsData()
-
-  const providers = await fetchAllProviders()
-  console.log(providers)
+  const { data: providers, isLoading, error } = useProviders()
 
   return (
     <>
@@ -136,6 +137,28 @@ export default async function WarmStorageService() {
 
           <div className="flex flex-col gap-6">
             <h3 className="text-2xl font-medium">Warm Storage Providers</h3>
+
+            {isLoading && (
+              <div className="text-center py-8 text-gray-600">
+                Loading providers...
+              </div>
+            )}
+
+            {error && (
+              <div className="text-center py-8 text-red-600">
+                Error loading providers: {error.message || 'Unknown error'}
+              </div>
+            )}
+
+            {providers && providers.length > 0 && (
+              <WarmStorageProvidersTable data={providers} />
+            )}
+
+            {providers && providers.length === 0 && !isLoading && (
+              <div className="text-center py-8 text-gray-600">
+                No providers available
+              </div>
+            )}
           </div>
         </SectionContent>
       </PageSection>
