@@ -1,6 +1,7 @@
 import { SPRegistryService } from '@filoz/synapse-sdk/sp-registry'
 import bs58 from 'bs58'
 import { ethers } from 'ethers'
+import { zipObj } from 'ramda'
 import { hexToString } from 'viem'
 
 import {
@@ -12,7 +13,6 @@ import {
 } from '@/config/abis'
 import contracts from '@/config/contracts.json'
 import { providersSchema, type ServiceProvider } from '@/schemas/providerSchema'
-import { capabilitiesListToObject } from '@/utils/capabilitiesListToObject'
 import { isVersionV031OrAbove } from '@/utils/isVersionV031OrAbove'
 import { parseLocation } from '@/utils/parseLocation'
 
@@ -133,10 +133,7 @@ export async function fetchAllProviders() {
               const capabilityValuesStrings =
                 capabilityValuesBytes.map(hexToString)
 
-              capabilities = capabilitiesListToObject(
-                capabilityKeys,
-                capabilityValuesStrings,
-              )
+              capabilities = zipObj(capabilityKeys, capabilityValuesStrings)
             } catch (error) {
               console.error(
                 `Provider ${providerId}: Error decoding capabilities:`,
