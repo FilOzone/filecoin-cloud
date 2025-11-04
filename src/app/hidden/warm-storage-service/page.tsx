@@ -10,6 +10,7 @@ import { Button } from '@/components/Button'
 import { Navigation } from '@/components/Navigation/Navigation'
 
 import { FOC_URLS } from '@/constants/siteMetadata'
+import { fetchAllProviders } from '@/services/fetchProviders'
 
 import { ContractCard } from './components/ContractCard'
 import { ContractCardGrid } from './components/ContractCardGrid'
@@ -17,7 +18,6 @@ import { PricingCard } from './components/PricingCard'
 import { pricingTiers } from './data/pricingTiers'
 import { storageFeatures } from './data/storageFeatures'
 import { useContractsData } from './hooks/useContractsData'
-import { fetchAllProviders } from '../../../services/fetchProviders'
 
 export default async function WarmStorageService() {
   const { contractsData } = useContractsData()

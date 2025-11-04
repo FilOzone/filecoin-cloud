@@ -1,21 +1,20 @@
 import { SPRegistryService } from '@filoz/synapse-sdk/sp-registry'
 import { ethers } from 'ethers'
 
-import { providersSchema, type ServiceProvider } from '@/schemas/providerSchema'
-
 import {
   SERVICE_REGISTRY_ABI,
   WARM_STORAGE_ABI,
   WARM_STORAGE_ABI_LEGACY,
   WARM_STORAGE_STATE_VIEW_ABI,
   WARM_STORAGE_STATE_VIEW_ABI_LEGACY,
-} from '../config/abis'
-import contracts from '../config/contracts.json'
-import { bytesToBase58 } from '../utils/bytesToBase58'
-import { bytesToString } from '../utils/bytesToString'
-import { capabilitiesListToObject } from '../utils/capabilitiesListToObject'
-import { isVersionV031OrAbove } from '../utils/isVersionV031OrAbove'
-import { parseLocation } from '../utils/parseLocation'
+} from '@/config/abis'
+import contracts from '@/config/contracts.json'
+import { providersSchema, type ServiceProvider } from '@/schemas/providerSchema'
+import { bytesToBase58 } from '@/utils/bytesToBase58'
+import { bytesToString } from '@/utils/bytesToString'
+import { capabilitiesListToObject } from '@/utils/capabilitiesListToObject'
+import { isVersionV031OrAbove } from '@/utils/isVersionV031OrAbove'
+import { parseLocation } from '@/utils/parseLocation'
 
 /**
  * Fetches all service providers from the Calibration network
