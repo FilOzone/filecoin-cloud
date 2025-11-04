@@ -1,5 +1,3 @@
-'use client'
-
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
@@ -19,9 +17,13 @@ import { PricingCard } from './components/PricingCard'
 import { pricingTiers } from './data/pricingTiers'
 import { storageFeatures } from './data/storageFeatures'
 import { useContractsData } from './hooks/useContractsData'
+import { getWarmStorageProviders } from '../../../lib/providers'
 
-export default function WarmStorageService() {
+export default async function WarmStorageService() {
   const { contractsData } = useContractsData()
+
+  const providers = await getWarmStorageProviders()
+  console.log('Warm Storage Providers:', providers)
 
   return (
     <>
