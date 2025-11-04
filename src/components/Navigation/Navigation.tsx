@@ -5,7 +5,8 @@ import {
   type SectionProps,
 } from '@filecoin-foundation/ui-filecoin/Section'
 
-import Logo from '@/public/foc-logo.svg'
+import LogoDark from '@/public/foc-logo-dark.svg'
+import LogoLight from '@/public/foc-logo-light.svg'
 
 import { DesktopNavigation } from './DesktopNavigation'
 
@@ -18,7 +19,11 @@ export function Navigation({ backgroundVariant }: NavigationProps) {
     <Section as="header" backgroundVariant={backgroundVariant}>
       <Container>
         <nav className="flex items-center justify-between py-8 lg:gap-24">
-          <HomeLogoLink logo={Logo} height={40} /> <DesktopNavigation />
+          <HomeLogoLink
+            logo={backgroundVariant === 'light' ? LogoDark : LogoLight}
+            height={40}
+          />{' '}
+          <DesktopNavigation />
         </nav>
       </Container>
     </Section>
