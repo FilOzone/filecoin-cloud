@@ -9,8 +9,8 @@ import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { BackgroundVideo } from '@/components/BackgroundVideo'
 import { Button } from '@/components/Button'
 import { Faq } from '@/components/Faq'
-import { Header } from '@/components/Header'
 import { LinkCard } from '@/components/LinkCard'
+import { Navigation } from '@/components/Navigation/Navigation'
 import { Phase } from '@/components/Phase'
 import { SimpleCardWithImage } from '@/components/SimpleCardWithImage'
 
@@ -34,7 +34,7 @@ export default function HiddenHomepage() {
           poster={CometVideoPoster}
         />
 
-        <Header />
+        <Navigation backgroundVariant="transparentDark" />
         <PageSection
           backgroundVariant="transparentDark"
           paddingVariant="medium"
