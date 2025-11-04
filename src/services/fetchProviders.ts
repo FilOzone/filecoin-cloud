@@ -1,6 +1,8 @@
 import { SPRegistryService } from '@filoz/synapse-sdk/sp-registry'
 import { ethers } from 'ethers'
 
+import { providersSchema, type ServiceProvider } from '@/schemas/providerSchema'
+
 import {
   SERVICE_REGISTRY_ABI,
   WARM_STORAGE_ABI,
@@ -15,29 +17,6 @@ import { capabilitiesListToObject } from '../utils/capabilitiesListToObject'
 import { isVersionV031OrAbove } from '../utils/isVersionV031OrAbove'
 import { parseLocation } from '../utils/parseLocation'
 
-// Type definitions
-export interface ServiceProvider {
-  id: number
-  serviceProviderAddress: string
-  name: string
-  description: string
-  serviceUrl: string
-  pricingPerTb: string
-  minPieceSize: string
-  maxPieceSize: string
-  isActive: boolean
-  payeeAddress: string
-  providerId: number
-  location: string
-  ipniPiece: boolean
-  ipniIpfs: boolean
-  paymentTokenAddress: string
-  capabilityKeys: string[]
-  softwareVersion?: string
-  serviceStatus?: string
-  peerId?: string
-}
-
 /**
  * Fetches all service providers from the Calibration network
  * Uses the first active version from contracts.json
@@ -47,9 +26,7 @@ export interface ServiceProvider {
 
 const TESTNET_CONFIG = contracts.calibration
 
-export async function fetchAllProviders(): Promise<Array<ServiceProvider>> {
-  // Get calibration network config
-  // const calibrationConfig: any = (contracts as any).calibration
+export async function fetchAllProviders() {
   if (!TESTNET_CONFIG) {
     throw new Error('Calibration network not found in contracts.json')
   }
@@ -406,6 +383,5 @@ export async function fetchAllProviders(): Promise<Array<ServiceProvider>> {
       return { ...provider, softwareVersion: 'unknown' }
     }),
   )
-
-  return providersWithVersions
+  return providersSchema.parse(providersWithVersions)
 }
