@@ -1,5 +1,6 @@
 import { createColumnHelper } from '@tanstack/react-table'
 
+import { CompactAddress } from '@/components/CompactAddress'
 import { ID } from '@/components/ID'
 
 import type { ServiceProvider } from '@/schemas/providerSchema'
@@ -45,9 +46,7 @@ export const columns = [
   }),
   columnHelper.accessor('serviceProviderAddress', {
     header: 'Address',
-    cell: (info) => (
-      <div className="font-mono text-sm">{info.getValue() || '-'}</div>
-    ),
+    cell: (info) => <CompactAddress address={info.getValue()} />,
   }),
   columnHelper.accessor('ipniIpfs', {
     header: 'Publish to IPNI',

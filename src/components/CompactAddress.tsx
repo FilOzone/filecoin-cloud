@@ -1,11 +1,15 @@
+import type { Address } from 'viem'
+
+import { truncateAddress } from '@/utils/truncateAddress'
+
 export type CompactAddressProps = {
-  address: string
+  address: Address
 }
 
 export function CompactAddress({ address }: CompactAddressProps) {
   return (
     <span className="text-base font-medium text-brand-800" title={address}>
-      {address.slice(0, 6)}...{address.slice(-4)}
+      {truncateAddress(address)}
     </span>
   )
 }
