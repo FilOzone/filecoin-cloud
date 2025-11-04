@@ -17,13 +17,13 @@ import { PricingCard } from './components/PricingCard'
 import { pricingTiers } from './data/pricingTiers'
 import { storageFeatures } from './data/storageFeatures'
 import { useContractsData } from './hooks/useContractsData'
-import { getWarmStorageProviders } from '../../../lib/providers'
+import { fetchAllProviders } from '../../../services/fetchProviders'
 
 export default async function WarmStorageService() {
   const { contractsData } = useContractsData()
 
-  const providers = await getWarmStorageProviders()
-  console.log('Warm Storage Providers:', providers)
+  const providers = await fetchAllProviders()
+  console.log(providers)
 
   return (
     <>
