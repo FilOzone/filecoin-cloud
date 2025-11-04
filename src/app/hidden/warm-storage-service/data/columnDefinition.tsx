@@ -1,5 +1,7 @@
 import { createColumnHelper } from '@tanstack/react-table'
 
+import { ID } from '@/components/ID'
+
 import type { ServiceProvider } from '@/schemas/providerSchema'
 
 const columnHelper = createColumnHelper<ServiceProvider>()
@@ -7,7 +9,7 @@ const columnHelper = createColumnHelper<ServiceProvider>()
 export const columns = [
   columnHelper.accessor('id', {
     header: 'ID',
-    cell: (info) => info.getValue(),
+    cell: (info) => <ID number={info.getValue()} />,
   }),
   columnHelper.accessor(
     (row) => ({
