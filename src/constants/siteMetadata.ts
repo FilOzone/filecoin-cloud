@@ -19,6 +19,10 @@ const FOC_URLS = {
   },
 }
 
+export const BLOCK_EXPLORER_MAINNET = 'https://filecoin.blockscout.com/address/'
+export const BLOCK_EXPLORER_CALIBRATION =
+  'https://filecoin-testnet.blockscout.com/address/'
+
 const METADATA: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: META_TITLE,
