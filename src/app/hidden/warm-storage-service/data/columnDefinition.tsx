@@ -5,6 +5,7 @@ import { ID } from '@/components/ID'
 
 import type { ServiceProvider } from '@/schemas/providerSchema'
 
+import { ProviderTableInpiStatus } from '../components/ProviderTableInpiStatus'
 import { ProviderTableOverview } from '../components/ProviderTableOverview'
 
 const columnHelper = createColumnHelper<ServiceProvider>()
@@ -27,6 +28,7 @@ export const columns = [
       cell: (info) => {
         const { name, description, serviceUrl, softwareVersion } =
           info.getValue()
+
         return (
           <ProviderTableOverview
             name={name}
@@ -40,7 +42,7 @@ export const columns = [
   ),
   columnHelper.accessor('location', {
     header: 'Location',
-    cell: (info) => info.getValue() || '-',
+    cell: (info) => info.getValue(),
   }),
   columnHelper.accessor('serviceProviderAddress', {
     header: 'Address',
@@ -48,6 +50,10 @@ export const columns = [
   }),
   columnHelper.accessor('ipniIpfs', {
     header: 'Publish to IPNI',
-    cell: (info) => (info.getValue() ? 'Yes' : 'No'),
+    cell: (info) => (
+      <div className="flex justify-end">
+        <ProviderTableInpiStatus published={info.getValue()} />
+      </div>
+    ),
   }),
 ]
