@@ -7,7 +7,7 @@ import { Navigation } from '@/components/Navigation/Navigation'
 export default function ServiceProviders() {
   return (
     <>
-      <Navigation backgroundVariant="transparentDark" />
+      <Navigation backgroundVariant="light" />
       <PageSection backgroundVariant="light">
         <SectionContent
           title="Service Providers"

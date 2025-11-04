@@ -7,7 +7,7 @@ import { Navigation } from '@/components/Navigation/Navigation'
 export default function FilecoinPayConsole() {
   return (
     <>
-      <Navigation backgroundVariant="transparentDark" />
+      <Navigation backgroundVariant="light" />
       <PageSection backgroundVariant="light">
         <SectionContent title="Filecoin Pay Console">
           {/* <SectionSubContent headingTag="h3" title="Funds" />
