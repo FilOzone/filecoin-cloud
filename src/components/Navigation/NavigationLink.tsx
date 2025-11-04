@@ -5,6 +5,11 @@ import {
   NavigationMainLink as SharedNavigationMainLink,
 } from '@filecoin-foundation/ui-filecoin/Navigation/NavigationMainLink'
 import Link from 'next/link'
+import type { ComponentProps, ComponentType } from 'react'
+
+type LinkProps = ComponentProps<typeof Link>
+type GenericLinkProps = Omit<LinkProps, 'locale' | 'href'> & { href: string }
+export type GenericLinkType = ComponentType<GenericLinkProps>
 
 export {
   desktopStyle,
@@ -18,6 +23,9 @@ type NavigationLinkProps = Omit<
 
 export function NavigationLink(props: NavigationLinkProps) {
   return (
-    <SharedNavigationMainLink InternalLinkComponent={Link as any} {...props} />
+    <SharedNavigationMainLink
+      InternalLinkComponent={Link as GenericLinkType}
+      {...props}
+    />
   )
 }
