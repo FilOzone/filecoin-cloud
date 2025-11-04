@@ -1,6 +1,7 @@
 import { SPRegistryService } from '@filoz/synapse-sdk/sp-registry'
 import bs58 from 'bs58'
 import { ethers } from 'ethers'
+import { hexToString } from 'viem'
 
 import {
   SERVICE_REGISTRY_ABI,
@@ -11,7 +12,6 @@ import {
 } from '@/config/abis'
 import contracts from '@/config/contracts.json'
 import { providersSchema, type ServiceProvider } from '@/schemas/providerSchema'
-import { bytesToString } from '@/utils/bytesToString'
 import { capabilitiesListToObject } from '@/utils/capabilitiesListToObject'
 import { isVersionV031OrAbove } from '@/utils/isVersionV031OrAbove'
 import { parseLocation } from '@/utils/parseLocation'
@@ -130,9 +130,9 @@ export async function fetchAllProviders() {
                 rawCapabilityBytes[capabilityKeys[i]] = capabilityValuesBytes[i]
               }
 
-              const capabilityValuesStrings = capabilityValuesBytes.map(
-                (bytes: string) => bytesToString(bytes),
-              )
+              const capabilityValuesStrings =
+                capabilityValuesBytes.map(hexToString)
+
               capabilities = capabilitiesListToObject(
                 capabilityKeys,
                 capabilityValuesStrings,
