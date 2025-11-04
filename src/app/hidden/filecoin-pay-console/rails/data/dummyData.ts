@@ -4,9 +4,9 @@ export const dummyData: Array<Transaction> = Array(40)
   .fill(null)
   .map((_, index) => ({
     railId: index + 100,
-    payer: '0xa397874n9qh38wkjd8',
-    payee: '0x908fddwqeu2384u82rdwe8y9284ue234h78dy',
-    operator: '0x806f7b29384jasxas98opqekd9893ksa',
+    payer: '0xa3971A7234a3379A1813d9867B531e7EeB20ae07',
+    payee: '0xa3971A7234a3379A1813d9867B531e7EeB20ae07',
+    operator: '0xa3971A7234a3379A1813d9867B531e7EeB20ae07',
     status: 'active' as const,
     paymentRate: '0 USDFC',
     settledAmount: '0 USDFC',
