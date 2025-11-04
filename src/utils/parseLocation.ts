@@ -1,4 +1,4 @@
-export function parseLocation(location: string): string {
+export function parseLocation(location: string) {
   if (!location || !location.trim()) {
     return 'N/A'
   }

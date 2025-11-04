@@ -1,4 +1,4 @@
-export function bytesToBase58(bytes: Uint8Array): string {
+export function bytesToBase58(bytes: Uint8Array) {
   const alphabet = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 
   if (bytes.length === 0) return ''

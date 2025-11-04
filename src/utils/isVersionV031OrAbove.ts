@@ -1,4 +1,4 @@
-export function isVersionV031OrAbove(version: string): boolean {
+export function isVersionV031OrAbove(version: string) {
   const match = version.match(/v?(\d+)\.(\d+)\.(\d+)/)
   if (!match) return false
 

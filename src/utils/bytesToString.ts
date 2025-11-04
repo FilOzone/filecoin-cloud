@@ -1,4 +1,4 @@
-export function bytesToString(bytes: string): string {
+export function bytesToString(bytes: string) {
   try {
     const hex = bytes.startsWith('0x') ? bytes.slice(2) : bytes
     const byteArray = new Uint8Array(
