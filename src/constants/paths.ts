@@ -2,12 +2,14 @@ import { createPathConfig } from '@/app/utils/createPathConfig'
 
 export type StaticPath =
   | '/'
-  | '/service-providers'
-  | '/warm-storage-service'
   | '/filecoin-pay-console'
   | '/filecoin-pay-console/rails'
   | '/filecoin-pay-console/accounts'
   | '/filecoin-pay-console/operators'
+  | '/privacy-policy'
+  | '/service-providers'
+  | '/terms-of-use'
+  | '/warm-storage-service'
 
 export const FILECOIN_PAY_NAVIGATION_LABEL = 'Filecoin Pay'
 
