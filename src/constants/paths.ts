@@ -14,14 +14,6 @@ export type StaticPath =
 export const FILECOIN_PAY_NAVIGATION_LABEL = 'Filecoin Pay'
 
 export const PATHS = {
-  SERVICE_PROVIDERS: createPathConfig(
-    '/service-providers',
-    'Service Providers',
-  ),
-  WARM_STORAGE_SERVICE: createPathConfig(
-    '/warm-storage-service',
-    'Warm Storage Service',
-  ),
   FILECOIN_PAY_CONSOLE: createPathConfig('/filecoin-pay-console', 'Console'),
   FILECOIN_PAY_CONSOLE_ACCOUNTS: createPathConfig(
     '/filecoin-pay-console/accounts',
@@ -34,5 +26,13 @@ export const PATHS = {
   FILECOIN_PAY_CONSOLE_RAILS: createPathConfig(
     '/filecoin-pay-console/rails',
     'Rails',
+  ),
+  SERVICE_PROVIDERS: createPathConfig(
+    '/service-providers',
+    'Service Providers',
+  ),
+  WARM_STORAGE_SERVICE: createPathConfig(
+    '/warm-storage-service',
+    'Warm Storage Service',
   ),
 }
