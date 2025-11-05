@@ -6,7 +6,7 @@ Please review these Terms carefully before using the Website. We may change thes
 
 ## Privacy
 
-By using the Website, you consent to our processing your information consistent with our [filecoin.cloud/privacy-policy](filecoin.cloud/privacy-policy).
+By using the Website, you consent to our processing your information consistent with our [Privacy Policy](/privacy-policy).
 
 ## Prohibited Conduct
 
