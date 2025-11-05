@@ -14,7 +14,7 @@ import { dummyData } from '../data/dummyData'
 export function FilecoinPayRailsTable() {
   const table = useReactTable({
     data: dummyData,
-    columns: columns,
+    columns,
     getCoreRowModel: getCoreRowModel(),
   })
 

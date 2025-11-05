@@ -21,7 +21,7 @@ export function WarmStorageProvidersTable({
 }: WarmStorageProvidersTableProps) {
   const table = useReactTable({
     data,
-    columns: columns,
+    columns,
     getCoreRowModel: getCoreRowModel(),
   })
 
