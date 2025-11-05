@@ -1,4 +1,4 @@
-import { createPathConfig } from '@/app/utils/createPathConfig'
+import { createPathConfig } from '@/utils/createPathConfig'
 
 export type StaticPath =
   | '/'
