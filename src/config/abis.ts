@@ -1,6 +1,6 @@
-// import { parseAbi } from 'viem'
+import type { ABI, VersionedABI } from '@/types/abiType'
 
-export const WarmStorageABI = {
+export const WarmStorageABI: VersionedABI = {
   legacy: [
     'function serviceProviderRegistry() view returns (address)',
     'function getProviderConfig(uint256) view returns (tuple(uint256 minPieceSize, uint256 maxPieceSize, uint256 pricingPerGB, bool isActive))',
@@ -13,7 +13,7 @@ export const WarmStorageABI = {
   ],
 }
 
-export const StateViewABI = {
+export const StateViewABI: VersionedABI = {
   legacy: [
     'function getApprovedProviders() view returns (uint256[])',
     'function isProviderApproved(uint256 providerId) view returns (bool)',
@@ -26,7 +26,7 @@ export const StateViewABI = {
   ],
 }
 
-export const ServiceRegistryABI = [
+export const ServiceRegistryABI: ABI = [
   'function getProvider(uint256 providerId) view returns (tuple(uint256 providerId, tuple(address serviceProvider, address payee, string name, string description, bool isActive) info))',
   'function getProductCapabilities(uint256 providerId, uint8 productType, string[] keys) view returns (bytes[])',
   'function getAllProductCapabilities(uint256 providerId, uint8 productType) view returns (bool isActive, string[] keys, bytes[] values)',

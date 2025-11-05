@@ -1,5 +1,4 @@
 import { SPRegistryService } from '@filoz/synapse-sdk/sp-registry'
-import bs58 from 'bs58'
 import { ethers } from 'ethers'
 import { zipObj } from 'ramda'
 import { hexToString } from 'viem'
@@ -7,11 +6,249 @@ import { hexToString } from 'viem'
 import { ServiceRegistryABI, StateViewABI, WarmStorageABI } from '@/config/abis'
 import contracts from '@/config/contracts.json'
 import { providersSchema, type ServiceProvider } from '@/schemas/providerSchema'
+import type { ABIVersion } from '@/types/abiType'
+import { decodePeerId } from '@/utils/decodePeerId'
 import { isVersionV031OrAbove } from '@/utils/isVersionV031OrAbove'
+import { parseBooleanCapability } from '@/utils/parseBooleanCapability'
 import { parseLocation } from '@/utils/parseLocation'
 
 const TESTNET_CONFIG = contracts.calibration
+const BATCH_SIZE = 100
+const VERSION_FETCH_TIMEOUT = 5_000
+const PDP_PRODUCT_TYPE = 0
+const DEFAULT_MIN_PIECE_SIZE = '256'
+const DEFAULT_MAX_PIECE_SIZE = '34359738368'
+const DEFAULT_PRICING = '0'
 
+/**
+ * Fetch approved provider IDs using appropriate ABI version
+ */
+async function fetchApprovedProviderIds(
+  stateViewContract: ethers.Contract,
+  useNewDecoding: boolean,
+): Promise<bigint[]> {
+  if (useNewDecoding) {
+    // v0.3.1+: Use pagination
+    const totalCount = await stateViewContract.getApprovedProvidersLength()
+
+    if (Number(totalCount) === 0) {
+      return []
+    }
+
+    let approvedProviderIds: bigint[] = []
+    let offset = 0
+
+    while (offset < Number(totalCount)) {
+      const batch = await stateViewContract.getApprovedProviders(
+        offset,
+        BATCH_SIZE,
+      )
+      approvedProviderIds = approvedProviderIds.concat(batch)
+      offset += BATCH_SIZE
+    }
+
+    return approvedProviderIds
+  } else {
+    // Pre-v0.3.1: No pagination
+    return await stateViewContract.getApprovedProviders()
+  }
+}
+
+/**
+ * Fetch provider details for v0.3.1+ using new ABI
+ */
+async function fetchProviderV031(
+  providerId: bigint,
+  serviceRegistryContract: ethers.Contract,
+) {
+  const providerData = await serviceRegistryContract.getProviderWithProduct(
+    providerId,
+    PDP_PRODUCT_TYPE,
+  )
+
+  const providerInfo = providerData.providerInfo
+  const product = providerData.product
+  const capabilityValuesBytes = providerData.productCapabilityValues || []
+  const capabilityKeys = product.capabilityKeys || []
+  const pdpIsActive = product.isActive
+
+  // Build capabilities objects
+  let capabilities: Record<string, string> = {}
+  const rawCapabilityBytes: Record<string, string> = {}
+
+  if (capabilityKeys.length > 0 && capabilityValuesBytes.length > 0) {
+    try {
+      for (let i = 0; i < capabilityKeys.length; i++) {
+        rawCapabilityBytes[capabilityKeys[i]] = capabilityValuesBytes[i]
+      }
+
+      const capabilityValuesStrings = capabilityValuesBytes.map(hexToString)
+      capabilities = zipObj(capabilityKeys, capabilityValuesStrings)
+    } catch (error) {
+      console.error(
+        `Provider ${providerId}: Error decoding capabilities:`,
+        error,
+      )
+    }
+  }
+
+  // Extract capability values with fallbacks
+  const serviceStatus =
+    capabilities.serviceStatus || capabilities.service_status || ''
+  const serviceUrl = capabilities.serviceURL || ''
+  const location = capabilities.location || ''
+  const minPieceSize =
+    capabilities.minPieceSizeInBytes || DEFAULT_MIN_PIECE_SIZE
+  const maxPieceSize =
+    capabilities.maxPieceSizeInBytes || DEFAULT_MAX_PIECE_SIZE
+  const storagePricePerTibPerMonth =
+    capabilities.storagePricePerTibPerMonth || DEFAULT_PRICING
+
+  // Decode Peer ID
+  const peerIdRawBytes =
+    rawCapabilityBytes.IPNIPeerID || rawCapabilityBytes.ipni_peer_id
+  const peerId = decodePeerId(peerIdRawBytes)
+
+  // Parse boolean capabilities
+  const ipniPiece = parseBooleanCapability(capabilities.ipniPiece)
+  const ipniIpfs = parseBooleanCapability(capabilities.ipniIpfs)
+
+  const paymentTokenAddress = capabilities.paymentTokenAddress || ''
+  const finalIsActive = providerInfo.isActive && pdpIsActive
+
+  return {
+    id: Number(providerId),
+    name: providerInfo.name || `Provider ${providerId}`,
+    description:
+      providerInfo.description || 'Storage provider on Filecoin network',
+    serviceProviderAddress: providerInfo.serviceProvider || '',
+    payeeAddress: providerInfo.payee || '',
+    serviceUrl: serviceUrl,
+    pricingPerTb: storagePricePerTibPerMonth
+      ? ethers.formatUnits(storagePricePerTibPerMonth, 18)
+      : DEFAULT_PRICING,
+    minPieceSize: minPieceSize,
+    maxPieceSize: maxPieceSize,
+    isActive: finalIsActive,
+    providerId: Number(providerId),
+    location: parseLocation(location),
+    ipniPiece: ipniPiece,
+    ipniIpfs: ipniIpfs,
+    paymentTokenAddress: paymentTokenAddress,
+    capabilityKeys: capabilityKeys,
+    serviceStatus: serviceStatus || undefined,
+    peerId: peerId || undefined,
+  }
+}
+
+/**
+ * Fetch provider details for pre-v0.3.1 using legacy SDK
+ */
+async function fetchProviderLegacy(
+  providerId: bigint,
+  registry: SPRegistryService,
+) {
+  const providerInfo = await registry.getProvider(Number(providerId))
+
+  if (!providerInfo) {
+    return null
+  }
+
+  const pdpProduct = providerInfo.products?.PDP
+  const pdpData = pdpProduct?.data
+  const capabilities = pdpProduct?.capabilities || {}
+  const pdpIsActive = pdpProduct?.isActive || false
+
+  const serviceStatus = capabilities.service_status || ''
+
+  // Decode Peer ID
+  const peerId = decodePeerId(capabilities.IPNIPeerID)
+
+  const finalLocation = capabilities.location || pdpData?.location || ''
+
+  return {
+    id: Number(providerId),
+    name: providerInfo.name || `Provider ${providerId}`,
+    description:
+      providerInfo.description || 'Storage provider on Filecoin network',
+    serviceProviderAddress: providerInfo.serviceProvider || '',
+    payeeAddress: providerInfo.payee || '',
+    serviceUrl: pdpData?.serviceURL || '',
+    pricingPerTb: pdpData?.storagePricePerTibPerMonth
+      ? ethers.formatUnits(pdpData.storagePricePerTibPerMonth, 18)
+      : DEFAULT_PRICING,
+    minPieceSize:
+      pdpData?.minPieceSizeInBytes?.toString() || DEFAULT_MIN_PIECE_SIZE,
+    maxPieceSize:
+      pdpData?.maxPieceSizeInBytes?.toString() || DEFAULT_MAX_PIECE_SIZE,
+    isActive: providerInfo.active && pdpIsActive,
+    providerId: Number(providerId),
+    location: parseLocation(finalLocation),
+    ipniPiece: pdpData?.ipniPiece || false,
+    ipniIpfs: pdpData?.ipniIpfs || false,
+    paymentTokenAddress: pdpData?.paymentTokenAddress || '',
+    capabilityKeys: Object.keys(capabilities),
+    serviceStatus: serviceStatus || undefined,
+    peerId: peerId || undefined,
+  }
+}
+
+/**
+ * Fetch software version from provider's /version endpoint
+ */
+async function fetchSoftwareVersion(serviceUrl?: string) {
+  if (!serviceUrl) {
+    return 'unknown'
+  }
+
+  try {
+    const baseUrl = serviceUrl.replace(/\/$/, '')
+    const controller = new AbortController()
+    const timeoutId = setTimeout(
+      () => controller.abort(),
+      VERSION_FETCH_TIMEOUT,
+    )
+
+    const response = await fetch(`${baseUrl}/version`, {
+      method: 'GET',
+      headers: { Accept: 'application/json' },
+      mode: 'cors',
+      signal: controller.signal,
+    })
+
+    clearTimeout(timeoutId)
+
+    if (!response.ok) {
+      return 'unknown'
+    }
+
+    const responseText = await response.text()
+    let version = 'unknown'
+
+    try {
+      const versionData = JSON.parse(responseText)
+      version =
+        versionData.version ||
+        versionData.Version ||
+        versionData.v ||
+        responseText.trim()
+    } catch {
+      version = responseText.trim()
+    }
+
+    // Validate version format
+    const versionPattern =
+      /^\d+\.\d+\.\d+\+\w+\+git_[a-f0-9]+_\d{4}-\d{2}-\d{2}T[\d:+-]+$/
+
+    return versionPattern.test(version) ? version : 'unknown'
+  } catch {
+    return 'unknown'
+  }
+}
+
+/**
+ * Fetch all providers from the calibration network
+ */
 export async function fetchAllProviders() {
   if (!TESTNET_CONFIG) {
     throw new Error('Calibration network not found in contracts.json')
@@ -31,62 +268,37 @@ export async function fetchAllProviders() {
   const rpcUrl = TESTNET_CONFIG.rpcUrl
   const provider = new ethers.JsonRpcProvider(rpcUrl)
 
-  // Determine if using new ABI for v0.3.1+
+  // Determine ABI version
   const useNewDecoding = isVersionV031OrAbove(currentVersion.version)
+  const abiVersion: ABIVersion = useNewDecoding ? 'current' : 'legacy'
 
-  // Connect to warm storage contract
+  // Connect to contracts
   const warmStorageContract = new ethers.Contract(
     currentVersion.contracts.warmStorage.proxy,
-    useNewDecoding ? WarmStorageABI.current : WarmStorageABI.legacy,
+    WarmStorageABI[abiVersion],
     provider,
   )
 
-  // Get the ServiceProviderRegistry address
   const registryAddress = await warmStorageContract.serviceProviderRegistry()
 
-  // Connect to State View contract
   const stateViewContract = new ethers.Contract(
     currentVersion.contracts.warmStorage.stateView,
-    useNewDecoding ? StateViewABI.current : StateViewABI.legacy,
+    StateViewABI[abiVersion],
     provider,
   )
 
   // Get approved provider IDs
-  let approvedProviderIds: bigint[] = []
-
-  if (useNewDecoding) {
-    // v0.3.1+: Use pagination
-    const totalCount = await stateViewContract.getApprovedProvidersLength()
-
-    if (Number(totalCount) === 0) {
-      return []
-    }
-
-    // Fetch all providers in batches
-    const batchSize = 100
-    let offset = 0
-
-    while (offset < Number(totalCount)) {
-      const batch = await stateViewContract.getApprovedProviders(
-        offset,
-        batchSize,
-      )
-      approvedProviderIds = approvedProviderIds.concat(batch)
-      offset += batchSize
-    }
-  } else {
-    // v0.1.0: No pagination
-    approvedProviderIds = await stateViewContract.getApprovedProviders()
-  }
+  const approvedProviderIds = await fetchApprovedProviderIds(
+    stateViewContract,
+    useNewDecoding,
+  )
 
   if (!approvedProviderIds || approvedProviderIds.length === 0) {
     return []
   }
 
-  // Initialize SPRegistryService from SDK (for older versions)
+  // Initialize appropriate service for fetching provider details
   const registry = new SPRegistryService(provider, registryAddress)
-
-  // Create contract instance for v0.3.1+ approach
   const serviceRegistryContract = new ethers.Contract(
     registryAddress,
     ServiceRegistryABI,
@@ -98,208 +310,12 @@ export async function fetchAllProviders() {
     async (providerId: bigint) => {
       try {
         if (useNewDecoding) {
-          // New approach for v0.3.1+
-          const providerData =
-            await serviceRegistryContract.getProviderWithProduct(
-              providerId,
-              0, // PDP product type
-            )
-
-          const providerInfo = providerData.providerInfo
-          const product = providerData.product
-          const capabilityValuesBytes =
-            providerData.productCapabilityValues || []
-
-          const capabilityKeys = product.capabilityKeys || []
-          const pdpIsActive = product.isActive
-
-          let capabilities: Record<string, string> = {}
-          const rawCapabilityBytes: Record<string, string> = {}
-
-          if (capabilityKeys.length > 0 && capabilityValuesBytes.length > 0) {
-            try {
-              for (let i = 0; i < capabilityKeys.length; i++) {
-                rawCapabilityBytes[capabilityKeys[i]] = capabilityValuesBytes[i]
-              }
-
-              const capabilityValuesStrings =
-                capabilityValuesBytes.map(hexToString)
-
-              capabilities = zipObj(capabilityKeys, capabilityValuesStrings)
-            } catch (error) {
-              console.error(
-                `Provider ${providerId}: Error decoding capabilities:`,
-                error,
-              )
-            }
-          }
-
-          const serviceStatus =
-            capabilities.serviceStatus || capabilities.service_status
-          const serviceUrl = capabilities.serviceURL
-          const location = capabilities.location || ''
-          const minPieceSize = capabilities.minPieceSizeInBytes || '256'
-          const maxPieceSize = capabilities.maxPieceSizeInBytes || '34359738368'
-          const storagePricePerTibPerMonth =
-            capabilities.storagePricePerTibPerMonth || '0'
-
-          // Decode Peer ID
-          let peerId = ''
-          const peerIdRawBytes =
-            rawCapabilityBytes.IPNIPeerID || rawCapabilityBytes.ipni_peer_id
-          if (peerIdRawBytes) {
-            try {
-              let bytes: Uint8Array
-
-              if (
-                typeof peerIdRawBytes === 'string' &&
-                peerIdRawBytes.startsWith('0x')
-              ) {
-                const hex = peerIdRawBytes.slice(2)
-                bytes = new Uint8Array(
-                  hex.match(/.{1,2}/g)?.map((byte) => parseInt(byte, 16)) || [],
-                )
-              } else if (typeof peerIdRawBytes === 'string') {
-                bytes = new Uint8Array(peerIdRawBytes.length)
-                for (let i = 0; i < peerIdRawBytes.length; i++) {
-                  bytes[i] = peerIdRawBytes.charCodeAt(i)
-                }
-              } else {
-                bytes = new Uint8Array(0)
-              }
-
-              if (bytes.length > 0) {
-                peerId = bs58.encode(bytes)
-              }
-            } catch (error) {
-              console.error(
-                `Provider ${providerId}: Error decoding IPNIPeerID:`,
-                error,
-              )
-            }
-          }
-
-          const ipniPiece =
-            capabilities.ipniPiece === 'true' ||
-            capabilities.ipniPiece === '\u0001' ||
-            capabilities.ipniPiece?.charCodeAt(0) === 1
-          const ipniIpfs =
-            capabilities.ipniIpfs === 'true' ||
-            capabilities.ipniIpfs === '\u0001' ||
-            capabilities.ipniIpfs?.charCodeAt(0) === 1
-          const paymentTokenAddress = capabilities.paymentTokenAddress || ''
-
-          const finalIsActive = providerInfo.isActive && pdpIsActive
-
-          const formattedProvider = {
-            id: Number(providerId),
-            name: providerInfo.name || `Provider ${providerId}`,
-            description:
-              providerInfo.description ||
-              'Storage provider on Filecoin network',
-            serviceProviderAddress: providerInfo.serviceProvider || '',
-            payeeAddress: providerInfo.payee || '',
-            serviceUrl: serviceUrl,
-            pricingPerTb: storagePricePerTibPerMonth
-              ? ethers.formatUnits(storagePricePerTibPerMonth, 18)
-              : '0',
-            minPieceSize: minPieceSize,
-            maxPieceSize: maxPieceSize,
-            isActive: finalIsActive,
-            providerId: Number(providerId),
-            location: parseLocation(location),
-            ipniPiece: ipniPiece,
-            ipniIpfs: ipniIpfs,
-            paymentTokenAddress: paymentTokenAddress,
-            capabilityKeys: capabilityKeys,
-            serviceStatus: serviceStatus,
-            peerId: peerId || undefined,
-          }
-
-          return formattedProvider
+          return await fetchProviderV031(providerId, serviceRegistryContract)
         } else {
-          // Old approach for versions before v0.3.1
-          const providerInfo = await registry.getProvider(Number(providerId))
-
-          if (!providerInfo) {
-            return null
-          }
-
-          const pdpProduct = providerInfo.products?.PDP
-          const pdpData = pdpProduct?.data
-          const capabilities = pdpProduct?.capabilities || {}
-          const pdpIsActive = pdpProduct?.isActive || false
-
-          const serviceStatus = capabilities.service_status
-
-          // Decode Peer ID
-          let peerId = ''
-          if (capabilities.IPNIPeerID) {
-            try {
-              const peerIdBytes = capabilities.IPNIPeerID
-              let bytes: Uint8Array
-
-              if (
-                typeof peerIdBytes === 'string' &&
-                peerIdBytes.startsWith('0x')
-              ) {
-                const hex = peerIdBytes.slice(2)
-                bytes = new Uint8Array(
-                  hex.match(/.{1,2}/g)?.map((byte) => parseInt(byte, 16)) || [],
-                )
-              } else if (typeof peerIdBytes === 'string') {
-                bytes = new Uint8Array(peerIdBytes.length)
-                for (let i = 0; i < peerIdBytes.length; i++) {
-                  bytes[i] = peerIdBytes.charCodeAt(i)
-                }
-              } else {
-                peerId = peerIdBytes
-                bytes = new Uint8Array(0)
-              }
-
-              if (bytes.length > 0) {
-                peerId = bs58.encode(bytes)
-              }
-            } catch (error) {
-              console.error(
-                `Provider ${providerId}: Error decoding IPNIPeerID:`,
-                error,
-              )
-            }
-          }
-
-          const finalLocation = capabilities.location || pdpData?.location || ''
-
-          const formattedProvider = {
-            id: Number(providerId),
-            name: providerInfo.name || `Provider ${providerId}`,
-            description:
-              providerInfo.description ||
-              'Storage provider on Filecoin network',
-            serviceProviderAddress: providerInfo.serviceProvider || '',
-            payeeAddress: providerInfo.payee || '',
-            serviceUrl: pdpData?.serviceURL,
-            pricingPerTb: pdpData?.storagePricePerTibPerMonth
-              ? ethers.formatUnits(pdpData.storagePricePerTibPerMonth, 18)
-              : '0',
-            minPieceSize: pdpData?.minPieceSizeInBytes?.toString() || '256',
-            maxPieceSize:
-              pdpData?.maxPieceSizeInBytes?.toString() || '34359738368',
-            isActive: providerInfo.active && pdpIsActive,
-            providerId: Number(providerId),
-            location: parseLocation(finalLocation),
-            ipniPiece: pdpData?.ipniPiece || false,
-            ipniIpfs: pdpData?.ipniIpfs || false,
-            paymentTokenAddress: pdpData?.paymentTokenAddress || '',
-            capabilityKeys: Object.keys(capabilities),
-            serviceStatus: serviceStatus,
-            peerId: peerId || undefined,
-          }
-
-          return formattedProvider
+          return await fetchProviderLegacy(providerId, registry)
         }
       } catch (error: any) {
-        console.error(`❌ Error fetching provider ${providerId}:`, {
+        console.error(`Error fetching provider ${providerId}:`, {
           error: error,
           message: error?.message,
           code: error?.code,
@@ -312,57 +328,15 @@ export async function fetchAllProviders() {
 
   const fetchedProviders = (await Promise.all(providerPromises)).filter(
     (p) => p !== null,
-  ) as ServiceProvider[]
+  ) as Array<Omit<ServiceProvider, 'softwareVersion'>>
 
   // Fetch software versions for each provider
   const providersWithVersions = await Promise.all(
     fetchedProviders.map(async (provider) => {
-      if (!provider.serviceUrl) {
-        return provider
-      }
-
-      try {
-        const baseUrl = provider.serviceUrl.replace(/\/$/, '')
-
-        const controller = new AbortController()
-        const timeoutId = setTimeout(() => controller.abort(), 5000)
-
-        const response = await fetch(`${baseUrl}/version`, {
-          method: 'GET',
-          headers: { Accept: 'application/json' },
-          mode: 'cors',
-          signal: controller.signal,
-        })
-
-        clearTimeout(timeoutId)
-
-        if (response.ok) {
-          const responseText = await response.text()
-          let version = 'unknown'
-
-          try {
-            const versionData = JSON.parse(responseText)
-            version =
-              versionData.version ||
-              versionData.Version ||
-              versionData.v ||
-              responseText.trim()
-          } catch {
-            version = responseText.trim()
-          }
-
-          const versionPattern =
-            /^\d+\.\d+\.\d+\+\w+\+git_[a-f0-9]+_\d{4}-\d{2}-\d{2}T[\d:+-]+$/
-          if (versionPattern.test(version)) {
-            return { ...provider, softwareVersion: version }
-          }
-        }
-      } catch {
-        // Failed to fetch - this is expected for many providers
-      }
-
-      return { ...provider, softwareVersion: 'unknown' }
+      const softwareVersion = await fetchSoftwareVersion(provider.serviceUrl)
+      return { ...provider, softwareVersion }
     }),
   )
+
   return providersSchema.parse(providersWithVersions)
 }
