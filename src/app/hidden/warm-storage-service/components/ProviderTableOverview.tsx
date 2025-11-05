@@ -1,4 +1,4 @@
-import { ExternalLink } from '@/components/ExternalLink'
+import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 
 import { EXPLORERS } from '@/constants/externalServices'
 
@@ -24,23 +24,21 @@ export function ProviderTableOverview({
 
   return (
     <div className="space-y-1.5 py-4">
-      <ExternalLink
+      <ExternalTextLink
         href={`${EXPLORERS.PDP_SCAN.calibration}${address}`}
-        className="text-brand-800 font-medium hover:underline"
         aria-label={`View provider ${name} on PDP Scan`}
       >
-        {name}
-      </ExternalLink>
+        <span className="font-medium">{name}</span>
+      </ExternalTextLink>
       <div className="text-sm text-gray-600">{description}</div>
       <div className="text-sm">
         {serviceUrl && (
-          <ExternalLink
+          <ExternalTextLink
             href={serviceUrl}
-            className="text-brand-800 hover:underline"
             aria-label={`Visit service URL for provider ${name}`}
           >
             {serviceUrl}
-          </ExternalLink>
+          </ExternalTextLink>
         )}
         {softwareVersion && softwareVersion !== 'unknown' && (
           <div>
