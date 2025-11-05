@@ -27,6 +27,7 @@ export function ProviderTableOverview({
       <ExternalLink
         href={`${PDP_SCAN_CALIBRATION}${address}`}
         className="text-brand-800 font-medium hover:underline"
+        aria-label={`View provider ${name} on PDP Scan`}
       >
         {name}
       </ExternalLink>
@@ -36,6 +37,7 @@ export function ProviderTableOverview({
           <ExternalLink
             href={serviceUrl}
             className="text-brand-800 hover:underline"
+            aria-label={`Visit service URL for provider ${name}`}
           >
             {serviceUrl}
           </ExternalLink>
