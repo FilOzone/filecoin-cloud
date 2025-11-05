@@ -21,11 +21,7 @@ export function BecomeProviderSection() {
             View SP documentation
           </Button>
         }
-      >
-        <p className="text-center text-sm text-zinc-400">
-          Learn how to set up and run a storage provider node.
-        </p>
-      </SectionContent>
+      />
     </PageSection>
   )
 }
