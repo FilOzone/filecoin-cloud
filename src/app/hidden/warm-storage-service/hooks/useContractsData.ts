@@ -1,9 +1,10 @@
 import { useMemo } from 'react'
 import type { Address } from 'viem'
 
+import contracts from '@/config/contracts.json'
+import type { Network, WarmStorage } from '@/types/contractType'
+
 import type { ContractCardProps } from '../components/ContractCard'
-import contracts from '../config/contracts.json'
-import type { Network, WarmStorage } from '../types/contractType'
 
 export function useContractsData(network: Network = 'calibration') {
   return useMemo(() => {
