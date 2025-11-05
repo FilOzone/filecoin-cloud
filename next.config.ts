@@ -5,6 +5,14 @@ const svgrRule = {
   use: ['@svgr/webpack'],
 }
 
+const markdownRule = {
+  test: /\.md$/,
+  loader: 'frontmatter-markdown-loader',
+  options: {
+    mode: ['body', 'attributes', 'react-component'],
+  },
+}
+
 const nextConfig: NextConfig = {
   typedRoutes: true,
   transpilePackages: [
@@ -18,6 +26,7 @@ const nextConfig: NextConfig = {
   },
   webpack: (config) => {
     config.module.rules.push(svgrRule)
+    config.module.rules.push(markdownRule)
     return config
   },
 }
