@@ -146,7 +146,10 @@ export default function WarmStorageService() {
           <div className="flex flex-col gap-6">
             <h3 className="text-2xl font-medium">Warm Storage Providers</h3>
             <div className="flex">
-              <RefreshButton onClick={refetch} isRefetching={isRefetching} />
+              <RefreshButton
+                onClick={refetch}
+                disabled={!providers || isRefetching}
+              />
             </div>
 
             {isLoading && (

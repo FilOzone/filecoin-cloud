@@ -1,21 +1,18 @@
 import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
 import { ArrowClockwiseIcon } from '@phosphor-icons/react/dist/ssr'
-import { clsx } from 'clsx'
 
 import { Button } from './Button'
 
 type RefreshButtonProps = {
   onClick: () => void
-  isRefetching: boolean
+  disabled: boolean
 }
 
-export function RefreshButton({ onClick, isRefetching }: RefreshButtonProps) {
+export function RefreshButton(props: RefreshButtonProps) {
   return (
-    <Button variant="tertiary" onClick={onClick} disabled={isRefetching}>
+    <Button variant="tertiary" {...props}>
       <span className="flex gap-2 items-center">
-        <span className={clsx(isRefetching && 'animate-spin')}>
-          <Icon component={ArrowClockwiseIcon} size={20} />
-        </span>
+        <Icon component={ArrowClockwiseIcon} size={20} />
         Refresh
       </span>
     </Button>
