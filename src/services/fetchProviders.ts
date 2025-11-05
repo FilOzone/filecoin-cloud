@@ -4,13 +4,7 @@ import { ethers } from 'ethers'
 import { zipObj } from 'ramda'
 import { hexToString } from 'viem'
 
-import {
-  SERVICE_REGISTRY_ABI,
-  WARM_STORAGE_ABI,
-  WARM_STORAGE_ABI_LEGACY,
-  WARM_STORAGE_STATE_VIEW_ABI,
-  WARM_STORAGE_STATE_VIEW_ABI_LEGACY,
-} from '@/config/abis'
+import { ServiceRegistryABI, StateViewABI, WarmStorageABI } from '@/config/abis'
 import contracts from '@/config/contracts.json'
 import { providersSchema, type ServiceProvider } from '@/schemas/providerSchema'
 import { isVersionV031OrAbove } from '@/utils/isVersionV031OrAbove'
@@ -43,7 +37,7 @@ export async function fetchAllProviders() {
   // Connect to warm storage contract
   const warmStorageContract = new ethers.Contract(
     currentVersion.contracts.warmStorage.proxy,
-    useNewDecoding ? WARM_STORAGE_ABI : WARM_STORAGE_ABI_LEGACY,
+    useNewDecoding ? WarmStorageABI.current : WarmStorageABI.legacy,
     provider,
   )
 
@@ -53,9 +47,7 @@ export async function fetchAllProviders() {
   // Connect to State View contract
   const stateViewContract = new ethers.Contract(
     currentVersion.contracts.warmStorage.stateView,
-    useNewDecoding
-      ? WARM_STORAGE_STATE_VIEW_ABI
-      : WARM_STORAGE_STATE_VIEW_ABI_LEGACY,
+    useNewDecoding ? StateViewABI.current : StateViewABI.legacy,
     provider,
   )
 
@@ -97,7 +89,7 @@ export async function fetchAllProviders() {
   // Create contract instance for v0.3.1+ approach
   const serviceRegistryContract = new ethers.Contract(
     registryAddress,
-    SERVICE_REGISTRY_ABI,
+    ServiceRegistryABI,
     provider,
   )
 
