@@ -102,7 +102,7 @@ export default function WarmStorageService() {
           title="Warm Storage Service"
           description="Lorem ipsum dolor sit amet consectetur."
           cta={
-            <Button href="https://github.com/filecoin-project" variant="ghost">
+            <Button href="/hidden/service-providers" variant="ghost">
               View all service providers
             </Button>
           }

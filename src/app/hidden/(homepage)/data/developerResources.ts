@@ -10,7 +10,7 @@ import type { LinkCardData } from '@/components/LinkCard'
 export const developerResources = [
   {
     title: 'Synapse SDK',
-    href: '#todo',
+    href: 'https://synapse.filecoin.services/',
     icon: CodeIcon,
   },
   {
@@ -25,7 +25,7 @@ export const developerResources = [
   },
   {
     title: 'Join the community',
-    href: '#todo',
+    href: 'https://filecoinproject.slack.com/archives/C07CGTXHHT4',
     icon: ChatsCircleIcon,
   },
 ] as const satisfies Array<LinkCardData>
