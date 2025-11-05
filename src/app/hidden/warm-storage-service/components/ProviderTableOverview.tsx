@@ -7,10 +7,8 @@ type ProviderTableOverviewProps = {
   description: string
   address: string
   serviceUrl: string
-  softwareVersion: string
+  softwareVersion?: string
 }
-
-const softwareVersionRegex = /^(.+)_(.+)$/
 
 export function ProviderTableOverview({
   name,
@@ -19,8 +17,7 @@ export function ProviderTableOverview({
   serviceUrl,
   softwareVersion,
 }: ProviderTableOverviewProps) {
-  const match = softwareVersion?.match(softwareVersionRegex)
-  const [, version, lastUpdated] = match || []
+  const parsedData = parseSoftwareVersion(softwareVersion)
 
   return (
     <div className="space-y-1.5 py-4">
@@ -40,13 +37,31 @@ export function ProviderTableOverview({
             {serviceUrl}
           </ExternalTextLink>
         )}
-        {softwareVersion && softwareVersion !== 'unknown' && (
+        {parsedData && (
           <div>
-            <div className="text-gray-600">Version: {version}</div>
-            <div className="text-gray-600">Last Updated: {lastUpdated}</div>
+            <div className="text-gray-600">Version: {parsedData.version}</div>
+            <div className="text-gray-600">
+              Last Updated: {parsedData.lastUpdated}
+            </div>
           </div>
         )}
       </div>
     </div>
   )
+}
+
+function parseSoftwareVersion(
+  softwareVersion: ProviderTableOverviewProps['softwareVersion'],
+) {
+  const emptyResult = { version: undefined, lastUpdated: undefined }
+  const softwareVersionRegex = /^(.+)_(.+)$/
+
+  if (!softwareVersion) return emptyResult
+
+  const match = softwareVersion.match(softwareVersionRegex)
+
+  if (!match) return emptyResult
+
+  const [, version, lastUpdated] = match
+  return { version, lastUpdated }
 }
