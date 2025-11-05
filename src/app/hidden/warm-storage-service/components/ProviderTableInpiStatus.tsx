@@ -17,7 +17,7 @@ export function ProviderTableInpiStatus({
         size={20}
         className={clsx(published ? 'text-brand-600' : 'text-zinc-600')}
       />
-      <span className="">{text}</span>
+      <span>{text}</span>
     </div>
   )
 }
