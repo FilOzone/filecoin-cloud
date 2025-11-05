@@ -5,6 +5,7 @@ import type { ReactNode } from 'react'
 
 import { BreakpointDebugger } from '@/components/_BreakpointDebugger'
 import { Footer } from '@/components/Footer/Footer'
+import { Providers } from '@/components/Providers'
 
 const funnelSans = localFont({
   src: '../fonts/Funnel_Sans/FunnelSans[wght].woff2',
@@ -34,10 +35,12 @@ export function SiteLayout({ children }: SiteLayoutProps) {
           'relative flex min-h-screen flex-col font-sans antialiased bg-zinc-950 text-zinc-50',
         )}
       >
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <Providers>
+          <main className="flex-1">{children}</main>
+          <Footer />
 
-        {process.env.NODE_ENV === 'development' && <BreakpointDebugger />}
+          {process.env.NODE_ENV === 'development' && <BreakpointDebugger />}
+        </Providers>
       </body>
     </html>
   )

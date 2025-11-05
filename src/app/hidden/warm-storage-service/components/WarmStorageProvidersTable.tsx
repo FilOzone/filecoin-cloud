@@ -8,12 +8,19 @@ import {
 
 import { Table } from '@/components/Table'
 
-import { columns } from '../data/columnDefinition'
-import { dummyData } from '../data/dummyData'
+import type { ServiceProvider } from '@/schemas/providerSchema'
 
-export function FilecoinPayRailsTable() {
+import { columns } from '../data/columnDefinition'
+
+export type WarmStorageProvidersTableProps = {
+  data: Array<ServiceProvider>
+}
+
+export function WarmStorageProvidersTable({
+  data,
+}: WarmStorageProvidersTableProps) {
   const table = useReactTable({
-    data: dummyData,
+    data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   })

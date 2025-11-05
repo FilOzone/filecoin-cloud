@@ -11,9 +11,3 @@
   --animate-slide-down: slideDown 300ms ease-out;
   --animate-slide-up: slideUp 300ms ease-out;
 }
-
-@utility brand-outline {
-  outline: 2px solid var(--color-zinc-50);
-  outline-offset: 0px;
-  border-color: transparent;
-}

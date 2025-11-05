@@ -198,7 +198,7 @@ async function fetchProviderLegacy(
  */
 async function fetchSoftwareVersion(serviceUrl?: string) {
   if (!serviceUrl) {
-    return 'unknown'
+    return
   }
 
   try {
@@ -219,11 +219,11 @@ async function fetchSoftwareVersion(serviceUrl?: string) {
     clearTimeout(timeoutId)
 
     if (!response.ok) {
-      return 'unknown'
+      return
     }
 
     const responseText = await response.text()
-    let version = 'unknown'
+    let version: string
 
     try {
       const versionData = JSON.parse(responseText)
@@ -240,9 +240,9 @@ async function fetchSoftwareVersion(serviceUrl?: string) {
     const versionPattern =
       /^\d+\.\d+\.\d+\+\w+\+git_[a-f0-9]+_\d{4}-\d{2}-\d{2}T[\d:+-]+$/
 
-    return versionPattern.test(version) ? version : 'unknown'
+    return versionPattern.test(version) ? version : undefined
   } catch {
-    return 'unknown'
+    return undefined
   }
 }
 

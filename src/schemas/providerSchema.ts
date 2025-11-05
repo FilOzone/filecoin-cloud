@@ -25,7 +25,7 @@ export const providerSchema = z.object({
   capabilityKeys: z.array(z.string()),
   serviceStatus: z.string().optional(),
   peerId: z.string().optional(),
-  softwareVersion: z.string(),
+  softwareVersion: z.string().optional(),
 })
 
 export const providersSchema = z.array(providerSchema)

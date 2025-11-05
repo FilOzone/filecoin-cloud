@@ -1,11 +1,21 @@
+import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
+import type { Address } from 'viem'
+
+import { EXPLORERS } from '@/constants/externalServices'
+import { truncateAddress } from '@/utils/truncateAddress'
+
 export type CompactAddressProps = {
-  address: string
+  address: Address
 }
 
 export function CompactAddress({ address }: CompactAddressProps) {
   return (
-    <span className="text-base font-medium text-brand-800" title={address}>
-      {address.slice(0, 6)}...{address.slice(-4)}
-    </span>
+    <ExternalTextLink
+      href={`${EXPLORERS.BLOCKSCOUT.calibration}${address}`}
+      aria-label={`View address ${address} on Block Explorer`}
+      title={address}
+    >
+      <span className="font-medium">{truncateAddress(address)}</span>
+    </ExternalTextLink>
   )
 }
