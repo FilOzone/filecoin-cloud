@@ -12,7 +12,7 @@ export const providerSchema = z.object({
   description: z.string(),
   serviceProviderAddress: ethereumAddressSchema,
   payeeAddress: ethereumAddressSchema,
-  serviceUrl: z.url(),
+  serviceUrl: z.url().optional(),
   pricingPerTb: z.string(),
   minPieceSize: z.string(),
   maxPieceSize: z.string(),

@@ -144,7 +144,7 @@ export async function fetchAllProviders() {
 
           const serviceStatus =
             capabilities.serviceStatus || capabilities.service_status || ''
-          const serviceUrl = capabilities.serviceURL || ''
+          const serviceUrl = capabilities.serviceURL
           const location = capabilities.location || ''
           const minPieceSize = capabilities.minPieceSizeInBytes || '256'
           const maxPieceSize = capabilities.maxPieceSizeInBytes || '34359738368'
@@ -286,7 +286,7 @@ export async function fetchAllProviders() {
               'Storage provider on Filecoin network',
             serviceProviderAddress: providerInfo.serviceProvider || '',
             payeeAddress: providerInfo.payee || '',
-            serviceUrl: pdpData?.serviceURL || '',
+            serviceUrl: pdpData?.serviceURL,
             pricingPerTb: pdpData?.storagePricePerTibPerMonth
               ? ethers.formatUnits(pdpData.storagePricePerTibPerMonth, 18)
               : '0',
