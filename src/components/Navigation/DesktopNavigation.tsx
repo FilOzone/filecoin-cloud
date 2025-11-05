@@ -4,6 +4,7 @@ import { NavigationMainLink } from '@filecoin-foundation/ui-filecoin/Navigation/
 
 import { headerNavigationItems } from './constants/navigation'
 import { NavigationMenu } from './NavigationMenu/NavigationMenu'
+import { NavigationNetworkToggle } from './NavigationNetworkToggle'
 
 export function DesktopNavigation() {
   return (
@@ -21,6 +22,8 @@ export function DesktopNavigation() {
           )
         })}
       </ul>
+
+      <NavigationNetworkToggle />
     </div>
   )
 }

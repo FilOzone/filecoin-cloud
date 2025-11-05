@@ -5,6 +5,7 @@ import type { ReactNode } from 'react'
 
 import { SiteLayout } from '@/components/SiteLayout'
 
+import { Providers } from '@/app/providers'
 import { BASE_DOMAIN, METADATA } from '@/constants/siteMetadata'
 
 export const metadata: Metadata = METADATA
@@ -19,7 +20,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
       trackFileDownloads
       domain={BASE_DOMAIN.replace('www.', '')}
     >
-      <SiteLayout>{children}</SiteLayout>
+      <Providers>
+        <SiteLayout>{children}</SiteLayout>
+      </Providers>
     </PlausibleProvider>
   )
 }
