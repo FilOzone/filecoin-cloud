@@ -1,30 +1,44 @@
-import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
+import { ExternalLink } from '@/components/ExternalLink'
+
+import { PDP_SCAN_CALIBRATION } from '@/constants/siteMetadata'
 
 type ProviderTableOverviewProps = {
   name: string
   description: string
-  serviceUrl?: string
-  softwareVersion?: string
+  address: string
+  serviceUrl: string
+  softwareVersion: string
 }
 
-const regex = /^(.+)_(.+)$/
+const softwareVersionRegex = /^(.+)_(.+)$/
 
 export function ProviderTableOverview({
   name,
   description,
+  address,
   serviceUrl,
   softwareVersion,
 }: ProviderTableOverviewProps) {
-  const match = softwareVersion?.match(regex)
+  const match = softwareVersion?.match(softwareVersionRegex)
   const [, version, lastUpdated] = match || []
 
   return (
     <div className="space-y-1.5 py-4">
-      <div className="font-medium text-zinc-950">{name}</div>
+      <ExternalLink
+        href={`${PDP_SCAN_CALIBRATION}${address}`}
+        className="text-brand-800 font-medium hover:underline"
+      >
+        {name}
+      </ExternalLink>
       <div className="text-sm text-gray-600">{description}</div>
       <div className="text-sm">
         {serviceUrl && (
-          <ExternalTextLink href={serviceUrl}>{serviceUrl}</ExternalTextLink>
+          <ExternalLink
+            href={serviceUrl}
+            className="text-brand-800 hover:underline"
+          >
+            {serviceUrl}
+          </ExternalLink>
         )}
         {softwareVersion && softwareVersion !== 'unknown' && (
           <div>

@@ -9,7 +9,10 @@ export type ExternalLinkProps = { href: string } & Omit<
 export function ExternalLink({ className, ...rest }: ExternalLinkProps) {
   return (
     <a
-      className={clsx(className, 'focus:outline-none')}
+      className={clsx(
+        className,
+        'focus:outline-none focus:brand-outline focus-visible:brand-outline',
+      )}
       {...rest}
       target="_blank"
       rel="noopener noreferrer"

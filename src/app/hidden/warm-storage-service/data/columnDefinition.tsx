@@ -19,6 +19,7 @@ export const columns = [
     (row) => ({
       name: row.name,
       description: row.description,
+      address: row.serviceProviderAddress,
       serviceUrl: row.serviceUrl,
       softwareVersion: row.softwareVersion,
     }),
@@ -26,13 +27,14 @@ export const columns = [
       id: 'provider',
       header: 'Provider',
       cell: (info) => {
-        const { name, description, serviceUrl, softwareVersion } =
+        const { name, description, address, serviceUrl, softwareVersion } =
           info.getValue()
 
         return (
           <ProviderTableOverview
             name={name}
             description={description}
+            address={address}
             serviceUrl={serviceUrl}
             softwareVersion={softwareVersion}
           />

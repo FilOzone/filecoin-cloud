@@ -12,12 +12,9 @@
   --animate-slide-up: slideUp 300ms ease-out;
 }
 
+/* This should ideally come from ui-filecoin */
 @utility brand-outline {
-  outline: 2px solid var(--color-zinc-50);
+  outline: 2px solid var(--color-brand-600);
   outline-offset: 0px;
   border-color: transparent;
-}
-
-text-link {
-  @apply text-brand-600 hover:text-brand-800 hover:underline;
 }
