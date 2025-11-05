@@ -5,15 +5,13 @@ type PathConfig = {
   label: string
 }
 
-const HIDDEN_PASSWORD = 'focitshipit'
-
-function transformPathToHidden(path: StaticPath): string {
-  return `/hidden${path}?password=${HIDDEN_PASSWORD}`
-}
-
 export function createPathConfig(path: StaticPath, label: string): PathConfig {
   return {
     path: transformPathToHidden(path),
     label,
   }
+}
+
+function transformPathToHidden(path: StaticPath): string {
+  return `/hidden${path}?password=${process.env.NEXT_PUBLIC_HIDDEN_PASSWORD}`
 }
