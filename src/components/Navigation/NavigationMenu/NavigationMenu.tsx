@@ -1,5 +1,6 @@
 'use client'
 
+import { desktopStyle } from '@filecoin-foundation/ui-filecoin/Navigation/NavigationMainLink'
 import { NavigationMenu as SharedNavigationMenu } from '@filecoin-foundation/ui-filecoin/Navigation/NavigationMenu'
 import { NavigationMenuPanel } from '@filecoin-foundation/ui-filecoin/Navigation/NavigationMenuPanel'
 import clsx from 'clsx'
@@ -7,7 +8,6 @@ import clsx from 'clsx'
 import { NavigationMenuLink } from './NavigationMenuLink'
 import type { NavigationMenuItem } from '../constants/navigation'
 import { useIsNavigationMenuActive } from '../hooks/useNavigationMenuActive'
-import { desktopStyle } from '../NavigationLink'
 
 export function NavigationMenu({ label, items }: NavigationMenuItem) {
   const isActive = useIsNavigationMenuActive(items)
