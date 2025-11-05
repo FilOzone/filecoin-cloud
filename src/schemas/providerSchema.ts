@@ -23,7 +23,7 @@ export const providerSchema = z.object({
   ipniIpfs: z.boolean(),
   paymentTokenAddress: ethereumAddressSchema,
   capabilityKeys: z.array(z.string()),
-  serviceStatus: z.string().nullable().optional(),
+  serviceStatus: z.string().optional(),
   peerId: z.string().optional(),
   softwareVersion: z.string(),
 })

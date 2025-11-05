@@ -143,7 +143,7 @@ export async function fetchAllProviders() {
           }
 
           const serviceStatus =
-            capabilities.serviceStatus || capabilities.service_status || ''
+            capabilities.serviceStatus || capabilities.service_status
           const serviceUrl = capabilities.serviceURL
           const location = capabilities.location || ''
           const minPieceSize = capabilities.minPieceSizeInBytes || '256'
@@ -220,7 +220,7 @@ export async function fetchAllProviders() {
             ipniIpfs: ipniIpfs,
             paymentTokenAddress: paymentTokenAddress,
             capabilityKeys: capabilityKeys,
-            serviceStatus: serviceStatus || undefined,
+            serviceStatus: serviceStatus,
             peerId: peerId || undefined,
           }
 
@@ -238,7 +238,7 @@ export async function fetchAllProviders() {
           const capabilities = pdpProduct?.capabilities || {}
           const pdpIsActive = pdpProduct?.isActive || false
 
-          const serviceStatus = capabilities.service_status || ''
+          const serviceStatus = capabilities.service_status
 
           // Decode Peer ID
           let peerId = ''
@@ -300,7 +300,7 @@ export async function fetchAllProviders() {
             ipniIpfs: pdpData?.ipniIpfs || false,
             paymentTokenAddress: pdpData?.paymentTokenAddress || '',
             capabilityKeys: Object.keys(capabilities),
-            serviceStatus: serviceStatus || undefined,
+            serviceStatus: serviceStatus,
             peerId: peerId || undefined,
           }
 
