@@ -1,6 +1,7 @@
+import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
+
 import { Container } from '@/components/Container'
 import { ExternalLink } from '@/components/ExternalLink'
-import { Icon } from '@/components/Icon'
 
 import { footerLinks } from './data/footerLinks'
 
@@ -20,7 +21,7 @@ export function Footer() {
                   aria-label={`Visit ${label}'s website`}
                   className="p-1 hover:text-zinc-100 focus:text-zinc-100"
                 >
-                  <Icon component={IconComponent} width={80} />
+                  <Icon component={IconComponent} size={80} />
                 </ExternalLink>
               ),
             )}
