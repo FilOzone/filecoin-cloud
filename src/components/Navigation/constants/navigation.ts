@@ -1,8 +1,13 @@
 import { FILECOIN_PAY_NAVIGATION_LABEL, PATHS } from '@/constants/paths'
 
-export type NavItem = { label: string; href: string }
+type NavItem = {
+  label: string
+  href: string
+}
 
-export type ExpandedNavItem = NavItem & { description: string }
+type ExpandedNavItem = NavItem & {
+  description: string
+}
 
 export type NavigationMenuItem = {
   label: string
@@ -12,7 +17,9 @@ export type NavigationMenuItem = {
   }>
 }
 
-export const headerNavigationItems: Array<NavItem | NavigationMenuItem> = [
+type HeaderNavItem = NavItem | NavigationMenuItem
+
+export const headerNavigationItems: Array<HeaderNavItem> = [
   {
     label: PATHS.SERVICE_PROVIDERS.label,
     href: PATHS.SERVICE_PROVIDERS.path,
