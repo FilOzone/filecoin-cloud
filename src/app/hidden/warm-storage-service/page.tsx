@@ -14,7 +14,6 @@ import { FOC_URLS } from '@/constants/siteMetadata'
 
 import { ContractCard } from './components/ContractCard'
 import { ContractCardGrid } from './components/ContractCardGrid'
-import { IconLink } from './components/IconLink'
 import { PricingCard } from './components/PricingCard'
 import { pricingTiers } from './data/pricingTiers'
 import { storageFeatures } from './data/storageFeatures'
@@ -121,11 +120,14 @@ export default function WarmStorageService() {
               ))}
             </ContractCardGrid>
 
-            <IconLink
-              icon={GithubLogoIcon}
+            <Button
               href={FOC_URLS.warmStorageService.sourceCode}
-              label="View contract source code"
-            />
+              variant="tertiary"
+              icon={GithubLogoIcon}
+              className="self-start"
+            >
+              View contract source code
+            </Button>
           </div>
 
           <div className="flex flex-col gap-6">
