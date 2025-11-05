@@ -1,6 +1,6 @@
 import type { Address } from 'viem'
 
-import { BLOCK_EXPLORER_CALIBRATION } from '@/constants/siteMetadata'
+import { EXPLORERS } from '@/constants/externalServices'
 import { truncateAddress } from '@/utils/truncateAddress'
 
 import { ExternalLink } from './ExternalLink'
@@ -12,7 +12,7 @@ export type CompactAddressProps = {
 export function CompactAddress({ address }: CompactAddressProps) {
   return (
     <ExternalLink
-      href={`${BLOCK_EXPLORER_CALIBRATION}${address}`}
+      href={`${EXPLORERS.BLOCKSCOUT.calibration}${address}`}
       aria-label={`View address ${address} on Block Explorer`}
     >
       <span className="text-base font-medium text-brand-800" title={address}>

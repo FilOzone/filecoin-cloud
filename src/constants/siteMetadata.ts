@@ -19,13 +19,6 @@ const FOC_URLS = {
   },
 }
 
-export const BLOCK_EXPLORER_MAINNET = 'https://filecoin.blockscout.com/address/'
-export const BLOCK_EXPLORER_CALIBRATION =
-  'https://filecoin-testnet.blockscout.com/address/'
-
-export const PDP_SCAN_MAINNET = 'https://pdp.vxb.ai/mainnet/providers/'
-export const PDP_SCAN_CALIBRATION = 'https://pdp.vxb.ai/calibration/providers/'
-
 const METADATA: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: META_TITLE,

@@ -1,6 +1,6 @@
 import { ExternalLink } from '@/components/ExternalLink'
 
-import { PDP_SCAN_CALIBRATION } from '@/constants/siteMetadata'
+import { EXPLORERS } from '@/constants/externalServices'
 
 type ProviderTableOverviewProps = {
   name: string
@@ -25,7 +25,7 @@ export function ProviderTableOverview({
   return (
     <div className="space-y-1.5 py-4">
       <ExternalLink
-        href={`${PDP_SCAN_CALIBRATION}${address}`}
+        href={`${EXPLORERS.PDP_SCAN.calibration}${address}`}
         className="text-brand-800 font-medium hover:underline"
         aria-label={`View provider ${name} on PDP Scan`}
       >
