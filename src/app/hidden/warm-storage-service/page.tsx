@@ -9,6 +9,7 @@ import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
+import { Navigation } from '@/components/Navigation/Navigation'
 
 import { FOC_URLS } from '@/constants/siteMetadata'
 
@@ -24,6 +25,7 @@ export default function WarmStorageService() {
 
   return (
     <>
+      <Navigation backgroundVariant="transparentDark" />
       <PageSection backgroundVariant="dark">
         <PageHeader
           centered

@@ -4,7 +4,7 @@ import { HomeLogoLink } from '@filecoin-foundation/ui-filecoin/HomeLogoLink'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { usePathname } from 'next/navigation'
 
-import Logo from '@/public/foc-logo.svg'
+import Logo from '@/public/foc-logo-icon.svg'
 
 import { Banner } from './Banner'
 import { Container } from './Container'
