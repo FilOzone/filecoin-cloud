@@ -17,7 +17,7 @@ export function ProviderTableOverview({
   serviceUrl,
   softwareVersion,
 }: ProviderTableOverviewProps) {
-  const parsedData = parseSoftwareVersion(softwareVersion)
+  const parsedSofwareData = parseSoftwareVersion(softwareVersion)
 
   return (
     <div className="space-y-1.5 py-4">
@@ -37,11 +37,13 @@ export function ProviderTableOverview({
             {serviceUrl}
           </ExternalTextLink>
         )}
-        {parsedData && (
+        {parsedSofwareData && (
           <div>
-            <div className="text-gray-600">Version: {parsedData.version}</div>
             <div className="text-gray-600">
-              Last Updated: {parsedData.lastUpdated}
+              Version: {parsedSofwareData.version}
+            </div>
+            <div className="text-gray-600">
+              Last Updated: {parsedSofwareData.lastUpdated}
             </div>
           </div>
         )}
