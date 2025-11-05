@@ -24,7 +24,7 @@ export const providerSchema = z.object({
   paymentTokenAddress: ethereumAddressSchema,
   capabilityKeys: z.array(z.string()),
   serviceStatus: z.string().nullable().optional(),
-  peerId: z.number().nullable().optional(),
+  peerId: z.string().optional(),
   softwareVersion: z.string(),
 })
 
