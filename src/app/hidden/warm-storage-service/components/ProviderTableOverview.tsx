@@ -6,7 +6,7 @@ type ProviderTableOverviewProps = {
   name: string
   description: string
   address: string
-  serviceUrl: string
+  serviceUrl?: string
   softwareVersion?: string
 }
 
