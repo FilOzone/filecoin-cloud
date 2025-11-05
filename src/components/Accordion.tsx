@@ -1,9 +1,8 @@
+import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
 import { CaretDownIcon } from '@phosphor-icons/react/dist/ssr'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import { clsx } from 'clsx'
 import type * as React from 'react'
-
-import { Icon } from './Icon'
 
 export function Accordion({
   ...props
@@ -47,8 +46,8 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <span className="transition-transform duration-200 group-data-[state=open]/accordion:rotate-180">
-          <Icon width={20} component={CaretDownIcon} color="text-zinc-200" />
+        <span className="transition-transform duration-200 group-data-[state=open]/accordion:rotate-180 text-zinc-200">
+          <Icon component={CaretDownIcon} color="inherit" />
         </span>
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>

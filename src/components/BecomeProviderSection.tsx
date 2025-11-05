@@ -12,7 +12,7 @@ export function BecomeProviderSection() {
         centerCTA
         centerTitle
         title="Become a PDP Storage Provider"
-        description="Join the network to offer verifiable warm storage service."
+        description="Learn how to set up and run a storage provider node and join the network to offer verifiable warm storage service."
         cta={
           <Button
             href={FOC_URLS.warmStorageService.spDocumentation}
@@ -21,11 +21,7 @@ export function BecomeProviderSection() {
             View SP documentation
           </Button>
         }
-      >
-        <p className="text-center text-sm text-zinc-400">
-          Learn how to set up and run a storage provider node.
-        </p>
-      </SectionContent>
+      />
     </PageSection>
   )
 }

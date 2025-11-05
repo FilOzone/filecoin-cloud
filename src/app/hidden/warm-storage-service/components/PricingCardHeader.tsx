@@ -31,7 +31,7 @@ export function PricingCardHeader({
         </div>
       </div>
 
-      <p className="text-zinc-600">{description}</p>
+      <p className="text-(--color-paragraph-text)">{description}</p>
     </div>
   )
 }

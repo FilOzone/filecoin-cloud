@@ -6,7 +6,6 @@ export type ExternalLinkProps = { href: string } & Omit<
   'href' | 'target' | 'rel'
 >
 
-// TODO: Delete this component
 export function ExternalLink({ className, ...rest }: ExternalLinkProps) {
   return (
     <a

@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
     '@filecoin-foundation/ui-filecoin',
     '@filecoin-foundation/utils',
   ],
+  images: {
+    qualities: [75, 100],
+  },
   webpack: (config) => {
     config.module.rules.push(svgrRule)
     return config

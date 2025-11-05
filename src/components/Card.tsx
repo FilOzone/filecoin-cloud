@@ -1,7 +1,7 @@
+import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
 import type { Icon as PhosphorIcon } from '@phosphor-icons/react'
 
 import { ExternalLink } from './ExternalLink'
-import { Icon } from './Icon'
 
 export type CardProps = {
   text: string
@@ -18,9 +18,8 @@ export function Card({ text, icon: IconComponent, link }: CardProps) {
           className="bg-brand-700 group-hover/card:bg-brand-600 group-focus-within/card:bg-brand-600 rounded-full p-2 text-zinc-50"
           aria-hidden="true"
         >
-          <Icon component={IconComponent} width={20} />
+          <Icon component={IconComponent} size={20} />
         </div>
-
         <ExternalLink
           href={link}
           className="absolute inset-0 text-zinc-50 focus:outline-none"
