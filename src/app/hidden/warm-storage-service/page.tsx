@@ -10,6 +10,8 @@ import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
 import { Navigation } from '@/components/Navigation/Navigation'
+import { RefetchWrapper } from '@/components/RefetchWrapper'
+import { RefreshButton } from '@/components/RefreshButton'
 
 import { FOC_URLS } from '@/constants/siteMetadata'
 
@@ -24,7 +26,13 @@ import { useProviders } from './hooks/useProviders'
 
 export default function WarmStorageService() {
   const { contractsData } = useContractsData()
-  const { data: providers, isLoading, error } = useProviders()
+  const {
+    data: providers,
+    isLoading,
+    isRefetching,
+    error,
+    refetch,
+  } = useProviders()
 
   return (
     <>
@@ -137,6 +145,9 @@ export default function WarmStorageService() {
 
           <div className="flex flex-col gap-6">
             <h3 className="text-2xl font-medium">Warm Storage Providers</h3>
+            <div className="flex">
+              <RefreshButton onClick={refetch} isRefetching={isRefetching} />
+            </div>
 
             {isLoading && (
               <div className="text-center py-8 text-gray-600">
@@ -151,7 +162,9 @@ export default function WarmStorageService() {
             )}
 
             {providers && providers.length > 0 && (
-              <WarmStorageProvidersTable data={providers} />
+              <RefetchWrapper isRefetching={isRefetching}>
+                <WarmStorageProvidersTable data={providers} />
+              </RefetchWrapper>
             )}
 
             {providers && providers.length === 0 && !isLoading && (
