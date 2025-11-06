@@ -5,30 +5,6 @@ import { hexToString, pad, zeroAddress } from 'viem'
 import type { PDPOffering } from '@/types/providers'
 
 /**
- * Safely decode a capacity value from hex to BigInt
- * Returns undefined if the hex contains non-numeric text (e.g., "enter available storage")
- *
- * @param capacityHex - Hex-encoded capacity value
- * @returns BigInt capacity or undefined if invalid/non-numeric
- */
-function decodeCapacity(capacityHex?: Hex): bigint | undefined {
-  if (!capacityHex) return undefined
-
-  try {
-    // First decode the hex to string to check if it's a text value
-    const decodedValue = hexToString(capacityHex)
-    // If it's a non-numeric string (like "enter available storage"), return undefined
-    if (Number.isNaN(Number(decodedValue))) {
-      return undefined
-    }
-    // Otherwise, convert the original hex to BigInt
-    return BigInt(capacityHex)
-  } catch {
-    return undefined
-  }
-}
-
-/**
  * Decode PDP capabilities from keys/values arrays into a PDPOffering object.
  * Based on Curio's capabilitiesToOffering function.
  *
@@ -82,6 +58,30 @@ export function decodePDPCapabilities(
     throw new Error(
       `Failed to decode PDP capabilities: ${errorMessage}. Available keys: ${Object.keys(capabilities).join(', ')}`,
     )
+  }
+}
+
+/**
+ * Safely decode a capacity value from hex to BigInt
+ * Returns undefined if the hex contains non-numeric text (e.g., "enter available storage")
+ *
+ * @param capacityHex - Hex-encoded capacity value
+ * @returns BigInt capacity or undefined if invalid/non-numeric
+ */
+function decodeCapacity(capacityHex?: Hex): bigint | undefined {
+  if (!capacityHex) return undefined
+
+  try {
+    // First decode the hex to string to check if it's a text value
+    const decodedValue = hexToString(capacityHex)
+    // If it's a non-numeric string (like "enter available storage"), return undefined
+    if (Number.isNaN(Number(decodedValue))) {
+      return undefined
+    }
+    // Otherwise, convert the original hex to BigInt
+    return BigInt(capacityHex)
+  } catch {
+    return undefined
   }
 }
 
