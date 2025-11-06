@@ -14,7 +14,7 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { Phase } from '@/components/Phase'
 import { SimpleCardWithImage } from '@/components/SimpleCardWithImage'
 
-import { BASE_DOMAIN } from '@/constants/siteMetadata'
+import { BASE_DOMAIN, FOC_URLS } from '@/constants/siteMetadata'
 import CometVideoPoster from '@/public/assets/comet-video-poster.webp'
 
 import { buildersLogos } from './data/buildersLogos'
@@ -48,7 +48,7 @@ export default function HiddenHomepage() {
               title="Cloud services with onchain guarantees — ownership, verifiability, and programmability"
               description="Build applications that own their data, payments, and logic."
               cta={
-                <Button href="#" variant="primary">
+                <Button href="#todo" variant="primary">
                   Start building
                 </Button>
               }
@@ -72,10 +72,14 @@ export default function HiddenHomepage() {
           title="Own every part of what you build—verifiable by design"
           description="Ship faster. Trust your stack. Scale without dependencies. Build products people can trust because every action proves itself."
           cta={[
-            <Button key="start-building" href="#" variant="primary">
+            <Button key="start-building" href="#todo" variant="primary">
               Start building
             </Button>,
-            <Button key="view-source-code" href="#" variant="ghost">
+            <Button
+              key="view-source-code"
+              href={FOC_URLS.warmStorageService.synapseSdk}
+              variant="ghost"
+            >
               View source code
             </Button>,
           ]}
@@ -143,10 +147,7 @@ export default function HiddenHomepage() {
           title="Build with us"
           description="Join us in shaping the next wave of open, verifiable cloud services."
           cta={
-            <Button
-              href="https://filecoinproject.slack.com/archives/C07CGTXHHT4"
-              variant="primary"
-            >
+            <Button href={FOC_URLS.social.telegram} variant="primary">
               Join the community
             </Button>
           }

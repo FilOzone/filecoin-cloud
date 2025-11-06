@@ -11,8 +11,11 @@ const META_DESCRIPTION =
 const FILECOIN_FOUNDATION_URL = 'https://fil.org/'
 
 const FOC_URLS = {
+  social: {
+    telegram: 'https://t.me/+Xj6_zTPfcUA4MGQ1',
+  },
   warmStorageService: {
-    synapseSdk: 'https://synapse.filecoin.services/',
+    synapseSdk: 'https://github.com/FilOzone/synapse-sdk',
     sourceCode:
       'https://github.com/FilOzone/filecoin-services/releases/tag/alpha%2Fcalibnet%2F0x80617b65FD2EEa1D7fDe2B4F85977670690ed348-v2',
     spDocumentation: 'https://docs.filecoin.io/storage-providers/pdp/',

@@ -7,6 +7,8 @@ import {
 
 import type { LinkCardData } from '@/components/LinkCard'
 
+import { FOC_URLS } from '@/constants/siteMetadata'
+
 export const developerResources = [
   {
     title: 'Synapse SDK',
@@ -25,7 +27,7 @@ export const developerResources = [
   },
   {
     title: 'Join the community',
-    href: 'https://filecoinproject.slack.com/archives/C07CGTXHHT4',
+    href: FOC_URLS.social.telegram,
     icon: ChatsCircleIcon,
   },
 ] as const satisfies Array<LinkCardData>
