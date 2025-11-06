@@ -14,6 +14,7 @@ export function CompactAddress({ address }: CompactAddressProps) {
       href={`${EXPLORERS.BLOCKSCOUT.calibration}${address}`}
       aria-label={`View address ${address} on Block Explorer`}
       title={address}
+      className="whitespace-nowrap"
     >
       <span className="font-medium">{truncateAddress(address)}</span>
     </ExternalTextLink>
