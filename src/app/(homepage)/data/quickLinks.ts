@@ -5,6 +5,8 @@ import {
   UsersThreeIcon,
 } from '@phosphor-icons/react/dist/ssr'
 
+import { FOC_URLS } from '@/constants/siteMetadata'
+
 export const quickLinks = [
   {
     text: 'Try Filecoin Pin',
@@ -19,7 +21,7 @@ export const quickLinks = [
   {
     text: 'Join the Community',
     icon: UsersThreeIcon,
-    link: 'https://filecoinproject.slack.com/archives/C07CGTXHHT4',
+    link: FOC_URLS.social.telegram,
   },
   {
     text: 'Discover Filecoin',

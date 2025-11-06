@@ -4,36 +4,36 @@ export const buildPhases: Array<
   Pick<PhaseProps, 'date' | 'title' | 'description' | 'status'>
 > = [
   {
-    date: 'Apr 2025',
-    title: 'Phase I',
+    date: 'Oct 2025',
+    title: 'Filecoin Pin',
     description:
       'Lorem ipsum dolor sit amet consectetur. Feugiat non pulvinar senectus bibendum vitae.',
     status: 'completed',
   },
   {
-    date: 'Oct 2025',
-    title: 'Phase II',
+    date: 'Nov 2025',
+    title: 'Filecoin Onchain Cloud launch',
     description:
       'Lorem ipsum dolor sit amet consectetur. Feugiat non pulvinar senectus bibendum vitae.',
     status: 'current',
   },
   {
-    date: 'Nov 2025',
-    title: 'Phase III',
+    date: 'Dec 2025',
+    title: 'Encryption',
     description:
       'Lorem ipsum dolor sit amet consectetur. Feugiat non pulvinar senectus bibendum vitae.',
     status: 'upcoming',
   },
   {
     date: 'Jan 2026',
-    title: 'Phase IV',
+    title: 'Access Control Lists',
     description:
       'Lorem ipsum dolor sit amet consectetur. Feugiat non pulvinar senectus bibendum vitae.',
     status: 'upcoming',
   },
   {
     date: 'Sep 2026',
-    title: 'Phase V',
+    title: 'Erasure Coding',
     description:
       'Lorem ipsum dolor sit amet consectetur. Feugiat non pulvinar senectus bibendum vitae.',
     status: 'upcoming',

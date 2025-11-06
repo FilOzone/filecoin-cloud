@@ -21,12 +21,12 @@ type HeaderNavItem = NavItem | NavigationMenuItem
 
 export const headerNavigationItems: Array<HeaderNavItem> = [
   {
-    label: PATHS.SERVICE_PROVIDERS.label,
-    href: PATHS.SERVICE_PROVIDERS.path,
-  },
-  {
     label: PATHS.WARM_STORAGE_SERVICE.label,
     href: PATHS.WARM_STORAGE_SERVICE.path,
+  },
+  {
+    label: PATHS.SERVICE_PROVIDERS.label,
+    href: PATHS.SERVICE_PROVIDERS.path,
   },
   {
     label: FILECOIN_PAY_NAVIGATION_LABEL,

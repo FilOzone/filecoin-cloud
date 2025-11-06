@@ -136,7 +136,7 @@ export default function WarmStorageService() {
             </ContractCardGrid>
 
             <Button
-              href={FOC_URLS.warmStorageService.sourceCode}
+              href={FOC_URLS.warmStorageService.contactSourceCode}
               variant="tertiary"
               icon={GithubLogoIcon}
               className="self-start"

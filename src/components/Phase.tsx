@@ -18,7 +18,6 @@ export function Phase({
   return (
     <div className="flex gap-6 sm:block">
       <div className="flex flex-col sm:flex-row items-center">
-        {/* Circle */}
         <div
           className={clsx(
             'size-7 shrink-0 rounded-full border-2',
@@ -27,7 +26,6 @@ export function Phase({
           aria-hidden="true"
         />
 
-        {/* Line */}
         <div
           className={clsx(
             'w-0.5 sm:h-0.5 flex-1',
@@ -40,7 +38,6 @@ export function Phase({
         />
       </div>
 
-      {/* Content */}
       <div className="mb-8 sm:mt-6 space-y-2 sm:mr-15 max-w-60">
         <time className="text-zinc-600 text-sm inline-block" dateTime={date}>
           {date}
