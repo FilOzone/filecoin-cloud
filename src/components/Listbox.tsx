@@ -5,7 +5,8 @@ import {
   ListboxOption,
   ListboxOptions,
 } from '@headlessui/react'
-import { CaretDownIcon, GlobeIcon } from '@phosphor-icons/react/dist/ssr'
+import type { Icon as IconType } from '@phosphor-icons/react'
+import { CaretDownIcon } from '@phosphor-icons/react/dist/ssr'
 
 type Option = {
   id: string
@@ -13,17 +14,23 @@ type Option = {
 }
 
 type LisboxProps = {
+  Icon: IconType
   options: Array<Option>
   selected: Option
   setSelected: (option: Option) => void
 }
 
-export function Listbox({ options, selected, setSelected }: LisboxProps) {
+export function Listbox({
+  options,
+  selected,
+  setSelected,
+  Icon: IconComponent,
+}: LisboxProps) {
   return (
     <HeadlessListbox value={selected} onChange={setSelected}>
       <ListboxButton className="relative block min-w-56 rounded-lg bg-transparent p-3 text-left font-semibold text-(--color-navigation-link-text) data-focus:brand-outline border border-(--color-listbox-border)">
         <span className="flex gap-2 items-center">
-          <Icon component={GlobeIcon} size={20} />
+          <Icon component={IconComponent} size={20} />
           {selected.label}
         </span>
         <span className="absolute inset-y-0 right-0 flex items-center pr-3">

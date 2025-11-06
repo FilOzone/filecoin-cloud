@@ -12,7 +12,7 @@ type NetworkContextValue = {
   setSelected: (option: NetworkOption) => void
 }
 
-export const networkOptions: Array<NetworkOption> = [
+export const networkOptions = [
   {
     id: 'calibration',
     label: 'Calibration',
@@ -21,7 +21,7 @@ export const networkOptions: Array<NetworkOption> = [
     id: 'mainnet',
     label: 'Mainnet',
   },
-] as const
+] as const satisfies Array<NetworkOption>
 
 const defaultNetworkOption = networkOptions[0]
 
