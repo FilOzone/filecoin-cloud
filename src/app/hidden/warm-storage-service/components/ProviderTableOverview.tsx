@@ -27,7 +27,7 @@ export function ProviderTableOverview({
       >
         <span className="font-medium">{name}</span>
       </ExternalTextLink>
-      <div className="text-sm text-gray-600">{description}</div>
+      <div className="text-sm text-gray-600 truncate">{description}</div>
       <div className="text-sm">
         {serviceUrl && (
           <ExternalTextLink
