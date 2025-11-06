@@ -1,24 +1,16 @@
 'use client'
 
-import { useState } from 'react'
-
 import { Listbox } from './Listbox'
-
-const options = [
-  {
-    id: 'calibration',
-    label: 'Calibration',
-  },
-  {
-    id: 'mainnet',
-    label: 'Mainnet',
-  },
-]
+import { networkOptions, useNetwork } from './NetworkContext'
 
 export function NetworkSelector() {
-  const [selected, setSelected] = useState(options[0])
+  const { selected, setSelected } = useNetwork()
 
   return (
-    <Listbox options={options} selected={selected} setSelected={setSelected} />
+    <Listbox
+      options={networkOptions}
+      selected={selected}
+      setSelected={setSelected}
+    />
   )
 }

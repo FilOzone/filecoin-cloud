@@ -6,6 +6,8 @@ import { type ReactNode, useState } from 'react'
 
 import { BASE_DOMAIN } from '@/constants/siteMetadata'
 
+import { NetworkProvider } from './NetworkContext'
+
 type ProvidersProps = Readonly<{ children: ReactNode }>
 
 export function Providers({ children }: ProvidersProps) {
@@ -18,7 +20,9 @@ export function Providers({ children }: ProvidersProps) {
       trackFileDownloads
       domain={BASE_DOMAIN.replace('www.', '')}
     >
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <NetworkProvider>{children}</NetworkProvider>
+      </QueryClientProvider>
     </PlausibleProvider>
   )
 }
