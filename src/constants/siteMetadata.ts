@@ -15,10 +15,12 @@ const FOC_URLS = {
     telegram: 'https://t.me/+Xj6_zTPfcUA4MGQ1',
   },
   warmStorageService: {
-    synapseSdk: 'https://github.com/FilOzone/synapse-sdk',
+    contactSourceCode:
+      'https://github.com/FilOzone/filecoin-services/tree/main/service_contracts/src',
     sourceCode:
-      'https://github.com/FilOzone/filecoin-services/releases/tag/alpha%2Fcalibnet%2F0x80617b65FD2EEa1D7fDe2B4F85977670690ed348-v2',
+      'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/FilecoinWarmStorageService.sol',
     spDocumentation: 'https://docs.filecoin.io/storage-providers/pdp/',
+    synapseSdk: 'https://github.com/FilOzone/synapse-sdk',
   },
 }
 
