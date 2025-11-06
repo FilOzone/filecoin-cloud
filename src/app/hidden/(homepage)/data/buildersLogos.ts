@@ -1,26 +1,29 @@
 import type { LogoItemProps } from '@filecoin-foundation/ui-filecoin/LogoSection/LogoItem'
 
-import MITOpenLearningLogo from '@/public/assets/logos/MIT-open-learning-logo.svg'
+import AkaveLogo from '@/public/assets/logos/akave-logo.svg'
+import EnsLogo from '@/public/assets/logos/ens-logo.svg'
+import MonadLogo from '@/public/assets/logos/monad-logo.svg'
+import StorachaLogo from '@/public/assets/logos/storacha-logo.svg'
 
 export const buildersLogos: Array<LogoItemProps> = [
   {
-    logo: MITOpenLearningLogo,
-    alt: 'MIT Open Learning Logo',
-    href: 'https://openlearning.mit.edu',
+    logo: StorachaLogo,
+    alt: 'Storacha Logo',
+    href: 'https://storacha.network/',
   },
   {
-    logo: MITOpenLearningLogo,
-    alt: 'MIT Open Learning Logo',
-    href: 'https://openlearning.mit.edu',
+    logo: AkaveLogo,
+    alt: 'Akave Logo',
+    href: 'https://akave.com/',
   },
   {
-    logo: MITOpenLearningLogo,
-    alt: 'MIT Open Learning Logo',
-    href: 'https://openlearning.mit.edu',
+    logo: EnsLogo,
+    alt: 'ENS Logo',
+    href: 'https://ens.domains/',
   },
   {
-    logo: MITOpenLearningLogo,
-    alt: 'MIT Open Learning Logo',
-    href: 'https://openlearning.mit.edu',
+    logo: MonadLogo,
+    alt: 'Monad Logo',
+    href: 'https://monad.xyz/',
   },
 ]
