@@ -42,8 +42,23 @@ export const columns = [
       },
     },
   ),
+  columnHelper.accessor('serviceStatus', {
+    id: 'serviceStatus',
+    header: 'Service Status',
+    cell: (info) => info.getValue() || '-',
+  }),
   columnHelper.accessor('location', {
     header: 'Location',
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor('capacityTb', {
+    id: 'capacity',
+    header: 'Capacity (TiB)',
+    cell: (info) => info.getValue() || '-',
+  }),
+  columnHelper.accessor('minProvingPeriod', {
+    id: 'provingPeriod',
+    header: 'Proving Period',
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor('serviceProviderAddress', {
@@ -53,5 +68,10 @@ export const columns = [
   columnHelper.accessor('ipniIpfs', {
     header: 'Publish to IPNI',
     cell: (info) => <ProviderTableInpiStatus published={info.getValue()} />,
+  }),
+  columnHelper.accessor('peerId', {
+    id: 'peerId',
+    header: 'Peer ID',
+    cell: (info) => info.getValue() || '-',
   }),
 ]
