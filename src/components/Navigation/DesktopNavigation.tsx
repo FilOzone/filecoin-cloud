@@ -4,6 +4,7 @@ import { NavigationMainLink } from '@filecoin-foundation/ui-filecoin/Navigation/
 
 import { headerNavigationItems } from './constants/navigation'
 import { NavigationMenu } from './NavigationMenu/NavigationMenu'
+import { NetworkSelector } from '../NetworkSelector'
 
 export function DesktopNavigation() {
   return (
@@ -20,6 +21,8 @@ export function DesktopNavigation() {
             </li>
           )
         })}
+
+        <NetworkSelector />
       </ul>
     </div>
   )
