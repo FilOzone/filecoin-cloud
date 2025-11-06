@@ -1,43 +1,30 @@
 import { useMemo } from 'react'
 import type { Address } from 'viem'
 
-import contracts from '@/config/contracts.json'
-import type { Network, WarmStorage } from '@/types/contractType'
+import { getChain, type Network, type WarmStorage } from '@/config/chains'
 
 import type { ContractCardProps } from '../components/ContractCard'
 
 export function useContractsData(network: Network = 'calibration') {
   return useMemo(() => {
-    const networkConfig = contracts[network]
-    const activeVersion = networkConfig.versions.find(
-      (v) => v.status === 'active',
-    )
+    const chain = getChain(network)
+    const { contracts } = chain
+    const explorerUrl = chain.blockExplorers?.default?.url || ''
 
-    if (!activeVersion?.contracts) {
-      console.warn(`No active version found for network: ${network}`)
-      return { contractsData: [] }
-    }
-
-    const { warmStorage, serviceProviderRegistry } = activeVersion.contracts
-    const { explorerUrl } = networkConfig
-
-    const warmStorageContracts = Object.entries(warmStorage)
-      .filter((entry): entry is [keyof WarmStorage, Address] =>
-        Boolean(entry[1]),
-      )
-      .map(([key, address]) =>
+    const warmStorageContracts = Object.entries(contracts.warmStorage).map(
+      ([key, address]) =>
         formatContractForCard(
-          formatContractLabel(key),
+          formatContractLabel(key as keyof WarmStorage),
           address as Address,
           explorerUrl,
         ),
-      )
+    )
 
-    const serviceRegistryContracts = serviceProviderRegistry?.proxy
+    const serviceRegistryContracts = contracts.serviceProviderRegistry?.proxy
       ? [
           formatContractForCard(
             'Service Registry',
-            serviceProviderRegistry.proxy as Address,
+            contracts.serviceProviderRegistry.proxy as Address,
             explorerUrl,
           ),
         ]
@@ -57,7 +44,7 @@ function formatContractForCard(
   return {
     label,
     address,
-    href: `${explorerUrl}${address}`,
+    href: `${explorerUrl.replace(/\/$/, '')}/address/${address}`,
   }
 }
 
@@ -66,8 +53,6 @@ function formatContractLabel(key: keyof WarmStorage) {
     implementation: 'FWSS Implementation',
     proxy: 'FWSS Proxy',
     stateView: 'FWSS State View',
-    pdpVerifierImplementation: 'PDP Verifier Implementation',
-    pdpVerifierProxy: 'PDP Verifier Proxy',
   }
 
   return labelMap[key] ?? key.replace(/([A-Z])/g, ' $1').trim()
