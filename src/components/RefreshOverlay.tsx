@@ -7,7 +7,7 @@ type RefetchWrapperProps = {
   children: React.ReactNode
 }
 
-export function RefetchWrapper({
+export function RefreshOverlay({
   isRefetching,
   children,
 }: RefetchWrapperProps) {
@@ -16,7 +16,7 @@ export function RefetchWrapper({
   }
 
   return (
-    <div className={clsx(isRefetching && 'isolate relative')}>
+    <div className="isolate relative">
       {isRefetching && (
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="flex items-center gap-2">

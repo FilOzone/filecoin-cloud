@@ -10,8 +10,8 @@ import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
 import { Navigation } from '@/components/Navigation/Navigation'
-import { RefetchWrapper } from '@/components/RefetchWrapper'
 import { RefreshButton } from '@/components/RefreshButton'
+import { RefreshOverlay } from '@/components/RefreshOverlay'
 
 import { FOC_URLS } from '@/constants/siteMetadata'
 
@@ -33,6 +33,8 @@ export default function WarmStorageService() {
     error,
     refetch,
   } = useProviders()
+
+  const canRefreshTable = providers && !isRefetching
 
   return (
     <>
@@ -146,10 +148,7 @@ export default function WarmStorageService() {
           <div className="flex flex-col gap-6">
             <h3 className="text-2xl font-medium">Warm Storage Providers</h3>
             <div className="flex">
-              <RefreshButton
-                onClick={refetch}
-                disabled={!providers || isRefetching}
-              />
+              <RefreshButton onClick={refetch} disabled={!canRefreshTable} />
             </div>
 
             {isLoading && (
@@ -165,9 +164,9 @@ export default function WarmStorageService() {
             )}
 
             {providers && providers.length > 0 && (
-              <RefetchWrapper isRefetching={isRefetching}>
+              <RefreshOverlay isRefetching={isRefetching}>
                 <WarmStorageProvidersTable data={providers} />
-              </RefetchWrapper>
+              </RefreshOverlay>
             )}
 
             {providers && providers.length === 0 && !isLoading && (
