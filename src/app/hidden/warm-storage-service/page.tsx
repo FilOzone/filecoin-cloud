@@ -32,7 +32,7 @@ export default function WarmStorageService() {
     isRefetching,
     error,
     refetch,
-  } = useProviders()
+  } = useProviders({ filter: 'approved' })
 
   const canRefreshTable = providers && !isRefetching
 

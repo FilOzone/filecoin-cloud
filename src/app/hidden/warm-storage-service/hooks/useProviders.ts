@@ -4,12 +4,17 @@ import type { Network } from '@/config/chains'
 import { fetchProviders } from '@/services/providers'
 import type { ProviderFilter } from '@/types/providers'
 
-export function useProviders(
-  network: Network = 'calibration',
-  filter: ProviderFilter = 'approved',
-) {
+type UseProvidersOptions = {
+  network?: Network
+  filter?: ProviderFilter
+}
+
+export function useProviders({
+  network = 'calibration',
+  filter = 'all',
+}: UseProvidersOptions = {}) {
   return useQuery({
-    queryKey: ['providers', filter],
+    queryKey: ['providers', network, filter],
     queryFn: () => fetchProviders(network, { filter }),
     retry: 2,
   })
