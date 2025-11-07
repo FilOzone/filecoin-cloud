@@ -52,6 +52,10 @@ export const columns = [
       return softwareVersion ? <SoftwareVersion info={softwareVersion} /> : '-'
     },
   }),
+  columnHelper.accessor('capacityTb', {
+    header: 'Capacity (TiB)',
+    cell: (info) => Number(info.getValue()).toLocaleString('en-US'),
+  }),
   columnHelper.accessor('location', {
     header: 'Location',
     cell: (info) => info.getValue(),
