@@ -2,6 +2,7 @@ import { createColumnHelper } from '@tanstack/react-table'
 
 import { CompactAddress } from '@/components/CompactAddress'
 import { ID } from '@/components/ID'
+import { PeerID } from '@/components/PeerID'
 
 import type { ServiceProvider } from '@/schemas/providerSchema'
 
@@ -43,22 +44,11 @@ export const columns = [
     },
   ),
   columnHelper.accessor('serviceStatus', {
-    id: 'serviceStatus',
     header: 'Service Status',
     cell: (info) => info.getValue() || '-',
   }),
   columnHelper.accessor('location', {
     header: 'Location',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('capacityTb', {
-    id: 'capacity',
-    header: 'Capacity (TiB)',
-    cell: (info) => info.getValue() || '-',
-  }),
-  columnHelper.accessor('minProvingPeriod', {
-    id: 'provingPeriod',
-    header: 'Proving Period',
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor('serviceProviderAddress', {
@@ -72,6 +62,6 @@ export const columns = [
   columnHelper.accessor('peerId', {
     id: 'peerId',
     header: 'Peer ID',
-    cell: (info) => info.getValue() || '-',
+    cell: (info) => <PeerID id={info.getValue() || '-'} />,
   }),
 ]

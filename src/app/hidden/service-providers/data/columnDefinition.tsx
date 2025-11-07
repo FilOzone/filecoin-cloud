@@ -2,6 +2,7 @@ import { createColumnHelper } from '@tanstack/react-table'
 
 import { CompactAddress } from '@/components/CompactAddress'
 import { ID } from '@/components/ID'
+import { PeerID } from '@/components/PeerID'
 
 import { ProviderTableInpiStatus } from '@/app/hidden/warm-storage-service/components/ProviderTableInpiStatus'
 import { ProviderTableOverview } from '@/app/hidden/warm-storage-service/components/ProviderTableOverview'
@@ -49,10 +50,13 @@ export const columns = [
     header: 'Service Offered',
     cell: () => '-',
   }),
-  columnHelper.accessor('serviceStatus', {
-    id: 'serviceStatus',
-    header: 'Service Status',
+  columnHelper.accessor('capacityTb', {
+    header: 'Capacity (TiB)',
     cell: (info) => info.getValue() || '-',
+  }),
+  columnHelper.accessor('minProvingPeriod', {
+    header: 'Proving Period',
+    cell: (info) => info.getValue(),
   }),
   columnHelper.accessor('location', {
     id: 'location',
@@ -72,18 +76,15 @@ export const columns = [
     cell: () => '-',
   }),
   columnHelper.accessor('serviceProviderAddress', {
-    id: 'address',
     header: 'Address',
     cell: (info) => <CompactAddress address={info.getValue()} />,
   }),
   columnHelper.accessor('ipniIpfs', {
-    id: 'publishToIpni',
     header: 'Publish to IPNI',
     cell: (info) => <ProviderTableInpiStatus published={info.getValue()} />,
   }),
   columnHelper.accessor('peerId', {
-    id: 'peerId',
     header: 'Peer ID',
-    cell: (info) => info.getValue() || '-',
+    cell: (info) => <PeerID id={info.getValue() || '-'} />,
   }),
 ]
