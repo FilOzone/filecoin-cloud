@@ -3,6 +3,7 @@ import { createColumnHelper } from '@tanstack/react-table'
 import { CompactAddress } from '@/components/CompactAddress'
 import { ID } from '@/components/ID'
 import { PeerID } from '@/components/PeerID'
+import { SoftwareVersion } from '@/components/SoftwareVersion'
 
 import type { ServiceProvider } from '@/schemas/providerSchema'
 
@@ -22,14 +23,12 @@ export const columns = [
       description: row.description,
       address: row.serviceProviderAddress,
       serviceUrl: row.serviceUrl,
-      softwareVersion: row.softwareVersion,
     }),
     {
       id: 'provider',
       header: 'Provider',
       cell: (info) => {
-        const { name, description, address, serviceUrl, softwareVersion } =
-          info.getValue()
+        const { name, description, address, serviceUrl } = info.getValue()
 
         return (
           <ProviderTableOverview
@@ -37,7 +36,6 @@ export const columns = [
             description={description}
             address={address}
             serviceUrl={serviceUrl}
-            softwareVersion={softwareVersion}
           />
         )
       },
@@ -46,6 +44,13 @@ export const columns = [
   columnHelper.accessor('serviceStatus', {
     header: 'Service Status',
     cell: (info) => info.getValue() || '-',
+  }),
+  columnHelper.accessor('softwareVersion', {
+    header: 'Software Version',
+    cell: (info) => {
+      const softwareVersion = info.getValue()
+      return softwareVersion ? <SoftwareVersion info={softwareVersion} /> : '-'
+    },
   }),
   columnHelper.accessor('location', {
     header: 'Location',
