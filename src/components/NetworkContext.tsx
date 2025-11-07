@@ -2,7 +2,7 @@
 
 import { createContext, type ReactNode, use, useState } from 'react'
 
-import type { Network } from '@/types/contractType'
+import type { Network } from '@/config/chains'
 
 type NetworkContextValue = {
   network: Network

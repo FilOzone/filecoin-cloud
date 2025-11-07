@@ -1,4 +1,4 @@
-import type { Network } from '@/types/contractType'
+import type { Network } from '@/config/chains'
 
 export const EXPLORERS = {
   BLOCKSCOUT: {
