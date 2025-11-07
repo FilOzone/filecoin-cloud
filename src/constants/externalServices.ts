@@ -1,3 +1,5 @@
+import type { Network } from '@/types/contractType'
+
 export const EXPLORERS = {
   BLOCKSCOUT: {
     mainnet: 'https://filecoin.blockscout.com/address/',
@@ -7,4 +9,4 @@ export const EXPLORERS = {
     mainnet: 'https://pdp.vxb.ai/mainnet/providers/',
     calibration: 'https://pdp.vxb.ai/calibration/providers/',
   },
-}
+} as const satisfies Record<string, Record<Network, string>>

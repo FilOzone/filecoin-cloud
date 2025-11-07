@@ -1,5 +1,7 @@
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 
+import { useNetwork } from '@/components/NetworkContext'
+
 import { EXPLORERS } from '@/constants/externalServices'
 
 type ProviderTableOverviewProps = {
@@ -17,12 +19,15 @@ export function ProviderTableOverview({
   serviceUrl,
   softwareVersion,
 }: ProviderTableOverviewProps) {
+  const { network } = useNetwork()
+  const explorerUrl = EXPLORERS.BLOCKSCOUT[network]
+
   const parsedSofwareData = parseSoftwareVersion(softwareVersion)
 
   return (
     <div className="space-y-1.5 py-4">
       <ExternalTextLink
-        href={`${EXPLORERS.PDP_SCAN.calibration}${address}`}
+        href={`${explorerUrl}${address}`}
         aria-label={`View provider ${name} on PDP Scan`}
       >
         <span className="font-medium">{name}</span>
