@@ -6,13 +6,13 @@ import { Listbox } from './Listbox'
 import { networkOptions, useNetwork } from './NetworkContext'
 
 export function NetworkSelector() {
-  const { selected, setSelected } = useNetwork()
+  const { network, setNetwork } = useNetwork()
 
   return (
     <Listbox
       options={networkOptions}
-      selected={selected}
-      setSelected={setSelected}
+      selected={network}
+      setSelected={setNetwork}
       Icon={GlobeIcon}
     />
   )

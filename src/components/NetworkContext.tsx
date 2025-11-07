@@ -2,14 +2,16 @@
 
 import { createContext, type ReactNode, use, useState } from 'react'
 
+import type { Network } from '@/types/contractType'
+
 export type NetworkOption = {
-  id: string
+  id: Network
   label: string
 }
 
 type NetworkContextValue = {
-  selected: NetworkOption
-  setSelected: (option: NetworkOption) => void
+  network: NetworkOption
+  setNetwork: (option: NetworkOption) => void
 }
 
 export const networkOptions = [
@@ -26,19 +28,17 @@ export const networkOptions = [
 const defaultNetworkOption = networkOptions[0]
 
 const NetworkContext = createContext<NetworkContextValue>({
-  selected: defaultNetworkOption,
-  setSelected: () => {},
+  network: defaultNetworkOption,
+  setNetwork: () => {},
 })
 
 type NetworkProviderProps = Readonly<{ children: ReactNode }>
 
 export function NetworkProvider({ children }: NetworkProviderProps) {
-  const [selected, setSelected] = useState<NetworkOption>(defaultNetworkOption)
+  const [network, setNetwork] = useState<NetworkOption>(defaultNetworkOption)
 
   return (
-    <NetworkContext value={{ selected, setSelected }}>
-      {children}
-    </NetworkContext>
+    <NetworkContext value={{ network, setNetwork }}>{children}</NetworkContext>
   )
 }
 

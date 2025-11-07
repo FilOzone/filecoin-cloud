@@ -4,14 +4,20 @@ import type { Address } from 'viem'
 import { EXPLORERS } from '@/constants/externalServices'
 import { truncateAddress } from '@/utils/truncateAddress'
 
+import { useNetwork } from './NetworkContext'
+
 export type CompactAddressProps = {
   address: Address
 }
 
 export function CompactAddress({ address }: CompactAddressProps) {
+  const { network } = useNetwork()
+
+  const explorerUrl = EXPLORERS.BLOCKSCOUT[network.id]
+
   return (
     <ExternalTextLink
-      href={`${EXPLORERS.BLOCKSCOUT.calibration}${address}`}
+      href={`${explorerUrl}${address}`}
       aria-label={`View address ${address} on Block Explorer`}
       title={address}
       className="whitespace-nowrap"

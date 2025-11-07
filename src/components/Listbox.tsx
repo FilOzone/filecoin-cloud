@@ -21,19 +21,19 @@ type Option = {
   label: string
 }
 
-type LisboxProps = {
+type LisboxProps<T extends Option> = {
   Icon: IconType
-  options: Array<Option>
-  selected: Option
-  setSelected: (option: Option) => void
+  options: Array<T>
+  selected: T
+  setSelected: (option: T) => void
 }
 
-export function Listbox({
+export function Listbox<T extends Option>({
   options,
   selected,
   setSelected,
   Icon: IconComponent,
-}: LisboxProps) {
+}: LisboxProps<T>) {
   const backgroundVariant = useBackgroundVariant()
   const desktopBackgroundVariant = variantMapping[backgroundVariant]
 
