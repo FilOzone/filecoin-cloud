@@ -54,36 +54,22 @@ export const columns = [
       return softwareVersion ? <SoftwareVersion info={softwareVersion} /> : '-'
     },
   }),
-  // TODO: accessor "id" to be replaced with proper key once available in the data schema
-  columnHelper.accessor('id', {
-    id: 'serviceOffered',
-    header: 'Service Offered',
-    cell: () => '-',
-  }),
-  columnHelper.accessor('capacityTb', {
-    header: 'Capacity (TiB)',
-    cell: (info) => info.getValue() || '-',
-  }),
-  columnHelper.accessor('minProvingPeriod', {
-    header: 'Proving Period',
-    cell: (info) => info.getValue(),
-  }),
   columnHelper.accessor('location', {
     id: 'location',
     header: 'Location',
     cell: (info) => info.getValue(),
   }),
-  // TODO: accessor "id" to be replaced with proper key once available in the data schema
-  columnHelper.accessor('id', {
-    id: 'capacity',
+  columnHelper.accessor('capacityTb', {
     header: 'Capacity (TiB)',
-    cell: () => '-',
+    cell: (info) => {
+      const capacity = info.getValue()
+      if (!capacity) return '-'
+      return Number(capacity).toLocaleString('en-US')
+    },
   }),
-  // TODO: accessor "id" to be replaced with proper key once available in the data schema
-  columnHelper.accessor('id', {
-    id: 'provingPeriod',
+  columnHelper.accessor('minProvingPeriod', {
     header: 'Proving Period',
-    cell: () => '-',
+    cell: (info) => Number(info.getValue()).toLocaleString('en-US'),
   }),
   columnHelper.accessor('serviceProviderAddress', {
     header: 'Address',
