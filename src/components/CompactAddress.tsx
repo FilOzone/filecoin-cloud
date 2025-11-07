@@ -12,8 +12,7 @@ export type CompactAddressProps = {
 
 export function CompactAddress({ address }: CompactAddressProps) {
   const { network } = useNetwork()
-
-  const explorerUrl = EXPLORERS.BLOCKSCOUT[network.id]
+  const explorerUrl = EXPLORERS.BLOCKSCOUT[network]
 
   return (
     <ExternalTextLink

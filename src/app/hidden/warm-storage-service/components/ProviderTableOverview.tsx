@@ -20,7 +20,7 @@ export function ProviderTableOverview({
   softwareVersion,
 }: ProviderTableOverviewProps) {
   const { network } = useNetwork()
-  const explorerUrl = EXPLORERS.BLOCKSCOUT[network.id]
+  const explorerUrl = EXPLORERS.BLOCKSCOUT[network]
 
   const parsedSofwareData = parseSoftwareVersion(softwareVersion)
 

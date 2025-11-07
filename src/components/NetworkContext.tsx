@@ -4,38 +4,22 @@ import { createContext, type ReactNode, use, useState } from 'react'
 
 import type { Network } from '@/types/contractType'
 
-export type NetworkOption = {
-  id: Network
-  label: string
-}
-
 type NetworkContextValue = {
-  network: NetworkOption
-  setNetwork: (option: NetworkOption) => void
+  network: Network
+  setNetwork: (network: Network) => void
 }
 
-export const networkOptions = [
-  {
-    id: 'calibration',
-    label: 'Calibration',
-  },
-  {
-    id: 'mainnet',
-    label: 'Mainnet',
-  },
-] as const satisfies Array<NetworkOption>
-
-const defaultNetworkOption = networkOptions[0]
+export const defaultNetwork: Network = 'calibration'
 
 const NetworkContext = createContext<NetworkContextValue>({
-  network: defaultNetworkOption,
+  network: defaultNetwork,
   setNetwork: () => {},
 })
 
 type NetworkProviderProps = Readonly<{ children: ReactNode }>
 
 export function NetworkProvider({ children }: NetworkProviderProps) {
-  const [network, setNetwork] = useState<NetworkOption>(defaultNetworkOption)
+  const [network, setNetwork] = useState<Network>(defaultNetwork)
 
   return (
     <NetworkContext value={{ network, setNetwork }}>{children}</NetworkContext>
