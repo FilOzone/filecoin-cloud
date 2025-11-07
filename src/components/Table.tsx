@@ -1,6 +1,6 @@
 import { clsx } from 'clsx'
 
-const cellPadding = 'px-8 lg:px-4'
+const cellPadding = 'px-5 first:pl-7 last:pr-7'
 
 export function Table({ className, ...props }: React.ComponentProps<'table'>) {
   return (
