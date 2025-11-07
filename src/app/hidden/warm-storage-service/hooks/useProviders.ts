@@ -1,18 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
 
-import type { Network } from '@/config/chains'
+import { useNetwork } from '@/components/NetworkContext'
+
 import { fetchProviders } from '@/services/providers'
 import type { ProviderFilter } from '@/types/providers'
 
 type UseProvidersOptions = {
-  network?: Network
   filter?: ProviderFilter
 }
 
-export function useProviders({
-  network = 'calibration',
-  filter = 'all',
-}: UseProvidersOptions = {}) {
+export function useProviders({ filter = 'all' }: UseProvidersOptions = {}) {
+  const { network } = useNetwork()
+
   return useQuery({
     queryKey: ['providers', network, filter],
     queryFn: () => fetchProviders(network, { filter }),
