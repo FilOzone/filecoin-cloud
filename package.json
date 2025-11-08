@@ -11,6 +11,7 @@
     "format": "biome format --write ."
   },
   "dependencies": {
+    "@filecoin-foundation/filecoin-ui": "^0.1.1",
     "@filecoin-foundation/hooks": "https://gitpkg.now.sh/FilecoinFoundationWeb/filecoin-foundation/packages/hooks?main",
     "@filecoin-foundation/ui": "https://gitpkg.now.sh/FilecoinFoundationWeb/filecoin-foundation/packages/ui?main",
     "@filecoin-foundation/ui-filecoin": "https://gitpkg.now.sh/FilecoinFoundationWeb/filecoin-foundation/packages/ui-filecoin?main",
@@ -25,8 +26,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
-    "frontmatter-markdown-loader": "^3.7.0",
     "ethers": "^6.15.0",
+    "frontmatter-markdown-loader": "^3.7.0",
     "next": "15.5.6",
     "next-plausible": "^3.12.4",
     "ramda": "^0.32.0",
@@ -36,6 +37,7 @@
     "rehype-raw": "^7.0.0",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
+    "slugify": "^1.6.6",
     "viem": "^2.38.6",
     "zod": "^4.1.12"
   },
