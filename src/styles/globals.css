@@ -1,12 +1,14 @@
 @import "tailwindcss";
+@import "@filecoin-foundation/filecoin-ui/styles";
 @import "@filecoin-foundation/ui-filecoin/styles";
 
 @import "./accordion.css";
 @import "./table.css";
 @import "./listbox.css";
 
+@source "../../node_modules/@filecoin-foundation/filecoin-ui";
 @source "../../node_modules/@filecoin-foundation/ui";
-@source "../../node_modules/@filecoin-foundation/ui-filecoin";
+@source "../../node_modules/@filecoin-foundation/filecoin-ui";
 
 @theme {
   --animate-slide-down: slideDown 300ms ease-out;

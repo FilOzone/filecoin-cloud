@@ -1,5 +1,5 @@
-import { Badge } from '@filecoin-foundation/ui-filecoin/Badge'
-import { Heading } from '@filecoin-foundation/ui-filecoin/Heading'
+import { Badge } from '@filecoin-foundation/filecoin-ui/Badge'
+import { Heading } from '@filecoin-foundation/filecoin-ui/Heading'
 import { clsx } from 'clsx'
 
 import type { PricingCardProps } from './PricingCard'

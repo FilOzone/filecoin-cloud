@@ -1,4 +1,4 @@
-import type { LogoItemProps } from '@filecoin-foundation/ui-filecoin/LogoSection/LogoItem'
+import type { LogoItemProps } from '@filecoin-foundation/filecoin-ui/LogoSection/LogoItem'
 
 import AkaveLogo from '@/public/assets/logos/akave-logo.svg'
 import EnsLogo from '@/public/assets/logos/ens-logo.svg'

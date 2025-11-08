@@ -1,4 +1,4 @@
-import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
+import { Icon } from '@filecoin-foundation/filecoin-ui/Icon'
 import { SpinnerIcon } from '@phosphor-icons/react/dist/ssr'
 import { clsx } from 'clsx'
 

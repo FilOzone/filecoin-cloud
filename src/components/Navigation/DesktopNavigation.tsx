@@ -1,6 +1,6 @@
 'use client'
 
-import { NavigationMainLink } from '@filecoin-foundation/ui-filecoin/Navigation/NavigationMainLink'
+import { NavigationMainLink } from '@filecoin-foundation/filecoin-ui/Navigation/NavigationMainLink'
 
 import { headerNavigationItems } from './constants/navigation'
 import { NavigationMenu } from './NavigationMenu/NavigationMenu'

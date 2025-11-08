@@ -1,11 +1,11 @@
 'use client'
 
-import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
-import { variantMapping } from '@filecoin-foundation/ui-filecoin/Navigation/constants'
+import { Icon } from '@filecoin-foundation/filecoin-ui/Icon'
+import { variantMapping } from '@filecoin-foundation/filecoin-ui/Navigation/constants'
 import {
   backgroundVariants,
   useBackgroundVariant,
-} from '@filecoin-foundation/ui-filecoin/Section'
+} from '@filecoin-foundation/filecoin-ui/Section/Section'
 import {
   Listbox as HeadlessListbox,
   ListboxButton,

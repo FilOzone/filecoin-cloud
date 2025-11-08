@@ -1,4 +1,4 @@
-import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
+import { PageSection } from '@filecoin-foundation/filecoin-ui/PageSection'
 
 import { Navigation } from '@/components/Navigation/Navigation'
 

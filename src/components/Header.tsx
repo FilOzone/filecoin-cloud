@@ -1,7 +1,7 @@
 'use client'
 
-import { HomeLogoLink } from '@filecoin-foundation/ui-filecoin/HomeLogoLink'
-import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
+import { HomeLogoLink } from '@filecoin-foundation/filecoin-ui/HomeLogoLink'
+import { ExternalTextLink } from '@filecoin-foundation/filecoin-ui/TextLink/ExternalTextLink'
 import { usePathname } from 'next/navigation'
 
 import Logo from '@/public/foc-logo-icon.svg'

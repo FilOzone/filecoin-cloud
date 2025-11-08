@@ -1,7 +1,7 @@
 import {
   BaseLink as SharedBaseLink,
   type BaseLinkProps as SharedBaseLinkProps,
-} from '@filecoin-foundation/ui-filecoin/BaseLink'
+} from '@filecoin-foundation/filecoin-ui/BaseLink'
 import Link from 'next/link'
 
 import { BASE_DOMAIN } from '@/constants/siteMetadata'

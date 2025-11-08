@@ -1,4 +1,4 @@
-import type { CardData } from '@filecoin-foundation/ui-filecoin/Card'
+import type { CardData } from '@filecoin-foundation/filecoin-ui/Card'
 
 import akaveLogo from '@/public/akave-logo.webp'
 import ensLogo from '@/public/ens-logo.webp'

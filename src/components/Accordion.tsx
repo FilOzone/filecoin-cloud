@@ -1,4 +1,4 @@
-import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
+import { Icon } from '@filecoin-foundation/filecoin-ui/Icon'
 import { CaretDownIcon } from '@phosphor-icons/react/dist/ssr'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import { clsx } from 'clsx'

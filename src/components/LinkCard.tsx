@@ -1,11 +1,11 @@
 import {
   LinkCard as SharedLinkCard,
   type LinkCardProps as SharedLinkCardProps,
-} from '@filecoin-foundation/ui-filecoin/LinkCard'
+} from '@filecoin-foundation/filecoin-ui/LinkCard'
 
 import { BaseLink } from './BaseLink'
 
-export type { LinkCardData } from '@filecoin-foundation/ui-filecoin/LinkCard'
+export type { LinkCardData } from '@filecoin-foundation/filecoin-ui/LinkCard'
 
 type LinkCardProps = Omit<SharedLinkCardProps, 'BaseLinkComponent'>
 

@@ -1,4 +1,4 @@
-import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
+import { SectionContent } from '@filecoin-foundation/filecoin-ui/SectionContent'
 
 import { Accordion } from './Accordion'
 

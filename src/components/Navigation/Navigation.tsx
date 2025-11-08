@@ -1,9 +1,9 @@
-import { Container } from '@filecoin-foundation/ui-filecoin/Container'
-import { HomeLogoLink } from '@filecoin-foundation/ui-filecoin/HomeLogoLink'
+import { Container } from '@filecoin-foundation/filecoin-ui/Container'
+import { HomeLogoLink } from '@filecoin-foundation/filecoin-ui/HomeLogoLink'
 import {
   Section,
   type SectionProps,
-} from '@filecoin-foundation/ui-filecoin/Section'
+} from '@filecoin-foundation/filecoin-ui/Section/Section'
 
 import LogoDark from '@/public/foc-logo-dark.svg'
 import LogoLight from '@/public/foc-logo-light.svg'

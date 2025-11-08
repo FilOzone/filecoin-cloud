@@ -1,5 +1,5 @@
-import { NavigationMenuLink as SharedNavigationMenuLink } from '@filecoin-foundation/ui-filecoin/Navigation/NavigationMenuLink'
-import type { LocalNavigationMenuLinkProps } from '@filecoin-foundation/ui-filecoin/Navigation/types'
+import { NavigationMenuLink as SharedNavigationMenuLink } from '@filecoin-foundation/filecoin-ui/Navigation/NavigationMenuLink'
+import type { LocalNavigationMenuLinkProps } from '@filecoin-foundation/filecoin-ui/Navigation/types'
 
 import { BASE_DOMAIN } from '@/constants/siteMetadata'
 

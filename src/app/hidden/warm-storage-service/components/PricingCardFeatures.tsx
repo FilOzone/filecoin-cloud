@@ -1,4 +1,4 @@
-import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
+import { Icon } from '@filecoin-foundation/filecoin-ui/Icon'
 import { CheckIcon } from '@phosphor-icons/react/dist/ssr'
 
 import type { PricingCardProps } from './PricingCard'
