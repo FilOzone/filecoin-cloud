@@ -12,10 +12,6 @@
   },
   "dependencies": {
     "@filecoin-foundation/filecoin-ui": "^0.1.1",
-    "@filecoin-foundation/hooks": "https://gitpkg.now.sh/FilecoinFoundationWeb/filecoin-foundation/packages/hooks?main",
-    "@filecoin-foundation/ui": "https://gitpkg.now.sh/FilecoinFoundationWeb/filecoin-foundation/packages/ui?main",
-    "@filecoin-foundation/ui-filecoin": "https://gitpkg.now.sh/FilecoinFoundationWeb/filecoin-foundation/packages/ui-filecoin?main",
-    "@filecoin-foundation/utils": "https://gitpkg.now.sh/FilecoinFoundationWeb/filecoin-foundation/packages/utils?main",
     "@filoz/synapse-sdk": "^0.34.0",
     "@headlessui/react": "^2.2.9",
     "@phosphor-icons/react": "^2.1.10",

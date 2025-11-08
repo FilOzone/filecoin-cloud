@@ -15,12 +15,6 @@ const markdownRule = {
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
-  transpilePackages: [
-    '@filecoin-foundation/hooks',
-    '@filecoin-foundation/ui',
-    '@filecoin-foundation/ui-filecoin',
-    '@filecoin-foundation/utils',
-  ],
   images: {
     qualities: [75, 100],
   },
