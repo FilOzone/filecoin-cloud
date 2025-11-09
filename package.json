@@ -15,7 +15,7 @@
     "@filecoin-foundation/ui": "https://gitpkg.now.sh/FilecoinFoundationWeb/filecoin-foundation/packages/ui?main",
     "@filecoin-foundation/ui-filecoin": "https://gitpkg.now.sh/FilecoinFoundationWeb/filecoin-foundation/packages/ui-filecoin?main",
     "@filecoin-foundation/utils": "https://gitpkg.now.sh/FilecoinFoundationWeb/filecoin-foundation/packages/utils?main",
-    "@filoz/synapse-sdk": "^0.34.0",
+    "@filoz/synapse-sdk": "^0.35.3",
     "@headlessui/react": "^2.2.9",
     "@phosphor-icons/react": "^2.1.10",
     "@radix-ui/react-accordion": "^1.2.12",
@@ -27,7 +27,7 @@
     "embla-carousel-react": "^8.6.0",
     "frontmatter-markdown-loader": "^3.7.0",
     "ethers": "^6.15.0",
-    "next": "15.5.6",
+    "next": "16.0.1",
     "next-plausible": "^3.12.4",
     "ramda": "^0.32.0",
     "react": "19.2.0",
@@ -40,7 +40,7 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.6",
+    "@biomejs/biome": "2.3.4",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.19",
