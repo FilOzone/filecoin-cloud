@@ -1,4 +1,4 @@
-import { Icon } from '@filecoin-foundation/filecoin-ui/Icon'
+import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
 
 import { Container } from '@/components/Container'
 import { ExternalLink } from '@/components/ExternalLink'

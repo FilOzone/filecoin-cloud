@@ -1,4 +1,4 @@
-import { CardContent } from '@filecoin-foundation/filecoin-ui/SimpleCard'
+import { CardContent } from '@filecoin-foundation/ui-filecoin/SimpleCard'
 import Image, { type StaticImageData } from 'next/image'
 
 import { CTALink, type CTALinkProps } from './CTALink'

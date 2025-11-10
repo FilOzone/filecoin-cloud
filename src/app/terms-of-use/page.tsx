@@ -1,5 +1,5 @@
-import { MarkdownPage } from '@filecoin-foundation/filecoin-ui/Markdown/MarkdownPage'
-import { PageSection } from '@filecoin-foundation/filecoin-ui/PageSection'
+import { MarkdownPage } from '@filecoin-foundation/ui-filecoin/Markdown/MarkdownPage'
+import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 
 import { MarkdownContent } from '@/components/MarkdownContent'
 

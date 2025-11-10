@@ -1,7 +1,7 @@
 import {
   SmartTextLink as SharedSmartTextLink,
   type SmartTextLinkProps as SharedSmartTextLinkProps,
-} from '@filecoin-foundation/filecoin-ui/TextLink/SmartTextLink'
+} from '@filecoin-foundation/ui-filecoin/TextLink/SmartTextLink'
 import Link from 'next/link'
 
 import { BASE_DOMAIN } from '@/constants/siteMetadata'

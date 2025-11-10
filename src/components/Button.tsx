@@ -1,7 +1,7 @@
 import {
   Button as SharedButton,
   type ButtonProps as SharedButtonProps,
-} from '@filecoin-foundation/filecoin-ui/Button'
+} from '@filecoin-foundation/ui-filecoin/Button'
 
 import { BASE_DOMAIN } from '@/constants/siteMetadata'
 

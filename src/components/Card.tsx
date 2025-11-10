@@ -1,4 +1,4 @@
-import { Icon } from '@filecoin-foundation/filecoin-ui/Icon'
+import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
 import type { Icon as PhosphorIcon } from '@phosphor-icons/react'
 
 import { ExternalLink } from './ExternalLink'

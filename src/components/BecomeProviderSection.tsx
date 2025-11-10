@@ -1,5 +1,5 @@
-import { PageSection } from '@filecoin-foundation/filecoin-ui/PageSection'
-import { SectionContent } from '@filecoin-foundation/filecoin-ui/SectionContent'
+import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
+import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
 import { Button } from '@/components/Button'
 

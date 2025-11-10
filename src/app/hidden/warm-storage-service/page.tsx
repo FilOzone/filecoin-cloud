@@ -1,10 +1,10 @@
 'use client'
 
-import { Card } from '@filecoin-foundation/filecoin-ui/Card'
-import { CardGrid } from '@filecoin-foundation/filecoin-ui/CardGrid'
-import { PageHeader } from '@filecoin-foundation/filecoin-ui/PageHeader'
-import { PageSection } from '@filecoin-foundation/filecoin-ui/PageSection'
-import { SectionContent } from '@filecoin-foundation/filecoin-ui/SectionContent'
+import { Card } from '@filecoin-foundation/ui-filecoin/Card'
+import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
+import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
+import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
+import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'

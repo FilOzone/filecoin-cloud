@@ -1,8 +1,8 @@
 'use client'
 
-import { desktopStyle } from '@filecoin-foundation/filecoin-ui/Navigation/NavigationMainLink'
-import { NavigationMenu as SharedNavigationMenu } from '@filecoin-foundation/filecoin-ui/Navigation/NavigationMenu'
-import { NavigationMenuPanel } from '@filecoin-foundation/filecoin-ui/Navigation/NavigationMenuPanel'
+import { desktopStyle } from '@filecoin-foundation/ui-filecoin/Navigation/NavigationMainLink'
+import { NavigationMenu as SharedNavigationMenu } from '@filecoin-foundation/ui-filecoin/Navigation/NavigationMenu'
+import { NavigationMenuPanel } from '@filecoin-foundation/ui-filecoin/Navigation/NavigationMenuPanel'
 import clsx from 'clsx'
 
 import { NavigationMenuLink } from './NavigationMenuLink'

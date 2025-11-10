@@ -1,4 +1,4 @@
-import { Icon } from '@filecoin-foundation/filecoin-ui/Icon'
+import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
 import { ArrowClockwiseIcon } from '@phosphor-icons/react/dist/ssr'
 
 import { Button } from './Button'
