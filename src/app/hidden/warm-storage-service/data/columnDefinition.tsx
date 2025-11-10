@@ -2,6 +2,8 @@ import { createColumnHelper } from '@tanstack/react-table'
 
 import { CompactAddress } from '@/components/CompactAddress'
 import { ID } from '@/components/ID'
+import { PeerID } from '@/components/PeerID'
+import { SoftwareVersion } from '@/components/SoftwareVersion'
 
 import type { ServiceProvider } from '@/schemas/providerSchema'
 
@@ -21,14 +23,12 @@ export const columns = [
       description: row.description,
       address: row.serviceProviderAddress,
       serviceUrl: row.serviceUrl,
-      softwareVersion: row.softwareVersion,
     }),
     {
       id: 'provider',
       header: 'Provider',
       cell: (info) => {
-        const { name, description, address, serviceUrl, softwareVersion } =
-          info.getValue()
+        const { name, description, address, serviceUrl } = info.getValue()
 
         return (
           <ProviderTableOverview
@@ -36,12 +36,26 @@ export const columns = [
             description={description}
             address={address}
             serviceUrl={serviceUrl}
-            softwareVersion={softwareVersion}
           />
         )
       },
     },
   ),
+  columnHelper.accessor('serviceStatus', {
+    header: 'Service Status',
+    cell: (info) => info.getValue() || '-',
+  }),
+  columnHelper.accessor('softwareVersion', {
+    header: 'Software Version',
+    cell: (info) => {
+      const softwareVersion = info.getValue()
+      return softwareVersion ? <SoftwareVersion info={softwareVersion} /> : '-'
+    },
+  }),
+  columnHelper.accessor('capacityTb', {
+    header: 'Capacity (TiB)',
+    cell: (info) => Number(info.getValue()).toLocaleString('en-US'),
+  }),
   columnHelper.accessor('location', {
     header: 'Location',
     cell: (info) => info.getValue(),
@@ -53,5 +67,10 @@ export const columns = [
   columnHelper.accessor('ipniIpfs', {
     header: 'Publish to IPNI',
     cell: (info) => <ProviderTableInpiStatus published={info.getValue()} />,
+  }),
+  columnHelper.accessor('peerId', {
+    id: 'peerId',
+    header: 'Peer ID',
+    cell: (info) => <PeerID id={info.getValue() || '-'} />,
   }),
 ]

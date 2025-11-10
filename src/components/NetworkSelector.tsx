@@ -2,7 +2,7 @@
 
 import { GlobeIcon } from '@phosphor-icons/react/dist/ssr'
 
-import type { Network } from '@/types/contractType'
+import type { Network } from '@/config/chains'
 
 import { Listbox } from './Listbox'
 import { useNetwork } from './NetworkContext'

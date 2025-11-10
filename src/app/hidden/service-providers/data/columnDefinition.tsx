@@ -2,6 +2,8 @@ import { createColumnHelper } from '@tanstack/react-table'
 
 import { CompactAddress } from '@/components/CompactAddress'
 import { ID } from '@/components/ID'
+import { PeerID } from '@/components/PeerID'
+import { SoftwareVersion } from '@/components/SoftwareVersion'
 
 import { ProviderTableInpiStatus } from '@/app/hidden/warm-storage-service/components/ProviderTableInpiStatus'
 import { ProviderTableOverview } from '@/app/hidden/warm-storage-service/components/ProviderTableOverview'
@@ -28,8 +30,7 @@ export const columns = [
       header: 'Provider',
       maxSize: 380,
       cell: (info) => {
-        const { name, description, address, serviceUrl, softwareVersion } =
-          info.getValue()
+        const { name, description, address, serviceUrl } = info.getValue()
 
         return (
           <ProviderTableOverview
@@ -37,53 +38,49 @@ export const columns = [
             description={description}
             address={address}
             serviceUrl={serviceUrl}
-            softwareVersion={softwareVersion}
           />
         )
       },
     },
   ),
-  // TODO: accessor "id" to be replaced with proper key once available in the data schema
-  columnHelper.accessor('id', {
-    id: 'serviceOffered',
-    header: 'Service Offered',
-    cell: () => '-',
-  }),
   columnHelper.accessor('serviceStatus', {
-    id: 'serviceStatus',
     header: 'Service Status',
     cell: (info) => info.getValue() || '-',
+  }),
+  columnHelper.accessor('softwareVersion', {
+    header: 'Software Version',
+    cell: (info) => {
+      const softwareVersion = info.getValue()
+      return softwareVersion ? <SoftwareVersion info={softwareVersion} /> : '-'
+    },
   }),
   columnHelper.accessor('location', {
     id: 'location',
     header: 'Location',
     cell: (info) => info.getValue(),
   }),
-  // TODO: accessor "id" to be replaced with proper key once available in the data schema
-  columnHelper.accessor('id', {
-    id: 'capacity',
+  columnHelper.accessor('capacityTb', {
     header: 'Capacity (TiB)',
-    cell: () => '-',
+    cell: (info) => {
+      const capacity = info.getValue()
+      if (!capacity) return '-'
+      return Number(capacity).toLocaleString('en-US')
+    },
   }),
-  // TODO: accessor "id" to be replaced with proper key once available in the data schema
-  columnHelper.accessor('id', {
-    id: 'provingPeriod',
+  columnHelper.accessor('minProvingPeriod', {
     header: 'Proving Period',
-    cell: () => '-',
+    cell: (info) => Number(info.getValue()).toLocaleString('en-US'),
   }),
   columnHelper.accessor('serviceProviderAddress', {
-    id: 'address',
     header: 'Address',
     cell: (info) => <CompactAddress address={info.getValue()} />,
   }),
   columnHelper.accessor('ipniIpfs', {
-    id: 'publishToIpni',
     header: 'Publish to IPNI',
     cell: (info) => <ProviderTableInpiStatus published={info.getValue()} />,
   }),
   columnHelper.accessor('peerId', {
-    id: 'peerId',
     header: 'Peer ID',
-    cell: (info) => info.getValue() || '-',
+    cell: (info) => <PeerID id={info.getValue() || '-'} />,
   }),
 ]
