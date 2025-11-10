@@ -7,7 +7,7 @@ import {
 
 import type { LinkCardData } from '@/components/LinkCard'
 
-import { FOC_URLS } from '@/constants/siteMetadata'
+import { FOC_URLS } from '@/constants/site-metadata'
 
 export const developerResources = [
   {

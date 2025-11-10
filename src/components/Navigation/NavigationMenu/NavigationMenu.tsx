@@ -7,7 +7,7 @@ import clsx from 'clsx'
 
 import { NavigationMenuLink } from './NavigationMenuLink'
 import type { NavigationMenuItem } from '../constants/navigation'
-import { useIsNavigationMenuActive } from '../hooks/useNavigationMenuActive'
+import { useIsNavigationMenuActive } from '../hooks/use-navigation-menu-active'
 
 export function NavigationMenu({ label, items }: NavigationMenuItem) {
   const isActive = useIsNavigationMenuActive(items)

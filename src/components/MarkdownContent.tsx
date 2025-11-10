@@ -3,7 +3,7 @@ import {
   type MarkdownContentProps as SharedMarkdownContentProps,
 } from '@filecoin-foundation/ui-filecoin/Markdown/MarkdownContent'
 
-import { BASE_DOMAIN } from '@/constants/siteMetadata'
+import { BASE_DOMAIN } from '@/constants/site-metadata'
 
 export type MarkdownContentProps = Omit<
   SharedMarkdownContentProps,

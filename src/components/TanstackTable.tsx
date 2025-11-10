@@ -11,6 +11,7 @@ import { Table } from '@/components/Table'
 
 export type TanstackTableProps<TData> = {
   data: Array<TData>
+  // biome-ignore lint/suspicious/noExplicitAny: TanStack Table requires any for column value types
   columns: Array<ColumnDef<TData, any>>
 }
 

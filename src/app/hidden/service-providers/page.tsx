@@ -8,7 +8,7 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { RefreshButton } from '@/components/RefreshButton'
 import { RefreshOverlay } from '@/components/RefreshOverlay'
 
-import { useProviders } from '@/app/hidden/warm-storage-service/hooks/useProviders'
+import { useProviders } from '@/app/hidden/warm-storage-service/hooks/use-providers'
 
 import { ServiceProvidersTable } from './components/ServiceProvidersTable'
 

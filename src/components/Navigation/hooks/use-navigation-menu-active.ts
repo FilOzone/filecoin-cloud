@@ -1,7 +1,7 @@
 import { isInternalLink } from '@filecoin-foundation/ui-filecoin/utils/linkUtils'
 import { usePathname } from 'next/navigation'
 
-import { BASE_DOMAIN } from '@/constants/siteMetadata'
+import { BASE_DOMAIN } from '@/constants/site-metadata'
 
 import type { NavigationMenuItem } from '../constants/navigation'
 

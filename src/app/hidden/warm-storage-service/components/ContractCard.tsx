@@ -2,7 +2,7 @@ import type { Address } from 'viem'
 
 import { ExternalLink } from '@/components/ExternalLink'
 
-import { truncateAddress } from '@/utils/truncateAddress'
+import { truncateAddress } from '@/utils/truncate-address'
 
 export type ContractCardProps = {
   label: string

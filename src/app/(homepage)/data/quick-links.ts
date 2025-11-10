@@ -5,7 +5,7 @@ import {
   UsersThreeIcon,
 } from '@phosphor-icons/react/dist/ssr'
 
-import { FOC_URLS } from '@/constants/siteMetadata'
+import { FOC_URLS } from '@/constants/site-metadata'
 
 export const quickLinks = [
   {

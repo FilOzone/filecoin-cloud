@@ -5,7 +5,7 @@ import type { ReactNode } from 'react'
 
 import { SiteLayout } from '@/components/SiteLayout'
 
-import { METADATA } from '@/constants/siteMetadata'
+import { METADATA } from '@/constants/site-metadata'
 
 export const metadata: Metadata = METADATA
 

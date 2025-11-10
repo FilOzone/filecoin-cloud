@@ -1,4 +1,4 @@
-import type { ServiceProvider } from '@/schemas/providerSchema'
+import type { ServiceProvider } from '@/schemas/provider-schema'
 
 /**
  * Provider without software version (before version fetch)

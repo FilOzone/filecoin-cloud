@@ -13,16 +13,16 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { RefreshButton } from '@/components/RefreshButton'
 import { RefreshOverlay } from '@/components/RefreshOverlay'
 
-import { FOC_URLS } from '@/constants/siteMetadata'
+import { FOC_URLS } from '@/constants/site-metadata'
 
 import { ContractCard } from './components/ContractCard'
 import { ContractCardGrid } from './components/ContractCardGrid'
 import { PricingCard } from './components/PricingCard'
 import { WarmStorageProvidersTable } from './components/WarmStorageProvidersTable'
-import { pricingTiers } from './data/pricingTiers'
-import { storageFeatures } from './data/storageFeatures'
-import { useContractsData } from './hooks/useContractsData'
-import { useProviders } from './hooks/useProviders'
+import { pricingTiers } from './data/pricing-tiers'
+import { storageFeatures } from './data/storage-features'
+import { useContractsData } from './hooks/use-contracts-data'
+import { useProviders } from './hooks/use-providers'
 
 export default function WarmStorageService() {
   const { contractsData } = useContractsData()

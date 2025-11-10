@@ -1,7 +1,7 @@
 import { createColumnHelper } from '@tanstack/react-table'
 
 import { CompactAddress } from '@/components/CompactAddress'
-import { ID } from '@/components/ID'
+import { Id } from '@/components/Id'
 import { StatusBadge } from '@/components/StatusBadge'
 
 import type { Transaction } from '../types/transaction'
@@ -11,7 +11,7 @@ const columnHelper = createColumnHelper<Transaction>()
 export const columns = [
   columnHelper.accessor('railId', {
     header: 'Rail ID',
-    cell: (info) => <ID number={info.getValue()} />,
+    cell: (info) => <Id number={info.getValue()} />,
   }),
   columnHelper.accessor('payer', {
     header: 'Payer',

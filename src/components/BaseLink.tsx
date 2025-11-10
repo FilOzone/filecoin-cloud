@@ -4,7 +4,7 @@ import {
 } from '@filecoin-foundation/ui-filecoin/BaseLink'
 import Link from 'next/link'
 
-import { BASE_DOMAIN } from '@/constants/siteMetadata'
+import { BASE_DOMAIN } from '@/constants/site-metadata'
 
 export type BaseLinkProps = Omit<
   SharedBaseLinkProps,

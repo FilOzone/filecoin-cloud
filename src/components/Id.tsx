@@ -1,8 +1,8 @@
-type IDProps = {
+type IdProps = {
   number: number
 }
 
-export function ID({ number }: IDProps) {
+export function Id({ number }: IdProps) {
   if (number < 0) {
     console.warn('ID component received a negative number:', number)
   }

@@ -3,7 +3,7 @@ import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
 import { Button } from '@/components/Button'
 
-import { FOC_URLS } from '@/constants/siteMetadata'
+import { FOC_URLS } from '@/constants/site-metadata'
 
 export function BecomeProviderSection() {
   return (

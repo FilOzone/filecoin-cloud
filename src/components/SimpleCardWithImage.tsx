@@ -1,7 +1,7 @@
 import { CardContent } from '@filecoin-foundation/ui-filecoin/SimpleCard'
 import Image, { type StaticImageData } from 'next/image'
 
-import { CTALink, type CTALinkProps } from './CTALink'
+import { CtaLink, type CtaLinkProps } from './CtaLink'
 
 export type SimpleCardWithImageProps = {
   image: {
@@ -11,8 +11,8 @@ export type SimpleCardWithImageProps = {
   title: string // TODO: Change to CardContentProps['title']
   description: string // TODO: Change to CardContentProps['description']
   cta: {
-    href: CTALinkProps['href']
-    text: CTALinkProps['children']
+    href: CtaLinkProps['href']
+    text: CtaLinkProps['children']
   }
 }
 
@@ -31,9 +31,9 @@ export function SimpleCardWithImage({
       />
       <div className="p-8">
         <CardContent title={title} description={description} border="all" />
-        <CTALink inset href={cta.href} textClassName="bottom-8 left-8">
+        <CtaLink inset href={cta.href} textClassName="bottom-8 left-8">
           {cta.text}
-        </CTALink>
+        </CtaLink>
       </div>
     </li>
   )

@@ -1,8 +1,8 @@
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import type { Address } from 'viem'
 
-import { EXPLORERS } from '@/constants/externalServices'
-import { truncateAddress } from '@/utils/truncateAddress'
+import { EXPLORERS } from '@/constants/external-services'
+import { truncateAddress } from '@/utils/truncate-address'
 
 import { useNetwork } from './NetworkContext'
 

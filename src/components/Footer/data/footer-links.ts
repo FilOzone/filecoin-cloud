@@ -1,4 +1,4 @@
-import { FILECOIN_FOUNDATION_URL } from '@/constants/siteMetadata'
+import { FILECOIN_FOUNDATION_URL } from '@/constants/site-metadata'
 import FilecoinFoundationLogo from '@/public/filecoin-foundation-logo.svg'
 import FilozLogo from '@/public/filoz-logo.svg'
 

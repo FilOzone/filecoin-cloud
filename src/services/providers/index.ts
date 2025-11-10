@@ -7,7 +7,10 @@ import {
 import type { ServiceRegistryABI, WarmStorageViewABI } from '@/config/abis'
 import { getChain, type Network } from '@/config/chains'
 import { getPublicClient } from '@/config/client'
-import { providersSchema, type ServiceProvider } from '@/schemas/providerSchema'
+import {
+  providersSchema,
+  type ServiceProvider,
+} from '@/schemas/provider-schema'
 import type { FetchProvidersOptions, ProviderFilter } from '@/types/providers'
 
 import { VERSION_FETCH_CONCURRENCY } from './constants'
