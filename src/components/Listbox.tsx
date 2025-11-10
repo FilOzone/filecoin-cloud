@@ -5,7 +5,7 @@ import { variantMapping } from '@filecoin-foundation/ui-filecoin/Navigation/cons
 import {
   backgroundVariants,
   useBackgroundVariant,
-} from '@filecoin-foundation/ui-filecoin/Section'
+} from '@filecoin-foundation/ui-filecoin/Section/Section'
 import {
   Listbox as HeadlessListbox,
   ListboxButton,

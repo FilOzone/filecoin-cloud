@@ -5,7 +5,6 @@
 @import "./table.css";
 @import "./listbox.css";
 
-@source "../../node_modules/@filecoin-foundation/ui";
 @source "../../node_modules/@filecoin-foundation/ui-filecoin";
 
 @theme {

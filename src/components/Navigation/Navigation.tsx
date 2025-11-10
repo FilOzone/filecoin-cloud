@@ -3,7 +3,7 @@ import { HomeLogoLink } from '@filecoin-foundation/ui-filecoin/HomeLogoLink'
 import {
   Section,
   type SectionProps,
-} from '@filecoin-foundation/ui-filecoin/Section'
+} from '@filecoin-foundation/ui-filecoin/Section/Section'
 
 import LogoDark from '@/public/foc-logo-dark.svg'
 import LogoLight from '@/public/foc-logo-light.svg'
