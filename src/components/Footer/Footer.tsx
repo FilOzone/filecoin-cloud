@@ -3,7 +3,7 @@ import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
 import { Container } from '@/components/Container'
 import { ExternalLink } from '@/components/ExternalLink'
 
-import { footerLinks } from './data/footerLinks'
+import { footerLinks } from './data/footer-links'
 
 export function Footer() {
   return (

@@ -1,9 +1,9 @@
 import { zipObj } from 'ramda'
 import type { Hex } from 'viem'
 
-import type { ProviderData } from '@/types/contractTypes'
-import { decodePDPCapabilities } from '@/utils/decodePDPCapabilities'
-import { parseLocation } from '@/utils/parseLocation'
+import type { ProviderData } from '@/types/contract-types'
+import { decodePDPCapabilities } from '@/utils/decode-pdp-capabilities'
+import { parseLocation } from '@/utils/parse-location'
 
 import type { ProviderWithoutSoftwareVersion } from './types'
 

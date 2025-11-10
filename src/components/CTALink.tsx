@@ -4,14 +4,14 @@ import {
 } from '@filecoin-foundation/ui-filecoin/CTALink'
 import Link from 'next/link'
 
-import { BASE_DOMAIN } from '@/constants/siteMetadata'
+import { BASE_DOMAIN } from '@/constants/site-metadata'
 
-export type CTALinkProps = Omit<
+export type CtaLinkProps = Omit<
   SharedCTALinkProps,
   'baseDomain' | 'InternalLinkComponent'
 >
 
-export function CTALink(props: CTALinkProps) {
+export function CtaLink(props: CtaLinkProps) {
   return (
     <SharedCTALink
       {...props}

@@ -2,7 +2,7 @@ import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/Exte
 
 import { useNetwork } from '@/components/NetworkContext'
 
-import { EXPLORERS } from '@/constants/externalServices'
+import { EXPLORERS } from '@/constants/external-services'
 
 type ProviderTableOverviewProps = {
   name: string

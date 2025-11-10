@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import PlausibleProvider from 'next-plausible'
 import { type ReactNode, useState } from 'react'
 
-import { BASE_DOMAIN } from '@/constants/siteMetadata'
+import { BASE_DOMAIN } from '@/constants/site-metadata'
 
 import { NetworkProvider } from './NetworkContext'
 

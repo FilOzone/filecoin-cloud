@@ -1,8 +1,8 @@
 import { TanstackTable } from '@/components/TanstackTable'
 
-import type { ServiceProvider } from '@/schemas/providerSchema'
+import type { ServiceProvider } from '@/schemas/provider-schema'
 
-import { columns } from '../data/columnDefinition'
+import { columns } from '../data/column-definition'
 
 export type WarmStorageProvidersTableProps = {
   data: Array<ServiceProvider>

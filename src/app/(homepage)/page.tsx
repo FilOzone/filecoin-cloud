@@ -7,7 +7,7 @@ import { Header } from '@/components/Header'
 
 import BackgroundVideoPoster from '@/public/background-video-poster.webp'
 
-import { quickLinks } from './data/quickLinks'
+import { quickLinks } from './data/quick-links'
 
 export default function Home() {
   return (

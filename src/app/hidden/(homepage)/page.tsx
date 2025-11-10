@@ -14,16 +14,16 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { Phase } from '@/components/Phase'
 import { SimpleCardWithImage } from '@/components/SimpleCardWithImage'
 
-import { BASE_DOMAIN, FOC_URLS } from '@/constants/siteMetadata'
+import { BASE_DOMAIN, FOC_URLS } from '@/constants/site-metadata'
 import CometVideoPoster from '@/public/assets/comet-video-poster.webp'
 
-import { buildersLogos } from './data/buildersLogos'
-import { buildPhases } from './data/buildPhases'
-import { developerResources } from './data/developerResources'
+import { buildPhases } from './data/build-phases'
+import { buildersLogos } from './data/builders-logos'
+import { developerResources } from './data/developer-resources'
 import { faqs } from './data/faqs'
-import { filecoinOnchainCloudProducts } from './data/filecoinOnchainCloudProducts'
-import { focFeatures } from './data/focFeatures'
-import { runningOnFilecoinOnchainCloud } from './data/runningOnFilecoinOnchainCloud'
+import { filecoinOnchainCloudProducts } from './data/filecoin-onchain-cloud-products'
+import { focFeatures } from './data/foc-features'
+import { runningOnFilecoinOnchainCloud } from './data/running-on-filecoin-onchain-cloud'
 
 export default function HiddenHomepage() {
   return (
