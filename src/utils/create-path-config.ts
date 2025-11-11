@@ -7,6 +7,17 @@ type PathConfig = {
 
 export function createPathConfig(path: StaticPath, label: string): PathConfig {
   return {
+    path,
+    label,
+  }
+}
+
+// TODO: Delete this function and use the createPathConfig function instead
+export function createHiddenPathConfig(
+  path: StaticPath,
+  label: string,
+): PathConfig {
+  return {
     path: transformPathToHidden(path),
     label,
   }
