@@ -12,5 +12,8 @@ export const PATHS = {
     '/service-providers',
     'Service Providers',
   ),
-  WARM_STORAGE_SERVICE: createPathConfig('/warm-storage-service', 'Store'),
+  WARM_STORAGE_SERVICE: createPathConfig(
+    '/warm-storage-service',
+    'Warm Storage Service',
+  ),
 }
