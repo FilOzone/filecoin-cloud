@@ -7,16 +7,6 @@ import StorachaLogo from '@/public/assets/logos/storacha-logo.svg'
 
 export const buildersLogos: Array<LogoItemProps> = [
   {
-    logo: StorachaLogo,
-    alt: 'Storacha Logo',
-    href: 'https://storacha.network/',
-  },
-  {
-    logo: AkaveLogo,
-    alt: 'Akave Logo',
-    href: 'https://akave.com/',
-  },
-  {
     logo: EnsLogo,
     alt: 'ENS Logo',
     href: 'https://ens.domains/',
@@ -25,5 +15,15 @@ export const buildersLogos: Array<LogoItemProps> = [
     logo: MonadLogo,
     alt: 'Monad Logo',
     href: 'https://monad.xyz/',
+  },
+  {
+    logo: StorachaLogo,
+    alt: 'Storacha Logo',
+    href: 'https://storacha.network/',
+  },
+  {
+    logo: AkaveLogo,
+    alt: 'Akave Logo',
+    href: 'https://akave.com/',
   },
 ]

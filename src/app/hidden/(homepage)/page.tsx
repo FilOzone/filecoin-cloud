@@ -1,4 +1,4 @@
-import { Announcement } from '@filecoin-foundation/ui-filecoin/Announcement'
+// import { Announcement } from '@filecoin-foundation/ui-filecoin/Announcement'
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { LogoSection } from '@filecoin-foundation/ui-filecoin/LogoSection/LogoSection'
@@ -14,7 +14,8 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { Phase } from '@/components/Phase'
 import { SimpleCardWithImage } from '@/components/SimpleCardWithImage'
 
-import { BASE_DOMAIN, FOC_URLS } from '@/constants/site-metadata'
+// import { BASE_DOMAIN, FOC_URLS } from '@/constants/site-metadata'
+import { FOC_URLS } from '@/constants/site-metadata'
 import CometVideoPoster from '@/public/assets/comet-video-poster.webp'
 
 import { buildPhases } from './data/build-phases'
@@ -40,13 +41,13 @@ export default function HiddenHomepage() {
           paddingVariant="medium"
         >
           <div className="space-y-10">
-            <Announcement baseDomain={BASE_DOMAIN} href="#" centered>
+            {/* <Announcement baseDomain={BASE_DOMAIN} href="#" centered>
               Announcing Filecoin Onchain Cloud
-            </Announcement>
+            </Announcement> */}
             <PageHeader
               centered
               title="Cloud services with onchain guarantees — ownership, verifiability, and programmability"
-              description="Build applications that own their data, payments, and logic."
+              description="Filecoin Onchain Cloud lets you build applications that own their data, payments, and logic."
               cta={
                 <Button href="#todo" variant="primary">
                   Start building
@@ -60,7 +61,7 @@ export default function HiddenHomepage() {
       <PageSection backgroundVariant="dark" paddingVariant="none">
         <LogoSection
           headingTag="h2"
-          title="Built on Filecoin Onchain Cloud"
+          title="Already building with Filecoin Onchain Cloud"
           logos={buildersLogos}
         />
       </PageSection>
