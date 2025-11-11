@@ -1,12 +1,19 @@
 'use client'
 
 import { NavigationMainLink } from '@filecoin-foundation/ui-filecoin/Navigation/NavigationMainLink'
+import { usePathname } from 'next/navigation'
 
 import { headerNavigationItems } from './constants/navigation'
 import { NavigationMenu } from './NavigationMenu/NavigationMenu'
 import { NetworkSelector } from '../NetworkSelector'
 
 export function DesktopNavigation() {
+  const pathname = usePathname()
+  // TODO: Refactor this to use the PATHS constant and remove hidden prefix
+  const showNetworkSelector =
+    pathname.startsWith('/hidden/service-providers') ||
+    pathname.startsWith('/hidden/warm-storage-service')
+
   return (
     <div className="hidden lg:flex lg:w-full lg:items-center lg:justify-end lg:gap-4">
       <ul aria-label="Main navigation menu" className="flex items-center gap-6">
@@ -22,7 +29,7 @@ export function DesktopNavigation() {
           )
         })}
 
-        <NetworkSelector />
+        {showNetworkSelector && <NetworkSelector />}
       </ul>
     </div>
   )
