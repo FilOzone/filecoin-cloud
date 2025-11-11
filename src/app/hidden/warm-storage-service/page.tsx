@@ -67,6 +67,7 @@ export default function WarmStorageService() {
         <CardGrid as="ul" variant="smTwoLgThreeWider">
           {storageFeatures.map(({ title, description, icon }) => (
             <Card
+              isCentered
               key={title}
               as="li"
               title={title}
