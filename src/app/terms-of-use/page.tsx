@@ -4,6 +4,7 @@ import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { Header } from '@/components/Header'
 import { MarkdownContent } from '@/components/MarkdownContent'
 
+// TODO: Use Navigation component
 // import { Navigation } from '@/components/Navigation/Navigation'
 
 import termsOfUseMarkdown from './terms-of-use.md'
