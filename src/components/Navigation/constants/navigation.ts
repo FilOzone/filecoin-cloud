@@ -1,4 +1,5 @@
-import { FILECOIN_PAY_NAVIGATION_LABEL, PATHS } from '@/constants/paths'
+import { PATHS } from '@/constants/paths'
+import { FOC_URLS } from '@/constants/site-metadata'
 
 type NavItem = {
   label: string
@@ -29,37 +30,11 @@ export const headerNavigationItems: Array<HeaderNavItem> = [
     href: PATHS.SERVICE_PROVIDERS.path,
   },
   {
-    label: FILECOIN_PAY_NAVIGATION_LABEL,
-    items: [
-      {
-        title: FILECOIN_PAY_NAVIGATION_LABEL,
-        links: [
-          {
-            label: PATHS.FILECOIN_PAY_CONSOLE.label,
-            description: 'Understand what Filecoin is and how it works',
-            href: PATHS.FILECOIN_PAY_CONSOLE.path,
-          },
-          {
-            label: PATHS.FILECOIN_PAY_CONSOLE_RAILS.label,
-            description: 'See how others are using Filecoin in the real world',
-            href: PATHS.FILECOIN_PAY_CONSOLE_RAILS.path,
-          },
-          {
-            label: PATHS.FILECOIN_PAY_CONSOLE_ACCOUNTS.label,
-            description: 'See how others are using Filecoin in the real world',
-            href: PATHS.FILECOIN_PAY_CONSOLE_ACCOUNTS.path,
-          },
-          {
-            label: PATHS.FILECOIN_PAY_CONSOLE_OPERATORS.label,
-            description: 'See how others are using Filecoin in the real world',
-            href: PATHS.FILECOIN_PAY_CONSOLE_OPERATORS.path,
-          },
-        ],
-      },
-    ],
+    label: 'Filecoin Pay',
+    href: FOC_URLS.filecoinPay,
   },
   {
     label: 'Documentation',
-    href: 'https://docs.filecoin.io/',
+    href: FOC_URLS.documentation,
   },
 ]
