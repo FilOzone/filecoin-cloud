@@ -11,6 +11,8 @@ const META_DESCRIPTION =
 const FILECOIN_FOUNDATION_URL = 'https://fil.org/'
 
 const FOC_URLS = {
+  documentation: '#todo',
+  filecoinPay: 'https://pay.filecoin.cloud',
   social: {
     telegram: 'https://t.me/+Xj6_zTPfcUA4MGQ1',
   },
