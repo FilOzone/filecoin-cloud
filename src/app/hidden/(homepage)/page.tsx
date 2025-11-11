@@ -60,7 +60,7 @@ export default function HiddenHomepage() {
       <PageSection backgroundVariant="dark" paddingVariant="none">
         <LogoSection
           headingTag="h2"
-          title="Built on Filecoin Onchain Cloud"
+          title="Already building with Filecoin Onchain Cloud"
           logos={buildersLogos}
         />
       </PageSection>
