@@ -9,6 +9,7 @@ const META_DESCRIPTION =
   'Filecoin Onchain Cloud provides transparent storage, retrieval, and payments on the Filecoin network. Launching soon!'
 
 const FILECOIN_FOUNDATION_URL = 'https://fil.org/'
+const FIL_OZ_URL = 'https://filoz.org/'
 
 const FOC_URLS = {
   documentation: '#todo',
@@ -50,6 +51,7 @@ export {
   BASE_DOMAIN,
   BASE_URL,
   FILECOIN_FOUNDATION_URL,
+  FIL_OZ_URL,
   FOC_URLS,
   ORGANIZATION_NAME,
   METADATA,
