@@ -1,8 +1,9 @@
 'use client'
 
+import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
-import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
+
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { RefreshButton } from '@/components/RefreshButton'
@@ -21,7 +22,6 @@ export default function ServiceProviders() {
     refetch,
   } = useProviders()
 
-
   const canRefreshTable = providers && !isRefetching
 
   return (
@@ -37,9 +37,7 @@ export default function ServiceProviders() {
               <RefreshButton onClick={refetch} disabled={!canRefreshTable} />
             </div>
 
-            {isLoading && (
-              <LoadingStateCard message="Loading providers..." />
-            )}
+            {isLoading && <LoadingStateCard message="Loading providers..." />}
 
             {error && (
               <div className="text-center py-8 text-red-600">
