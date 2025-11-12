@@ -73,7 +73,7 @@ export default function HiddenHomepage() {
           title="Own every part of what you build—verifiable by design"
           description="Ship faster. Trust your stack. Scale without dependencies. Build products people can trust because every action proves itself."
           cta={[
-            <Button key="start-building" href="#todo" variant="primary">
+            <Button key="start-building" href="https://docs.filecoin.cloud" variant="primary">
               Start building
             </Button>,
             <Button
