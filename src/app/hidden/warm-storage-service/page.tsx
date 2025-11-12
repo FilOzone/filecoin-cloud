@@ -2,6 +2,7 @@
 
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
+import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
@@ -152,11 +153,7 @@ export default function WarmStorageService() {
               <RefreshButton onClick={refetch} disabled={!canRefreshTable} />
             </div>
 
-            {isLoading && (
-              <div className="text-center py-8 text-gray-600">
-                Loading providers...
-              </div>
-            )}
+            {isLoading && <LoadingStateCard message="Loading providers..." />}
 
             {error && (
               <div className="text-center py-8 text-red-600">
