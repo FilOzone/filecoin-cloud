@@ -13,11 +13,12 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { RefreshButton } from '@/components/RefreshButton'
 import { RefreshOverlay } from '@/components/RefreshOverlay'
 
+import { PATHS } from '@/constants/paths'
 import { FOC_URLS } from '@/constants/site-metadata'
 
 import { ContractCard } from './components/ContractCard'
 import { ContractCardGrid } from './components/ContractCardGrid'
-import { PricingCard } from './components/PricingCard'
+import { PricingCard } from './components/PricingCard/PricingCard'
 import { WarmStorageProvidersTable } from './components/WarmStorageProvidersTable'
 import { pricingTiers } from './data/pricing-tiers'
 import { storageFeatures } from './data/storage-features'
@@ -95,13 +96,13 @@ export default function WarmStorageService() {
         >
           <div className="grid gap-6 lg:grid-cols-2 lg:max-w-4xl lg:mx-auto">
             {pricingTiers.map(
-              ({ name, description, price, pricingFeatures, recommended }) => (
+              ({ name, description, prices, features, recommended }) => (
                 <PricingCard
                   key={name}
                   name={name}
                   description={description}
-                  price={price}
-                  pricingFeatures={pricingFeatures}
+                  prices={prices}
+                  features={features}
                   recommended={recommended}
                 />
               ),
@@ -117,7 +118,7 @@ export default function WarmStorageService() {
           title="Warm Storage Service"
           description="Lorem ipsum dolor sit amet consectetur."
           cta={
-            <Button href="/hidden/service-providers" variant="ghost">
+            <Button href={PATHS.SERVICE_PROVIDERS.path} variant="ghost">
               View all service providers
             </Button>
           }
