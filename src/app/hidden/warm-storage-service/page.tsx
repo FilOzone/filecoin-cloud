@@ -117,7 +117,7 @@ export default function WarmStorageService() {
           centerCTA
           centerTitle
           title="Warm Storage Service"
-          description="Lorem ipsum dolor sit amet consectetur."
+          description="View contract addresses and browse approved storage providers."
           cta={
             <Button href={PATHS.SERVICE_PROVIDERS.path} variant="ghost">
               View all service providers

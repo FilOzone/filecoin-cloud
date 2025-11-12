@@ -76,7 +76,7 @@ export const columns = [
     cell: (info) => <CompactAddress address={info.getValue()} />,
   }),
   columnHelper.accessor('ipniIpfs', {
-    header: 'Publish to IPNI',
+    header: 'IPNI',
     cell: (info) => <ProviderTableInpiStatus published={info.getValue()} />,
   }),
   columnHelper.accessor('peerId', {

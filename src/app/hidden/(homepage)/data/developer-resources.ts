@@ -17,7 +17,7 @@ export const developerResources = [
   },
   {
     title: 'Documentation',
-    href: '#todo',
+    href: FOC_URLS.documentation,
     icon: BookOpenIcon,
   },
   {
