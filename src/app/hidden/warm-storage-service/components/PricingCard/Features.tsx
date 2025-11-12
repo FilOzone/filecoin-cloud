@@ -1,13 +1,11 @@
 import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
 import { CheckIcon } from '@phosphor-icons/react/dist/ssr'
 
-import type { PricingCardProps } from './PricingCard'
-
-export type PricingCardFeaturesProps = {
-  features: PricingCardProps['pricingFeatures']
+export type FeaturesProps = {
+  features: Array<string>
 }
 
-export function PricingCardFeatures({ features }: PricingCardFeaturesProps) {
+export function Features({ features }: FeaturesProps) {
   return (
     <ul className="space-y-3">
       {features.map((feature) => (
