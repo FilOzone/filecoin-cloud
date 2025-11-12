@@ -1,45 +1,39 @@
 import type { SimpleCardWithImageProps } from '@/components/SimpleCardWithImage'
 
-import blackHole from '@/public/assets/back-hole.webp'
-import nebulaEye from '@/public/assets/nebula-eye.webp'
-import spaceTelescope from '@/public/assets/space-telescope.webp'
-import sunSurface from '@/public/assets/sun-surface.webp'
+import { PATHS } from '@/constants/paths'
+import { FOC_URLS } from '@/constants/site-metadata'
+import aurora from '@/public/assets/aurora.webp'
+import spaceStation from '@/public/assets/space-station.webp'
+import spiralGalaxy from '@/public/assets/spiral-galaxy.webp'
+import stellarExplosionNebula from '@/public/assets/stellar-explosion-nebula.webp'
 
-export const filecoinOnchainCloudProducts = [
+const CTA_TEXT = 'Learn more'
+
+export const filecoinOnchainCloudProducts: Array<SimpleCardWithImageProps> = [
   {
-    image: {
-      data: spaceTelescope,
-      alt: 'A stylized representation of a space telescope with a bright blue core and a series of dark spots representing stars.',
-    },
-    title: 'Service Providers',
-    description:
-      'A global network of operators running Filecoin Onchain Cloud nodes delivering resilient, high-availability storage infrastructure.',
-    cta: { href: '/hidden/service-providers', text: 'Learn more' }, // TODO: Change link
-  },
-  {
-    title: 'Warm Storage',
+    title: 'Filecoin Warm Storage',
     description:
       'A storage layer that keeps data accessible while maintaining verifiable persistence across the Filecoin network. Powered by onchain contracts for storage and payments.',
     cta: {
-      href: '/hidden/warm-storage-service', // TODO: Change link
-      text: 'Learn more',
+      href: PATHS.WARM_STORAGE_SERVICE.path,
+      text: CTA_TEXT,
     },
     image: {
-      data: nebulaEye,
-      alt: 'A stylized representation of a nebula with a bright blue core and a series of dark spots representing stars.',
+      data: spaceStation,
+      alt: "International Space Station illuminated by sunlight above Earth's horizon in space.",
     },
   },
   {
-    image: {
-      data: blackHole,
-      alt: 'An artistic depiction of a black hole with a bright orange accretion disk and a long arc of gas being pulled inward against a background of stars.',
-    },
     title: 'Filecoin Pay',
     description:
       'Enables onchain payments tied to service delivery. Smart contracts automatically confirm performance before releasing funds — unlocking fair, pay-for-what-works models.',
     cta: {
-      href: '/hidden/filecoin-pay-console', // TODO: Change link
-      text: 'Learn more',
+      href: FOC_URLS.filecoinPay,
+      text: CTA_TEXT,
+    },
+    image: {
+      data: stellarExplosionNebula,
+      alt: 'Colorful nebula resembling a cross-shaped stellar explosion surrounded by glowing gas and dust.',
     },
   },
   {
@@ -48,11 +42,21 @@ export const filecoinOnchainCloudProducts = [
       'A retrieval service that connects onchain payments to verified data delivery. Uses an incentivized content network to ensure fast, accountable access across Filecoin.',
     cta: {
       href: 'https://filbeam.com/',
-      text: 'Learn more',
+      text: CTA_TEXT,
     },
     image: {
-      data: sunSurface,
-      alt: "A stylized representation of the sun's surface, with a bright yellow core and a series of dark spots representing sunspots.",
+      data: aurora,
+      alt: "View of colorful aurora over Earth's atmosphere seen from space with part of a spacecraft arm visible.",
+    },
+  },
+  {
+    title: 'Service Providers',
+    description:
+      'A global network of operators running Filecoin Onchain Cloud nodes delivering resilient, high-availability storage infrastructure.',
+    cta: { href: PATHS.SERVICE_PROVIDERS.path, text: CTA_TEXT },
+    image: {
+      data: spiralGalaxy,
+      alt: 'Bright spiral galaxy with glowing core and extended spiral arms filled with stars.',
     },
   },
 ] as const satisfies Array<SimpleCardWithImageProps>
