@@ -95,12 +95,12 @@ export default function WarmStorageService() {
         >
           <div className="grid gap-6 lg:grid-cols-2 lg:max-w-4xl lg:mx-auto">
             {pricingTiers.map(
-              ({ name, description, price, pricingFeatures, recommended }) => (
+              ({ name, description, priceInfo, pricingFeatures, recommended }) => (
                 <PricingCard
                   key={name}
                   name={name}
                   description={description}
-                  price={price}
+                  priceInfo={priceInfo}
                   pricingFeatures={pricingFeatures}
                   recommended={recommended}
                 />
