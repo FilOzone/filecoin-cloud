@@ -38,3 +38,13 @@ export const headerNavigationItems: Array<HeaderNavItem> = [
     href: FOC_URLS.documentation,
   },
 ]
+
+export const mobileNavigationItems = headerNavigationItems
+  .map((item) => {
+    if ('href' in item) {
+      return item
+    }
+
+    return null
+  })
+  .filter(Boolean) as Array<NavItem>
