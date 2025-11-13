@@ -1,4 +1,4 @@
-import { TanstackTable } from '@/components/TanstackTable'
+import { TanstackTable } from '@filecoin-foundation/ui-filecoin/Table/TanstackTable'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
 
