@@ -28,9 +28,13 @@ export function DesktopNavigation() {
             </li>
           )
         })}
-
-        {showNetworkSelector && <NetworkSelector />}
       </ul>
+
+      {showNetworkSelector && (
+        <div className="max-w-56 grow">
+          <NetworkSelector />
+        </div>
+      )}
     </div>
   )
 }
