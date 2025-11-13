@@ -1,13 +1,8 @@
-import React, { type ReactNode } from 'react'
+import type { Question } from '@/components/Faq'
 
 import { FOC_URLS } from '@/constants/site-metadata'
 
-export type FAQ = {
-  question: string
-  answer: string | ReactNode
-}
-
-export const faqs: Array<FAQ> = [
+export const faqs: Array<Question> = [
   {
     question: 'How do I build, test, and deploy?',
     answer: (

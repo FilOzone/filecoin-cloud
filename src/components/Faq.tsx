@@ -2,8 +2,13 @@ import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
 import { Accordion } from './Accordion'
 
+export type Question = {
+  question: string
+  answer: React.ReactNode
+}
+
 type FaqProps = {
-  questions: Array<{ question: string; answer: string }>
+  questions: Array<Question>
 }
 
 export function Faq({ questions }: FaqProps) {
