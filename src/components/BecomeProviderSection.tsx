@@ -11,7 +11,7 @@ export function BecomeProviderSection() {
       <SectionContent
         centerCTA
         centerTitle
-        title="Become a PDP Storage Provider"
+        title="Become a Service Provider"
         description="Learn how to set up and run a storage provider node and join the network to offer verifiable warm storage service."
         cta={
           <Button

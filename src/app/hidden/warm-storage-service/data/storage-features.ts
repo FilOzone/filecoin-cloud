@@ -9,13 +9,13 @@ export const storageFeatures = [
   {
     title: 'Verifiable Storage',
     description:
-      'On-chain proof of data possession ensures your data is always verifiable and secure.',
+      'Onchain proof of data possession ensures your data is always verifiable and secure.',
     icon: ShieldCheckIcon,
   },
   {
-    title: 'SLA Guaranteed',
+    title: 'Service Level Agreements',
     description:
-      'Service level agreements backed by smart contracts for guaranteed uptime.',
+      'Smart contract-based service level agreements for verified uptime.',
     icon: CertificateIcon,
   },
   {
