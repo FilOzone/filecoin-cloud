@@ -9,7 +9,7 @@ export const pricingTiers: Array<PricingCardProps> = [
         amount: '2.5',
         unit: 'USDFC/TiB/month',
         description:
-          'Minimum monthly charge: 0.06 USDFC (covers up to ~24 GiB)',
+          'Minimum monthly charge: 0.06 USDFC (covers up to ~24 GiB)',
       },
     ],
     features: [
