@@ -46,7 +46,7 @@ export default function HiddenHomepage() {
             </Announcement> */}
             <PageHeader
               centered
-              title="Cloud services with onchain guarantees — ownership, verifiability, and programmability"
+              title="Cloud services with onchain guarantees: ownership, verifiability, and programmability"
               description="Filecoin Onchain Cloud lets you build applications that own their data, payments, and logic."
               cta={
                 <Button href={FOC_URLS.documentation} variant="primary">
@@ -153,11 +153,11 @@ export default function HiddenHomepage() {
           description="Join us in shaping the next wave of open, verifiable cloud services."
           cta={
             <Button href={FOC_URLS.social.telegram} variant="primary">
-              Join the community
+              Get involved
             </Button>
           }
         >
-          <div className="flex flex-col sm:flex-row flex-wrap xl:flex-nowrap">
+          <div className="flex flex-col sm:flex-row flex-wrap 4xl:flex-nowrap">
             {buildPhases.map((phase, index) => {
               const { date, title, description, status } = phase
               const isLast = index === buildPhases.length - 1

@@ -45,14 +45,14 @@ export default function WarmStorageService() {
         <PageHeader
           centered
           title="Warm Storage Service"
-          description="Verifiable storage powered by Filecoin PDP, with optional fast content delivery through Filecoin Beam, a CDN gateway add-on."
+          description="Fast, verifiable storage powered by Filecoin's Proof of Data Possession (PDP), with the option to add on fast retrievals with Filecoin Beam."
           cta={[
             <Button
               key="get-started-with-our-sdk"
               href={FOC_URLS.warmStorageService.synapseSdk}
               variant="primary"
             >
-              Get started with our SDK
+              Get started with Synapse SDK
             </Button>,
             <Button
               key="view-contract-source-code"
@@ -91,7 +91,7 @@ export default function WarmStorageService() {
               href={FOC_URLS.warmStorageService.synapseSdk}
               variant="primary"
             >
-              Get started with our SDK
+              Get started with Synapse SDK
             </Button>
           }
         >
@@ -116,7 +116,7 @@ export default function WarmStorageService() {
         <SectionContent
           centerCTA
           centerTitle
-          title="Warm Storage Service"
+          title="Warm Storage Overview"
           description="View contract addresses and browse approved storage providers."
           cta={
             <Button href={PATHS.SERVICE_PROVIDERS.path} variant="ghost">
