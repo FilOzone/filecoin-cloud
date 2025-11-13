@@ -157,7 +157,7 @@ export default function HiddenHomepage() {
             </Button>
           }
         >
-          <div className="flex flex-col sm:flex-row flex-wrap xl:flex-nowrap">
+          <div className="flex flex-col sm:flex-row flex-wrap 4xl:flex-nowrap">
             {buildPhases.map((phase, index) => {
               const { date, title, description, status } = phase
               const isLast = index === buildPhases.length - 1
