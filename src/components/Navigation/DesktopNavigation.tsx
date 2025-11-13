@@ -15,7 +15,7 @@ export function DesktopNavigation() {
     pathname.startsWith('/hidden/warm-storage-service')
 
   return (
-    <div className="hidden xl:flex xl:w-full xl:items-center xl:justify-end xl:gap-4">
+    <div className="flex w-full items-center justify-end gap-4">
       <ul aria-label="Main navigation menu" className="flex items-center gap-6">
         {headerNavigationItems.map((item) => {
           if ('items' in item) {
