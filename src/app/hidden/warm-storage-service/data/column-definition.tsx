@@ -1,21 +1,20 @@
+import { ID } from '@filecoin-foundation/ui-filecoin/Table/ID'
+import { PeerID } from '@filecoin-foundation/ui-filecoin/Table/PeerID'
+import { YesNoStatus } from '@filecoin-foundation/ui-filecoin/Table/YesNoStatus'
 import { createColumnHelper } from '@tanstack/react-table'
 
 import { CompactAddress } from '@/components/CompactAddress'
-import { Id } from '@/components/Id'
-import { PeerId } from '@/components/PeerId'
+import { ProviderTableOverview } from '@/components/ProviderTableOverview'
 import { SoftwareVersion } from '@/components/SoftwareVersion'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
-
-import { ProviderTableInpiStatus } from '../components/ProviderTableInpiStatus'
-import { ProviderTableOverview } from '../components/ProviderTableOverview'
 
 const columnHelper = createColumnHelper<ServiceProvider>()
 
 export const columns = [
   columnHelper.accessor('id', {
     header: 'ID',
-    cell: (info) => <Id number={info.getValue()} />,
+    cell: (info) => <ID number={info.getValue()} />,
   }),
   columnHelper.accessor(
     (row) => ({
@@ -66,11 +65,14 @@ export const columns = [
   }),
   columnHelper.accessor('ipniIpfs', {
     header: 'IPNI',
-    cell: (info) => <ProviderTableInpiStatus published={info.getValue()} />,
+    cell: (info) => {
+      const isPublished = info.getValue()
+      return <YesNoStatus status={isPublished ? 'yes' : 'no'} />
+    },
   }),
   columnHelper.accessor('peerId', {
     id: 'peerId',
     header: 'Peer ID',
-    cell: (info) => <PeerId id={info.getValue() || '-'} />,
+    cell: (info) => <PeerID id={info.getValue() || '-'} />,
   }),
 ]
