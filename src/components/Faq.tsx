@@ -9,7 +9,11 @@ type FaqProps = {
 export function Faq({ questions }: FaqProps) {
   return (
     <SectionContent title="Frequently asked questions">
-      <Accordion type="single" collapsible className="divide-y divide-white/20">
+      <Accordion
+        type="single"
+        collapsible
+        className="divide-y divide-white/20 prose-invert"
+      >
         {questions.map(({ question, answer }) => {
           return (
             <Accordion.Item key={question} value={question} className="py-4">
