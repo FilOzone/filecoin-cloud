@@ -2,12 +2,12 @@
 
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
+import { RefreshOverlay } from '@filecoin-foundation/ui-filecoin/RefreshOverlay'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { RefreshButton } from '@/components/RefreshButton'
-import { RefreshOverlay } from '@/components/RefreshOverlay'
 
 import { useProviders } from '@/app/hidden/warm-storage-service/hooks/use-providers'
 
@@ -34,7 +34,10 @@ export default function ServiceProviders() {
         >
           <div className="flex flex-col gap-6">
             <div className="flex">
-              <RefreshButton onClick={refetch} disabled={!canRefreshTable} />
+              <RefreshButton
+                onClick={() => refetch()}
+                disabled={!canRefreshTable}
+              />
             </div>
 
             {isLoading && <LoadingStateCard message="Loading providers..." />}

@@ -1,20 +1,15 @@
-import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
-import { ArrowClockwiseIcon } from '@phosphor-icons/react/dist/ssr'
+import type { Button } from '@filecoin-foundation/ui-filecoin/Button'
+import { RefreshButton as SharedRefreshButton } from '@filecoin-foundation/ui-filecoin/RefreshButton'
+import type { ComponentProps } from 'react'
 
-import { Button } from './Button'
+import { BASE_DOMAIN } from '@/constants/site-metadata'
 
-type RefreshButtonProps = {
-  onClick: () => void
-  disabled: boolean
-}
+// #todo: Refactor with imported type from UI-Filecoin
+type RefreshButtonProps = Pick<
+  ComponentProps<typeof Button>,
+  'onClick' | 'disabled'
+>
 
 export function RefreshButton(props: RefreshButtonProps) {
-  return (
-    <Button variant="tertiary" {...props}>
-      <span className="flex gap-2 items-center">
-        <Icon component={ArrowClockwiseIcon} size={20} />
-        Refresh
-      </span>
-    </Button>
-  )
+  return <SharedRefreshButton {...props} baseDomain={BASE_DOMAIN} />
 }

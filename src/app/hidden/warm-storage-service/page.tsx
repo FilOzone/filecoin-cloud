@@ -5,6 +5,7 @@ import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
+import { RefreshOverlay } from '@filecoin-foundation/ui-filecoin/RefreshOverlay'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
 
@@ -12,7 +13,6 @@ import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { RefreshButton } from '@/components/RefreshButton'
-import { RefreshOverlay } from '@/components/RefreshOverlay'
 
 import { PATHS } from '@/constants/paths'
 import { FOC_URLS } from '@/constants/site-metadata'
@@ -151,7 +151,10 @@ export default function WarmStorageService() {
           <div className="flex flex-col gap-6">
             <h3 className="text-2xl font-medium">Warm Storage Providers</h3>
             <div className="flex">
-              <RefreshButton onClick={refetch} disabled={!canRefreshTable} />
+              <RefreshButton
+                onClick={() => refetch()}
+                disabled={!canRefreshTable}
+              />
             </div>
 
             {isLoading && <LoadingStateCard message="Loading providers..." />}
