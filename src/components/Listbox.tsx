@@ -39,7 +39,7 @@ export function Listbox<T extends Option>({
 
   return (
     <HeadlessListbox value={selected} onChange={setSelected}>
-      <ListboxButton className="relative block min-w-56 rounded-lg bg-transparent p-3 text-left font-semibold text-(--color-lisbox-button-text) data-focus:brand-outline focus:brand-outline focus-visible:brand-outline border border-(--color-listbox-border) data-focus:bg-(--color-listbox-button-background)">
+      <ListboxButton className="relative block min-w-44 rounded-lg bg-transparent p-3 text-left font-semibold text-(--color-lisbox-button-text) data-focus:brand-outline focus:brand-outline focus-visible:brand-outline border border-(--color-listbox-border) data-focus:bg-(--color-listbox-button-background)">
         <span className="flex gap-2 items-center">
           <Icon component={IconComponent} size={20} />
           {selected.label}
