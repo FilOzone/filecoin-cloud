@@ -11,14 +11,15 @@ import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
+import { InfoCard } from '@/components/InfoCard'
+import { InfoCardGrid } from '@/components/InfoCardGrid'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { RefreshButton } from '@/components/RefreshButton'
 
 import { PATHS } from '@/constants/paths'
 import { FOC_URLS } from '@/constants/site-metadata'
+import { truncateAddress } from '@/utils/truncate-address'
 
-import { ContractCard } from './components/ContractCard'
-import { ContractCardGrid } from './components/ContractCardGrid'
 import { PricingCard } from './components/PricingCard/PricingCard'
 import { WarmStorageProvidersTable } from './components/WarmStorageProvidersTable'
 import { pricingTiers } from './data/pricing-tiers'
@@ -127,16 +128,17 @@ export default function WarmStorageService() {
           <div className="flex flex-col gap-6">
             <h3 className="text-2xl font-medium">Contract Addresses</h3>
 
-            <ContractCardGrid>
+            <InfoCardGrid>
               {contractsData.map(({ label, address, href }) => (
-                <ContractCard
+                <InfoCard
                   key={label}
                   label={label}
-                  address={address}
+                  text={truncateAddress(address)}
                   href={href}
+                  ariaLabel={`View ${label} contract address ${address} on explorer`}
                 />
               ))}
-            </ContractCardGrid>
+            </InfoCardGrid>
 
             <Button
               href={FOC_URLS.warmStorageService.contactSourceCode}
