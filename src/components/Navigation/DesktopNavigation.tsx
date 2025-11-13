@@ -1,11 +1,11 @@
 'use client'
 
 import { NavigationMainLink } from '@filecoin-foundation/ui-filecoin/Navigation/NavigationMainLink'
+import { NetworkSelector } from '@filecoin-foundation/ui-filecoin/Network/NetworkSelector'
 import { usePathname } from 'next/navigation'
 
 import { headerNavigationItems } from './constants/navigation'
 import { NavigationMenu } from './NavigationMenu/NavigationMenu'
-import { NetworkSelector } from '../NetworkSelector'
 
 export function DesktopNavigation() {
   const pathname = usePathname()
