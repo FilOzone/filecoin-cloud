@@ -153,7 +153,7 @@ export default function HiddenHomepage() {
           description="Join us in shaping the next wave of open, verifiable cloud services."
           cta={
             <Button href={FOC_URLS.social.telegram} variant="primary">
-              Join the community
+              Get involved
             </Button>
           }
         >

@@ -2,7 +2,7 @@ import type { CardData } from '@filecoin-foundation/ui-filecoin/Card'
 
 import akaveLogo from '@/public/akave-logo.webp'
 import ensLogo from '@/public/ens-logo.webp'
-import erc8004Logo from '@/public/erc8004-logo.webp'
+import erc8004Logo from '@/public/erc-8004-logo.webp'
 import filecoinPinLogo from '@/public/filecoinpin-logo.webp'
 
 export const runningOnFilecoinOnchainCloud = [
@@ -25,12 +25,12 @@ export const runningOnFilecoinOnchainCloud = [
     },
   },
   {
-    title: 'ERC8004',
+    title: 'ERC-8004',
     description:
-      'Uses verifiable storage on Filecoin Onchain Cloud to persist and prove AI agent activity — creating transparent, tamper-proof audit logs.',
+      'The trustless agent-builder community is using Filecoin Pin for onchain agent identity, reputation, and discovery.',
     image: {
       data: erc8004Logo,
-      alt: 'ERC8004 text logo on a starry background',
+      alt: 'ERC-8004 text logo on a starry background',
     },
   },
   {
