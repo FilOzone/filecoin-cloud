@@ -4,7 +4,7 @@ import { YesNoStatus } from '@filecoin-foundation/ui-filecoin/Table/YesNoStatus'
 import { createColumnHelper } from '@tanstack/react-table'
 
 import { CompactAddress } from '@/components/CompactAddress'
-import { ProviderTableOverview } from '@/components/ProviderTableOverview'
+import { ProviderOverview } from '@/components/ProviderOverview'
 import { SoftwareVersion } from '@/components/SoftwareVersion'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
@@ -30,7 +30,7 @@ export const columns = [
         const { name, description, address, serviceUrl } = info.getValue()
 
         return (
-          <ProviderTableOverview
+          <ProviderOverview
             name={name}
             description={description}
             address={address}
