@@ -1,11 +1,8 @@
-import {
-  RefreshButton as SharedRefreshButton,
-
-} from '@filecoin-foundation/ui-filecoin/RefreshButton'
-import { BASE_DOMAIN } from '@/constants/site-metadata'
+import type { Button } from '@filecoin-foundation/ui-filecoin/Button'
+import { RefreshButton as SharedRefreshButton } from '@filecoin-foundation/ui-filecoin/RefreshButton'
 import type { ComponentProps } from 'react'
-import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 
+import { BASE_DOMAIN } from '@/constants/site-metadata'
 
 type RefreshButtonProps = Pick<
   ComponentProps<typeof Button>,
@@ -13,10 +10,5 @@ type RefreshButtonProps = Pick<
 >
 
 export function RefreshButton(props: RefreshButtonProps) {
-  return (
-    <SharedRefreshButton
-      {...props}
-      baseDomain={BASE_DOMAIN}
-    />
-  )
+  return <SharedRefreshButton {...props} baseDomain={BASE_DOMAIN} />
 }
