@@ -52,7 +52,7 @@ export default function WarmStorageService() {
               href={FOC_URLS.warmStorageService.synapseSdk}
               variant="primary"
             >
-              Get started with our SDK
+              Get started with Synapse SDK
             </Button>,
             <Button
               key="view-contract-source-code"
@@ -91,7 +91,7 @@ export default function WarmStorageService() {
               href={FOC_URLS.warmStorageService.synapseSdk}
               variant="primary"
             >
-              Get started with our SDK
+              Get started with Synapse SDK
             </Button>
           }
         >
