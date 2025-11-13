@@ -15,9 +15,6 @@ type NavigationProps = {
 }
 
 export function Navigation({ backgroundVariant }: NavigationProps) {
-  // To Update once @filecoin-foundation/ui-filecoin is updated to 0.1.6
-  // [ ] Move responsive classes outside of MobileNavigation/DesktopNavigation and inside here. lg should be better than xl
-
   return (
     <Section as="header" backgroundVariant={backgroundVariant}>
       <Container>
