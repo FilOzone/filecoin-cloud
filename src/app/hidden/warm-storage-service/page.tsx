@@ -3,6 +3,7 @@
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
+import { NetworkSelector } from '@filecoin-foundation/ui-filecoin/Network/NetworkSelector'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { RefreshOverlay } from '@filecoin-foundation/ui-filecoin/RefreshOverlay'
@@ -125,8 +126,13 @@ export default function WarmStorageService() {
             </Button>
           }
         >
-          <div className="flex flex-col gap-6 ">
-            <h3 className="text-2xl font-medium">Contract Addresses</h3>
+          <div className="flex flex-col gap-6">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <h3 className="text-2xl font-medium">Contract Addresses</h3>
+              <div className="sm:w-56 w-full">
+                <NetworkSelector />
+              </div>
+            </div>
 
             <InfoCardGrid>
               {contractsData.map(({ label, address, href }) => (
