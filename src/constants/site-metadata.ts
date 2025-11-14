@@ -21,8 +21,10 @@ const FOC_URLS = {
     slack: 'https://filecoinproject.slack.com/archives/C07CGTXHHT4',
   },
   warmStorageService: {
+    beam: 'https://filbeam.com/',
     contactSourceCode:
       'https://github.com/FilOzone/filecoin-services/tree/main/service_contracts/src',
+    pdp: 'https://github.com/FilOzone/pdp',
     sourceCode:
       'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/FilecoinWarmStorageService.sol',
     spDocumentation: 'https://docs.filecoin.io/storage-providers/pdp/',
@@ -57,6 +59,6 @@ export {
   FIL_OZ_URL,
   FILECOIN_FOUNDATION_URL,
   FOC_URLS,
-  ORGANIZATION_NAME,
   METADATA,
+  ORGANIZATION_NAME,
 }
