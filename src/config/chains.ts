@@ -55,7 +55,8 @@ const mainnet: Chain = {
       webSocket: ['wss://wss.node.glif.io/apigw/lotus/rpc/v1'],
     },
   },
-  linkToRelease: '',
+  linkToRelease:
+    'https://github.com/FilOzone/filecoin-services/releases/tag/v1.0.0',
   blockExplorers: {
     Beryx: {
       name: 'Beryx',
@@ -76,31 +77,31 @@ const mainnet: Chain = {
   },
   contractsWithAbi: {
     warmStorage: {
-      address: '0x81DFD9813aDd354f03704F31419b0c6268d46232',
+      address: '0x8408502033C418E1bbC97cE9ac48E5528F371A9f',
       abi: WarmStorageABI,
     },
     warmStorageView: {
-      address: '0x1f4B10FFf972Cd429e4007ac2c77fC9e2315ca2f',
+      address: '0x9e4e6699d8F67dFc883d6b0A7344Bd56F7E80B46',
       abi: WarmStorageViewABI,
     },
     serviceRegistry: {
-      address: '0x93b48FeEB7fF9a6D4d745c9EE28Bfa129E6E6676',
+      address: '0xf55dDbf63F1b55c3F1D4FA7e339a68AB7b64A5eB',
       abi: ServiceRegistryABI,
     },
   },
   contracts: {
     pdp: {
-      implementation: '0x839823b96f68f368F349Bab72068ABCB08AE5B6d',
-      proxy: '0x1790d465d1FABE85b530B116f385091d52a12a3b',
+      implementation: '0xe2Dc211BffcA499761570E04e8143Be2BA66095f',
+      proxy: '0xBADd0B92C1c71d02E7d520f64c0876538fa2557F',
     },
     warmStorage: {
-      implementation: '0x5Bf32A0f947B5731E991E1054748487623f40FEc',
-      proxy: '0x81DFD9813aDd354f03704F31419b0c6268d46232',
-      stateView: '0x1f4B10FFf972Cd429e4007ac2c77fC9e2315ca2f',
+      implementation: '0xd60b90f6D3C42B26a246E141ec701a20Dde2fA61',
+      proxy: '0x8408502033C418E1bbC97cE9ac48E5528F371A9f',
+      stateView: '0x9e4e6699d8F67dFc883d6b0A7344Bd56F7E80B46',
     },
     serviceProviderRegistry: {
-      proxy: '0x93b48FeEB7fF9a6D4d745c9EE28Bfa129E6E6676',
-      implementation: '0x4A57d833A62E9146F86f70408D9E64515849B003',
+      proxy: '0xf55dDbf63F1b55c3F1D4FA7e339a68AB7b64A5eB',
+      implementation: '0xe255D3a89D6B326b48bc0fC94a472A839471D6B0',
     },
   },
 }
@@ -119,6 +120,8 @@ export const calibration: Chain = {
       webSocket: ['wss://wss.calibration.node.glif.io/apigw/lotus/rpc/v1'],
     },
   },
+  linkToRelease:
+    'https://github.com/FilOzone/filecoin-services/releases/tag/v1.0.0',
   blockExplorers: {
     Beryx: {
       name: 'Beryx',
@@ -152,7 +155,10 @@ export const calibration: Chain = {
     },
   },
   contracts: {
-    pdp: {},
+    pdp: {
+      implementation: '0x2355Cb19BA1eFF51673562E1a5fc5eE292AF9D42',
+      proxy: '0x85e366Cf9DD2c0aE37E963d9556F5f4718d6417C',
+    },
     warmStorage: {
       implementation: '0x4BCc752555Bf08A5Bd9a4Ce467a12607277450bA',
       proxy: '0x02925630df557F957f70E112bA06e50965417CA0',
