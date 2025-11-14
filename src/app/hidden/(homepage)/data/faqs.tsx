@@ -1,4 +1,5 @@
 import type { Question } from '@/components/Faq'
+import { MarkdownLink } from '@/components/TextLink/MarkdownLink'
 
 import { FOC_URLS } from '@/constants/site-metadata'
 
@@ -9,9 +10,9 @@ export const faqs: Array<Question> = [
       <>
         <p>
           Start with the{' '}
-          <a href={FOC_URLS.warmStorageService.synapseSdk}>
+          <MarkdownLink href={FOC_URLS.warmStorageService.synapseSdk}>
             Filecoin Synapse SDK
-          </a>{' '}
+          </MarkdownLink>{' '}
           to access Filecoin Onchain Cloud flagship services. Upload, retrieve,
           and verify files in just a few lines of code, test everything on
           calibration, then switch to mainnet by pointing your SDK to the
@@ -102,14 +103,22 @@ export const faqs: Array<Question> = [
           </li>
           <li>
             <strong>Transparent rankings:</strong>{' '}
-            <a href="https://dealbot-ga.fwss.io/">Storage</a> and{' '}
-            <a href="https://github.com/filbeam/bot">retrieval</a> deal checkers
-            continuously test retrievals across the network, executing real
-            deals with providers to track latency, success rates, and
-            throughput.{' '}
-            <a href="https://dashboard.filbeam.com/">Public dashboards</a> ranks
-            providers by performance, giving builders transparent benchmarks and
-            helping the retrieval market' stay competitive and accountable.
+            <MarkdownLink href="https://dealbot-ga.fwss.io/">
+              Storage
+            </MarkdownLink>{' '}
+            and{' '}
+            <MarkdownLink href="https://github.com/filbeam/bot">
+              retrieval
+            </MarkdownLink>{' '}
+            deal checkers continuously test retrievals across the network,
+            executing real deals with providers to track latency, success rates,
+            and throughput.{' '}
+            <MarkdownLink href="https://dashboard.filbeam.com/">
+              Public dashboards
+            </MarkdownLink>{' '}
+            ranks providers by performance, giving builders transparent
+            benchmarks and helping the retrieval market' stay competitive and
+            accountable.
           </li>
         </ul>
       </>
@@ -149,16 +158,16 @@ export const faqs: Array<Question> = [
         <ul>
           <li>
             Join the{' '}
-            <a href={FOC_URLS.social.telegram}>
+            <MarkdownLink href={FOC_URLS.social.telegram}>
               FOC Builders group on Telegram
-            </a>{' '}
+            </MarkdownLink>{' '}
             to ask questions and get support.
           </li>
           <li>
             Jump into the{' '}
-            <a href={FOC_URLS.social.slack}>
+            <MarkdownLink href={FOC_URLS.social.slack}>
               #FIL-FOC channel on Filecoin Slack
-            </a>
+            </MarkdownLink>
             .
           </li>
           <li>
