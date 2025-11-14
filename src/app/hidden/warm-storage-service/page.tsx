@@ -8,6 +8,7 @@ import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { RefreshOverlay } from '@filecoin-foundation/ui-filecoin/RefreshOverlay'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
+import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
@@ -18,7 +19,7 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { RefreshButton } from '@/components/RefreshButton'
 
 import { PATHS } from '@/constants/paths'
-import { FOC_URLS } from '@/constants/site-metadata'
+import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
 import { truncateAddress } from '@/utils/truncate-address'
 
 import { PricingCard } from './components/PricingCard'
@@ -46,7 +47,19 @@ export default function WarmStorageService() {
         <PageHeader
           centered
           title="Warm Storage Service"
-          description="Fast, verifiable storage powered by Filecoin's Proof of Data Possession (PDP), with the option to add on fast retrievals with Filecoin Beam."
+          description={
+            <>
+              Verifiable storage powered by{' '}
+              <ExternalTextLink href={FOC_URLS.proofOfDataPossession}>
+                Filecoin PDP
+              </ExternalTextLink>
+              , with optional fast content delivery through{' '}
+              <ExternalTextLink href={FIL_BEAM_URL}>
+                Filecoin Beam
+              </ExternalTextLink>
+              , a CDN gateway add-on.
+            </>
+          }
           cta={[
             <Button
               key="get-started-with-our-sdk"
