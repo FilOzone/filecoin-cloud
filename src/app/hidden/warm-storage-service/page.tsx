@@ -19,7 +19,7 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { RefreshButton } from '@/components/RefreshButton'
 
 import { PATHS } from '@/constants/paths'
-import { FOC_URLS } from '@/constants/site-metadata'
+import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
 import { truncateAddress } from '@/utils/truncate-address'
 
 import { PricingCard } from './components/PricingCard'
@@ -50,11 +50,11 @@ export default function WarmStorageService() {
           description={
             <>
               Verifiable storage powered by{' '}
-              <ExternalTextLink href={FOC_URLS.warmStorageService.pdp}>
+              <ExternalTextLink href={FOC_URLS.proofOfDataPossession}>
                 Filecoin PDP
               </ExternalTextLink>
               , with optional fast content delivery through{' '}
-              <ExternalTextLink href={FOC_URLS.warmStorageService.beam}>
+              <ExternalTextLink href={FIL_BEAM_URL}>
                 Filecoin Beam
               </ExternalTextLink>
               , a CDN gateway add-on.
