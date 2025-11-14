@@ -21,9 +21,8 @@ import { PATHS } from '@/constants/paths'
 import { FOC_URLS } from '@/constants/site-metadata'
 import { truncateAddress } from '@/utils/truncate-address'
 
-import { PricingCard } from './components/PricingCard/PricingCard'
+import { PricingCard } from './components/PricingCard'
 import { WarmStorageProvidersTable } from './components/WarmStorageProvidersTable'
-import { pricingTiers } from './data/pricing-tiers'
 import { storageFeatures } from './data/storage-features'
 import { useContractsData } from './hooks/use-contracts-data'
 import { useProviders } from './hooks/use-providers'
@@ -97,19 +96,8 @@ export default function WarmStorageService() {
             </Button>
           }
         >
-          <div className="grid gap-6 lg:grid-cols-2 lg:max-w-4xl lg:mx-auto">
-            {pricingTiers.map(
-              ({ name, description, prices, features, recommended }) => (
-                <PricingCard
-                  key={name}
-                  name={name}
-                  description={description}
-                  prices={prices}
-                  features={features}
-                  recommended={recommended}
-                />
-              ),
-            )}
+          <div className="lg:max-w-4xl lg:mx-auto">
+            <PricingCard />
           </div>
         </SectionContent>
       </PageSection>
