@@ -2,6 +2,8 @@ import { Badge } from '@filecoin-foundation/ui-filecoin/Badge'
 import { Heading } from '@filecoin-foundation/ui-filecoin/Heading'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 
+import { FIL_BEAM_URL } from '@/constants/site-metadata'
+
 export function PricingCard() {
   return (
     <article className="relative flex h-full flex-col rounded-2xl border border-(--color-border-muted) sm:p-10 p-6 divide-y divide-(--color-border-muted)">
@@ -21,7 +23,10 @@ export function PricingCard() {
           </div>
 
           <p className="text-(--color-paragraph-text)">
-            Verifiable storage with Proof of Data Possession
+            Verifiable storage with{' '}
+            <ExternalTextLink href="#todo">
+              Proof of Data Possession
+            </ExternalTextLink>
           </p>
         </div>
 
@@ -45,9 +50,10 @@ export function PricingCard() {
           <Heading tag="h3" variant="card-heading">
             Add-on service
           </Heading>
+
           <p className="text-(--color-paragraph-text)">
             Fast content delivery through{' '}
-            <ExternalTextLink href="https://filbeam.com/">
+            <ExternalTextLink href={FIL_BEAM_URL}>
               Filecoin Beam's
             </ExternalTextLink>{' '}
             data delivery services

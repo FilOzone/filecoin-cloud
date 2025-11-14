@@ -1,7 +1,7 @@
 import type { SimpleCardWithImageProps } from '@/components/SimpleCardWithImage'
 
 import { PATHS } from '@/constants/paths'
-import { FOC_URLS } from '@/constants/site-metadata'
+import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
 import aurora from '@/public/assets/aurora.webp'
 import spaceStation from '@/public/assets/space-station.webp'
 import spiralGalaxy from '@/public/assets/spiral-galaxy.webp'
@@ -41,7 +41,7 @@ export const filecoinOnchainCloudProducts: Array<SimpleCardWithImageProps> = [
     description:
       'A retrieval service that connects onchain payments to verified data delivery. Uses an incentivized content network to ensure fast, accountable access across Filecoin.',
     cta: {
-      href: 'https://filbeam.com/',
+      href: FIL_BEAM_URL,
       text: CTA_TEXT,
     },
     image: {
