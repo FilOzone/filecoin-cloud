@@ -1,9 +1,9 @@
+import { useNetwork } from '@filecoin-foundation/ui-filecoin/Network/NetworkProvider'
 import { CompactAddress as SharedCompactAddress } from '@filecoin-foundation/ui-filecoin/Table/CompactAddress'
 import type { Address } from 'viem'
 
 import { EXPLORERS } from '@/constants/external-services'
-
-import { useNetwork } from './NetworkContext'
+import { getNetworkId } from '@/utils/get-network-id'
 
 type CompactAddressProps = {
   address: Address
@@ -11,7 +11,12 @@ type CompactAddressProps = {
 
 export function CompactAddress({ address }: CompactAddressProps) {
   const { network } = useNetwork()
-  const explorerUrl = EXPLORERS.BLOCKSCOUT[network]
+  const networkId = getNetworkId(network)
 
-  return <SharedCompactAddress address={address} explorerUrl={explorerUrl} />
+  return (
+    <SharedCompactAddress
+      address={address}
+      explorerUrl={EXPLORERS.BLOCKSCOUT[networkId]}
+    />
+  )
 }

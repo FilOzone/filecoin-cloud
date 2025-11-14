@@ -1,11 +1,11 @@
 'use client'
 
+import { useNetwork } from '@filecoin-foundation/ui-filecoin/Network/NetworkProvider'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 
 import { EXPLORERS } from '@/constants/external-services'
+import { getNetworkId } from '@/utils/get-network-id'
 import { isValidUrl } from '@/utils/is-valid-url'
-
-import { useNetwork } from './NetworkContext'
 
 type ProviderOverviewProps = {
   name: string
@@ -21,7 +21,8 @@ export function ProviderOverview({
   serviceUrl,
 }: ProviderOverviewProps) {
   const { network } = useNetwork()
-  const explorerUrl = EXPLORERS.BLOCKSCOUT[network]
+  const networkId = getNetworkId(network)
+  const explorerUrl = EXPLORERS.BLOCKSCOUT[networkId]
 
   const isServiceUrlValid = isValidUrl(serviceUrl)
 
