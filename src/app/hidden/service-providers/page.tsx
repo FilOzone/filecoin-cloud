@@ -1,6 +1,7 @@
 'use client'
 
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
+import { NetworkSelector } from '@filecoin-foundation/ui-filecoin/Network/NetworkSelector'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { RefreshOverlay } from '@filecoin-foundation/ui-filecoin/RefreshOverlay'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
@@ -33,7 +34,11 @@ export default function ServiceProviders() {
           description="Explore registered service providers offering verifiable storage and data services on Filecoin Onchain Cloud."
         >
           <div className="flex flex-col gap-6">
-            <div className="flex">
+            <div className="flex items-center justify-between flex-wrap gap-6">
+              <div className="sm:w-56 w-full">
+                <NetworkSelector />
+              </div>
+
               <RefreshButton
                 onClick={() => refetch()}
                 disabled={!canRefreshTable}
