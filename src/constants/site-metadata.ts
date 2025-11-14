@@ -3,10 +3,13 @@ import type { Metadata } from 'next'
 const BASE_DOMAIN = 'www.filecoin.cloud'
 const BASE_URL = `https://${BASE_DOMAIN}`
 const ORGANIZATION_NAME = 'FilOz'
+const ORGANIZATION_HANDLE = `@_${ORGANIZATION_NAME}`
 
 const META_TITLE = 'Filecoin Onchain Cloud'
 const META_DESCRIPTION =
   'Filecoin Onchain Cloud provides transparent storage, retrieval, and payments on the Filecoin network. Launching soon!'
+
+const DEFAULT_SOCIAL_IMAGE = '/assets/image-fallback.webp'
 
 const FIL_BEAM_URL = 'https://filbeam.com/'
 const FIL_OZ_URL = 'https://filoz.org/'
@@ -50,17 +53,23 @@ const METADATA: Metadata = {
     card: 'summary_large_image',
     title: META_TITLE,
     description: META_DESCRIPTION,
-    images: ['/open-graph-image.webp'],
+    site: ORGANIZATION_HANDLE,
+    creator: ORGANIZATION_HANDLE,
+    images: [{ url: '/open-graph-image.webp' }],
   },
 }
 
 export {
   BASE_DOMAIN,
   BASE_URL,
+  DEFAULT_SOCIAL_IMAGE,
   FIL_BEAM_URL,
   FIL_OZ_URL,
   FILECOIN_FOUNDATION_URL,
   FOC_URLS,
+  META_DESCRIPTION,
+  META_TITLE,
   METADATA,
+  ORGANIZATION_HANDLE,
   ORGANIZATION_NAME,
 }

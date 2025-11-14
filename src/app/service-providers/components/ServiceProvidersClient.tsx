@@ -1,22 +1,20 @@
+'use client'
+
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
+import { NetworkSelector } from '@filecoin-foundation/ui-filecoin/Network/NetworkSelector'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { RefreshOverlay } from '@filecoin-foundation/ui-filecoin/RefreshOverlay'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Navigation } from '@/components/Navigation/Navigation'
-import { NetworkSelector } from '@/components/NetworkSelector'
-import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 import { RefreshButton } from '@/components/RefreshButton'
 
-import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
-import { PATHS } from '@/constants/paths'
-import { createMetadata } from '@/utils/create-metadata'
+import { useProviders } from '@/app/hidden/warm-storage-service/hooks/use-providers'
 
-import { ServiceProvidersTable } from './components/ServiceProvidersTable'
-import { SERVICE_PROVIDERS_SEO } from './constants/seo'
+import { ServiceProvidersTable } from './ServiceProvidersTable'
 
-export default function ServiceProviders() {
+export function ServiceProvidersClient() {
   const {
     data: providers,
     isLoading,
@@ -36,7 +34,7 @@ export default function ServiceProviders() {
           description="Explore registered service providers offering verifiable storage and data services on Filecoin Onchain Cloud."
         >
           <div className="flex flex-col gap-6">
-            <div className="flex items-center justify-end flex-wrap gap-6">
+            <div className="flex items-center justify-between flex-wrap gap-6">
               <div className="sm:w-56 w-full">
                 <NetworkSelector />
               </div>
@@ -50,7 +48,9 @@ export default function ServiceProviders() {
             {isLoading && <LoadingStateCard message="Loading providers..." />}
 
             {error && (
-              <ProvidersLoadingError message={error.message} retry={refetch} />
+              <div className="text-center py-8 text-red-600">
+                Error loading providers: {error.message || 'Unknown error'}
+              </div>
             )}
 
             {providers && providers.length > 0 && (
@@ -72,9 +72,3 @@ export default function ServiceProviders() {
     </>
   )
 }
-
-export const metadata = createMetadata({
-  title: SERVICE_PROVIDERS_SEO.title,
-  description: SERVICE_PROVIDERS_SEO.description,
-  path: PATHS.SERVICE_PROVIDERS.path as `/${string}`,
-})

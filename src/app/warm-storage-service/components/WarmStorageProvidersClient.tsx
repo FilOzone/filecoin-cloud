@@ -3,41 +3,32 @@
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
+import { NetworkSelector } from '@filecoin-foundation/ui-filecoin/Network/NetworkSelector'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { RefreshOverlay } from '@filecoin-foundation/ui-filecoin/RefreshOverlay'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
-import Image from 'next/image'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
 import { InfoCard } from '@/components/InfoCard'
 import { InfoCardGrid } from '@/components/InfoCardGrid'
 import { Navigation } from '@/components/Navigation/Navigation'
-import { NetworkSelector } from '@/components/NetworkSelector'
-import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 import { RefreshButton } from '@/components/RefreshButton'
 
 import { PATHS } from '@/constants/paths'
 import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
-import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
-import synapseCodeSnippet from '@/public/assets/synapse-code-snippet.webp'
-import { createMetadata } from '@/utils/create-metadata'
 import { truncateAddress } from '@/utils/truncate-address'
 
-import { PricingCard } from './components/PricingCard'
-import { WarmStorageProvidersTable } from './components/WarmStorageProvidersTable'
-import { WARM_STORAGE_SERVICE_SEO } from './constants/seo'
-import { storageFeatures } from './data/storage-features'
-import { SYNAPSE_CODE_SNIPPET } from './data/synapse-code-snippet'
-import { useContractsData } from './hooks/use-contracts-data'
-import { useProviders } from './hooks/use-providers'
+import { PricingCard } from './PricingCard'
+import { WarmStorageProvidersTable } from './WarmStorageProvidersTable'
+import { storageFeatures } from '../data/storage-features'
+import { useContractsData } from '../hooks/use-contracts-data'
+import { useProviders } from '../hooks/use-providers'
 
-export default function WarmStorageService() {
-  const { copy, isCopied } = useCopyToClipboard()
-
+export function WarmStorageProvidersClient() {
   const { contractsData } = useContractsData()
   const {
     data: providers,
@@ -58,17 +49,15 @@ export default function WarmStorageService() {
           title="Warm Storage Service"
           description={
             <>
-              New era of Filecoin storage: fast, verifiable storage powered by{' '}
-              <ExternalTextLink
-                href={FOC_URLS.documentation.proofOfDataPossession}
-              >
-                Proof of Data Possession
+              Verifiable storage powered by{' '}
+              <ExternalTextLink href={FOC_URLS.proofOfDataPossession}>
+                Filecoin PDP
               </ExternalTextLink>
-              , with an optional add-on for rapid data delivery through{' '}
+              , with optional fast content delivery through{' '}
               <ExternalTextLink href={FIL_BEAM_URL}>
                 Filecoin Beam
               </ExternalTextLink>
-              .
+              , a CDN gateway add-on.
             </>
           }
           cta={[
@@ -103,36 +92,6 @@ export default function WarmStorageService() {
             />
           ))}
         </CardGrid>
-
-        <div className="pb-15 md:pb-25" />
-
-        <SectionContent
-          centerCTA
-          centerTitle
-          title="Integrate warm storage in your app"
-          description="Get started with storage in just a few lines of code"
-          cta={[
-            <Button
-              key="copy-code-snippet"
-              onClick={() => copy(SYNAPSE_CODE_SNIPPET)}
-              variant="primary"
-              className="min-w-[200px]"
-            >
-              {isCopied ? 'Copied!' : 'Copy code snippet'}
-            </Button>,
-            <Button
-              key="explore-documentation"
-              href="https://github.com/FilOzone/filecoin-services/releases/tag/alpha%2Fcalibnet%2F0x80617b65FD2EEa1D7fDe2B4F85977670690ed348-v2"
-              variant="ghost"
-            >
-              Explore documentation
-            </Button>,
-          ]}
-        >
-          <div className="max-w-4xl mx-auto">
-            <Image src={synapseCodeSnippet} alt="Synapse code snippet" />
-          </div>
-        </SectionContent>
       </PageSection>
 
       <PageSection backgroundVariant="light" paddingVariant="topOnly">
@@ -140,6 +99,7 @@ export default function WarmStorageService() {
           centerCTA
           centerTitle
           title="Pricing"
+          description="Choose the plan that fits your storage needs"
           cta={
             <Button
               href={FOC_URLS.warmStorageService.synapseSdk}
@@ -159,7 +119,7 @@ export default function WarmStorageService() {
         <SectionContent
           centerCTA
           centerTitle
-          title="Warm Storage Details"
+          title="Warm Storage Overview"
           description="View contract addresses and browse approved storage providers."
           cta={
             <Button href={PATHS.SERVICE_PROVIDERS.path} variant="ghost">
@@ -197,9 +157,9 @@ export default function WarmStorageService() {
             </Button>
           </div>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 -mt-15">
             <h3 className="text-2xl font-medium">Warm Storage Providers</h3>
-            <div className="flex justify-end">
+            <div className="flex">
               <RefreshButton
                 onClick={() => refetch()}
                 disabled={!canRefreshTable}
@@ -209,7 +169,9 @@ export default function WarmStorageService() {
             {isLoading && <LoadingStateCard message="Loading providers..." />}
 
             {error && (
-              <ProvidersLoadingError message={error.message} retry={refetch} />
+              <div className="text-center py-8 text-red-600">
+                Error loading providers: {error.message || 'Unknown error'}
+              </div>
             )}
 
             {providers && providers.length > 0 && (
@@ -231,9 +193,3 @@ export default function WarmStorageService() {
     </>
   )
 }
-
-export const metadata = createMetadata({
-  title: WARM_STORAGE_SERVICE_SEO.title,
-  description: WARM_STORAGE_SERVICE_SEO.description,
-  path: PATHS.WARM_STORAGE_SERVICE.path as `/${string}`,
-})

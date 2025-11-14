@@ -8,6 +8,7 @@ export type StaticPath =
   | '/warm-storage-service'
 
 export const PATHS = {
+  HOMEPAGE: createPathConfig('/', 'Homepage'),
   PRIVACY_POLICY: createPathConfig('/privacy-policy', 'Privacy Policy'),
   SERVICE_PROVIDERS: createPathConfig(
     '/service-providers',
