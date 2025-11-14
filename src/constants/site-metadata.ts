@@ -15,6 +15,7 @@ const FILECOIN_FOUNDATION_URL = 'https://fil.org/'
 const FOC_URLS = {
   documentation: 'https://docs.filecoin.cloud',
   filecoinPay: 'https://pay.filecoin.cloud',
+  proofOfDataPossession: '#todo',
   social: {
     telegram: 'https://t.me/+Xj6_zTPfcUA4MGQ1',
     slack: 'https://filecoinproject.slack.com/archives/C07CGTXHHT4',

@@ -2,7 +2,7 @@ import { Badge } from '@filecoin-foundation/ui-filecoin/Badge'
 import { Heading } from '@filecoin-foundation/ui-filecoin/Heading'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 
-import { FIL_BEAM_URL } from '@/constants/site-metadata'
+import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
 
 export function PricingCard() {
   return (
@@ -24,7 +24,7 @@ export function PricingCard() {
 
           <p className="text-(--color-paragraph-text)">
             Verifiable storage with{' '}
-            <ExternalTextLink href="#todo">
+            <ExternalTextLink href={FOC_URLS.proofOfDataPossession}>
               Proof of Data Possession
             </ExternalTextLink>
           </p>
