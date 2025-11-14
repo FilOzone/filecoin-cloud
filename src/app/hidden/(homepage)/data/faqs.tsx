@@ -1,9 +1,5 @@
-// import { SmartTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/SmartTextLink'
-
 import type { Question } from '@/components/Faq'
 import { MarkdownLink } from '@/components/TextLink/MarkdownLink'
-
-// import { SmartTextLink } from '@/components/TextLink/SmartTextLink'
 
 import { FOC_URLS } from '@/constants/site-metadata'
 
