@@ -55,7 +55,8 @@ const mainnet: Chain = {
       webSocket: ['wss://wss.node.glif.io/apigw/lotus/rpc/v1'],
     },
   },
-  linkToRelease: '',
+  linkToRelease:
+    'https://github.com/FilOzone/filecoin-services/releases/tag/v1.0.0',
   blockExplorers: {
     Beryx: {
       name: 'Beryx',
@@ -119,6 +120,8 @@ export const calibration: Chain = {
       webSocket: ['wss://wss.calibration.node.glif.io/apigw/lotus/rpc/v1'],
     },
   },
+  linkToRelease:
+    'https://github.com/FilOzone/filecoin-services/releases/tag/v1.0.0',
   blockExplorers: {
     Beryx: {
       name: 'Beryx',
