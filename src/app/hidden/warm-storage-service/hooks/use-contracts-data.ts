@@ -3,8 +3,6 @@ import type { Address } from 'viem'
 
 import { getChain, type Network, type WarmStorage } from '@/config/chains'
 
-import type { ContractCardProps } from '../components/ContractCard'
-
 export function useContractsData(network: Network = 'calibration') {
   return useMemo(() => {
     const chain = getChain(network)
@@ -40,7 +38,7 @@ function formatContractForCard(
   label: string,
   address: Address,
   explorerUrl: string,
-): ContractCardProps {
+) {
   return {
     label,
     address,
