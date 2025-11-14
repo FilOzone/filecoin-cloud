@@ -65,9 +65,9 @@ export default function WarmStorageService() {
           ]}
         />
 
-        <div className="py-25 md:py-30" />
+        <div className="py-15 md:py-25" />
 
-        <CardGrid as="ul" variant="smTwoLgThreeWider">
+        <CardGrid as="ul" variant="mdThreeWider">
           {storageFeatures.map(({ title, description, icon }) => (
             <Card
               isCentered
@@ -125,7 +125,7 @@ export default function WarmStorageService() {
             </Button>
           }
         >
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 ">
             <h3 className="text-2xl font-medium">Contract Addresses</h3>
 
             <InfoCardGrid>
@@ -150,7 +150,7 @@ export default function WarmStorageService() {
             </Button>
           </div>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 -mt-15">
             <h3 className="text-2xl font-medium">Warm Storage Providers</h3>
             <div className="flex">
               <RefreshButton
