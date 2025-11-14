@@ -30,7 +30,7 @@ export default function ServiceProviders() {
       <PageSection backgroundVariant="light">
         <SectionContent
           title="Service Providers"
-          description="Explore registered service providers offering verifiable storage and data services on the Filecoin network."
+          description="Explore registered service providers offering verifiable storage and data services on Filecoin Onchain Cloud."
         >
           <div className="flex flex-col gap-6">
             <div className="flex">

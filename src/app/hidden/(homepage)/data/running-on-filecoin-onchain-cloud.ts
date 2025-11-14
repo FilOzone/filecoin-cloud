@@ -16,12 +16,12 @@ export const runningOnFilecoinOnchainCloud = [
     },
   },
   {
-    title: 'Akave',
+    title: 'Akave Cloud',
     description:
       'Offers Filecoin Warm Storage and serves as a storage onramp for organizations with verifiable data needs.',
     image: {
       data: akaveLogo,
-      alt: 'Akave logo with a stylized font and star symbol on a space-themed background',
+      alt: 'Akave Cloud logo with a stylized font and star symbol on a space-themed background',
     },
   },
   {
