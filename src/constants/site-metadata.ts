@@ -2,13 +2,15 @@ import type { Metadata } from 'next'
 
 const BASE_DOMAIN = 'www.filecoin.cloud'
 const BASE_URL = `https://${BASE_DOMAIN}`
-const ORGANIZATION_NAME = 'FilOz'
+const ORGANIZATION_NAME = 'Filecoin Cloud'
 const ORGANIZATION_HANDLE = `@_${ORGANIZATION_NAME}`
 
-const META_TITLE =
-  'Cloud Services with Onchain Verifiability, Programmability & Ownership'
-const META_DESCRIPTION =
-  'Cloud services with onchain guarantees: ownership, verifiability, and programmability.'
+const SEO = {
+  title:
+    'Cloud Services with Onchain Verifiability, Programmability & Ownership',
+  description:
+    'Cloud services with onchain guarantees: ownership, verifiability, and programmability.',
+}
 
 const DEFAULT_SOCIAL_IMAGE = '/image-fallback.webp'
 
@@ -17,16 +19,15 @@ const FIL_OZ_URL = 'https://filoz.org/'
 const FILECOIN_FOUNDATION_URL = 'https://fil.org/'
 
 const FOC_URLS = {
-  documentation: {
-    home: 'https://docs.filecoin.cloud',
-    gettingStarted: 'https://docs.filecoin.cloud/getting-started/',
-    proofOfDataPossession:
-      'https://docs.filecoin.cloud/core-concepts/pdp-overview/',
-  },
+  documentation: 'https://docs.filecoin.cloud',
   filecoinPay: 'https://pay.filecoin.cloud',
+  proofOfDataPossession: '#todo',
   social: {
     telegram: 'https://t.me/+Xj6_zTPfcUA4MGQ1',
     slack: 'https://filecoinproject.slack.com/archives/C07CGTXHHT4',
+    twitter: 'https://x.com/_FilOz',
+    linkedIn: 'https://www.linkedin.com/company/filoz/',
+    github: 'https://github.com/FilOzone',
   },
   warmStorageService: {
     contactSourceCode:
@@ -42,16 +43,16 @@ const DEFAULT_METADATA: Metadata = {
   metadataBase: new URL(BASE_URL),
   openGraph: {
     type: 'website',
-    title: META_TITLE,
-    description: META_DESCRIPTION,
+    title: SEO.title,
+    description: SEO.description,
     url: BASE_URL,
-    siteName: META_TITLE,
+    siteName: SEO.title,
     images: [{ url: DEFAULT_SOCIAL_IMAGE }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: META_TITLE,
-    description: META_DESCRIPTION,
+    title: SEO.title,
+    description: SEO.description,
     site: ORGANIZATION_HANDLE,
     creator: ORGANIZATION_HANDLE,
     images: [{ url: DEFAULT_SOCIAL_IMAGE }],
@@ -67,8 +68,7 @@ export {
   FIL_OZ_URL,
   FILECOIN_FOUNDATION_URL,
   FOC_URLS,
-  META_DESCRIPTION,
-  META_TITLE,
   ORGANIZATION_HANDLE,
   ORGANIZATION_NAME,
+  SEO,
 }
