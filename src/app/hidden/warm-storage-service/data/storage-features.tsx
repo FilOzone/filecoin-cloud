@@ -1,15 +1,25 @@
 import type { CardData } from '@filecoin-foundation/ui-filecoin/Card'
+import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import {
   CertificateIcon,
   PlugsConnectedIcon,
   ShieldCheckIcon,
 } from '@phosphor-icons/react/dist/ssr'
 
+import { FOC_URLS } from '@/constants/site-metadata'
+
 export const storageFeatures = [
   {
     title: 'Verifiable Storage',
-    description:
-      'Onchain proof of data possession ensures your data is always verifiable and secure.',
+    description: (
+      <>
+        Onchain{' '}
+        <ExternalTextLink href={FOC_URLS.proofOfDataPossession}>
+          Proof of Data Possession
+        </ExternalTextLink>{' '}
+        ensures your data is always verifiable and secure.
+      </>
+    ),
     icon: ShieldCheckIcon,
   },
   {

@@ -13,7 +13,10 @@ const FIL_OZ_URL = 'https://filoz.org/'
 const FILECOIN_FOUNDATION_URL = 'https://fil.org/'
 
 const FOC_URLS = {
-  documentation: 'https://docs.filecoin.cloud',
+  documentation: {
+    home: 'https://docs.filecoin.cloud',
+    gettingStarted: 'https://docs.filecoin.cloud/getting-started/',
+  },
   filecoinPay: 'https://pay.filecoin.cloud',
   proofOfDataPossession: '#todo',
   social: {
