@@ -1,9 +1,8 @@
 import { ID } from '@filecoin-foundation/ui-filecoin/Table/ID'
 import { PeerID } from '@filecoin-foundation/ui-filecoin/Table/PeerID'
-import { YesNoStatus } from '@filecoin-foundation/ui-filecoin/Table/YesNoStatus'
+import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { createColumnHelper } from '@tanstack/react-table'
 
-import { CompactAddress } from '@/components/CompactAddress'
 import { ProviderOverview } from '@/components/ProviderOverview'
 import { SoftwareVersion } from '@/components/SoftwareVersion'
 
@@ -40,10 +39,6 @@ export const columns = [
       },
     },
   ),
-  columnHelper.accessor('serviceStatus', {
-    header: 'Status',
-    cell: (info) => info.getValue() || '-',
-  }),
   columnHelper.accessor('softwareVersion', {
     header: 'Version',
     cell: (info) => {
@@ -51,24 +46,18 @@ export const columns = [
       return softwareVersion ? <SoftwareVersion info={softwareVersion} /> : '-'
     },
   }),
-  columnHelper.accessor('capacityTb', {
-    header: 'Capacity (TiB)',
-    cell: (info) => Number(info.getValue()).toLocaleString('en-US'),
+  // TODO: Add check activity link
+  columnHelper.accessor('checkActivityUrl', {
+    header: 'Check Activity',
+    cell: (info) => (
+      <ExternalTextLink href={info.getValue() || '#todo'}>
+        View on PDP Scan
+      </ExternalTextLink>
+    ),
   }),
   columnHelper.accessor('location', {
     header: 'Location',
     cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('serviceProviderAddress', {
-    header: 'Address',
-    cell: (info) => <CompactAddress address={info.getValue()} />,
-  }),
-  columnHelper.accessor('ipniIpfs', {
-    header: 'IPNI',
-    cell: (info) => {
-      const isPublished = info.getValue()
-      return <YesNoStatus status={isPublished ? 'yes' : 'no'} />
-    },
   }),
   columnHelper.accessor('peerId', {
     id: 'peerId',
