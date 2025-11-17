@@ -1,5 +1,5 @@
 export const PRIVACY_POLICY_SEO = {
-  title: 'Privacy Policy | Filecoin Onchain Cloud',
+  title: 'Privacy Policy | How Filecoin Protects Your Data',
   description:
-    'Learn about how we collect, use, and protect your personal information when you use our services.',
+    'Learn how Filecoin collects, uses, and protects your information. Read our Privacy Policy to understand how we ensure transparency and data security on our network.',
 } as const

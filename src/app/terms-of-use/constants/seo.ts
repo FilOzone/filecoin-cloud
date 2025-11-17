@@ -1,5 +1,5 @@
 export const TERMS_OF_USE_SEO = {
-  title: 'Terms of Use | Filecoin Onchain Cloud',
+  title: 'Terms of Use | Filecoin Onchain Cloud User Agreement',
   description:
-    'Read our terms of use for the Filecoin Onchain Cloud website and services.',
+    'Review the Terms of Use for Filecoin Onchain Cloud. Understand your rights, responsibilities, and usage conditions for our verifiable cloud and storage services.',
 } as const

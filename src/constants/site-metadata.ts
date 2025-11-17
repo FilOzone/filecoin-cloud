@@ -5,11 +5,12 @@ const BASE_URL = `https://${BASE_DOMAIN}`
 const ORGANIZATION_NAME = 'FilOz'
 const ORGANIZATION_HANDLE = `@_${ORGANIZATION_NAME}`
 
-const META_TITLE = 'Filecoin Onchain Cloud'
+const META_TITLE =
+  'Cloud Services with Onchain Verifiability, Programmability & Ownership'
 const META_DESCRIPTION =
-  'Filecoin Onchain Cloud provides transparent storage, retrieval, and payments on the Filecoin network. Launching soon!'
+  'Cloud services with onchain guarantees: ownership, verifiability, and programmability.'
 
-const DEFAULT_SOCIAL_IMAGE = '/assets/image-fallback.webp'
+const DEFAULT_SOCIAL_IMAGE = '/image-fallback.webp'
 
 const FIL_BEAM_URL = 'https://filbeam.com/'
 const FIL_OZ_URL = 'https://filoz.org/'

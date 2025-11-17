@@ -37,21 +37,20 @@ export function createMetadata({
   openGraph = {},
   twitter = {},
 }: MetadataParams) {
-  const imageUrl = [image || DEFAULT_SOCIAL_IMAGE]
-  const imageObject = { url: imageUrl[0] }
-
-  const titleString = title
+  const imageUrl = image || DEFAULT_SOCIAL_IMAGE
+  const defaultImage = [{ url: imageUrl }]
 
   return {
+    metadataBase: METADATA.metadataBase,
     title,
     description,
     openGraph: {
       ...METADATA.openGraph,
       type: openGraph.type || 'website',
       locale: openGraph.locale || 'en_US',
-      title: openGraph.title || titleString,
+      title: openGraph.title || title,
       description: openGraph.description || description,
-      images: openGraph.image ? [{ url: openGraph.image }] : imageObject,
+      images: openGraph.image ? [{ url: openGraph.image }] : defaultImage,
       url: BASE_URL,
     },
     twitter: {
@@ -59,12 +58,12 @@ export function createMetadata({
       card: twitter.card || 'summary_large_image',
       site: twitter.site || ORGANIZATION_HANDLE,
       creator: twitter.creator || ORGANIZATION_HANDLE,
-      title: twitter.title || titleString,
+      title: twitter.title || title,
       description: twitter.description || description,
-      images: twitter.image ? [{ url: twitter.image }] : imageObject,
+      images: twitter.image ? [{ url: twitter.image }] : defaultImage,
     },
     alternates: {
       canonical: path,
     },
-  } as const satisfies Metadata
+  } satisfies Metadata
 }
