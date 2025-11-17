@@ -4,6 +4,7 @@ import akaveLogo from '@/public/akave-logo.webp'
 import ensLogo from '@/public/ens-logo.webp'
 import erc8004Logo from '@/public/erc-8004-logo.webp'
 import filecoinPinLogo from '@/public/filecoinpin-logo.webp'
+import fallbackImage from '@/public/image-fallback.webp'
 
 export const runningOnFilecoinOnchainCloud = [
   {
@@ -25,6 +26,15 @@ export const runningOnFilecoinOnchainCloud = [
     },
   },
   {
+    title: 'Storacha',
+    description:
+      'Delivers IPFS-compatible, high-throughput warm storage with UCAN-based programmable access control.',
+    image: {
+      data: fallbackImage, // TODO: Add image
+      alt: '#todo',
+    },
+  },
+  {
     title: 'ERC-8004',
     description:
       'The trustless agent-builder community is using Filecoin Pin for onchain agent identity, reputation, and discovery.',
@@ -40,6 +50,15 @@ export const runningOnFilecoinOnchainCloud = [
     image: {
       data: ensLogo,
       alt: 'ENS (Ethereum Name Service) logo on a galaxy background',
+    },
+  },
+  {
+    title: 'KYVE',
+    description:
+      'Resiliently stores chain data across a decentralized network of storage providers.',
+    image: {
+      data: fallbackImage, // TODO: Add image
+      alt: '#todo',
     },
   },
 ] as const satisfies Array<CardData>
