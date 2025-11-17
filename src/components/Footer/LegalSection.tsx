@@ -5,8 +5,8 @@ import {
   FIL_OZ_URL,
   FILECOIN_FOUNDATION_URL,
 } from '@/constants/site-metadata'
-import FilecoinFoundationLogo from '@/public/filecoin-foundation-logo.svg'
-import FilozLogo from '@/public/filoz-logo.svg'
+import FilecoinFoundationLogo from '@/public/assets/logos/filecoin-foundation-logo.svg'
+import FilozLogo from '@/public/assets/logos/filoz-logo.svg'
 
 import { legalLinks } from './data/legal-links'
 

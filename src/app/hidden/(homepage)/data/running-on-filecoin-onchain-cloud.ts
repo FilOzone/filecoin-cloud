@@ -1,9 +1,9 @@
 import type { CardData } from '@filecoin-foundation/ui-filecoin/Card'
 
-import akaveLogo from '@/public/akave-logo.webp'
-import ensLogo from '@/public/ens-logo.webp'
-import erc8004Logo from '@/public/erc-8004-logo.webp'
-import filecoinPinLogo from '@/public/filecoinpin-logo.webp'
+import akaveCloudLogo from '@/public/assets/running-on-foc-section/akave-cloud-logo.webp'
+import ensLogo from '@/public/assets/running-on-foc-section/ens-logo.webp'
+import erc8004Logo from '@/public/assets/running-on-foc-section/erc-8004-logo.webp'
+import filecoinPinLogo from '@/public/assets/running-on-foc-section/filecoin-pin-logo.webp'
 import fallbackImage from '@/public/image-fallback.webp'
 
 export const runningOnFilecoinOnchainCloud = [
@@ -21,7 +21,7 @@ export const runningOnFilecoinOnchainCloud = [
     description:
       'Offers Filecoin Warm Storage and serves as a storage onramp for organizations with verifiable data needs.',
     image: {
-      data: akaveLogo,
+      data: akaveCloudLogo,
       alt: 'Akave Cloud logo with a stylized font and star symbol on a space-themed background',
     },
   },
