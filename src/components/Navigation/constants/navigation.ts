@@ -35,7 +35,7 @@ export const headerNavigationItems: Array<HeaderNavItem> = [
   },
   {
     label: 'Documentation',
-    href: FOC_URLS.documentation,
+    href: FOC_URLS.documentation.home,
   },
 ]
 

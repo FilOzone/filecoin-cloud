@@ -49,7 +49,10 @@ export default function HiddenHomepage() {
               title="Cloud services with onchain guarantees: ownership, verifiability, and programmability"
               description="Filecoin Onchain Cloud lets you build applications that own their data, payments, and logic."
               cta={
-                <Button href={FOC_URLS.documentation} variant="primary">
+                <Button
+                  href={FOC_URLS.documentation.gettingStarted}
+                  variant="primary"
+                >
                   Start building
                 </Button>
               }
@@ -75,7 +78,7 @@ export default function HiddenHomepage() {
           cta={[
             <Button
               key="start-building"
-              href={FOC_URLS.documentation}
+              href={FOC_URLS.documentation.gettingStarted}
               variant="primary"
             >
               Start building
