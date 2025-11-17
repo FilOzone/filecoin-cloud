@@ -1,9 +1,9 @@
 import { ID } from '@filecoin-foundation/ui-filecoin/Table/ID'
 import { PeerID } from '@filecoin-foundation/ui-filecoin/Table/PeerID'
 import { YesNoStatus } from '@filecoin-foundation/ui-filecoin/Table/YesNoStatus'
+import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { createColumnHelper } from '@tanstack/react-table'
 
-import { CompactAddress } from '@/components/CompactAddress'
 import { ProviderOverview } from '@/components/ProviderOverview'
 import { SoftwareVersion } from '@/components/SoftwareVersion'
 
@@ -43,16 +43,26 @@ export const columns = [
       },
     },
   ),
-  columnHelper.accessor('serviceStatus', {
-    header: 'Status',
-    cell: (info) => info.getValue() || '-',
-  }),
   columnHelper.accessor('softwareVersion', {
     header: 'Version',
     cell: (info) => {
       const softwareVersion = info.getValue()
       return softwareVersion ? <SoftwareVersion info={softwareVersion} /> : '-'
     },
+  }),
+  // TODO: Add check activity link
+  columnHelper.accessor('checkActivityUrl', {
+    header: 'Check Activity',
+    cell: (info) => (
+      <ExternalTextLink href={info.getValue() || '#todo'}>
+        View on PDP Scan
+      </ExternalTextLink>
+    ),
+  }),
+  // TODO: Add Service Offered Column
+  columnHelper.accessor('serviceStatus', {
+    header: 'Status',
+    cell: (info) => info.getValue() || '-',
   }),
   columnHelper.accessor('location', {
     id: 'location',
@@ -70,10 +80,6 @@ export const columns = [
   columnHelper.accessor('minProvingPeriod', {
     header: 'Proving Period (Epochs)',
     cell: (info) => Number(info.getValue()).toLocaleString('en-US'),
-  }),
-  columnHelper.accessor('serviceProviderAddress', {
-    header: 'Address',
-    cell: (info) => <CompactAddress address={info.getValue()} />,
   }),
   columnHelper.accessor('ipniIpfs', {
     header: 'IPNI',
