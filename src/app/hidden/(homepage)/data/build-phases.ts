@@ -12,10 +12,17 @@ export const buildPhases: Array<
   },
   {
     date: 'Nov 2025',
-    title: 'Filecoin Onchain Cloud launch',
+    title: 'Filecoin Onchain Cloud Testnet Launch',
     description:
       'Open, verifiable cloud platform delivering programmable storage, retrieval, and onchain payments for unstoppable decentralized applications.',
     status: 'current',
+  },
+  {
+    date: 'Jan 2026',
+    title: 'Filecoin Onchain Cloud Live on Mainnet',
+    description:
+      'Launching on mainnet with production-ready programmable storage, retrieval, and onchain payments.',
+    status: 'upcoming',
   },
   {
     date: 'Q1 2026',

@@ -68,7 +68,7 @@ export const columns = [
     },
   }),
   columnHelper.accessor('minProvingPeriod', {
-    header: 'Proving Period',
+    header: 'Proving Period (Epochs)',
     cell: (info) => Number(info.getValue()).toLocaleString('en-US'),
   }),
   columnHelper.accessor('serviceProviderAddress', {
