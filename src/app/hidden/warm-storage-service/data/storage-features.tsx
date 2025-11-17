@@ -14,7 +14,7 @@ export const storageFeatures = [
     description: (
       <>
         Onchain{' '}
-        <ExternalTextLink href={FOC_URLS.proofOfDataPossession}>
+        <ExternalTextLink href={FOC_URLS.documentation.proofOfDataPossession}>
           Proof of Data Possession
         </ExternalTextLink>{' '}
         ensures your data is always verifiable and secure.

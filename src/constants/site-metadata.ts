@@ -16,9 +16,10 @@ const FOC_URLS = {
   documentation: {
     home: 'https://docs.filecoin.cloud',
     gettingStarted: 'https://docs.filecoin.cloud/getting-started/',
+    proofOfDataPossession:
+      'https://docs.filecoin.cloud/core-concepts/pdp-overview/',
   },
   filecoinPay: 'https://pay.filecoin.cloud',
-  proofOfDataPossession: '#todo',
   social: {
     telegram: 'https://t.me/+Xj6_zTPfcUA4MGQ1',
     slack: 'https://filecoinproject.slack.com/archives/C07CGTXHHT4',
