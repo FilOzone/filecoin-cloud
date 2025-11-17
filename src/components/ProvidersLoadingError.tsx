@@ -18,7 +18,7 @@ export function ProvidersLoadingError({ message, retry }: ErrorStateProps) {
         <Button variant="primary" onClick={retry}>
           Retry
         </Button>
-        <Button variant="ghost" href="#">
+        <Button variant="ghost" href="#todo">
           Check network status
         </Button>
       </div>
