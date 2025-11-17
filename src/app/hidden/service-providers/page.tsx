@@ -8,6 +8,7 @@ import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Navigation } from '@/components/Navigation/Navigation'
+import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 import { RefreshButton } from '@/components/RefreshButton'
 
 import { useProviders } from '@/app/hidden/warm-storage-service/hooks/use-providers'
@@ -48,9 +49,7 @@ export default function ServiceProviders() {
             {isLoading && <LoadingStateCard message="Loading providers..." />}
 
             {error && (
-              <div className="text-center py-8 text-red-600">
-                Error loading providers: {error.message || 'Unknown error'}
-              </div>
+              <ProvidersLoadingError message={error.message} retry={refetch} />
             )}
 
             {providers && providers.length > 0 && (

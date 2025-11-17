@@ -16,6 +16,7 @@ import { Button } from '@/components/Button'
 import { InfoCard } from '@/components/InfoCard'
 import { InfoCardGrid } from '@/components/InfoCardGrid'
 import { Navigation } from '@/components/Navigation/Navigation'
+import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 import { RefreshButton } from '@/components/RefreshButton'
 
 import { PATHS } from '@/constants/paths'
@@ -169,9 +170,7 @@ export default function WarmStorageService() {
             {isLoading && <LoadingStateCard message="Loading providers..." />}
 
             {error && (
-              <div className="text-center py-8 text-red-600">
-                Error loading providers: {error.message || 'Unknown error'}
-              </div>
+              <ProvidersLoadingError message={error.message} retry={refetch} />
             )}
 
             {providers && providers.length > 0 && (
