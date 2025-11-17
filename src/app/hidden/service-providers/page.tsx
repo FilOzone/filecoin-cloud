@@ -1,13 +1,13 @@
 'use client'
 
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
-import { NetworkSelector } from '@filecoin-foundation/ui-filecoin/Network/NetworkSelector'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { RefreshOverlay } from '@filecoin-foundation/ui-filecoin/RefreshOverlay'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Navigation } from '@/components/Navigation/Navigation'
+import { NetworkSelector } from '@/components/NetworkSelector'
 import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 import { RefreshButton } from '@/components/RefreshButton'
 
