@@ -157,7 +157,7 @@ export default function WarmStorageService() {
             </Button>
           </div>
 
-          <div className="flex flex-col gap-6 -mt-15">
+          <div className="flex flex-col gap-6">
             <h3 className="text-2xl font-medium">Warm Storage Providers</h3>
             <div className="flex justify-end">
               <RefreshButton
