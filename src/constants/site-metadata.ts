@@ -38,7 +38,7 @@ const FOC_URLS = {
   },
 }
 
-const METADATA: Metadata = {
+const DEFAULT_METADATA: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: META_TITLE,
   description: META_DESCRIPTION,
@@ -48,7 +48,7 @@ const METADATA: Metadata = {
     description: META_DESCRIPTION,
     url: BASE_URL,
     siteName: META_TITLE,
-    images: [{ url: '/open-graph-image.webp' }],
+    images: [{ url: DEFAULT_SOCIAL_IMAGE }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -56,13 +56,14 @@ const METADATA: Metadata = {
     description: META_DESCRIPTION,
     site: ORGANIZATION_HANDLE,
     creator: ORGANIZATION_HANDLE,
-    images: [{ url: '/open-graph-image.webp' }],
+    images: [{ url: DEFAULT_SOCIAL_IMAGE }],
   },
 }
 
 export {
   BASE_DOMAIN,
   BASE_URL,
+  DEFAULT_METADATA,
   DEFAULT_SOCIAL_IMAGE,
   FIL_BEAM_URL,
   FIL_OZ_URL,
@@ -70,7 +71,6 @@ export {
   FOC_URLS,
   META_DESCRIPTION,
   META_TITLE,
-  METADATA,
   ORGANIZATION_HANDLE,
   ORGANIZATION_NAME,
 }

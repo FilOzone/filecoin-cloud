@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 
 import {
   BASE_URL,
+  DEFAULT_METADATA,
   DEFAULT_SOCIAL_IMAGE,
-  METADATA,
   ORGANIZATION_HANDLE,
 } from '@/constants/site-metadata'
 
@@ -40,12 +40,18 @@ export function createMetadata({
   const imageUrl = image || DEFAULT_SOCIAL_IMAGE
   const defaultImage = [{ url: imageUrl }]
 
+  const {
+    metadataBase,
+    openGraph: defaultOpenGraph,
+    twitter: defaultTwitter,
+  } = DEFAULT_METADATA
+
   return {
-    metadataBase: METADATA.metadataBase,
+    metadataBase,
     title,
     description,
     openGraph: {
-      ...METADATA.openGraph,
+      ...defaultOpenGraph,
       type: openGraph.type || 'website',
       locale: openGraph.locale || 'en_US',
       title: openGraph.title || title,
@@ -54,7 +60,7 @@ export function createMetadata({
       url: BASE_URL,
     },
     twitter: {
-      ...METADATA.twitter,
+      ...defaultTwitter,
       card: twitter.card || 'summary_large_image',
       site: twitter.site || ORGANIZATION_HANDLE,
       creator: twitter.creator || ORGANIZATION_HANDLE,
