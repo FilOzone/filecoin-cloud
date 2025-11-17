@@ -4,7 +4,8 @@ import akaveCloudLogo from '@/public/assets/running-on-foc-section/akave-cloud-l
 import ensLogo from '@/public/assets/running-on-foc-section/ens-logo.webp'
 import erc8004Logo from '@/public/assets/running-on-foc-section/erc-8004-logo.webp'
 import filecoinPinLogo from '@/public/assets/running-on-foc-section/filecoin-pin-logo.webp'
-import fallbackImage from '@/public/image-fallback.webp'
+import kyveLogo from '@/public/assets/running-on-foc-section/kyve-logo.webp'
+import storachaLogo from '@/public/assets/running-on-foc-section/storacha-logo.webp'
 
 export const runningOnFilecoinOnchainCloud = [
   {
@@ -30,8 +31,8 @@ export const runningOnFilecoinOnchainCloud = [
     description:
       'Delivers IPFS-compatible, high-throughput warm storage with UCAN-based programmable access control.',
     image: {
-      data: fallbackImage, // TODO: Add image
-      alt: '#todo',
+      data: storachaLogo,
+      alt: 'Storacha logo in white rooster with a rocket flame, displayed on a cosmic background',
     },
   },
   {
@@ -57,8 +58,8 @@ export const runningOnFilecoinOnchainCloud = [
     description:
       'Resiliently stores chain data across a decentralized network of storage providers.',
     image: {
-      data: fallbackImage, // TODO: Add image
-      alt: '#todo',
+      data: kyveLogo,
+      alt: 'KYVE text logo in bold white lettering on a space-themed background',
     },
   },
 ] as const satisfies Array<CardData>
