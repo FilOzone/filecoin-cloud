@@ -19,6 +19,6 @@ export const PATHS = {
   TERMS_OF_USE: createPathConfig('/terms-of-use', 'Terms of Use'),
   WARM_STORAGE_SERVICE: createHiddenPathConfig(
     '/warm-storage-service',
-    'Warm Storage Service',
+    'Store',
   ),
 }

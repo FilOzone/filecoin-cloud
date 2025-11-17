@@ -41,11 +41,11 @@ export const columns = [
     },
   ),
   columnHelper.accessor('serviceStatus', {
-    header: 'Service Status',
+    header: 'Status',
     cell: (info) => info.getValue() || '-',
   }),
   columnHelper.accessor('softwareVersion', {
-    header: 'Software Version',
+    header: 'Version',
     cell: (info) => {
       const softwareVersion = info.getValue()
       return softwareVersion ? <SoftwareVersion info={softwareVersion} /> : '-'
