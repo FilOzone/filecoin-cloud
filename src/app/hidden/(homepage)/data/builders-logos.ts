@@ -3,9 +3,12 @@ import type { LogoItemProps } from '@filecoin-foundation/ui-filecoin/LogoSection
 import AkaveLogo from '@/public/assets/logos/akave-logo.svg'
 import CairnLogo from '@/public/assets/logos/cairn-logo.svg'
 import ChaChingLogo from '@/public/assets/logos/chaching-logo.svg'
+import EastoreLogo from '@/public/assets/logos/eastore-logo.svg'
 import EnsLogo from '@/public/assets/logos/ens-logo.svg'
 import ERC8004Logo from '@/public/assets/logos/erc8004-logo.svg'
+import FilosignLogo from '@/public/assets/logos/filosign-logo.svg'
 import GeoLogo from '@/public/assets/logos/geo-logo.svg'
+import GroundlineLogo from '@/public/assets/logos/groundline-logo.svg'
 import KyveLogo from '@/public/assets/logos/kyve-logo.svg'
 import MonadLogo from '@/public/assets/logos/monad-logo.svg'
 import SafeLogo from '@/public/assets/logos/safe-logo.svg'
@@ -26,6 +29,7 @@ export const buildersLogos: Array<LogoItemProps> = [
     logo: StorachaLogo,
     alt: 'Storacha Logo',
     href: 'https://storacha.network/',
+    size: 48,
   },
   {
     logo: AkaveLogo,
@@ -41,11 +45,18 @@ export const buildersLogos: Array<LogoItemProps> = [
     logo: SafeLogo,
     alt: 'Safe Logo',
     href: 'https://safe.global/',
+    size: 36,
   },
   {
     logo: KyveLogo,
     alt: 'KYVE Logo',
     href: 'https://kyve.network/',
+    size: 32,
+  },
+  {
+    logo: FilosignLogo,
+    alt: 'FilOsign Logo',
+    href: 'https://app.filosign.xyz/',
   },
   {
     logo: ChaChingLogo,
@@ -53,9 +64,19 @@ export const buildersLogos: Array<LogoItemProps> = [
     href: 'https://cha-ching.it/',
   },
   {
+    logo: GroundlineLogo,
+    alt: 'Groundline Logo',
+  },
+  {
     logo: CairnLogo,
     alt: 'Cairn Logo',
     href: 'https://cairn.live/',
+    size: 32,
+  },
+  {
+    logo: EastoreLogo,
+    alt: 'Eastore Logo',
+    href: 'https://eastore.xyz/',
   },
   {
     logo: GeoLogo,
