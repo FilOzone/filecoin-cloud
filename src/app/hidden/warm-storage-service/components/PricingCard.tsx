@@ -35,7 +35,7 @@ export function PricingCard() {
             <del className="text-4xl text-zinc-500">$5</del>{' '}
             <span className="text-4xl font-medium">$2.5</span>{' '}
             <span className="font-medium text-(--color-paragraph-text)">
-              USDFC /TiB/month for a copy
+              USDFC /TiB/month per copy
             </span>
           </div>
 
@@ -52,11 +52,11 @@ export function PricingCard() {
           </Heading>
 
           <p className="text-(--color-paragraph-text)">
-            Fast content delivery through{' '}
+            Fast content retrieval through{' '}
             <ExternalTextLink href={FIL_BEAM_URL}>
               Filecoin Beam's
             </ExternalTextLink>{' '}
-            data delivery services
+            incentivized data delivery services
           </p>
         </div>
 

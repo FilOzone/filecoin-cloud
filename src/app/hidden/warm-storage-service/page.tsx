@@ -99,7 +99,6 @@ export default function WarmStorageService() {
           centerCTA
           centerTitle
           title="Pricing"
-          description="Choose the plan that fits your storage needs"
           cta={
             <Button
               href={FOC_URLS.warmStorageService.synapseSdk}
