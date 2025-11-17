@@ -1,6 +1,5 @@
 import { Container } from '@filecoin-foundation/ui-filecoin/Container'
 import { MobileNavigation } from '@filecoin-foundation/ui-filecoin/Navigation/MobileNavigation'
-import { NavigationMainLink } from '@filecoin-foundation/ui-filecoin/Navigation/NavigationMainLink'
 import {
   Section,
   type SectionProps,
@@ -9,6 +8,7 @@ import {
 import { HomeLogoIconLink } from './components/HomeLogoIconLink'
 import { mobileNavigationItems } from './constants/navigation'
 import { DesktopNavigation } from './DesktopNavigation'
+import { NavigationMainLink } from './NavigationMainLink'
 
 type NavigationProps = {
   backgroundVariant: SectionProps['backgroundVariant']
