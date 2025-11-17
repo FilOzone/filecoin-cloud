@@ -3,7 +3,6 @@
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
-import { NetworkSelector } from '@filecoin-foundation/ui-filecoin/Network/NetworkSelector'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { RefreshOverlay } from '@filecoin-foundation/ui-filecoin/RefreshOverlay'
@@ -16,6 +15,7 @@ import { Button } from '@/components/Button'
 import { InfoCard } from '@/components/InfoCard'
 import { InfoCardGrid } from '@/components/InfoCardGrid'
 import { Navigation } from '@/components/Navigation/Navigation'
+import { NetworkSelector } from '@/components/NetworkSelector'
 import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 import { RefreshButton } from '@/components/RefreshButton'
 
@@ -159,9 +159,9 @@ export default function WarmStorageService() {
             </Button>
           </div>
 
-          <div className="flex flex-col gap-6 -mt-15">
+          <div className="flex flex-col gap-6">
             <h3 className="text-2xl font-medium">Warm Storage Providers</h3>
-            <div className="flex">
+            <div className="flex justify-end">
               <RefreshButton
                 onClick={() => refetch()}
                 disabled={!canRefreshTable}
