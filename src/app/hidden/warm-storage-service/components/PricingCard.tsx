@@ -24,7 +24,9 @@ export function PricingCard() {
 
           <p className="text-(--color-paragraph-text)">
             Verifiable storage with{' '}
-            <ExternalTextLink href={FOC_URLS.proofOfDataPossession}>
+            <ExternalTextLink
+              href={FOC_URLS.documentation.proofOfDataPossession}
+            >
               Proof of Data Possession
             </ExternalTextLink>
           </p>

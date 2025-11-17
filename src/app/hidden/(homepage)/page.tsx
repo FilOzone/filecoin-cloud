@@ -1,4 +1,4 @@
-// import { Announcement } from '@filecoin-foundation/ui-filecoin/Announcement'
+import { Announcement } from '@filecoin-foundation/ui-filecoin/Announcement'
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { LogoSection } from '@filecoin-foundation/ui-filecoin/LogoSection/LogoSection'
@@ -14,8 +14,7 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { Phase } from '@/components/Phase'
 import { SimpleCardWithImage } from '@/components/SimpleCardWithImage'
 
-// import { BASE_DOMAIN, FOC_URLS } from '@/constants/site-metadata'
-import { FOC_URLS } from '@/constants/site-metadata'
+import { BASE_DOMAIN, FOC_URLS } from '@/constants/site-metadata'
 import CometVideoPoster from '@/public/assets/comet-video-poster.webp'
 
 import { buildPhases } from './data/build-phases'
@@ -41,9 +40,9 @@ export default function HiddenHomepage() {
           paddingVariant="medium"
         >
           <div className="space-y-10">
-            {/* <Announcement baseDomain={BASE_DOMAIN} href="#" centered>
+            <Announcement baseDomain={BASE_DOMAIN} href="#todo" centered>
               Announcing Filecoin Onchain Cloud
-            </Announcement> */}
+            </Announcement>
             <PageHeader
               centered
               title="Bring the Cloud Onchain"

@@ -126,8 +126,15 @@ export const faqs: Array<Question> = [
   },
   {
     question: 'Are others using Filecoin Onchain Cloud successfully?',
-    answer:
-      'Yes. A growing number of teams are already integrating and building on Filecoin Onchain Cloud successfully.',
+    answer: (
+      <>
+        <p>
+          Yes. A growing number of teams are already integrating and building on
+          Filecoin Onchain Cloud successfully.{' '}
+          <MarkdownLink href="#todo">Read more about these teams</MarkdownLink>.
+        </p>
+      </>
+    ),
   },
   {
     question: 'How much does it cost?',

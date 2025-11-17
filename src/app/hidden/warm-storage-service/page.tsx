@@ -50,15 +50,17 @@ export default function WarmStorageService() {
           title="Warm Storage Service"
           description={
             <>
-              Verifiable storage powered by{' '}
-              <ExternalTextLink href={FOC_URLS.proofOfDataPossession}>
-                Filecoin PDP
+              New era of Filecoin storage: fast, verifiable storage powered by{' '}
+              <ExternalTextLink
+                href={FOC_URLS.documentation.proofOfDataPossession}
+              >
+                Proof of Data Possession
               </ExternalTextLink>
-              , with optional fast content delivery through{' '}
+              , with an optional add-on for rapid data delivery through{' '}
               <ExternalTextLink href={FIL_BEAM_URL}>
                 Filecoin Beam
               </ExternalTextLink>
-              , a CDN gateway add-on.
+              .
             </>
           }
           cta={[
