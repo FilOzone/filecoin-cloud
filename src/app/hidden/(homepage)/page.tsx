@@ -46,7 +46,7 @@ export default function HiddenHomepage() {
             </Announcement> */}
             <PageHeader
               centered
-              title="Cloud services with onchain guarantees: ownership, verifiability, and programmability"
+              title="Bring the Cloud Onchain"
               description="Filecoin Onchain Cloud lets you build applications that own their data, payments, and logic."
               cta={
                 <Button

@@ -118,7 +118,7 @@ export default function WarmStorageService() {
         <SectionContent
           centerCTA
           centerTitle
-          title="Warm Storage Overview"
+          title="Warm Storage Details"
           description="View contract addresses and browse approved storage providers."
           cta={
             <Button href={PATHS.SERVICE_PROVIDERS.path} variant="ghost">
