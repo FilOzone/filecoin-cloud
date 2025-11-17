@@ -111,7 +111,7 @@ export default function HiddenHomepage() {
           title="Running on Filecoin Onchain Cloud"
           description="Projects using Filecoin Onchain Cloud to power verifiable, onchain applications and infrastructure."
         >
-          <CardGrid as="ul" variant="mdTwoWider">
+          <CardGrid as="ul" variant="mdTwoLgThree">
             {runningOnFilecoinOnchainCloud.map(
               ({ title, description, image }) => (
                 <Card
