@@ -40,8 +40,6 @@ const FOC_URLS = {
 
 const DEFAULT_METADATA: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: META_TITLE,
-  description: META_DESCRIPTION,
   openGraph: {
     type: 'website',
     title: META_TITLE,
