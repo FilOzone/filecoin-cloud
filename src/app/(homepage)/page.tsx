@@ -25,7 +25,7 @@ import { filecoinOnchainCloudProducts } from './data/filecoin-onchain-cloud-prod
 import { focFeatures } from './data/foc-features'
 import { runningOnFilecoinOnchainCloud } from './data/running-on-filecoin-onchain-cloud'
 
-export default function HiddenHomepage() {
+export default function Homepage() {
   return (
     <>
       <div className="isolate relative">
@@ -40,7 +40,11 @@ export default function HiddenHomepage() {
           paddingVariant="medium"
         >
           <div className="space-y-10">
-            <Announcement baseDomain={BASE_DOMAIN} href="#todo" centered>
+            <Announcement
+              baseDomain={BASE_DOMAIN}
+              href="https://filecoin.io/blog/posts/introducing-filecoin-onchain-cloud"
+              centered
+            >
               Announcing Filecoin Onchain Cloud
             </Announcement>
             <PageHeader
