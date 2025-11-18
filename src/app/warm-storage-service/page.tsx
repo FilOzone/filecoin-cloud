@@ -102,7 +102,7 @@ export default function WarmStorageService() {
           ))}
         </CardGrid>
 
-        <div className="py-15 md:pb-25" />
+        <div className="pb-15 md:pb-25" />
 
         <SectionContent
           centerCTA
