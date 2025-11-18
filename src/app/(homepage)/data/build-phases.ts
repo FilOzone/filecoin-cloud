@@ -21,35 +21,28 @@ export const buildPhases: Array<
     date: 'Jan 2026',
     title: 'Filecoin Onchain Cloud Live on Mainnet',
     description:
-      'Launching on mainnet with production-ready programmable storage, retrieval, and onchain payments.',
-    status: 'upcoming',
-  },
-  {
-    date: 'Q1 2026',
-    title: 'Archival Storage',
-    description:
-      "Will connect Filecoin's Proof of Data Possession (PoRep)-based cold storage layer with warm storage, enabling data to move fluidly across hot, warm, and archival tiers within a single onchain stack.",
+      'Launching on mainnet with programmable storage, retrieval, and onchain payments.',
     status: 'upcoming',
   },
   {
     date: 'Upcoming',
-    title: 'Automated Repair and Replication',
+    title: 'Automate Repair and Replication',
     description:
       'Upcoming service contracts and replication layers will make storage self-healing and redundant.',
     status: 'upcoming',
   },
   {
     date: 'Upcoming',
-    title: 'Cross-chain Payments',
+    title: 'Bring Filecoin Onchain Cloud to Your Chain',
     description:
-      'Filecoin Pay will support native tokens on different chains through cross-chain and x402-enabled transactions.',
+      'New payment and swapping end points will allow builders to pay in their native token and use Filecoin onchain verifiable storage.',
     status: 'upcoming',
   },
   {
     date: 'Upcoming',
-    title: 'Storage Provider Pools and Aggregation Markets',
+    title: 'Expose an S3-compatible Object Storage API',
     description:
-      'Smaller nodes will be able to form pools, creating composite providers and expanding network resilience.',
+      'Migrate from centralized S3 services to reduce trust dependencies on hyperscalers and enable user ownership of their data.',
     status: 'upcoming',
   },
 ]
