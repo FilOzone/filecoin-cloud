@@ -11,7 +11,7 @@ import { NetworkSelector } from '@/components/NetworkSelector'
 import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 import { RefreshButton } from '@/components/RefreshButton'
 
-import { useProviders } from '@/app/hidden/warm-storage-service/hooks/use-providers'
+import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
 
 import { ServiceProvidersTable } from './components/ServiceProvidersTable'
 
