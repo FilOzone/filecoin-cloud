@@ -136,7 +136,9 @@ export default function WarmStorageService() {
             </Button>,
           ]}
         >
-          <Image src={synapseCodeSnippet} alt="Synapse code snippet" />
+          <div className="max-w-4xl mx-auto">
+            <Image src={synapseCodeSnippet} alt="Synapse code snippet" />
+          </div>
         </SectionContent>
       </PageSection>
 
