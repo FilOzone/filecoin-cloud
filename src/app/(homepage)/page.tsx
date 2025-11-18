@@ -40,7 +40,11 @@ export default function Homepage() {
           paddingVariant="medium"
         >
           <div className="space-y-10">
-            <Announcement baseDomain={BASE_DOMAIN} href="#todo" centered>
+            <Announcement
+              baseDomain={BASE_DOMAIN}
+              href="https://filecoin.io/blog/posts/introducing-filecoin-onchain-cloud"
+              centered
+            >
               Announcing Filecoin Onchain Cloud
             </Announcement>
             <PageHeader
