@@ -1,5 +1,3 @@
-import type { CardData } from '@filecoin-foundation/ui-filecoin/Card'
-
 import akaveCloudLogo from '@/public/assets/running-on-foc-section/akave-cloud-logo.webp'
 import ensLogo from '@/public/assets/running-on-foc-section/ens-logo.webp'
 import erc8004Logo from '@/public/assets/running-on-foc-section/erc-8004-logo.webp'
@@ -16,6 +14,8 @@ export const runningOnFilecoinOnchainCloud = [
       data: filecoinPinLogo,
       alt: 'Filecoin Pin logo on a cosmic background',
     },
+
+    link: 'https://pin.filecoin.cloud/',
   },
   {
     title: 'Akave Cloud',
@@ -25,6 +25,7 @@ export const runningOnFilecoinOnchainCloud = [
       data: akaveCloudLogo,
       alt: 'Akave Cloud logo with a stylized font and star symbol on a space-themed background',
     },
+    link: 'https://akave.com/',
   },
   {
     title: 'Storacha',
@@ -34,6 +35,7 @@ export const runningOnFilecoinOnchainCloud = [
       data: storachaLogo,
       alt: 'Storacha logo in white rooster with a rocket flame, displayed on a cosmic background',
     },
+    link: 'https://storacha.network/',
   },
   {
     title: 'ERC-8004',
@@ -43,6 +45,7 @@ export const runningOnFilecoinOnchainCloud = [
       data: erc8004Logo,
       alt: 'ERC-8004 text logo on a starry background',
     },
+    link: 'https://docs.filecoin.io/builder-cookbook/filecoin-pin/erc-8004-agent-registration',
   },
   {
     title: 'ENS',
@@ -52,6 +55,7 @@ export const runningOnFilecoinOnchainCloud = [
       data: ensLogo,
       alt: 'ENS (Ethereum Name Service) logo on a galaxy background',
     },
+    link: 'https://ens.domains/',
   },
   {
     title: 'KYVE',
@@ -61,5 +65,6 @@ export const runningOnFilecoinOnchainCloud = [
       data: kyveLogo,
       alt: 'KYVE text logo in bold white lettering on a space-themed background',
     },
+    link: 'https://kyve.network/',
   },
-] as const satisfies Array<CardData>
+] as const

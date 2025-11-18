@@ -1,5 +1,4 @@
 import { Announcement } from '@filecoin-foundation/ui-filecoin/Announcement'
-import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { LogoSection } from '@filecoin-foundation/ui-filecoin/LogoSection/LogoSection'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
@@ -8,6 +7,7 @@ import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
 import { BackgroundVideo } from '@/components/BackgroundVideo'
 import { Button } from '@/components/Button'
+import { Card } from '@/components/Card'
 import { Faq } from '@/components/Faq'
 import { LinkCard } from '@/components/LinkCard'
 import { Navigation } from '@/components/Navigation/Navigation'
@@ -115,15 +115,19 @@ export default function Homepage() {
           title="Running on Filecoin Onchain Cloud"
           description="Projects using Filecoin Onchain Cloud to power verifiable, onchain applications and infrastructure."
         >
-          <CardGrid as="ul" variant="mdTwoLgThree">
+          <CardGrid as="ul" variant="smTwoLgThreeWider">
             {runningOnFilecoinOnchainCloud.map(
-              ({ title, description, image }) => (
+              ({ title, description, image, link }) => (
                 <Card
                   key={title}
                   as="li"
                   title={title}
                   description={description}
                   image={image}
+                  cta={{
+                    href: link,
+                    text: `Explore ${title}`,
+                  }}
                 />
               ),
             )}
