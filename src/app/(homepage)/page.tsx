@@ -25,7 +25,7 @@ import { filecoinOnchainCloudProducts } from './data/filecoin-onchain-cloud-prod
 import { focFeatures } from './data/foc-features'
 import { runningOnFilecoinOnchainCloud } from './data/running-on-filecoin-onchain-cloud'
 
-export default function HiddenHomepage() {
+export default function Homepage() {
   return (
     <>
       <div className="isolate relative">
