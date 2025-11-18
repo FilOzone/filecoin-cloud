@@ -9,6 +9,8 @@ import { RefreshOverlay } from '@filecoin-foundation/ui-filecoin/RefreshOverlay'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
+import Image from 'next/image'
+import { useState } from 'react'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
@@ -21,15 +23,18 @@ import { RefreshButton } from '@/components/RefreshButton'
 
 import { PATHS } from '@/constants/paths'
 import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
+import synapseCodeSnippet from '@/public/assets/synapse-code-snippet.webp'
 import { truncateAddress } from '@/utils/truncate-address'
 
 import { PricingCard } from './components/PricingCard'
 import { WarmStorageProvidersTable } from './components/WarmStorageProvidersTable'
 import { storageFeatures } from './data/storage-features'
+import { SYNAPSE_CODE_SNIPPET } from './data/synapse-code-snippet'
 import { useContractsData } from './hooks/use-contracts-data'
 import { useProviders } from './hooks/use-providers'
 
 export default function WarmStorageService() {
+  const [isCopied, setIsCopied] = useState(false)
   const { contractsData } = useContractsData()
   const {
     data: providers,
@@ -40,6 +45,16 @@ export default function WarmStorageService() {
   } = useProviders({ filter: 'approved' })
 
   const canRefreshTable = providers && !isRefetching
+
+  async function handleCopyCode() {
+    try {
+      await navigator.clipboard.writeText(SYNAPSE_CODE_SNIPPET)
+      setIsCopied(true)
+      setTimeout(() => setIsCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy code snippet:', err)
+    }
+  }
 
   return (
     <>
@@ -95,6 +110,34 @@ export default function WarmStorageService() {
             />
           ))}
         </CardGrid>
+
+        <div className="py-15 md:pb-25" />
+
+        <SectionContent
+          centerCTA
+          centerTitle
+          title="Integrate warm storage in your app"
+          description="Get started with storage in just a few lines of code"
+          cta={[
+            <Button
+              key="copy-code-snippet"
+              onClick={handleCopyCode}
+              variant="primary"
+              className="min-w-[200px]"
+            >
+              {isCopied ? 'Copied!' : 'Copy code snippet'}
+            </Button>,
+            <Button
+              key="explore-documentation"
+              href="https://github.com/FilOzone/filecoin-services/releases/tag/alpha%2Fcalibnet%2F0x80617b65FD2EEa1D7fDe2B4F85977670690ed348-v2"
+              variant="ghost"
+            >
+              Explore documentation
+            </Button>,
+          ]}
+        >
+          <Image src={synapseCodeSnippet} alt="Synapse code snippet" />
+        </SectionContent>
       </PageSection>
 
       <PageSection backgroundVariant="light" paddingVariant="topOnly">
