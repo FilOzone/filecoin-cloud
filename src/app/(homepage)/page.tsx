@@ -1,7 +1,6 @@
 import { Announcement } from '@filecoin-foundation/ui-filecoin/Announcement'
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
-import { LogoSection } from '@filecoin-foundation/ui-filecoin/LogoSection/LogoSection'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
@@ -12,6 +11,7 @@ import { Faq } from '@/components/Faq'
 import { LinkCard } from '@/components/LinkCard'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { Phase } from '@/components/Phase'
+import { RollingLogoSection } from '@/components/RollingLogoSection'
 import { SimpleCardWithImage } from '@/components/SimpleCardWithImage'
 
 import { BASE_DOMAIN, FOC_URLS } from '@/constants/site-metadata'
@@ -61,8 +61,7 @@ export default function HiddenHomepage() {
       </div>
 
       <PageSection backgroundVariant="dark" paddingVariant="none">
-        <LogoSection
-          headingTag="h2"
+        <RollingLogoSection
           title="Already building with Filecoin Onchain Cloud..."
           logos={buildersLogos}
         />

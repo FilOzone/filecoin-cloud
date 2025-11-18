@@ -26,12 +26,6 @@ export const buildersLogos: Array<LogoItemProps> = [
     href: 'https://monad.xyz/',
   },
   {
-    logo: StorachaLogo,
-    alt: 'Storacha Logo',
-    href: 'https://storacha.network/',
-    size: 48,
-  },
-  {
     logo: AkaveLogo,
     alt: 'Akave Logo',
     href: 'https://akave.com/',
@@ -82,5 +76,11 @@ export const buildersLogos: Array<LogoItemProps> = [
     logo: GeoLogo,
     alt: 'Geo Logo',
     href: 'https://geoweb.network/',
+  },
+  {
+    logo: StorachaLogo,
+    alt: 'Storacha Logo',
+    href: 'https://storacha.network/',
+    size: 48,
   },
 ]
