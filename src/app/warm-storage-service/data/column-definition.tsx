@@ -47,14 +47,14 @@ export const columns = [
     },
   }),
   // TODO: Add check activity link
-  columnHelper.accessor('checkActivityUrl', {
-    header: 'Check Activity',
-    cell: (info) => (
-      <ExternalTextLink href={info.getValue() || '#todo'}>
-        View on PDP Scan
-      </ExternalTextLink>
-    ),
-  }),
+  // columnHelper.accessor('checkActivityUrl', {
+  //   header: 'Check Activity',
+  //   cell: (info) => (
+  //     <ExternalTextLink href={info.getValue() || '#todo'}>
+  //       View on PDP Scan
+  //     </ExternalTextLink>
+  //   ),
+  // }),
   columnHelper.accessor('location', {
     header: 'Location',
     cell: (info) => info.getValue(),
