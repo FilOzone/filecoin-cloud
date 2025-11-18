@@ -66,6 +66,7 @@ export default function Homepage() {
 
       <PageSection backgroundVariant="dark" paddingVariant="none">
         <LogoSection
+          autoPlay
           headingTag="h2"
           title="Already building with Filecoin Onchain Cloud..."
           logos={buildersLogos}
