@@ -25,7 +25,7 @@ export const runningOnFilecoinOnchainCloud = [
       data: akaveCloudLogo,
       alt: 'Akave Cloud logo with a stylized font and star symbol on a space-themed background',
     },
-    link: 'https://akave.com/',
+    link: 'https://www.akave.ai/',
   },
   {
     title: 'Storacha',
@@ -45,7 +45,7 @@ export const runningOnFilecoinOnchainCloud = [
       data: erc8004Logo,
       alt: 'ERC-8004 text logo on a starry background',
     },
-    link: 'https://docs.filecoin.io/builder-cookbook/filecoin-pin/erc-8004-agent-registration',
+    link: 'https://eips.ethereum.org/EIPS/eip-8004',
   },
   {
     title: 'ENS',
