@@ -1,8 +1,4 @@
-'use client'
-
 import type { LogoItemProps } from '@filecoin-foundation/ui-filecoin/LogoSection/LogoItem'
-import type { StaticImageData } from 'next/image'
-import Image from 'next/image'
 
 import './RollingLogoSection.css'
 
@@ -30,6 +26,7 @@ export function RollingLogoSection({ title, logos }: RollingLogoSectionProps) {
           <div className="rolling-logos-track">
             {duplicatedLogos.map((logo, index) => {
               const uniqueKey = `${logo.alt}-${index}`
+              const Logo = logo.logo
               return logo.href ? (
                 <a
                   key={uniqueKey}
@@ -38,20 +35,18 @@ export function RollingLogoSection({ title, logos }: RollingLogoSectionProps) {
                   rel="noopener noreferrer"
                   className="rolling-logo-item"
                 >
-                  <Image
-                    src={logo.logo as StaticImageData}
-                    alt={logo.alt}
+                  <Logo
                     className="h-12 w-auto object-contain"
                     height={logo.size || 48}
+                    aria-label={logo.alt}
                   />
                 </a>
               ) : (
                 <div key={uniqueKey} className="rolling-logo-item">
-                  <Image
-                    src={logo.logo as StaticImageData}
-                    alt={logo.alt}
+                  <Logo
                     className="h-12 w-auto object-contain"
                     height={logo.size || 48}
+                    aria-label={logo.alt}
                   />
                 </div>
               )
