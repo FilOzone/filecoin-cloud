@@ -1,7 +1,7 @@
 import { ID } from '@filecoin-foundation/ui-filecoin/Table/ID'
 import { PeerID } from '@filecoin-foundation/ui-filecoin/Table/PeerID'
 import { YesNoStatus } from '@filecoin-foundation/ui-filecoin/Table/YesNoStatus'
-import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
+// import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { createColumnHelper } from '@tanstack/react-table'
 
 import { ProviderOverview } from '@/components/ProviderOverview'
@@ -62,7 +62,10 @@ export const columns = [
   // TODO: Add Service Offered Column
   columnHelper.accessor('serviceStatus', {
     header: 'Status',
-    cell: (info) => info.getValue() || '-',
+    cell: (info) => {
+      const serviceStatus = info.getValue() || '-'
+      return serviceStatus.toUpperCase()
+    },
   }),
   columnHelper.accessor('location', {
     id: 'location',
