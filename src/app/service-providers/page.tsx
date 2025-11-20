@@ -1,11 +1,21 @@
+import { StructuredDataScript } from '@/components/StructuredDataScript'
+
 import { PATHS } from '@/constants/paths'
 import { createMetadata } from '@/utils/create-metadata'
 
 import { ServiceProvidersClient } from './components/ServiceProvidersClient'
 import { SERVICE_PROVIDERS_SEO } from './constants/seo'
+import { generateStructuredData } from './utils/generateStructuredData'
 
 export default function ServiceProviders() {
-  return <ServiceProvidersClient />
+  return (
+    <>
+      <StructuredDataScript
+        structuredData={generateStructuredData(SERVICE_PROVIDERS_SEO)}
+      />
+      <ServiceProvidersClient />
+    </>
+  )
 }
 
 export const metadata = createMetadata({

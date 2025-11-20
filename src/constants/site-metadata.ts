@@ -5,6 +5,13 @@ const BASE_URL = `https://${BASE_DOMAIN}`
 const ORGANIZATION_NAME = 'FilOz'
 const ORGANIZATION_HANDLE = `@_${ORGANIZATION_NAME}`
 
+const SEO = {
+  title:
+    'Cloud Services with Onchain Verifiability, Programmability & Ownership',
+  description:
+    'Cloud services with onchain guarantees: ownership, verifiability, and programmability.',
+}
+
 const META_TITLE =
   'Cloud Services with Onchain Verifiability, Programmability & Ownership'
 const META_DESCRIPTION =
@@ -27,6 +34,9 @@ const FOC_URLS = {
   social: {
     telegram: 'https://t.me/+Xj6_zTPfcUA4MGQ1',
     slack: 'https://filecoinproject.slack.com/archives/C07CGTXHHT4',
+    twitter: 'https://x.com/_FilOz',
+    linkedIn: 'https://www.linkedin.com/company/filoz/',
+    github: 'https://github.com/FilOzone',
   },
   warmStorageService: {
     contactSourceCode:
@@ -42,16 +52,16 @@ const DEFAULT_METADATA: Metadata = {
   metadataBase: new URL(BASE_URL),
   openGraph: {
     type: 'website',
-    title: META_TITLE,
-    description: META_DESCRIPTION,
+    title: SEO.title,
+    description: SEO.description,
     url: BASE_URL,
-    siteName: META_TITLE,
+    siteName: SEO.title,
     images: [{ url: DEFAULT_SOCIAL_IMAGE }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: META_TITLE,
-    description: META_DESCRIPTION,
+    title: SEO.title,
+    description: SEO.description,
     site: ORGANIZATION_HANDLE,
     creator: ORGANIZATION_HANDLE,
     images: [{ url: DEFAULT_SOCIAL_IMAGE }],
@@ -71,4 +81,5 @@ export {
   META_TITLE,
   ORGANIZATION_HANDLE,
   ORGANIZATION_NAME,
+  SEO,
 }
