@@ -5,6 +5,10 @@ import { Header } from '@/components/Header'
 import { MarkdownContent } from '@/components/MarkdownContent'
 import { Navigation } from '@/components/Navigation/Navigation'
 
+import { PATHS } from '@/constants/paths'
+import { createMetadata } from '@/utils/create-metadata'
+
+import { PRIVACY_POLICY_SEO } from './constants/seo'
 import privacyPolicyMarkdown from './privacy-policy.md'
 
 const { body } = privacyPolicyMarkdown
@@ -23,3 +27,9 @@ export default function PrivacyPolicy() {
     </>
   )
 }
+
+export const metadata = createMetadata({
+  title: PRIVACY_POLICY_SEO.title,
+  description: PRIVACY_POLICY_SEO.description,
+  path: PATHS.PRIVACY_POLICY.path as `/${string}`,
+})

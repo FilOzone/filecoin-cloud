@@ -3,10 +3,14 @@ import type { Metadata } from 'next'
 const BASE_DOMAIN = 'www.filecoin.cloud'
 const BASE_URL = `https://${BASE_DOMAIN}`
 const ORGANIZATION_NAME = 'FilOz'
+const ORGANIZATION_HANDLE = `@_${ORGANIZATION_NAME}`
 
-const META_TITLE = 'Filecoin Onchain Cloud'
+const META_TITLE =
+  'Cloud Services with Onchain Verifiability, Programmability & Ownership'
 const META_DESCRIPTION =
-  'Filecoin Onchain Cloud provides transparent storage, retrieval, and payments on the Filecoin network. Launching soon!'
+  'Cloud services with onchain guarantees: ownership, verifiability, and programmability.'
+
+const DEFAULT_SOCIAL_IMAGE = '/image-fallback.webp'
 
 const FIL_BEAM_URL = 'https://filbeam.com/'
 const FIL_OZ_URL = 'https://filoz.org/'
@@ -34,33 +38,37 @@ const FOC_URLS = {
   },
 }
 
-const METADATA: Metadata = {
+const DEFAULT_METADATA: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: META_TITLE,
-  description: META_DESCRIPTION,
   openGraph: {
     type: 'website',
     title: META_TITLE,
     description: META_DESCRIPTION,
     url: BASE_URL,
     siteName: META_TITLE,
-    images: [{ url: '/open-graph-image.webp' }],
+    images: [{ url: DEFAULT_SOCIAL_IMAGE }],
   },
   twitter: {
     card: 'summary_large_image',
     title: META_TITLE,
     description: META_DESCRIPTION,
-    images: ['/open-graph-image.webp'],
+    site: ORGANIZATION_HANDLE,
+    creator: ORGANIZATION_HANDLE,
+    images: [{ url: DEFAULT_SOCIAL_IMAGE }],
   },
 }
 
 export {
   BASE_DOMAIN,
   BASE_URL,
+  DEFAULT_METADATA,
+  DEFAULT_SOCIAL_IMAGE,
   FIL_BEAM_URL,
   FIL_OZ_URL,
   FILECOIN_FOUNDATION_URL,
   FOC_URLS,
-  METADATA,
+  META_DESCRIPTION,
+  META_TITLE,
+  ORGANIZATION_HANDLE,
   ORGANIZATION_NAME,
 }
