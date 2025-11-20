@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 const BASE_DOMAIN = 'filecoin.cloud'
 const BASE_URL = `https://${BASE_DOMAIN}`
-const ORGANIZATION_NAME = 'Filecoin Cloud'
+const ORGANIZATION_NAME = 'FilOz'
 const ORGANIZATION_HANDLE = `@_${ORGANIZATION_NAME}`
 
 const SEO = {
@@ -12,6 +12,11 @@ const SEO = {
     'Cloud services with onchain guarantees: ownership, verifiability, and programmability.',
 }
 
+const META_TITLE =
+  'Cloud Services with Onchain Verifiability, Programmability & Ownership'
+const META_DESCRIPTION =
+  'Cloud services with onchain guarantees: ownership, verifiability, and programmability.'
+
 const DEFAULT_SOCIAL_IMAGE = '/image-fallback.webp'
 
 const FIL_BEAM_URL = 'https://filbeam.com/'
@@ -19,9 +24,13 @@ const FIL_OZ_URL = 'https://www.filoz.org/'
 const FILECOIN_FOUNDATION_URL = 'https://fil.org/'
 
 const FOC_URLS = {
-  documentation: 'https://docs.filecoin.cloud',
+  documentation: {
+    home: 'https://docs.filecoin.cloud',
+    gettingStarted: 'https://docs.filecoin.cloud/getting-started/',
+    proofOfDataPossession:
+      'https://docs.filecoin.cloud/core-concepts/pdp-overview/',
+  },
   filecoinPay: 'https://pay.filecoin.cloud',
-  proofOfDataPossession: '#todo',
   social: {
     github: 'https://github.com/FilOzone',
     linkedIn: 'https://www.linkedin.com/company/filoz/',
@@ -69,6 +78,8 @@ export {
   FIL_OZ_URL,
   FILECOIN_FOUNDATION_URL,
   FOC_URLS,
+  META_DESCRIPTION,
+  META_TITLE,
   ORGANIZATION_HANDLE,
   ORGANIZATION_NAME,
   SEO,
