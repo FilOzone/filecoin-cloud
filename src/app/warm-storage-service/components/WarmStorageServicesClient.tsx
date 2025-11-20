@@ -30,7 +30,7 @@ import { storageFeatures } from '../data/storage-features'
 import { useContractsData } from '../hooks/use-contracts-data'
 import { useProviders } from '../hooks/use-providers'
 
-export function WarmStorageServicePage() {
+export function WarmStorageServicesClient() {
   const { contractsData } = useContractsData()
   const {
     data: providers,

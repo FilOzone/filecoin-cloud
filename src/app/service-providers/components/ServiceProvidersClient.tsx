@@ -8,9 +8,10 @@ import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Navigation } from '@/components/Navigation/Navigation'
+import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 import { RefreshButton } from '@/components/RefreshButton'
 
-import { useProviders } from '@/app/hidden/warm-storage-service/hooks/use-providers'
+import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
 
 import { ServiceProvidersTable } from './ServiceProvidersTable'
 
@@ -34,7 +35,7 @@ export function ServiceProvidersClient() {
           description="Explore registered service providers offering verifiable storage and data services on Filecoin Onchain Cloud."
         >
           <div className="flex flex-col gap-6">
-            <div className="flex items-center justify-between flex-wrap gap-6">
+            <div className="flex items-center justify-end flex-wrap gap-6">
               <div className="sm:w-56 w-full">
                 <NetworkSelector />
               </div>
@@ -48,9 +49,7 @@ export function ServiceProvidersClient() {
             {isLoading && <LoadingStateCard message="Loading providers..." />}
 
             {error && (
-              <div className="text-center py-8 text-red-600">
-                Error loading providers: {error.message || 'Unknown error'}
-              </div>
+              <ProvidersLoadingError message={error.message} retry={refetch} />
             )}
 
             {providers && providers.length > 0 && (
