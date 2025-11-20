@@ -21,7 +21,6 @@ export default function TermsOfUse() {
       <Header />
       <Navigation backgroundVariant="light" />
 
-      {/* <Navigation backgroundVariant="light" /> */}
       <StructuredDataScript
         structuredData={generateStructuredData(TERMS_OF_USE_SEO)}
       />
