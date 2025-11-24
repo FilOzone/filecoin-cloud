@@ -1,30 +1,22 @@
 'use client'
 
+import { EmptyStateCard } from '@filecoin-foundation/ui-filecoin/EmptyStateCard'
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
-import { RefreshOverlay } from '@filecoin-foundation/ui-filecoin/RefreshOverlay'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
+import { EmptyIcon } from '@phosphor-icons/react'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { NetworkSelector } from '@/components/NetworkSelector'
 import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
-import { RefreshButton } from '@/components/RefreshButton'
 
 import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
 
 import { ServiceProvidersTable } from './ServiceProvidersTable'
 
 export function ServiceProvidersClient() {
-  const {
-    data: providers,
-    isLoading,
-    isRefetching,
-    error,
-    refetch,
-  } = useProviders()
-
-  const canRefreshTable = providers && !isRefetching
+  const { data: providers, isLoading, error, refetch } = useProviders()
 
   return (
     <>
@@ -35,17 +27,6 @@ export function ServiceProvidersClient() {
           description="Explore registered service providers offering verifiable storage and data services on Filecoin Onchain Cloud."
         >
           <div className="flex flex-col gap-6">
-            <div className="flex items-center justify-end flex-wrap gap-6">
-              <div className="sm:w-56 w-full">
-                <NetworkSelector />
-              </div>
-
-              <RefreshButton
-                onClick={() => refetch()}
-                disabled={!canRefreshTable}
-              />
-            </div>
-
             {isLoading && <LoadingStateCard message="Loading providers..." />}
 
             {error && (
@@ -53,15 +34,16 @@ export function ServiceProvidersClient() {
             )}
 
             {providers && providers.length > 0 && (
-              <RefreshOverlay isRefetching={isRefetching}>
-                <ServiceProvidersTable data={providers} />
-              </RefreshOverlay>
+              <ServiceProvidersTable data={providers} />
             )}
 
             {providers && providers.length === 0 && !isLoading && (
-              <div className="text-center py-8 text-gray-600">
-                No providers available
-              </div>
+              <EmptyStateCard
+                icon={EmptyIcon}
+                title="No providers available"
+                titleTag="h3"
+                description="There are no providers available on this chain at this time."
+              />
             )}
           </div>
         </SectionContent>
