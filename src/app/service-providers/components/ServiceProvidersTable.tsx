@@ -1,4 +1,5 @@
 import { TanstackTable } from '@filecoin-foundation/ui-filecoin/Table/TanstackTable'
+import { getCoreRowModel, useReactTable } from '@tanstack/react-table'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
 
@@ -9,5 +10,11 @@ export type ServiceProvidersTableProps = {
 }
 
 export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
-  return <TanstackTable data={data} columns={columns} />
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  })
+
+  return <TanstackTable table={table} />
 }
