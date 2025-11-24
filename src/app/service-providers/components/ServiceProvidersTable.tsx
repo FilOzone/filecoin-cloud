@@ -1,10 +1,8 @@
 'use client'
 
-import { EmptyStateCard } from '@filecoin-foundation/ui-filecoin/EmptyStateCard'
 import { RefreshButton } from '@filecoin-foundation/ui-filecoin/RefreshButton'
 import { SearchInput } from '@filecoin-foundation/ui-filecoin/SearchInput'
 import { TanstackTable } from '@filecoin-foundation/ui-filecoin/Table/TanstackTable'
-import { MagnifyingGlassIcon } from '@phosphor-icons/react'
 import {
   getCoreRowModel,
   getFilteredRowModel,
@@ -12,6 +10,7 @@ import {
 } from '@tanstack/react-table'
 
 import { NetworkSelector } from '@/components/NetworkSelector'
+import { ProvidersEmptySearchState } from '@/components/ProvidersEmptySearchState'
 
 import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
 import type { ServiceProvider } from '@/schemas/provider-schema'
@@ -60,12 +59,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
       {hasSearchResults ? (
         <TanstackTable table={table} />
       ) : (
-        <EmptyStateCard
-          icon={MagnifyingGlassIcon}
-          title="No providers match your search"
-          titleTag="h3"
-          description="There are no providers available for this search query. Try updating your search terms."
-        />
+        <ProvidersEmptySearchState />
       )}
     </>
   )
