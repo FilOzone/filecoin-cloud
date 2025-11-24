@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-const BASE_DOMAIN = 'www.filecoin.cloud'
+const BASE_DOMAIN = 'filecoin.cloud'
 const BASE_URL = `https://${BASE_DOMAIN}`
 const ORGANIZATION_NAME = 'FilOz'
 const ORGANIZATION_HANDLE = `@_${ORGANIZATION_NAME}`
@@ -13,7 +13,7 @@ const META_DESCRIPTION =
 const DEFAULT_SOCIAL_IMAGE = '/image-fallback.webp'
 
 const FIL_BEAM_URL = 'https://filbeam.com/'
-const FIL_OZ_URL = 'https://filoz.org/'
+const FIL_OZ_URL = 'https://www.filoz.org/'
 const FILECOIN_FOUNDATION_URL = 'https://fil.org/'
 
 const FOC_URLS = {
@@ -26,7 +26,7 @@ const FOC_URLS = {
   filecoinPay: 'https://pay.filecoin.cloud',
   social: {
     telegram: 'https://t.me/+Xj6_zTPfcUA4MGQ1',
-    slack: 'https://filecoinproject.slack.com/archives/C07CGTXHHT4',
+    slack: 'https://filecoinproject.slack.com/?redir=%2Farchives%2FC07CGTXHHT4%3Fname%3DC07CGTXHHT4',
   },
   warmStorageService: {
     contactSourceCode:
