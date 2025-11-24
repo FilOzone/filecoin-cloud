@@ -51,7 +51,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
           <RefreshButton
             onClick={() => refetch()}
-            disabled={!isRefetching}
+            disabled={isRefetching}
             baseDomain=""
           />
         </div>

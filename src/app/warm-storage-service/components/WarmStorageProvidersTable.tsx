@@ -47,7 +47,7 @@ export function WarmStorageProvidersTable({
 
         <RefreshButton
           onClick={() => refetch()}
-          disabled={!isRefetching}
+          disabled={isRefetching}
           baseDomain=""
         />
       </ProvidersTableFiltersContainer>
