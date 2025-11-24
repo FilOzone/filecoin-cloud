@@ -1,14 +1,12 @@
 'use client'
 
-import { EmptyStateCard } from '@filecoin-foundation/ui-filecoin/EmptyStateCard'
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
-import { EmptyIcon } from '@phosphor-icons/react'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Navigation } from '@/components/Navigation/Navigation'
-import { NetworkSelector } from '@/components/NetworkSelector'
+import { ProvidersEmptyLoadingState } from '@/components/ProvidersEmptyLoadingState'
 import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 
 import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
@@ -38,12 +36,7 @@ export function ServiceProvidersClient() {
             )}
 
             {providers && providers.length === 0 && !isLoading && (
-              <EmptyStateCard
-                icon={EmptyIcon}
-                title="No providers available"
-                titleTag="h3"
-                description="There are no providers available on this chain at this time."
-              />
+              <ProvidersEmptyLoadingState />
             )}
           </div>
         </SectionContent>

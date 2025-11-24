@@ -2,13 +2,12 @@
 
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
-import { EmptyStateCard } from '@filecoin-foundation/ui-filecoin/EmptyStateCard'
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
-import { EmptyIcon, GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
+import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Button } from '@/components/Button'
@@ -16,6 +15,7 @@ import { InfoCard } from '@/components/InfoCard'
 import { InfoCardGrid } from '@/components/InfoCardGrid'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { NetworkSelector } from '@/components/NetworkSelector'
+import { ProvidersEmptyLoadingState } from '@/components/ProvidersEmptyLoadingState'
 import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 
 import { PATHS } from '@/constants/paths'
@@ -173,12 +173,7 @@ export function WarmStorageServicesClient() {
             )}
 
             {providers && providers.length === 0 && !isLoading && (
-              <EmptyStateCard
-                icon={EmptyIcon}
-                title="No providers available"
-                titleTag="h3"
-                description="There are no providers available on this chain at this time."
-              />
+              <ProvidersEmptyLoadingState />
             )}
           </div>
         </SectionContent>
