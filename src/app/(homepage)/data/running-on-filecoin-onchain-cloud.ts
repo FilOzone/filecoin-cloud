@@ -25,7 +25,7 @@ export const runningOnFilecoinOnchainCloud = [
       data: akaveCloudLogo,
       alt: 'Akave Cloud logo with a stylized font and star symbol on a space-themed background',
     },
-    link: 'https://www.akave.ai/',
+    link: 'https://akave.com/',
   },
   {
     title: 'Storacha',
@@ -65,6 +65,6 @@ export const runningOnFilecoinOnchainCloud = [
       data: kyveLogo,
       alt: 'KYVE text logo in bold white lettering on a space-themed background',
     },
-    link: 'https://kyve.network/',
+    link: 'https://www.kyve.network/',
   },
 ] as const

@@ -1,6 +1,6 @@
 import { ID } from '@filecoin-foundation/ui-filecoin/Table/ID'
 import { PeerID } from '@filecoin-foundation/ui-filecoin/Table/PeerID'
-import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
+// import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { createColumnHelper } from '@tanstack/react-table'
 
 import { ProviderOverview } from '@/components/ProviderOverview'

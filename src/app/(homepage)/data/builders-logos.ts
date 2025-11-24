@@ -23,7 +23,7 @@ export const buildersLogos: Array<LogoItemProps> = [
   {
     logo: MonadLogo,
     alt: 'Monad Logo',
-    href: 'https://monad.xyz/',
+    href: 'https://www.monad.xyz/',
   },
   {
     logo: AkaveLogo,
@@ -44,7 +44,7 @@ export const buildersLogos: Array<LogoItemProps> = [
   {
     logo: KyveLogo,
     alt: 'KYVE Logo',
-    href: 'https://kyve.network/',
+    href: 'https://www.kyve.network/',
     size: 32,
   },
   {
@@ -70,7 +70,7 @@ export const buildersLogos: Array<LogoItemProps> = [
   {
     logo: EastoreLogo,
     alt: 'Eastore Logo',
-    href: 'https://eastore.xyz/',
+    href: 'https://www.eastore.xyz/',
   },
   {
     logo: GeoLogo,

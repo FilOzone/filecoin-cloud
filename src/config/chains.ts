@@ -51,7 +51,7 @@ const mainnet: Chain = {
   },
   rpcUrls: {
     default: {
-      http: ['https://api.node.glif.io/rpc/v1'],
+      http: ['https://filecoin.chain.love/'],
       webSocket: ['wss://wss.node.glif.io/apigw/lotus/rpc/v1'],
     },
   },
@@ -64,7 +64,7 @@ const mainnet: Chain = {
     },
     Filfox: {
       name: 'Filfox',
-      url: 'https://filfox.info',
+      url: 'https://filfox.info/en',
     },
     Glif: {
       name: 'Glif',
@@ -116,7 +116,7 @@ export const calibration: Chain = {
   },
   rpcUrls: {
     default: {
-      http: ['https://api.calibration.node.glif.io/rpc/v1'],
+      http: ['https://api.calibration.node.glif.io/'],
       webSocket: ['wss://wss.calibration.node.glif.io/apigw/lotus/rpc/v1'],
     },
   },
@@ -129,11 +129,11 @@ export const calibration: Chain = {
     },
     Filfox: {
       name: 'Filfox',
-      url: 'https://calibration.filfox.info',
+      url: 'https://calibration.filfox.info/en',
     },
     Glif: {
       name: 'Glif',
-      url: 'https://www.glif.io/en/calibrationnet',
+      url: 'https://www.glif.io/en?chain=314159',
     },
     default: {
       name: 'Blockscout',
