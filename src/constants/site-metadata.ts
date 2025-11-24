@@ -26,7 +26,8 @@ const FOC_URLS = {
   filecoinPay: 'https://pay.filecoin.cloud',
   social: {
     telegram: 'https://t.me/+Xj6_zTPfcUA4MGQ1',
-    slack: 'https://filecoinproject.slack.com/?redir=%2Farchives%2FC07CGTXHHT4%3Fname%3DC07CGTXHHT4',
+    slack:
+      'https://filecoinproject.slack.com/?redir=%2Farchives%2FC07CGTXHHT4%3Fname%3DC07CGTXHHT4',
   },
   warmStorageService: {
     contactSourceCode:
