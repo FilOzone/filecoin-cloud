@@ -11,6 +11,7 @@ import {
 
 import { NetworkSelector } from '@/components/NetworkSelector'
 import { ProvidersEmptySearchState } from '@/components/ProvidersEmptySearchState'
+import { ProvidersTableFiltersContainer } from '@/components/ProvidersTableFiltersContainer'
 
 import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
 import type { ServiceProvider } from '@/schemas/provider-schema'
@@ -38,7 +39,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
   return (
     <>
-      <div className="flex items-center justify-between flex-wrap gap-6 pb-6">
+      <ProvidersTableFiltersContainer>
         <div className="md:w-96 w-full">
           <SearchInput value={searchQuery} onChange={table.setGlobalFilter} />
         </div>
@@ -54,7 +55,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
             baseDomain=""
           />
         </div>
-      </div>
+      </ProvidersTableFiltersContainer>
 
       {hasSearchResults ? (
         <TanstackTable table={table} />
