@@ -14,10 +14,10 @@ export const globalTableSearchFn: FilterFn<ServiceProvider> = (
     provider.name,
     provider.description,
     provider.location,
-    provider.peerId || '',
+    provider.peerId,
   ]
 
   return searchableFields.some((field) =>
-    field.toLowerCase().includes(searchValue),
+    field?.toLowerCase().includes(searchValue),
   )
 }

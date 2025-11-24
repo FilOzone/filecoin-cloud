@@ -15,16 +15,16 @@ import { NetworkSelector } from '@/components/NetworkSelector'
 
 import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
 import type { ServiceProvider } from '@/schemas/provider-schema'
+import { globalTableSearchFn } from '@/utils/global-table-search'
 
 import { columns } from '../data/column-definition'
-import { globalTableSearchFn } from '../utils/global-table-search'
 
 export type ServiceProvidersTableProps = {
   data: Array<ServiceProvider>
 }
 
 export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
-  const { data: providers, isRefetching, refetch } = useProviders()
+  const { isRefetching, refetch } = useProviders()
 
   const table = useReactTable({
     data,
@@ -33,8 +33,6 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
     getFilteredRowModel: getFilteredRowModel(),
     globalFilterFn: globalTableSearchFn,
   })
-
-  const canRefreshTable = providers && !isRefetching
 
   const searchQuery = table.getState().globalFilter?.toString() || ''
   const hasSearchResults = Boolean(table.getRowModel().rows.length)
@@ -53,7 +51,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
           <RefreshButton
             onClick={() => refetch()}
-            disabled={!canRefreshTable}
+            disabled={!isRefetching}
             baseDomain=""
           />
         </div>
