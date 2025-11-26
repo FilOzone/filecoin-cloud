@@ -1,6 +1,5 @@
+import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { ErrorStateCard } from '@filecoin-foundation/ui-filecoin/ErrorStateCard'
-
-import { Button } from './Button'
 
 export type ErrorStateProps = {
   message: string

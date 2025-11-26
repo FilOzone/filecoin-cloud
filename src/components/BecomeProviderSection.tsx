@@ -1,7 +1,6 @@
+import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
-
-import { Button } from '@/components/Button'
 
 import { FOC_URLS } from '@/constants/site-metadata'
 

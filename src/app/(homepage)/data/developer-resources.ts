@@ -1,11 +1,10 @@
+import type { LinkCardData } from '@filecoin-foundation/ui-filecoin/LinkCard'
 import {
   BookOpenIcon,
   GlobeIcon,
   TelegramLogoIcon,
   YoutubeLogoIcon,
 } from '@phosphor-icons/react/dist/ssr'
-
-import type { LinkCardData } from '@/components/LinkCard'
 
 import { FOC_URLS } from '@/constants/site-metadata'
 

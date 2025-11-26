@@ -1,8 +1,8 @@
+import { MarkdownContent } from '@filecoin-foundation/ui-filecoin/Markdown/MarkdownContent'
 import { MarkdownPage } from '@filecoin-foundation/ui-filecoin/Markdown/MarkdownPage'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 
 import { Header } from '@/components/Header'
-import { MarkdownContent } from '@/components/MarkdownContent'
 import { Navigation } from '@/components/Navigation/Navigation'
 
 import { PATHS } from '@/constants/paths'
