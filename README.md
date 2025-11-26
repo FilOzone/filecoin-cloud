@@ -2,12 +2,12 @@
 
 ![Code quality](https://github.com/FilOzone/filecoin-cloud/actions/workflows/linter.yml/badge.svg)
 
-This repository is the source code for [https://filecoin.cloud](https://filecoin.cloud), a website that provides information about Filecoin cloud services.
+This repository is the source code for https://filecoin.cloud, a website that provides information about Filecoin Onchain Cloud (FOC).
 
 ## What's on the Site
 
-- **Service Providers**: A registry of Filecoin storage providers with details about their services, capabilities, and availability
 - **Warm Storage Service**: Information about Filecoin's warm storage offerings
+- **Service Providers**: A registry of Filecoin storage providers with details about their services, capabilities, and availability
 
 ## Contributing
 
