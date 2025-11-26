@@ -1,3 +1,5 @@
+import '../config-initializer' // Just import to run initialization
+
 import { clsx } from 'clsx'
 import localFont from 'next/font/local'
 import '@/styles/globals.css'
