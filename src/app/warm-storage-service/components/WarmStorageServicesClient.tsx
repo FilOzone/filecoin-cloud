@@ -5,7 +5,6 @@ import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
-import { RefreshOverlay } from '@filecoin-foundation/ui-filecoin/RefreshOverlay'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
@@ -16,8 +15,8 @@ import { InfoCard } from '@/components/InfoCard'
 import { InfoCardGrid } from '@/components/InfoCardGrid'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { NetworkSelector } from '@/components/NetworkSelector'
+import { ProvidersEmptyLoadingState } from '@/components/ProvidersEmptyLoadingState'
 import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
-import { RefreshButton } from '@/components/RefreshButton'
 
 import { PATHS } from '@/constants/paths'
 import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
@@ -35,12 +34,9 @@ export function WarmStorageServicesClient() {
   const {
     data: providers,
     isLoading,
-    isRefetching,
     error,
     refetch,
   } = useProviders({ filter: 'approved' })
-
-  const canRefreshTable = providers && !isRefetching
 
   return (
     <>
@@ -165,12 +161,6 @@ export function WarmStorageServicesClient() {
 
           <div className="flex flex-col gap-6">
             <h3 className="text-2xl font-medium">Warm Storage Providers</h3>
-            <div className="flex justify-end">
-              <RefreshButton
-                onClick={() => refetch()}
-                disabled={!canRefreshTable}
-              />
-            </div>
 
             {isLoading && <LoadingStateCard message="Loading providers..." />}
 
@@ -179,15 +169,11 @@ export function WarmStorageServicesClient() {
             )}
 
             {providers && providers.length > 0 && (
-              <RefreshOverlay isRefetching={isRefetching}>
-                <WarmStorageProvidersTable data={providers} />
-              </RefreshOverlay>
+              <WarmStorageProvidersTable data={providers} />
             )}
 
             {providers && providers.length === 0 && !isLoading && (
-              <div className="text-center py-8 text-gray-600">
-                No providers available
-              </div>
+              <ProvidersEmptyLoadingState />
             )}
           </div>
         </SectionContent>
