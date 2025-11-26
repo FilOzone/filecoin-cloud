@@ -1,5 +1,7 @@
 'use client'
 
+import '@/app/config-initializer' // Just import to run initialization
+
 import { NetworkProvider } from '@filecoin-foundation/ui-filecoin/Network/NetworkProvider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import PlausibleProvider from 'next-plausible'

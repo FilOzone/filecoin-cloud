@@ -1,3 +1,5 @@
+import '@/app/config-initializer' // Just import to run initialization
+
 import '@/styles/globals.css'
 
 import type { ReactNode } from 'react'
