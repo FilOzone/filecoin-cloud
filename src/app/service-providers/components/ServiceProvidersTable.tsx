@@ -49,11 +49,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
             <NetworkSelector />
           </div>
 
-          <RefreshButton
-            onClick={() => refetch()}
-            disabled={isRefetching}
-            baseDomain=""
-          />
+          <RefreshButton onClick={() => refetch()} disabled={isRefetching} />
         </div>
       </ProvidersTableFiltersContainer>
 

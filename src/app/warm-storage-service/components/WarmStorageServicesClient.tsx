@@ -1,7 +1,9 @@
 'use client'
 
+import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
+import { InfoCard } from '@filecoin-foundation/ui-filecoin/InfoCard'
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
@@ -10,8 +12,6 @@ import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/Exte
 import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
-import { Button } from '@/components/Button'
-import { InfoCard } from '@/components/InfoCard'
 import { InfoCardGrid } from '@/components/InfoCardGrid'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { NetworkSelector } from '@/components/NetworkSelector'

@@ -1,20 +1,20 @@
 import { Announcement } from '@filecoin-foundation/ui-filecoin/Announcement'
+import { Button } from '@filecoin-foundation/ui-filecoin/Button'
+import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
+import { LinkCard } from '@filecoin-foundation/ui-filecoin/LinkCard'
 import { LogoSection } from '@filecoin-foundation/ui-filecoin/LogoSection/LogoSection'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
 import { BackgroundVideo } from '@/components/BackgroundVideo'
-import { Button } from '@/components/Button'
-import { Card } from '@/components/Card'
 import { Faq } from '@/components/Faq'
-import { LinkCard } from '@/components/LinkCard'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { Phase } from '@/components/Phase'
 import { SimpleCardWithImage } from '@/components/SimpleCardWithImage'
 
-import { BASE_DOMAIN, FOC_URLS } from '@/constants/site-metadata'
+import { FOC_URLS } from '@/constants/site-metadata'
 import CometVideoPoster from '@/public/assets/comet-video-poster.webp'
 
 import { buildPhases } from './data/build-phases'
@@ -41,7 +41,6 @@ export default function Homepage() {
         >
           <div className="space-y-10">
             <Announcement
-              baseDomain={BASE_DOMAIN}
               href="https://filecoin.io/blog/posts/introducing-filecoin-onchain-cloud"
               centered
             >

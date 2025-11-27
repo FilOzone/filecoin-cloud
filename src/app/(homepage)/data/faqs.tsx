@@ -1,5 +1,6 @@
+import { MarkdownLink } from '@filecoin-foundation/ui-filecoin/Markdown/MarkdownLink'
+
 import type { Question } from '@/components/Faq'
-import { MarkdownLink } from '@/components/TextLink/MarkdownLink'
 
 import { FOC_URLS } from '@/constants/site-metadata'
 

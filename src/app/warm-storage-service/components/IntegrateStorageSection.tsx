@@ -1,9 +1,8 @@
 'use client'
 
+import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import Image from 'next/image'
-
-import { Button } from '@/components/Button'
 
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
 import synapseCodeSnippet from '@/public/assets/synapse-code-snippet.webp'

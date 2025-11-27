@@ -45,11 +45,7 @@ export function WarmStorageProvidersTable({
           <SearchInput value={searchQuery} onChange={table.setGlobalFilter} />
         </div>
 
-        <RefreshButton
-          onClick={() => refetch()}
-          disabled={isRefetching}
-          baseDomain=""
-        />
+        <RefreshButton onClick={() => refetch()} disabled={isRefetching} />
       </ProvidersTableFiltersContainer>
 
       {hasSearchResults ? (
