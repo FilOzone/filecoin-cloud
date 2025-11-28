@@ -8,6 +8,13 @@ import { ProviderOverview } from '@/components/ProviderOverview'
 import { SoftwareVersion } from '@/components/SoftwareVersion'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
+import {
+  capacityRangeFilterFn,
+  countryFilterFn,
+  ipniFilterFn,
+  provingPeriodRangeFilterFn,
+  statusFilterFn,
+} from '@/utils/service-provider-filters'
 
 const columnHelper = createColumnHelper<ServiceProvider>()
 
@@ -71,6 +78,7 @@ export const columns = [
     },
     sortingFn: 'alphanumeric',
     sortUndefined: 'last',
+    filterFn: statusFilterFn,
   }),
   columnHelper.accessor('location', {
     id: 'location',
@@ -78,6 +86,7 @@ export const columns = [
     cell: (info) => info.getValue(),
     sortingFn: 'alphanumeric',
     sortUndefined: 'last',
+    filterFn: countryFilterFn,
   }),
   columnHelper.accessor('capacityTb', {
     header: 'Capacity (TiB)',
@@ -88,12 +97,14 @@ export const columns = [
     },
     sortingFn: 'basic',
     sortUndefined: 'last',
+    filterFn: capacityRangeFilterFn,
   }),
   columnHelper.accessor('minProvingPeriod', {
     header: 'Proving Period (Epochs)',
     cell: (info) => Number(info.getValue()).toLocaleString('en-US'),
     sortingFn: 'basic',
     sortUndefined: 'last',
+    filterFn: provingPeriodRangeFilterFn,
   }),
   columnHelper.accessor('ipniIpfs', {
     header: 'IPNI',
@@ -102,6 +113,7 @@ export const columns = [
       return <YesNoStatus status={isPublished ? 'yes' : 'no'} />
     },
     sortingFn: 'basic',
+    filterFn: ipniFilterFn,
   }),
   columnHelper.accessor('peerId', {
     header: 'Peer ID',
