@@ -1,8 +1,8 @@
 import { ID } from '@filecoin-foundation/ui-filecoin/Table/ID'
-import { PeerID } from '@filecoin-foundation/ui-filecoin/Table/PeerID'
 // import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { createColumnHelper } from '@tanstack/react-table'
 
+import { CompactPeerID } from '@/components/CompactPeerID'
 import { ProviderOverview } from '@/components/ProviderOverview'
 import { SoftwareVersion } from '@/components/SoftwareVersion'
 
@@ -64,7 +64,7 @@ export const columns = [
   columnHelper.accessor('peerId', {
     id: 'peerId',
     header: 'Peer ID',
-    cell: (info) => <PeerID id={info.getValue() || '-'} />,
+    cell: (info) => <CompactPeerID peerId={info.getValue()} />,
     sortingFn: 'alphanumeric',
     sortUndefined: 'last',
   }),
