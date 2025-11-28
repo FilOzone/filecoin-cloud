@@ -51,6 +51,7 @@ export const columns = [
       const versionB = matchesB[0]
       return versionA.localeCompare(versionB)
     },
+    sortUndefined: 'last',
   }),
   // TODO: Add check activity link
   // columnHelper.accessor('checkActivityUrl', {
@@ -69,12 +70,14 @@ export const columns = [
       return serviceStatus.toUpperCase()
     },
     sortingFn: 'alphanumeric',
+    sortUndefined: 'last',
   }),
   columnHelper.accessor('location', {
     id: 'location',
     header: 'Location',
     cell: (info) => info.getValue(),
     sortingFn: 'alphanumeric',
+    sortUndefined: 'last',
   }),
   columnHelper.accessor('capacityTb', {
     header: 'Capacity (TiB)',
@@ -84,11 +87,13 @@ export const columns = [
       return Number(capacity).toLocaleString('en-US')
     },
     sortingFn: 'basic',
+    sortUndefined: 'last',
   }),
   columnHelper.accessor('minProvingPeriod', {
     header: 'Proving Period (Epochs)',
     cell: (info) => Number(info.getValue()).toLocaleString('en-US'),
     sortingFn: 'basic',
+    sortUndefined: 'last',
   }),
   columnHelper.accessor('ipniIpfs', {
     header: 'IPNI',
