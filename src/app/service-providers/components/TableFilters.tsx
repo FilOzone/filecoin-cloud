@@ -119,18 +119,17 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
             <div className="mt-4 flex gap-4">
               <Input
                 type="number"
-                placeholder="e.g. 10"
+                placeholder="Min"
                 value={state.capacityMin?.toString() ?? ''}
                 onChange={updateCapacityMin}
-                aria-label="Minimum capacity"
+                aria-label="Minimum capacity filter"
               />
-
               <Input
                 type="number"
-                placeholder="e.g. 10"
+                placeholder="Max"
                 value={state.capacityMax?.toString() ?? ''}
                 onChange={updateCapacityMax}
-                aria-label="Maximum capacity"
+                aria-label="Maximum capacity filter"
               />
             </div>
           </MenuSection>
@@ -142,51 +141,55 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
             <div className="mt-4 flex gap-4">
               <Input
                 type="number"
-                placeholder="e.g. 10"
+                placeholder="Min"
                 value={state.provingPeriodMin?.toString() ?? ''}
                 onChange={updateProvingPeriodMin}
-                aria-label="Minimum proving period"
+                aria-label="Minimum proving period filter"
               />
 
               <Input
                 type="number"
-                placeholder="e.g. 10"
+                placeholder="Max"
                 value={state.provingPeriodMax?.toString() ?? ''}
                 onChange={updateProvingPeriodMax}
-                aria-label="Maximum proving period"
+                aria-label="Maximum proving period filter"
               />
             </div>
           </MenuSection>
 
-          <MenuSection>
-            <MenuHeading className={menuHeadingStyle}>Status</MenuHeading>
-            <div className="mt-4 flex flex-col gap-3">
-              {options.status.map((option) => (
-                <Field key={option} className="flex items-center gap-2">
-                  <Checkbox
-                    checked={state.status.includes(option)}
-                    onChange={() => toggleStatus(option)}
-                  />
-                  <Label className={checkboxLabelStyle}>{option}</Label>
-                </Field>
-              ))}
-            </div>
-          </MenuSection>
+          {hasMoreThanOneOption(options.status) && (
+            <MenuSection>
+              <MenuHeading className={menuHeadingStyle}>Status</MenuHeading>
+              <div className="mt-4 flex flex-col gap-3">
+                {options.status.map((option) => (
+                  <Field key={option} className="flex items-center gap-2">
+                    <Checkbox
+                      checked={state.status.includes(option)}
+                      onChange={() => toggleStatus(option)}
+                    />
+                    <Label className={checkboxLabelStyle}>{option}</Label>
+                  </Field>
+                ))}
+              </div>
+            </MenuSection>
+          )}
 
-          <MenuSection>
-            <MenuHeading className={menuHeadingStyle}>IPNI</MenuHeading>
-            <div className="mt-4 flex flex-col gap-3">
-              {options.ipni.map((option) => (
-                <Field key={option} className="flex items-center gap-2">
-                  <Checkbox
-                    checked={state.ipni.includes(option)}
-                    onChange={() => toggleIpni(option)}
-                  />
-                  <Label className={checkboxLabelStyle}>{option}</Label>
-                </Field>
-              ))}
-            </div>
-          </MenuSection>
+          {hasMoreThanOneOption(options.ipni) && (
+            <MenuSection>
+              <MenuHeading className={menuHeadingStyle}>IPNI</MenuHeading>
+              <div className="mt-4 flex flex-col gap-3">
+                {options.ipni.map((option) => (
+                  <Field key={option} className="flex items-center gap-2">
+                    <Checkbox
+                      checked={state.ipni.includes(option)}
+                      onChange={() => toggleIpni(option)}
+                    />
+                    <Label className={checkboxLabelStyle}>{option}</Label>
+                  </Field>
+                ))}
+              </div>
+            </MenuSection>
+          )}
         </div>
       </MenuItems>
     </Menu>
@@ -204,4 +207,8 @@ function toggleValueInArray(current: Array<string>, value: string) {
 function parseNumericInput(value: string) {
   const parsed = value === '' ? null : Number.parseInt(value, 10)
   return Number.isNaN(parsed) ? null : parsed
+}
+
+function hasMoreThanOneOption(options: string[]) {
+  return options.length > 1
 }
