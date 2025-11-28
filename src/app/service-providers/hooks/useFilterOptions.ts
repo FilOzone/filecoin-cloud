@@ -2,8 +2,6 @@ import { useMemo } from 'react'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
 
-import type { FilterState } from './useFilterQueryState'
-
 export function useFilterOptions(data: Array<ServiceProvider>) {
   return useMemo(() => {
     const status = new Set<string>()
@@ -36,6 +34,6 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
       provingPeriodMin: provingPeriod.min,
       provingPeriodMax: provingPeriod.max,
       ipni: Array.from(ipni).sort(),
-    } as const satisfies FilterState
+    } as const
   }, [data])
 }
