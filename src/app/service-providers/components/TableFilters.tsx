@@ -15,8 +15,6 @@ import { useCallback } from 'react'
 
 import type { FilterState } from '../hooks/useFilterQueryState'
 
-// import { DEFAULT_FILTER_STATE } from '../hooks/useFilterQueryState'
-
 const menuHeadingStyle = 'text-sm font-medium text-zinc-600'
 const checkboxLabelStyle = 'text-(--color-text-base)'
 
@@ -190,16 +188,6 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
             </div>
           </MenuSection>
         </div>
-
-        {/* <div className="flex justify-between items-center pt-4 border-t border-zinc-200">
-            <button
-              type="button"
-              onClick={() => setState(DEFAULT_FILTER_STATE)}
-              className="text-sm text-zinc-600 hover:text-zinc-900"
-            >
-              Reset Filters
-            </button>
-          </div> */}
       </MenuItems>
     </Menu>
   )
