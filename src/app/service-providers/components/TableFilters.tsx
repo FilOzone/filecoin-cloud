@@ -1,6 +1,6 @@
-import Checkbox from '@filecoin-foundation/ui-filecoin/Checkbox'
+import { Checkbox } from '@filecoin-foundation/ui-filecoin/Checkbox'
 import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
-import Input from '@filecoin-foundation/ui-filecoin/Input'
+import { Input } from '@filecoin-foundation/ui-filecoin/Input'
 import {
   Field,
   Label,
@@ -122,7 +122,7 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
           </MenuSection>
         </div>
 
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 grow">
           <MenuSection>
             <MenuHeading className={menuHeadingStyle}>
               Capacity (TiB)
