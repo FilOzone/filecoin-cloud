@@ -26,6 +26,7 @@ import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
 
+import { TableFilters } from './TableFilters'
 import { columns } from '../data/column-definition'
 import { useSortingQueryState } from '../hooks/useSortingQueryState'
 
@@ -84,6 +85,9 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
         </div>
 
         <div className="flex flex-wrap gap-6 grow md:grow-0">
+          <div className="md:w-48 w-full">
+            <TableFilters />
+          </div>
           <div className="md:w-56 w-full">
             <NetworkSelector />
           </div>
