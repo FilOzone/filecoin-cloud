@@ -33,6 +33,7 @@ export function WarmStorageProvidersTable({
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     globalFilterFn: globalTableSearchFn,
+    enableSorting: false,
   })
 
   const searchQuery = table.getState().globalFilter?.toString() || ''

@@ -16,39 +16,42 @@ export const columns = [
     id: 'id',
     header: 'ID',
     cell: (info) => <ID number={info.getValue()} />,
+    sortingFn: 'basic',
   }),
-  columnHelper.accessor(
-    (row) => ({
-      name: row.name,
-      description: row.description,
-      address: row.serviceProviderAddress,
-      serviceUrl: row.serviceUrl,
-      softwareVersion: row.softwareVersion,
-    }),
-    {
-      id: 'provider',
-      header: 'Provider',
-      maxSize: 380,
-      cell: (info) => {
-        const { name, description, address, serviceUrl } = info.getValue()
+  columnHelper.accessor((row) => row.name, {
+    id: 'provider',
+    header: 'Provider',
+    maxSize: 380,
+    cell: (info) => {
+      const row = info.row.original
 
-        return (
-          <ProviderOverview
-            name={name}
-            description={description}
-            address={address}
-            serviceUrl={serviceUrl}
-          />
-        )
-      },
+      return (
+        <ProviderOverview
+          name={row.name}
+          description={row.description}
+          address={row.serviceProviderAddress}
+          serviceUrl={row.serviceUrl}
+        />
+      )
     },
-  ),
+    sortingFn: 'alphanumeric',
+  }),
   columnHelper.accessor('softwareVersion', {
     header: 'Version',
     cell: (info) => {
       const softwareVersion = info.getValue()
       return softwareVersion ? <SoftwareVersion info={softwareVersion} /> : '-'
     },
+    sortingFn: (rowA, rowB) => {
+      const matchesA = rowA.original.softwareVersion?.split('+')
+      const matchesB = rowB.original.softwareVersion?.split('+')
+      if (!matchesA || !matchesB) return 0
+
+      const versionA = matchesA[0]
+      const versionB = matchesB[0]
+      return versionA.localeCompare(versionB)
+    },
+    sortUndefined: 'last',
   }),
   // TODO: Add check activity link
   // columnHelper.accessor('checkActivityUrl', {
@@ -66,11 +69,15 @@ export const columns = [
       const serviceStatus = info.getValue() || '-'
       return serviceStatus.toUpperCase()
     },
+    sortingFn: 'alphanumeric',
+    sortUndefined: 'last',
   }),
   columnHelper.accessor('location', {
     id: 'location',
     header: 'Location',
     cell: (info) => info.getValue(),
+    sortingFn: 'alphanumeric',
+    sortUndefined: 'last',
   }),
   columnHelper.accessor('capacityTb', {
     header: 'Capacity (TiB)',
@@ -79,10 +86,14 @@ export const columns = [
       if (!capacity) return '-'
       return Number(capacity).toLocaleString('en-US')
     },
+    sortingFn: 'basic',
+    sortUndefined: 'last',
   }),
   columnHelper.accessor('minProvingPeriod', {
     header: 'Proving Period (Epochs)',
     cell: (info) => Number(info.getValue()).toLocaleString('en-US'),
+    sortingFn: 'basic',
+    sortUndefined: 'last',
   }),
   columnHelper.accessor('ipniIpfs', {
     header: 'IPNI',
@@ -90,9 +101,11 @@ export const columns = [
       const isPublished = info.getValue()
       return <YesNoStatus status={isPublished ? 'yes' : 'no'} />
     },
+    sortingFn: 'basic',
   }),
   columnHelper.accessor('peerId', {
     header: 'Peer ID',
     cell: (info) => <PeerID id={info.getValue() || '-'} />,
+    sortingFn: 'alphanumeric',
   }),
 ]
