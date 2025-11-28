@@ -1,10 +1,6 @@
 'use client'
 
 import { RefreshButton } from '@filecoin-foundation/ui-filecoin/RefreshButton'
-import {
-  DEFAULT_SEARCH_QUERY,
-  SEARCH_KEY,
-} from '@filecoin-foundation/ui-filecoin/Search'
 import { SearchInput } from '@filecoin-foundation/ui-filecoin/SearchInput'
 import { TanstackTable } from '@filecoin-foundation/ui-filecoin/Table/TanstackTable'
 import {
@@ -15,7 +11,6 @@ import {
   type SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import { parseAsString, useQueryState } from 'nuqs'
 import { useCallback, useMemo } from 'react'
 
 import { NetworkSelector } from '@/components/NetworkSelector'
@@ -26,8 +21,12 @@ import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
 
+import { ResetTableFilters } from './ResetTableFilters'
 import { TableFilters } from './TableFilters'
 import { columns } from '../data/column-definition'
+import { useFilterOptions } from '../hooks/useFilterOptions'
+import { useFilterQueryState } from '../hooks/useFilterQueryState'
+import { useSearchQueryState } from '../hooks/useSearchQueryState'
 import { useSortingQueryState } from '../hooks/useSortingQueryState'
 
 export type ServiceProvidersTableProps = {
@@ -37,27 +36,24 @@ export type ServiceProvidersTableProps = {
 export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
   const { isRefetching, refetch } = useProviders()
 
-  const [searchQuery, setSearchQuery] = useQueryState(
-    SEARCH_KEY,
-    parseAsString
-      .withDefault(DEFAULT_SEARCH_QUERY)
-      .withOptions({ throttleMs: 300 }),
-  )
+  const { searchQuery, setSearchQuery } = useSearchQueryState()
+  const { sortQuery, setSortQuery } = useSortingQueryState()
+  const { filterQueries, setFilterQueries } = useFilterQueryState()
 
-  const [sortUrlState, setSortUrlState] = useSortingQueryState()
+  const filterOptions = useFilterOptions(data)
 
   const sortingState: SortingState = useMemo(
-    () => (sortUrlState ? [sortUrlState] : []),
-    [sortUrlState],
+    () => (sortQuery ? [sortQuery] : []),
+    [sortQuery],
   )
 
   const handleSortingChange: OnChangeFn<SortingState> = useCallback(
     (updater) => {
       const newSortingState =
         typeof updater === 'function' ? updater(sortingState) : updater
-      setSortUrlState(newSortingState[0] || null)
+      setSortQuery(newSortingState[0] || null)
     },
-    [setSortUrlState, sortingState],
+    [setSortQuery, sortingState],
   )
 
   const table = useReactTable({
@@ -86,13 +82,18 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
         <div className="flex flex-wrap gap-6 grow md:grow-0">
           <div className="md:w-48 w-full">
-            <TableFilters />
+            <TableFilters
+              state={filterQueries}
+              setState={setFilterQueries}
+              options={filterOptions}
+            />
           </div>
           <div className="md:w-56 w-full">
             <NetworkSelector />
           </div>
 
           <RefreshButton onClick={() => refetch()} disabled={isRefetching} />
+          <ResetTableFilters />
         </div>
       </ProvidersTableFiltersContainer>
 
