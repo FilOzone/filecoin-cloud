@@ -13,6 +13,7 @@ import {
 import { FunnelSimpleIcon } from '@phosphor-icons/react/dist/ssr'
 import { useCallback } from 'react'
 
+import type { useFilterOptions } from '../hooks/useFilterOptions'
 import type { FilterState } from '../hooks/useFilterQueryState'
 
 const menuHeadingStyle = 'text-sm font-medium text-zinc-600'
@@ -21,7 +22,7 @@ const checkboxLabelStyle = 'text-(--color-text-base)'
 export type TableFiltersProps = {
   state: FilterState
   setState: (value: FilterState | null) => void
-  options: FilterState
+  options: ReturnType<typeof useFilterOptions>
 }
 
 export function TableFilters({ state, setState, options }: TableFiltersProps) {
@@ -81,6 +82,16 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
     [state, setState],
   )
 
+  const {
+    country: countryOptions,
+    status: statusOptions,
+    ipni: ipniOptions,
+    capacityMin,
+    capacityMax,
+    provingPeriodMin,
+    provingPeriodMax,
+  } = options
+
   return (
     <Menu>
       <MenuButton className="listbox-button">
@@ -98,7 +109,7 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
           <MenuSection>
             <MenuHeading className={menuHeadingStyle}>Country</MenuHeading>
             <div className="mt-4 flex flex-col gap-3 grow">
-              {options.country.map((option) => (
+              {countryOptions.map((option) => (
                 <Field key={option} className="flex items-center gap-2">
                   <Checkbox
                     checked={state.country.includes(option)}
@@ -119,17 +130,21 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
             <div className="mt-4 flex gap-4">
               <Input
                 type="number"
-                placeholder="Min"
+                placeholder={`Min (${capacityMin.toLocaleString()})`}
                 value={state.capacityMin?.toString() ?? ''}
                 onChange={updateCapacityMin}
                 aria-label="Minimum capacity filter"
+                min={capacityMin}
+                max={capacityMax}
               />
               <Input
                 type="number"
-                placeholder="Max"
+                placeholder={`Max (${capacityMax.toLocaleString()})`}
                 value={state.capacityMax?.toString() ?? ''}
                 onChange={updateCapacityMax}
                 aria-label="Maximum capacity filter"
+                min={capacityMin}
+                max={capacityMax}
               />
             </div>
           </MenuSection>
@@ -141,27 +156,31 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
             <div className="mt-4 flex gap-4">
               <Input
                 type="number"
-                placeholder="Min"
+                placeholder={`Min (${provingPeriodMin.toLocaleString()})`}
                 value={state.provingPeriodMin?.toString() ?? ''}
                 onChange={updateProvingPeriodMin}
                 aria-label="Minimum proving period filter"
+                min={provingPeriodMin}
+                max={provingPeriodMax}
               />
 
               <Input
                 type="number"
-                placeholder="Max"
+                placeholder={`Max (${provingPeriodMax.toLocaleString()})`}
                 value={state.provingPeriodMax?.toString() ?? ''}
                 onChange={updateProvingPeriodMax}
                 aria-label="Maximum proving period filter"
+                min={provingPeriodMin}
+                max={provingPeriodMax}
               />
             </div>
           </MenuSection>
 
-          {hasMoreThanOneOption(options.status) && (
+          {hasMoreThanOneOption(statusOptions) && (
             <MenuSection>
               <MenuHeading className={menuHeadingStyle}>Status</MenuHeading>
               <div className="mt-4 flex flex-col gap-3">
-                {options.status.map((option) => (
+                {statusOptions.map((option) => (
                   <Field key={option} className="flex items-center gap-2">
                     <Checkbox
                       checked={state.status.includes(option)}
@@ -174,11 +193,11 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
             </MenuSection>
           )}
 
-          {hasMoreThanOneOption(options.ipni) && (
+          {hasMoreThanOneOption(ipniOptions) && (
             <MenuSection>
               <MenuHeading className={menuHeadingStyle}>IPNI</MenuHeading>
               <div className="mt-4 flex flex-col gap-3">
-                {options.ipni.map((option) => (
+                {ipniOptions.map((option) => (
                   <Field key={option} className="flex items-center gap-2">
                     <Checkbox
                       checked={state.ipni.includes(option)}
