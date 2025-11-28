@@ -1,10 +1,6 @@
 'use client'
 
 import { RefreshButton } from '@filecoin-foundation/ui-filecoin/RefreshButton'
-import {
-  DEFAULT_SEARCH_QUERY,
-  SEARCH_KEY,
-} from '@filecoin-foundation/ui-filecoin/Search'
 import { SearchInput } from '@filecoin-foundation/ui-filecoin/SearchInput'
 import { TanstackTable } from '@filecoin-foundation/ui-filecoin/Table/TanstackTable'
 import {
@@ -15,7 +11,6 @@ import {
   type SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import { parseAsString, useQueryState } from 'nuqs'
 import { useCallback, useMemo } from 'react'
 
 import { NetworkSelector } from '@/components/NetworkSelector'
@@ -25,9 +20,56 @@ import { ProvidersTableFiltersContainer } from '@/components/ProvidersTableFilte
 import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
+import {
+  capacityRangeFilterFn,
+  countryFilterFn,
+  ipniFilterFn,
+  provingPeriodRangeFilterFn,
+  statusFilterFn,
+} from '@/utils/service-provider-filters'
 
+import { ResetTableFilters } from './ResetTableFilters'
+import { TableFilters } from './TableFilters'
 import { columns } from '../data/column-definition'
+import { useFilterOptions } from '../hooks/useFilterOptions'
+import type { FilterState } from '../hooks/useFilterQueryState'
+import { useFilterQueryState } from '../hooks/useFilterQueryState'
+import { useSearchQueryState } from '../hooks/useSearchQueryState'
 import { useSortingQueryState } from '../hooks/useSortingQueryState'
+
+function transformFilterStateToColumnFilters(filterState: FilterState) {
+  const columnFilters = []
+
+  if (filterState.status.length > 0) {
+    columnFilters.push({ id: 'serviceStatus', value: filterState.status })
+  }
+  if (filterState.country.length > 0) {
+    columnFilters.push({ id: 'location', value: filterState.country })
+  }
+  if (filterState.ipni.length > 0) {
+    columnFilters.push({ id: 'ipniIpfs', value: filterState.ipni })
+  }
+  if (filterState.capacityMin !== null || filterState.capacityMax !== null) {
+    columnFilters.push({
+      id: 'capacityTb',
+      value: { min: filterState.capacityMin, max: filterState.capacityMax },
+    })
+  }
+  if (
+    filterState.provingPeriodMin !== null ||
+    filterState.provingPeriodMax !== null
+  ) {
+    columnFilters.push({
+      id: 'minProvingPeriod',
+      value: {
+        min: filterState.provingPeriodMin,
+        max: filterState.provingPeriodMax,
+      },
+    })
+  }
+
+  return columnFilters
+}
 
 export type ServiceProvidersTableProps = {
   data: Array<ServiceProvider>
@@ -36,27 +78,29 @@ export type ServiceProvidersTableProps = {
 export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
   const { isRefetching, refetch } = useProviders()
 
-  const [searchQuery, setSearchQuery] = useQueryState(
-    SEARCH_KEY,
-    parseAsString
-      .withDefault(DEFAULT_SEARCH_QUERY)
-      .withOptions({ throttleMs: 300 }),
-  )
+  const { searchQuery, setSearchQuery } = useSearchQueryState()
+  const { sortQuery, setSortQuery } = useSortingQueryState()
+  const { filterQueries, setFilterQueries } = useFilterQueryState()
 
-  const [sortUrlState, setSortUrlState] = useSortingQueryState()
+  const filterOptions = useFilterOptions(data)
 
   const sortingState: SortingState = useMemo(
-    () => (sortUrlState ? [sortUrlState] : []),
-    [sortUrlState],
+    () => (sortQuery ? [sortQuery] : []),
+    [sortQuery],
   )
 
   const handleSortingChange: OnChangeFn<SortingState> = useCallback(
     (updater) => {
       const newSortingState =
         typeof updater === 'function' ? updater(sortingState) : updater
-      setSortUrlState(newSortingState[0] || null)
+      setSortQuery(newSortingState[0] || null)
     },
-    [setSortUrlState, sortingState],
+    [setSortQuery, sortingState],
+  )
+
+  const columnFilters = useMemo(
+    () => transformFilterStateToColumnFilters(filterQueries),
+    [filterQueries],
   )
 
   const table = useReactTable({
@@ -66,9 +110,17 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     globalFilterFn: globalTableSearchFn,
+    filterFns: {
+      statusFilter: statusFilterFn,
+      countryFilter: countryFilterFn,
+      ipniFilter: ipniFilterFn,
+      capacityRangeFilter: capacityRangeFilterFn,
+      provingPeriodRangeFilter: provingPeriodRangeFilterFn,
+    },
     state: {
       globalFilter: searchQuery,
       sorting: sortingState,
+      columnFilters,
     },
     onGlobalFilterChange: setSearchQuery,
     onSortingChange: handleSortingChange,
@@ -84,11 +136,19 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
         </div>
 
         <div className="flex flex-wrap gap-6 grow md:grow-0">
+          <div className="md:w-48 w-full">
+            <TableFilters
+              state={filterQueries}
+              setState={setFilterQueries}
+              options={filterOptions}
+            />
+          </div>
           <div className="md:w-56 w-full">
             <NetworkSelector />
           </div>
 
           <RefreshButton onClick={() => refetch()} disabled={isRefetching} />
+          <ResetTableFilters />
         </div>
       </ProvidersTableFiltersContainer>
 
