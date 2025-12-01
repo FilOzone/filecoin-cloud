@@ -6,6 +6,7 @@ import { TanstackTable } from '@filecoin-foundation/ui-filecoin/Table/TanstackTa
 import {
   getCoreRowModel,
   getFilteredRowModel,
+  getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
 
@@ -32,8 +33,8 @@ export function WarmStorageProvidersTable({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getSortedRowModel: getSortedRowModel(),
     globalFilterFn: globalTableSearchFn,
-    enableSorting: false,
   })
 
   const searchQuery = table.getState().globalFilter?.toString() || ''
