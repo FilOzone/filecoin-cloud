@@ -20,13 +20,6 @@ import { ProvidersTableFiltersContainer } from '@/components/ProvidersTableFilte
 import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
-import {
-  capacityRangeFilterFn,
-  countryFilterFn,
-  ipniFilterFn,
-  provingPeriodRangeFilterFn,
-  statusFilterFn,
-} from '@/utils/service-provider-filters'
 
 import { ResetTableFilters } from './ResetTableFilters'
 import { TableFilters } from './TableFilters'
@@ -76,13 +69,6 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     globalFilterFn: globalTableSearchFn,
-    filterFns: {
-      statusFilter: statusFilterFn,
-      countryFilter: countryFilterFn,
-      ipniFilter: ipniFilterFn,
-      capacityRangeFilter: capacityRangeFilterFn,
-      provingPeriodRangeFilter: provingPeriodRangeFilterFn,
-    },
     state: {
       globalFilter: searchQuery,
       sorting: sortingState,
