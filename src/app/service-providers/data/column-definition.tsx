@@ -8,13 +8,14 @@ import { ProviderOverview } from '@/components/ProviderOverview'
 import { SoftwareVersion } from '@/components/SoftwareVersion'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
+
 import {
   capacityRangeFilterFn,
   countryFilterFn,
   ipniFilterFn,
   provingPeriodRangeFilterFn,
   statusFilterFn,
-} from '@/utils/service-provider-filters'
+} from '../utils/service-provider-filters'
 
 const columnHelper = createColumnHelper<ServiceProvider>()
 
