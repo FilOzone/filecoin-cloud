@@ -4,11 +4,9 @@ import { Input } from '@filecoin-foundation/ui-filecoin/Input'
 import {
   Field,
   Label,
-  Menu,
-  MenuButton,
-  MenuHeading,
-  MenuItems,
-  MenuSection,
+  Popover,
+  PopoverButton,
+  PopoverPanel,
 } from '@headlessui/react'
 import { FunnelSimpleIcon } from '@phosphor-icons/react/dist/ssr'
 import { useCallback } from 'react'
@@ -93,40 +91,36 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
   } = options
 
   return (
-    <Menu>
-      <MenuButton className="listbox-button">
+    <Popover>
+      <PopoverButton className="listbox-button">
         <span className="flex items-center gap-2">
           <Icon component={FunnelSimpleIcon} size={20} />
           Filters
         </span>
-      </MenuButton>
+      </PopoverButton>
 
-      <MenuItems
+      <PopoverPanel
         anchor={{ to: 'bottom', gap: 16 }}
         className="bg-white w-[640px] max-h-[80vh] overflow-y-auto p-6 rounded-lg border border-(--color-listbox-border) shadow-xs flex gap-16"
       >
-        <div className="flex flex-col gap-8 shrink-0">
-          <MenuSection>
-            <MenuHeading className={menuHeadingStyle}>Country</MenuHeading>
-            <div className="mt-4 flex flex-col gap-3 grow">
-              {countryOptions.map((option) => (
-                <Field key={option} className="flex items-center gap-2">
-                  <Checkbox
-                    checked={state.country.includes(option)}
-                    onChange={() => toggleCountry(option)}
-                  />
-                  <Label className={checkboxLabelStyle}>{option}</Label>
-                </Field>
-              ))}
-            </div>
-          </MenuSection>
+        <div className="shrink-0">
+          <h3 className={menuHeadingStyle}>Country</h3>
+          <div className="mt-4 flex flex-col gap-3 grow">
+            {countryOptions.map((option) => (
+              <Field key={option} className="flex items-center gap-2">
+                <Checkbox
+                  checked={state.country.includes(option)}
+                  onChange={() => toggleCountry(option)}
+                />
+                <Label className={checkboxLabelStyle}>{option}</Label>
+              </Field>
+            ))}
+          </div>
         </div>
 
         <div className="flex flex-col gap-8 grow">
-          <MenuSection>
-            <MenuHeading className={menuHeadingStyle}>
-              Capacity (TiB)
-            </MenuHeading>
+          <div>
+            <h3 className={menuHeadingStyle}>Capacity (TiB)</h3>
             <div className="mt-4 flex gap-4">
               <Input
                 type="number"
@@ -147,12 +141,10 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
                 max={capacityMax}
               />
             </div>
-          </MenuSection>
+          </div>
 
-          <MenuSection>
-            <MenuHeading className={menuHeadingStyle}>
-              Proving Period (Epochs)
-            </MenuHeading>
+          <div>
+            <h3 className={menuHeadingStyle}>Proving Period (Epochs)</h3>
             <div className="mt-4 flex gap-4">
               <Input
                 type="number"
@@ -174,11 +166,11 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
                 max={provingPeriodMax}
               />
             </div>
-          </MenuSection>
+          </div>
 
           {hasMoreThanOneOption(statusOptions) && (
-            <MenuSection>
-              <MenuHeading className={menuHeadingStyle}>Status</MenuHeading>
+            <div>
+              <h3 className={menuHeadingStyle}>Status</h3>
               <div className="mt-4 flex flex-col gap-3">
                 {statusOptions.map((option) => (
                   <Field key={option} className="flex items-center gap-2">
@@ -190,12 +182,12 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
                   </Field>
                 ))}
               </div>
-            </MenuSection>
+            </div>
           )}
 
           {hasMoreThanOneOption(ipniOptions) && (
-            <MenuSection>
-              <MenuHeading className={menuHeadingStyle}>IPNI</MenuHeading>
+            <div>
+              <h3 className={menuHeadingStyle}>IPNI</h3>
               <div className="mt-4 flex flex-col gap-3">
                 {ipniOptions.map((option) => (
                   <Field key={option} className="flex items-center gap-2">
@@ -207,11 +199,11 @@ export function TableFilters({ state, setState, options }: TableFiltersProps) {
                   </Field>
                 ))}
               </div>
-            </MenuSection>
+            </div>
           )}
         </div>
-      </MenuItems>
-    </Menu>
+      </PopoverPanel>
+    </Popover>
   )
 }
 
