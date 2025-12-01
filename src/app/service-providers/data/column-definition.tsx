@@ -62,14 +62,14 @@ export const columns = [
       const serviceStatus = info.getValue() || '-'
       return serviceStatus.toUpperCase()
     },
-    sortingFn: 'alphanumeric',
+    sortingFn: 'text',
     sortUndefined: 'last',
   }),
   columnHelper.accessor('location', {
     id: 'location',
     header: 'Location',
     cell: (info) => info.getValue(),
-    sortingFn: 'alphanumeric',
+    sortingFn: 'text',
     sortUndefined: 'last',
   }),
   columnHelper.accessor('capacityTb', {

@@ -56,7 +56,7 @@ export const columns = [
   columnHelper.accessor('location', {
     header: 'Location',
     cell: (info) => info.getValue(),
-    sortingFn: 'alphanumeric',
+    sortingFn: 'text',
     sortUndefined: 'last',
   }),
   columnHelper.accessor('peerId', {
