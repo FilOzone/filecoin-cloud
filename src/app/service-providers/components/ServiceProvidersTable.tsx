@@ -32,44 +32,10 @@ import { ResetTableFilters } from './ResetTableFilters'
 import { TableFilters } from './TableFilters'
 import { columns } from '../data/column-definition'
 import { useFilterOptions } from '../hooks/useFilterOptions'
-import type { FilterState } from '../hooks/useFilterQueryState'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 import { useSearchQueryState } from '../hooks/useSearchQueryState'
 import { useSortingQueryState } from '../hooks/useSortingQueryState'
-
-function transformFilterStateToColumnFilters(filterState: FilterState) {
-  const columnFilters = []
-
-  if (filterState.status.length > 0) {
-    columnFilters.push({ id: 'serviceStatus', value: filterState.status })
-  }
-  if (filterState.country.length > 0) {
-    columnFilters.push({ id: 'location', value: filterState.country })
-  }
-  if (filterState.ipni.length > 0) {
-    columnFilters.push({ id: 'ipniIpfs', value: filterState.ipni })
-  }
-  if (filterState.capacityMin !== null || filterState.capacityMax !== null) {
-    columnFilters.push({
-      id: 'capacityTb',
-      value: { min: filterState.capacityMin, max: filterState.capacityMax },
-    })
-  }
-  if (
-    filterState.provingPeriodMin !== null ||
-    filterState.provingPeriodMax !== null
-  ) {
-    columnFilters.push({
-      id: 'minProvingPeriod',
-      value: {
-        min: filterState.provingPeriodMin,
-        max: filterState.provingPeriodMax,
-      },
-    })
-  }
-
-  return columnFilters
-}
+import { mapFilterStateToColumnFilters } from '../utils/map-filter-state-to-column-filters'
 
 export type ServiceProvidersTableProps = {
   data: Array<ServiceProvider>
@@ -99,7 +65,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
   )
 
   const columnFilters = useMemo(
-    () => transformFilterStateToColumnFilters(filterQueries),
+    () => mapFilterStateToColumnFilters(filterQueries),
     [filterQueries],
   )
 
