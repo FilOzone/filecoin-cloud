@@ -42,7 +42,7 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
 
       <PopoverPanel
         anchor={{ to: 'bottom', gap: 16 }}
-        className="bg-white w-[640px] max-h-[80vh] overflow-y-auto p-6 rounded-lg border border-(--color-listbox-border) shadow-xs flex gap-16"
+        className="@container bg-white w-[640px] max-h-[80vh] overflow-y-auto p-6 rounded-lg border border-(--color-listbox-border) shadow-xs flex gap-16"
       >
         <div className="shrink-0">
           <CountryFilter options={countryOptions} />
