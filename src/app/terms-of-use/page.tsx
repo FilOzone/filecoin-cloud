@@ -16,7 +16,7 @@ export default function TermsOfUse() {
   return (
     <>
       <Navigation backgroundVariant="light" />
-      <PageSection backgroundVariant="light">
+      <PageSection backgroundVariant="light" paddingVariant="compact">
         <MarkdownPage>
           <MarkdownContent>{body}</MarkdownContent>
         </MarkdownPage>
