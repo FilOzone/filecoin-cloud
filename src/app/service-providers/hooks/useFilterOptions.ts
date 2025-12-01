@@ -2,6 +2,8 @@ import { useMemo } from 'react'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
 
+import { getYesNoFromBoolean } from '../utils/get-yes-no-from-boolean'
+
 export function useFilterOptions(data: Array<ServiceProvider>) {
   return useMemo(() => {
     const status = new Set<string>()
@@ -13,7 +15,7 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
         status.add(provider.serviceStatus)
       }
       country.add(provider.location)
-      ipni.add(provider.ipniIpfs ? 'Yes' : 'No')
+      ipni.add(getYesNoFromBoolean(provider.ipniIpfs))
     }
 
     const capacity = {
