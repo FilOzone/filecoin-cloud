@@ -1,4 +1,4 @@
-# TERMS OF USE
+# Terms of Use
 
 These Terms of Use ("Terms") govern your use of Fil Oz's website and any other website that Fil Oz operates and that links to these Terms (collectively, the "Website").
 

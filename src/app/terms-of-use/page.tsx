@@ -2,7 +2,6 @@ import { MarkdownContent } from '@filecoin-foundation/ui-filecoin/Markdown/Markd
 import { MarkdownPage } from '@filecoin-foundation/ui-filecoin/Markdown/MarkdownPage'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 
-import { Header } from '@/components/Header'
 import { Navigation } from '@/components/Navigation/Navigation'
 
 import { PATHS } from '@/constants/paths'
@@ -16,10 +15,8 @@ const { body } = termsOfUseMarkdown
 export default function TermsOfUse() {
   return (
     <>
-      <Header />
       <Navigation backgroundVariant="light" />
-
-      <PageSection backgroundVariant="light">
+      <PageSection backgroundVariant="light" paddingVariant="compact">
         <MarkdownPage>
           <MarkdownContent>{body}</MarkdownContent>
         </MarkdownPage>

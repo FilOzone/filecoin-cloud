@@ -1,4 +1,4 @@
-# PRIVACY POLICY
+# Privacy Policy
 
 Fil Oz (collectively, "Fil Oz," "we," "us") provide this Privacy Policy to explain our practices regarding the collection, use, and disclosure of your personal information both online and offline. This Privacy Policy applies to filecoin.cloud ("Websites") and any websites, apps, or services that link to this Privacy Policy ("Services"), unless otherwise indicated.
 
