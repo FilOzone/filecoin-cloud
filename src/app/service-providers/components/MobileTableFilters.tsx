@@ -40,10 +40,9 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
 
   return (
     <>
-      {/* TODO: Move onClick to button once ui-filecoin is re-exported */}
-      <span onClick={() => setOpen(true)}>
-        <FilterButton Icon={FunnelSimpleIcon}>Filters</FilterButton>
-      </span>
+      <FilterButton Icon={FunnelSimpleIcon} onClick={() => setOpen(true)}>
+        Filters
+      </FilterButton>
 
       <SlideOver open={open} setOpen={setOpen}>
         <div
