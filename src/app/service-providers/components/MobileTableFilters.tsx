@@ -63,7 +63,7 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
 
           <div className="pt-8 flex justify-center">
             <Button variant="ghost" onClick={() => setOpen(false)}>
-              Close Panel
+              Close Filters Panel
             </Button>
           </div>
         </div>

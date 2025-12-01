@@ -9,10 +9,10 @@ export type TableFiltersProps = {
 export function TableFilters({ options }: TableFiltersProps) {
   return (
     <>
-      <span className="hidden md:inline-block">
+      <span className="hidden md:block">
         <DesktopTableFilters options={options} />
       </span>
-      <span className="md:hidden">
+      <span className="block md:hidden">
         <MobileTableFilters options={options} />
       </span>
     </>
