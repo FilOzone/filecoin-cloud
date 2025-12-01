@@ -1,5 +1,10 @@
 import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
-import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
+import {
+  Popover,
+  PopoverBackdrop,
+  PopoverButton,
+  PopoverPanel,
+} from '@headlessui/react'
 import { FunnelSimpleIcon } from '@phosphor-icons/react/dist/ssr'
 
 import { CapacityFilter } from './CapacityFilter'
@@ -32,6 +37,8 @@ export function TableFilters({ options }: TableFiltersProps) {
           Filters
         </span>
       </PopoverButton>
+
+      <PopoverBackdrop className="fixed inset-0 bg-zinc-950/5" />
 
       <PopoverPanel
         anchor={{ to: 'bottom', gap: 16 }}
