@@ -38,7 +38,7 @@ export function CapacityFilter({
       <FiltersSectionHeading>Capacity (TiB)</FiltersSectionHeading>
       <InputContainer>
         <NumberInput
-          label="Minimum capacity filter"
+          label="Minimum capacity"
           placeholder={`Min (${capacityMin.toLocaleString()})`}
           value={filterQueries.capacityMin?.toString() ?? ''}
           onChange={updateCapacityMin}
@@ -46,7 +46,7 @@ export function CapacityFilter({
           max={capacityMax}
         />
         <NumberInput
-          label="Maximum capacity filter"
+          label="Maximum capacity"
           placeholder={`Max (${capacityMax.toLocaleString()})`}
           value={filterQueries.capacityMax?.toString() ?? ''}
           onChange={updateCapacityMax}

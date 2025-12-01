@@ -38,7 +38,7 @@ export function ProvingPeriodFilter({
       <FiltersSectionHeading>Proving Period (Epochs)</FiltersSectionHeading>
       <InputContainer>
         <NumberInput
-          label="Minimum proving period filter"
+          label="Minimum period"
           placeholder={`Min (${provingPeriodMin.toLocaleString()})`}
           value={filterQueries.provingPeriodMin?.toString() ?? ''}
           onChange={updateProvingPeriodMin}
@@ -46,7 +46,7 @@ export function ProvingPeriodFilter({
           max={provingPeriodMax}
         />
         <NumberInput
-          label="Maximum proving period filter"
+          label="Maximum period"
           placeholder={`Max (${provingPeriodMax.toLocaleString()})`}
           value={filterQueries.provingPeriodMax?.toString() ?? ''}
           onChange={updateProvingPeriodMax}

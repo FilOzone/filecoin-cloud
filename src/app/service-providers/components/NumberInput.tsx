@@ -13,7 +13,9 @@ type NumberInputProps = {
 export function NumberInput({ label, ...rest }: NumberInputProps) {
   return (
     <Field className="w-full">
-      <Label className="sr-only">{label}</Label>
+      <Label className="text-zinc-600 text-sm font-normal mb-1 inline-block">
+        {label}
+      </Label>
       <Input {...rest} aria-label={label} type="number" />
     </Field>
   )
