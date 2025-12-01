@@ -3,5 +3,5 @@ type InputContainerProps = {
 }
 
 export function InputContainer({ children }: InputContainerProps) {
-  return <div className="flex gap-4">{children}</div>
+  return <div className="flex gap-4 flex-wrap md:flex-nowrap">{children}</div>
 }
