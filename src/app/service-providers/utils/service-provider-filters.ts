@@ -2,9 +2,12 @@ import type { FilterFn } from '@tanstack/react-table'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
 
+import { getYesNoFromBoolean } from './get-yes-no-from-boolean'
+import type { FilterState } from '../hooks/useFilterQueryState'
+
 type RangeFilter = {
-  min: number | null
-  max: number | null
+  min: FilterState['capacityMin']
+  max: FilterState['capacityMax']
 }
 
 export const statusFilterFn: FilterFn<ServiceProvider> = (
@@ -12,7 +15,7 @@ export const statusFilterFn: FilterFn<ServiceProvider> = (
   _columnId,
   filterValue,
 ) => {
-  const statusArray = filterValue as Array<string>
+  const statusArray = filterValue as FilterState['status']
   if (statusArray.length === 0) return true
 
   const serviceStatus = row.original.serviceStatus
@@ -24,7 +27,7 @@ export const countryFilterFn: FilterFn<ServiceProvider> = (
   _columnId,
   filterValue,
 ) => {
-  const countryArray = filterValue as Array<string>
+  const countryArray = filterValue as FilterState['country']
   if (countryArray.length === 0) return true
 
   const location = row.original.location
@@ -36,11 +39,11 @@ export const ipniFilterFn: FilterFn<ServiceProvider> = (
   _columnId,
   filterValue,
 ) => {
-  const ipniArray = filterValue as Array<string>
+  const ipniArray = filterValue as FilterState['ipni']
   if (ipniArray.length === 0) return true
 
   const ipniIpfs = row.original.ipniIpfs
-  const ipniValue = ipniIpfs ? 'Yes' : 'No'
+  const ipniValue = getYesNoFromBoolean(ipniIpfs)
   return ipniArray.includes(ipniValue)
 }
 
