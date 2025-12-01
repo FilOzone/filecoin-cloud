@@ -7,10 +7,10 @@ import { useFilterQueryState } from '../hooks/useFilterQueryState'
 import { toggleValueInArray } from '../utils/toggle-value-in-array'
 
 type StatusFilterProps = {
-  statusOptions: Array<string>
+  options: Array<string>
 }
 
-export function StatusFilter({ statusOptions }: StatusFilterProps) {
+export function StatusFilter({ options }: StatusFilterProps) {
   const { filterQueries, setFilterQueries } = useFilterQueryState()
 
   const toggleStatus = useCallback(
@@ -25,7 +25,7 @@ export function StatusFilter({ statusOptions }: StatusFilterProps) {
     <div>
       <FiltersSectionHeading>Status</FiltersSectionHeading>
       <CheckboxContainer>
-        {statusOptions.map((option) => (
+        {options.map((option) => (
           <CheckboxWithLabel
             key={option}
             checked={filterQueries.status.includes(option)}

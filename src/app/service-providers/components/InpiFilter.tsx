@@ -7,10 +7,10 @@ import { useFilterQueryState } from '../hooks/useFilterQueryState'
 import { toggleValueInArray } from '../utils/toggle-value-in-array'
 
 type InpiFilterProps = {
-  ipniOptions: Array<string>
+  options: Array<string>
 }
 
-export function InpiFilter({ ipniOptions }: InpiFilterProps) {
+export function InpiFilter({ options }: InpiFilterProps) {
   const { filterQueries, setFilterQueries } = useFilterQueryState()
 
   const toggleIpni = useCallback(
@@ -25,7 +25,7 @@ export function InpiFilter({ ipniOptions }: InpiFilterProps) {
     <div>
       <FiltersSectionHeading>IPNI</FiltersSectionHeading>
       <CheckboxContainer>
-        {ipniOptions.map((option) => (
+        {options.map((option) => (
           <CheckboxWithLabel
             key={option}
             checked={filterQueries.ipni.includes(option)}

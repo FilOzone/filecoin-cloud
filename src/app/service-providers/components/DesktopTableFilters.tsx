@@ -55,11 +55,8 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
             provingPeriodMax={provingPeriodMax}
           />
 
-          {statusOptions.length > 1 && (
-            <StatusFilter statusOptions={statusOptions} />
-          )}
-
-          {ipniOptions.length > 1 && <InpiFilter ipniOptions={ipniOptions} />}
+          {statusOptions.length > 1 && <StatusFilter options={statusOptions} />}
+          {ipniOptions.length > 1 && <InpiFilter options={ipniOptions} />}
         </div>
       </PopoverPanel>
     </Popover>
