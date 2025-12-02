@@ -6,6 +6,7 @@ import {
 } from 'nuqs'
 import { useCallback } from 'react'
 
+import { parseNumericInput } from '../utils/parse-numeric-input'
 import { toggleValueInArray } from '../utils/toggle-value-in-array'
 
 export type FilterState = {
@@ -32,6 +33,10 @@ type ArrayStringKeys<T> = {
   [K in keyof T]: T[K] extends Array<string> ? K : never
 }[keyof T]
 
+type NumberKeys<T> = {
+  [K in keyof T]: T[K] extends number | null ? K : never
+}[keyof T]
+
 export function useFilterQueryState() {
   const [filterQueries, setFilterQueries] = useQueryStates(filterParsers, {
     shallow: false,
@@ -45,10 +50,18 @@ export function useFilterQueryState() {
     [filterQueries, setFilterQueries],
   )
 
+  const updateNumberQuery = useCallback(
+    (key: NumberKeys<FilterState>, value: string) => {
+      const updated = parseNumericInput(value)
+      setFilterQueries({ ...filterQueries, [key]: updated })
+    },
+    [filterQueries, setFilterQueries],
+  )
+
   return {
     filterQueries,
-    setFilterQueries,
     toggleFilterQuery,
+    updateNumberQuery,
     clearFilterQueries: () => setFilterQueries(null),
   } as const
 }

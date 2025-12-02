@@ -1,10 +1,7 @@
-import { useCallback } from 'react'
-
 import { FiltersSectionHeading } from './FiltersSectionHeading'
 import { InputsContainer } from './InputsContainer'
 import { NumberInputWithLabel } from './NumberInputWithLabel'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
-import { parseNumericInput } from '../utils/parse-numeric-input'
 
 type CapacityFilterProps = {
   capacityMin: number
@@ -15,23 +12,7 @@ export function CapacityFilter({
   capacityMin,
   capacityMax,
 }: CapacityFilterProps) {
-  const { filterQueries, setFilterQueries } = useFilterQueryState()
-
-  const updateCapacityMin = useCallback(
-    (value: string) => {
-      const updated = parseNumericInput(value)
-      setFilterQueries({ ...filterQueries, capacityMin: updated })
-    },
-    [filterQueries, setFilterQueries],
-  )
-
-  const updateCapacityMax = useCallback(
-    (value: string) => {
-      const updated = parseNumericInput(value)
-      setFilterQueries({ ...filterQueries, capacityMax: updated })
-    },
-    [filterQueries, setFilterQueries],
-  )
+  const { filterQueries, updateNumberQuery } = useFilterQueryState()
 
   return (
     <div>
@@ -41,7 +22,7 @@ export function CapacityFilter({
           label="Minimum capacity"
           placeholder={`Min (${capacityMin.toLocaleString()})`}
           value={filterQueries.capacityMin?.toString() ?? ''}
-          onChange={updateCapacityMin}
+          onChange={(value) => updateNumberQuery('capacityMin', value)}
           min={capacityMin}
           max={capacityMax}
         />
@@ -49,7 +30,7 @@ export function CapacityFilter({
           label="Maximum capacity"
           placeholder={`Max (${capacityMax.toLocaleString()})`}
           value={filterQueries.capacityMax?.toString() ?? ''}
-          onChange={updateCapacityMax}
+          onChange={(value) => updateNumberQuery('capacityMax', value)}
           min={capacityMin}
           max={capacityMax}
         />

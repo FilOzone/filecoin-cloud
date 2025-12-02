@@ -1,10 +1,7 @@
-import { useCallback } from 'react'
-
 import { FiltersSectionHeading } from './FiltersSectionHeading'
 import { InputsContainer } from './InputsContainer'
 import { NumberInputWithLabel } from './NumberInputWithLabel'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
-import { parseNumericInput } from '../utils/parse-numeric-input'
 
 type ProvingPeriodFilterProps = {
   provingPeriodMin: number
@@ -15,23 +12,7 @@ export function ProvingPeriodFilter({
   provingPeriodMin,
   provingPeriodMax,
 }: ProvingPeriodFilterProps) {
-  const { filterQueries, setFilterQueries } = useFilterQueryState()
-
-  const updateProvingPeriodMin = useCallback(
-    (value: string) => {
-      const updated = parseNumericInput(value)
-      setFilterQueries({ ...filterQueries, provingPeriodMin: updated })
-    },
-    [filterQueries, setFilterQueries],
-  )
-
-  const updateProvingPeriodMax = useCallback(
-    (value: string) => {
-      const updated = parseNumericInput(value)
-      setFilterQueries({ ...filterQueries, provingPeriodMax: updated })
-    },
-    [filterQueries, setFilterQueries],
-  )
+  const { filterQueries, updateNumberQuery } = useFilterQueryState()
 
   return (
     <div>
@@ -41,7 +22,7 @@ export function ProvingPeriodFilter({
           label="Minimum period"
           placeholder={`Min (${provingPeriodMin.toLocaleString()})`}
           value={filterQueries.provingPeriodMin?.toString() ?? ''}
-          onChange={updateProvingPeriodMin}
+          onChange={(value) => updateNumberQuery('provingPeriodMin', value)}
           min={provingPeriodMin}
           max={provingPeriodMax}
         />
@@ -49,7 +30,7 @@ export function ProvingPeriodFilter({
           label="Maximum period"
           placeholder={`Max (${provingPeriodMax.toLocaleString()})`}
           value={filterQueries.provingPeriodMax?.toString() ?? ''}
-          onChange={updateProvingPeriodMax}
+          onChange={(value) => updateNumberQuery('provingPeriodMax', value)}
           min={provingPeriodMin}
           max={provingPeriodMax}
         />
