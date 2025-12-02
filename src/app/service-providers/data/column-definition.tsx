@@ -8,6 +8,7 @@ import { ProviderOverview } from '@/components/ProviderOverview'
 import { SoftwareVersion } from '@/components/SoftwareVersion'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
+import { sortSoftwareVersion } from '@/utils/sort-software-version'
 
 const columnHelper = createColumnHelper<ServiceProvider>()
 
@@ -42,15 +43,7 @@ export const columns = [
       const softwareVersion = info.getValue()
       return softwareVersion ? <SoftwareVersion info={softwareVersion} /> : '-'
     },
-    sortingFn: (rowA, rowB) => {
-      const matchesA = rowA.original.softwareVersion?.split('+')
-      const matchesB = rowB.original.softwareVersion?.split('+')
-      if (!matchesA || !matchesB) return 0
-
-      const versionA = matchesA[0]
-      const versionB = matchesB[0]
-      return versionA.localeCompare(versionB)
-    },
+    sortingFn: sortSoftwareVersion,
     sortUndefined: 'last',
   }),
   // TODO: Add check activity link
@@ -69,14 +62,14 @@ export const columns = [
       const serviceStatus = info.getValue() || '-'
       return serviceStatus.toUpperCase()
     },
-    sortingFn: 'alphanumeric',
+    sortingFn: 'text',
     sortUndefined: 'last',
   }),
   columnHelper.accessor('location', {
     id: 'location',
     header: 'Location',
     cell: (info) => info.getValue(),
-    sortingFn: 'alphanumeric',
+    sortingFn: 'text',
     sortUndefined: 'last',
   }),
   columnHelper.accessor('capacityTb', {
