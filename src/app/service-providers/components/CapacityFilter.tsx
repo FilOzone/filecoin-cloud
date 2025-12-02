@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 
 import { FiltersSectionHeading } from './FiltersSectionHeading'
-import { InputContainer } from './InputContainer'
-import { NumberInput } from './NumberInput'
+import { InputsContainer } from './InputsContainer'
+import { NumberInputWithLabel } from './NumberInputWithLabel'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 import { parseNumericInput } from '../utils/parse-numeric-input'
 
@@ -36,8 +36,8 @@ export function CapacityFilter({
   return (
     <div>
       <FiltersSectionHeading>Capacity (TiB)</FiltersSectionHeading>
-      <InputContainer>
-        <NumberInput
+      <InputsContainer>
+        <NumberInputWithLabel
           label="Minimum capacity"
           placeholder={`Min (${capacityMin.toLocaleString()})`}
           value={filterQueries.capacityMin?.toString() ?? ''}
@@ -45,7 +45,7 @@ export function CapacityFilter({
           min={capacityMin}
           max={capacityMax}
         />
-        <NumberInput
+        <NumberInputWithLabel
           label="Maximum capacity"
           placeholder={`Max (${capacityMax.toLocaleString()})`}
           value={filterQueries.capacityMax?.toString() ?? ''}
@@ -53,7 +53,7 @@ export function CapacityFilter({
           min={capacityMin}
           max={capacityMax}
         />
-      </InputContainer>
+      </InputsContainer>
     </div>
   )
 }

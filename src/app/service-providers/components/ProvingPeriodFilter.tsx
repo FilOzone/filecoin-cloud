@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 
 import { FiltersSectionHeading } from './FiltersSectionHeading'
-import { InputContainer } from './InputContainer'
-import { NumberInput } from './NumberInput'
+import { InputsContainer } from './InputsContainer'
+import { NumberInputWithLabel } from './NumberInputWithLabel'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 import { parseNumericInput } from '../utils/parse-numeric-input'
 
@@ -36,8 +36,8 @@ export function ProvingPeriodFilter({
   return (
     <div>
       <FiltersSectionHeading>Proving Period (Epochs)</FiltersSectionHeading>
-      <InputContainer>
-        <NumberInput
+      <InputsContainer>
+        <NumberInputWithLabel
           label="Minimum period"
           placeholder={`Min (${provingPeriodMin.toLocaleString()})`}
           value={filterQueries.provingPeriodMin?.toString() ?? ''}
@@ -45,7 +45,7 @@ export function ProvingPeriodFilter({
           min={provingPeriodMin}
           max={provingPeriodMax}
         />
-        <NumberInput
+        <NumberInputWithLabel
           label="Maximum period"
           placeholder={`Max (${provingPeriodMax.toLocaleString()})`}
           value={filterQueries.provingPeriodMax?.toString() ?? ''}
@@ -53,7 +53,7 @@ export function ProvingPeriodFilter({
           min={provingPeriodMin}
           max={provingPeriodMax}
         />
-      </InputContainer>
+      </InputsContainer>
     </div>
   )
 }
