@@ -1,7 +1,7 @@
 import { Input } from '@filecoin-foundation/ui-filecoin/Input'
 import { Field, Label } from '@headlessui/react'
 
-type NumberInputProps = {
+type NumberInputWithLabelProps = {
   placeholder: string
   value: string
   onChange: (value: string) => void
@@ -10,7 +10,10 @@ type NumberInputProps = {
   max?: number
 }
 
-export function NumberInputWithLabel({ label, ...rest }: NumberInputProps) {
+export function NumberInputWithLabel({
+  label,
+  ...rest
+}: NumberInputWithLabelProps) {
   return (
     <Field className="w-full">
       <Label className="text-zinc-600 text-sm font-normal mb-1 inline-block">
