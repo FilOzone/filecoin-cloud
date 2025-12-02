@@ -4,7 +4,7 @@ import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { FilterButton } from '@filecoin-foundation/ui-filecoin/FilterButton'
 import {
   backgroundVariants,
-  useBackgroundVariant,
+  useBackground,
 } from '@filecoin-foundation/ui-filecoin/Section/Section'
 import { SlideOver } from '@filecoin-foundation/ui-filecoin/SlideOver'
 import { FunnelSimpleIcon } from '@phosphor-icons/react'
@@ -25,8 +25,7 @@ type MobileTableFiltersProps = {
 export function MobileTableFilters({ options }: MobileTableFiltersProps) {
   const [open, setOpen] = useState(false)
 
-  // TODO: Use binaryVariant here
-  const backgroundVariant = useBackgroundVariant()
+  const { theme } = useBackground()
 
   const {
     country: countryOptions,
@@ -47,7 +46,7 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
       <SlideOver open={open} setOpen={setOpen}>
         <div
           className={clsx(
-            backgroundVariants[backgroundVariant],
+            backgroundVariants[theme],
             '@container p-8 flex flex-col gap-8',
           )}
         >

@@ -1,10 +1,9 @@
 'use client'
 
 import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
-import { variantMapping } from '@filecoin-foundation/ui-filecoin/Navigation/constants'
 import {
   backgroundVariants,
-  useBackgroundVariant,
+  useBackground,
 } from '@filecoin-foundation/ui-filecoin/Section/Section'
 import {
   Listbox as HeadlessListbox,
@@ -34,8 +33,7 @@ export function Listbox<T extends Option>({
   setSelected,
   Icon: IconComponent,
 }: LisboxProps<T>) {
-  const backgroundVariant = useBackgroundVariant()
-  const desktopBackgroundVariant = variantMapping[backgroundVariant]
+  const { theme } = useBackground()
 
   return (
     <HeadlessListbox value={selected} onChange={setSelected}>
@@ -53,7 +51,7 @@ export function Listbox<T extends Option>({
         transition
         anchor="bottom start"
         className={clsx(
-          backgroundVariants[desktopBackgroundVariant],
+          backgroundVariants[theme],
           'w-(--button-width) rounded-lg border border-(--color-listbox-border) p-2 [--anchor-gap:--spacing(2)] focus:outline-none transition duration-100 ease-in data-leave:data-closed:opacity-0 space-y-2 shadow-xs',
         )}
       >
