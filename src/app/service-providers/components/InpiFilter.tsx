@@ -1,6 +1,6 @@
 import { CheckboxesContainer } from './CheckboxesContainer'
 import { CheckboxWithLabel } from './CheckboxWithLabel'
-import { FiltersSectionHeading } from './FiltersSectionHeading'
+import { FilterHeading } from './FilterHeading'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 
 type InpiFilterProps = {
@@ -12,7 +12,7 @@ export function InpiFilter({ options }: InpiFilterProps) {
 
   return (
     <div>
-      <FiltersSectionHeading>IPNI</FiltersSectionHeading>
+      <FilterHeading>IPNI</FilterHeading>
       <CheckboxesContainer>
         {options.map((option) => (
           <CheckboxWithLabel

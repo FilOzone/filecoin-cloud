@@ -1,4 +1,4 @@
-import { FiltersSectionHeading } from './FiltersSectionHeading'
+import { FilterHeading } from './FilterHeading'
 import { InputsContainer } from './InputsContainer'
 import { NumberInputWithLabel } from './NumberInputWithLabel'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
@@ -16,7 +16,7 @@ export function CapacityFilter({
 
   return (
     <div>
-      <FiltersSectionHeading>Capacity (TiB)</FiltersSectionHeading>
+      <FilterHeading>Capacity (TiB)</FilterHeading>
       <InputsContainer>
         <NumberInputWithLabel
           label="Minimum capacity"

@@ -1,4 +1,4 @@
-import { FiltersSectionHeading } from './FiltersSectionHeading'
+import { FilterHeading } from './FilterHeading'
 import { InputsContainer } from './InputsContainer'
 import { NumberInputWithLabel } from './NumberInputWithLabel'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
@@ -16,7 +16,7 @@ export function ProvingPeriodFilter({
 
   return (
     <div>
-      <FiltersSectionHeading>Proving Period (Epochs)</FiltersSectionHeading>
+      <FilterHeading>Proving Period (Epochs)</FilterHeading>
       <InputsContainer>
         <NumberInputWithLabel
           label="Minimum period"
