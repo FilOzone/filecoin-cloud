@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { CheckboxContainer } from './CheckboxContainer'
+import { CheckboxesContainer } from './CheckboxesContainer'
 import { CheckboxWithLabel } from './CheckboxWithLabel'
 import { FiltersSectionHeading } from './FiltersSectionHeading'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
@@ -24,7 +24,7 @@ export function StatusFilter({ options }: StatusFilterProps) {
   return (
     <div>
       <FiltersSectionHeading>Status</FiltersSectionHeading>
-      <CheckboxContainer>
+      <CheckboxesContainer>
         {options.map((option) => (
           <CheckboxWithLabel
             key={option}
@@ -33,7 +33,7 @@ export function StatusFilter({ options }: StatusFilterProps) {
             label={option}
           />
         ))}
-      </CheckboxContainer>
+      </CheckboxesContainer>
     </div>
   )
 }
