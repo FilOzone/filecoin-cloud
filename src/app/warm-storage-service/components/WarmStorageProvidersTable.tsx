@@ -31,6 +31,7 @@ export function WarmStorageProvidersTable({
   const table = useReactTable({
     data,
     columns,
+    enableMultiSort: false,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
