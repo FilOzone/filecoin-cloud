@@ -1,6 +1,6 @@
 import { CheckboxesContainer } from './CheckboxesContainer'
 import { CheckboxWithLabel } from './CheckboxWithLabel'
-import { FiltersSectionHeading } from './FiltersSectionHeading'
+import { FilterHeading } from './FilterHeading'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 
 type StatusFilterProps = {
@@ -12,7 +12,7 @@ export function StatusFilter({ options }: StatusFilterProps) {
 
   return (
     <div>
-      <FiltersSectionHeading>Status</FiltersSectionHeading>
+      <FilterHeading>Status</FilterHeading>
       <CheckboxesContainer>
         {options.map((option) => (
           <CheckboxWithLabel

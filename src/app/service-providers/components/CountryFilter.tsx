@@ -1,6 +1,6 @@
 import { CheckboxesContainer } from './CheckboxesContainer'
 import { CheckboxWithLabel } from './CheckboxWithLabel'
-import { FiltersSectionHeading } from './FiltersSectionHeading'
+import { FilterHeading } from './FilterHeading'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 
 type CountryFilterProps = {
@@ -12,7 +12,7 @@ export function CountryFilter({ options: countryOptions }: CountryFilterProps) {
 
   return (
     <div>
-      <FiltersSectionHeading>Country</FiltersSectionHeading>
+      <FilterHeading>Country</FilterHeading>
       <CheckboxesContainer>
         {countryOptions.map((option) => (
           <CheckboxWithLabel
