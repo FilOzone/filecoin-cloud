@@ -11,7 +11,7 @@
     "format": "biome format --write ."
   },
   "dependencies": {
-    "@filecoin-foundation/ui-filecoin": "^0.5.2",
+    "@filecoin-foundation/ui-filecoin": "^0.5.0",
     "@filoz/synapse-sdk": "^0.36.0",
     "@headlessui/react": "^2.2.9",
     "@phosphor-icons/react": "^2.1.10",
@@ -23,7 +23,7 @@
     "clsx": "^2.1.1",
     "ethers": "^6.15.0",
     "frontmatter-markdown-loader": "^3.7.0",
-    "next": "^16.0.5",
+    "next": "^15.5.6",
     "next-plausible": "^3.12.5",
     "nuqs": "^2.8.1",
     "ramda": "^0.32.0",
