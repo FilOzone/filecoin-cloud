@@ -10,13 +10,13 @@ type NumberInputProps = {
   max?: number
 }
 
-export function NumberInput({ label, ...rest }: NumberInputProps) {
+export function NumberInputWithLabel({ label, ...rest }: NumberInputProps) {
   return (
     <Field className="w-full">
       <Label className="text-zinc-600 text-sm font-normal mb-1 inline-block">
         {label}
       </Label>
-      <Input {...rest} aria-label={label} type="number" />
+      <Input {...rest} type="number" />
     </Field>
   )
 }
