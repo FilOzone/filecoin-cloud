@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { CheckboxContainer } from './CheckboxContainer'
+import { CheckboxesContainer } from './CheckboxesContainer'
 import { CheckboxWithLabel } from './CheckboxWithLabel'
 import { FiltersSectionHeading } from './FiltersSectionHeading'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
@@ -24,7 +24,7 @@ export function CountryFilter({ options: countryOptions }: CountryFilterProps) {
   return (
     <div>
       <FiltersSectionHeading>Country</FiltersSectionHeading>
-      <CheckboxContainer>
+      <CheckboxesContainer>
         {countryOptions.map((option) => (
           <CheckboxWithLabel
             key={option}
@@ -33,7 +33,7 @@ export function CountryFilter({ options: countryOptions }: CountryFilterProps) {
             label={option}
           />
         ))}
-      </CheckboxContainer>
+      </CheckboxesContainer>
     </div>
   )
 }

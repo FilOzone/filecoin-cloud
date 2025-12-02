@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { CheckboxContainer } from './CheckboxContainer'
+import { CheckboxesContainer } from './CheckboxesContainer'
 import { CheckboxWithLabel } from './CheckboxWithLabel'
 import { FiltersSectionHeading } from './FiltersSectionHeading'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
@@ -24,7 +24,7 @@ export function InpiFilter({ options }: InpiFilterProps) {
   return (
     <div>
       <FiltersSectionHeading>IPNI</FiltersSectionHeading>
-      <CheckboxContainer>
+      <CheckboxesContainer>
         {options.map((option) => (
           <CheckboxWithLabel
             key={option}
@@ -33,7 +33,7 @@ export function InpiFilter({ options }: InpiFilterProps) {
             label={option}
           />
         ))}
-      </CheckboxContainer>
+      </CheckboxesContainer>
     </div>
   )
 }
