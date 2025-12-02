@@ -1,25 +1,14 @@
-import { useCallback } from 'react'
-
 import { CheckboxesContainer } from './CheckboxesContainer'
 import { CheckboxWithLabel } from './CheckboxWithLabel'
 import { FiltersSectionHeading } from './FiltersSectionHeading'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
-import { toggleValueInArray } from '../utils/toggle-value-in-array'
 
 type StatusFilterProps = {
   options: Array<string>
 }
 
 export function StatusFilter({ options }: StatusFilterProps) {
-  const { filterQueries, setFilterQueries } = useFilterQueryState()
-
-  const toggleStatus = useCallback(
-    (status: string) => {
-      const updated = toggleValueInArray(filterQueries.status, status)
-      setFilterQueries({ ...filterQueries, status: updated })
-    },
-    [filterQueries, setFilterQueries],
-  )
+  const { filterQueries, toggleFilterQuery } = useFilterQueryState()
 
   return (
     <div>
@@ -29,7 +18,7 @@ export function StatusFilter({ options }: StatusFilterProps) {
           <CheckboxWithLabel
             key={option}
             checked={filterQueries.status.includes(option)}
-            onChange={() => toggleStatus(option)}
+            onChange={() => toggleFilterQuery('status', option)}
             label={option}
           />
         ))}

@@ -4,6 +4,9 @@ import {
   parseAsString,
   useQueryStates,
 } from 'nuqs'
+import { useCallback } from 'react'
+
+import { toggleValueInArray } from '../utils/toggle-value-in-array'
 
 export type FilterState = {
   status: Array<string>
@@ -25,14 +28,27 @@ const filterParsers = {
   ipni: parseAsArrayOf(parseAsString).withDefault([]),
 }
 
+type ArrayStringKeys<T> = {
+  [K in keyof T]: T[K] extends Array<string> ? K : never
+}[keyof T]
+
 export function useFilterQueryState() {
   const [filterQueries, setFilterQueries] = useQueryStates(filterParsers, {
     shallow: false,
   })
 
+  const toggleFilterQuery = useCallback(
+    (key: ArrayStringKeys<FilterState>, value: string) => {
+      const updated = toggleValueInArray(filterQueries[key], value)
+      setFilterQueries({ ...filterQueries, [key]: updated })
+    },
+    [filterQueries, setFilterQueries],
+  )
+
   return {
     filterQueries,
     setFilterQueries,
+    toggleFilterQuery,
     clearFilterQueries: () => setFilterQueries(null),
   } as const
 }
