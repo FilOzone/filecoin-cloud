@@ -13,8 +13,9 @@ import { Faq } from '@/components/Faq'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { Phase } from '@/components/Phase'
 import { SimpleCardWithImage } from '@/components/SimpleCardWithImage'
+import { StructuredDataScript } from '@/components/StructuredDataScript'
 
-import { FOC_URLS } from '@/constants/site-metadata'
+import { FOC_URLS, SEO } from '@/constants/site-metadata'
 import CometVideoPoster from '@/public/assets/comet-video-poster.webp'
 
 import { buildPhases } from './data/build-phases'
@@ -24,10 +25,12 @@ import { faqs } from './data/faqs'
 import { filecoinOnchainCloudProducts } from './data/filecoin-onchain-cloud-products'
 import { focFeatures } from './data/foc-features'
 import { runningOnFilecoinOnchainCloud } from './data/running-on-filecoin-onchain-cloud'
+import { generateStructuredData } from './utils/generateStructuredData'
 
 export default function Homepage() {
   return (
     <>
+      <StructuredDataScript structuredData={generateStructuredData(SEO)} />
       <div className="isolate relative">
         <BackgroundVideo
           videoPath="/comet-video.mp4"
