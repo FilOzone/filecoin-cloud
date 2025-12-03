@@ -1,6 +1,6 @@
 'use client'
 
-import { useBackgroundVariant } from '@filecoin-foundation/ui-filecoin/Section/Section'
+import { useBackground } from '@filecoin-foundation/ui-filecoin/Section/Section'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { clsx } from 'clsx'
 
@@ -16,9 +16,7 @@ type FaqProps = {
 }
 
 export function Faq({ questions }: FaqProps) {
-  const backgroundVariant = useBackgroundVariant()
-  const isDark =
-    backgroundVariant === 'dark' || backgroundVariant === 'transparentDark'
+  const { isDark } = useBackground()
 
   return (
     <div className="max-w-4xl">
