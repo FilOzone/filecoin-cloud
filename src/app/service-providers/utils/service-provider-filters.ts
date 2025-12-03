@@ -53,12 +53,17 @@ export const capacityRangeFilterFn: FilterFn<ServiceProvider> = (
   filterValue,
 ) => {
   const range = filterValue as RangeFilter
-  const capacity = row.original.capacityTb
-
-  if (!capacity) return false
-
-  const capacityNum = Number(capacity)
   const { min, max } = range
+  
+  // If no filter is applied, show all rows including those without capacity data
+  if (min === null && max === null) return true
+  
+  const capacity = row.original.capacityTb
+  
+  // If filter IS applied but row has no capacity data, exclude it from results
+  if (!capacity) return false
+  
+  const capacityNum = Number(capacity)
 
   if (min !== null && capacityNum < min) return false
   if (max !== null && capacityNum > max) return false
