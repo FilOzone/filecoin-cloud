@@ -1,3 +1,5 @@
+import { Fieldset } from '@headlessui/react'
+
 import { CheckboxesContainer } from './CheckboxesContainer'
 import { CheckboxWithLabel } from './CheckboxWithLabel'
 import { FilterHeading } from './FilterHeading'
@@ -11,7 +13,7 @@ export function StatusFilter({ options }: StatusFilterProps) {
   const { filterQueries, toggleFilterQuery } = useFilterQueryState()
 
   return (
-    <div>
+    <Fieldset>
       <FilterHeading>Status</FilterHeading>
       <CheckboxesContainer>
         {options.map((option) => (
@@ -23,6 +25,6 @@ export function StatusFilter({ options }: StatusFilterProps) {
           />
         ))}
       </CheckboxesContainer>
-    </div>
+    </Fieldset>
   )
 }
