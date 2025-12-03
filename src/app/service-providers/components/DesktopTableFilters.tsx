@@ -1,3 +1,4 @@
+import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
 import {
   backgroundVariants,
@@ -18,6 +19,7 @@ import { InpiFilter } from './InpiFilter'
 import { ProvingPeriodFilter } from './ProvingPeriodFilter'
 import { StatusFilter } from './StatusFilter'
 import type { useFilterOptions } from '../hooks/useFilterOptions'
+import { useFilterQueryState } from '../hooks/useFilterQueryState'
 
 export type DesktopTableFiltersProps = {
   options: ReturnType<typeof useFilterOptions>
@@ -25,6 +27,7 @@ export type DesktopTableFiltersProps = {
 
 export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
   const { theme } = useBackground()
+  const { clearFilterQueries } = useFilterQueryState()
 
   const {
     country: countryOptions,
@@ -38,37 +41,60 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
 
   return (
     <Popover>
-      <PopoverButton className="listbox-button">
-        <span className="flex items-center gap-2">
-          <Icon component={FunnelSimpleIcon} size={20} />
-          Filters
-        </span>
-      </PopoverButton>
+      {({ close }) => (
+        <>
+          <PopoverButton className="listbox-button">
+            <span className="flex items-center gap-2">
+              <Icon component={FunnelSimpleIcon} size={20} />
+              Filters
+            </span>
+          </PopoverButton>
 
-      <PopoverBackdrop className="fixed inset-0 bg-zinc-950/5" />
+          <PopoverBackdrop className="fixed inset-0 bg-zinc-950/5" />
 
-      <PopoverPanel
-        anchor={{ to: 'bottom', gap: 16 }}
-        className={clsx(
-          backgroundVariants[theme],
-          '@container bg-white w-[640px] max-h-[80vh] overflow-y-auto p-6 rounded-lg border border-(--color-listbox-border) shadow-xs flex gap-16',
-        )}
-      >
-        <div className="shrink-0">
-          <CountryFilter options={countryOptions} />
-        </div>
+          <PopoverPanel
+            anchor={{ to: 'bottom', gap: 16 }}
+            className={clsx(
+              backgroundVariants[theme],
+              '@container bg-white w-[640px] max-h-[80vh] overflow-y-auto p-6 rounded-2xl border border-(--color-listbox-border) shadow-xs',
+            )}
+          >
+            <div className="flex gap-16">
+              <div className="shrink-0">
+                <CountryFilter options={countryOptions} />
+              </div>
 
-        <div className="flex flex-col gap-8 grow">
-          <CapacityFilter capacityMin={capacityMin} capacityMax={capacityMax} />
-          <ProvingPeriodFilter
-            provingPeriodMin={provingPeriodMin}
-            provingPeriodMax={provingPeriodMax}
-          />
+              <div className="flex flex-col gap-8 grow">
+                <CapacityFilter
+                  capacityMin={capacityMin}
+                  capacityMax={capacityMax}
+                />
+                <ProvingPeriodFilter
+                  provingPeriodMin={provingPeriodMin}
+                  provingPeriodMax={provingPeriodMax}
+                />
 
-          {statusOptions.length > 1 && <StatusFilter options={statusOptions} />}
-          {ipniOptions.length > 1 && <InpiFilter options={ipniOptions} />}
-        </div>
-      </PopoverPanel>
+                {statusOptions.length > 1 && (
+                  <StatusFilter options={statusOptions} />
+                )}
+                {ipniOptions.length > 1 && <InpiFilter options={ipniOptions} />}
+              </div>
+            </div>
+
+            <div className="pt-6 mt-6 flex justify-center border-t border-zinc-950/10">
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  clearFilterQueries()
+                  close()
+                }}
+              >
+                Reset Filters
+              </Button>
+            </div>
+          </PopoverPanel>
+        </>
+      )}
     </Popover>
   )
 }
