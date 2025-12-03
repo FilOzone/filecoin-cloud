@@ -2,7 +2,7 @@ import type { ServiceProvider } from '@/schemas/provider-schema'
 
 import type { FilterState } from '../hooks/useFilterQueryState'
 
-type Range = {
+export type Range = {
   min: number | null
   max: number | null
 }

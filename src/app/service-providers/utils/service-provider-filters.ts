@@ -3,12 +3,8 @@ import type { FilterFn } from '@tanstack/react-table'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 
 import { getYesNoFromBoolean } from './get-yes-no-from-boolean'
+import type { Range } from './map-filter-state-to-column-filters'
 import type { FilterState } from '../hooks/useFilterQueryState'
-
-type RangeFilter = {
-  min: FilterState['capacityMin']
-  max: FilterState['capacityMax']
-}
 
 export const statusFilterFn: FilterFn<ServiceProvider> = (
   row,
@@ -52,17 +48,16 @@ export const capacityRangeFilterFn: FilterFn<ServiceProvider> = (
   _columnId,
   filterValue,
 ) => {
-  const range = filterValue as RangeFilter
-  const { min, max } = range
-  
+  const { min, max } = filterValue as Range
+
   // If no filter is applied, show all rows including those without capacity data
   if (min === null && max === null) return true
-  
+
   const capacity = row.original.capacityTb
-  
+
   // If filter IS applied but row has no capacity data, exclude it from results
   if (!capacity) return false
-  
+
   const capacityNum = Number(capacity)
 
   if (min !== null && capacityNum < min) return false
@@ -76,10 +71,12 @@ export const provingPeriodRangeFilterFn: FilterFn<ServiceProvider> = (
   _columnId,
   filterValue,
 ) => {
-  const range = filterValue as RangeFilter
-  const provingPeriod = row.original.minProvingPeriod
-  const provingPeriodNum = Number(provingPeriod)
-  const { min, max } = range
+  const { min, max } = filterValue as Range
+
+  // If no filter is applied, show all rows including those without capacity data
+  if (min === null && max === null) return true
+
+  const provingPeriodNum = Number(row.original.minProvingPeriod)
 
   if (min !== null && provingPeriodNum < min) return false
   if (max !== null && provingPeriodNum > max) return false
