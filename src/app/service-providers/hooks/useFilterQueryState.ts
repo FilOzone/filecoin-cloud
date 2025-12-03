@@ -1,5 +1,9 @@
-import { parseAsInteger, parseAsString, useQueryStates } from 'nuqs'
-import { parseAsArrayOf } from 'nuqs/server'
+import {
+  parseAsArrayOf,
+  parseAsInteger,
+  parseAsString,
+  useQueryStates,
+} from 'nuqs'
 
 export type FilterState = {
   status: Array<string>
