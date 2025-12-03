@@ -6,35 +6,58 @@ import { getYesNoFromBoolean } from '../utils/get-yes-no-from-boolean'
 
 export function useFilterOptions(data: Array<ServiceProvider>) {
   return useMemo(() => {
+    if (data.length === 0) {
+      return {
+        status: [],
+        country: [],
+        capacityMin: 0,
+        capacityMax: 0,
+        provingPeriodMin: 0,
+        provingPeriodMax: 0,
+        ipni: [],
+      }
+    }
+
     const status = new Set<string>()
     const country = new Set<string>()
     const ipni = new Set<string>()
+
+    let capacityMin = Infinity
+    let capacityMax = -Infinity
+    let provingPeriodMin = Infinity
+    let provingPeriodMax = -Infinity
 
     for (const provider of data) {
       if (provider.serviceStatus) {
         status.add(provider.serviceStatus)
       }
+
       country.add(provider.location)
       ipni.add(getYesNoFromBoolean(provider.ipniIpfs))
+
+      // Only consider providers with capacity data
+      if (provider.capacityTb) {
+        const cap = Number(provider.capacityTb)
+        capacityMin = Math.min(capacityMin, cap)
+        capacityMax = Math.max(capacityMax, cap)
+      }
+
+      const pp = Number(provider.minProvingPeriod)
+      provingPeriodMin = Math.min(provingPeriodMin, pp)
+      provingPeriodMax = Math.max(provingPeriodMax, pp)
     }
 
-    const capacity = {
-      min: Math.min(...data.map((p) => Number(p.capacityTb || 0))),
-      max: Math.max(...data.map((p) => Number(p.capacityTb || 0))),
-    }
-
-    const provingPeriod = {
-      min: Math.min(...data.map((p) => Number(p.minProvingPeriod))),
-      max: Math.max(...data.map((p) => Number(p.minProvingPeriod))),
-    }
+    // Handle case where no provider has capacity data
+    if (capacityMin === Infinity) capacityMin = 0
+    if (capacityMax === -Infinity) capacityMax = 0
 
     return {
       status: Array.from(status).sort(),
       country: Array.from(country).sort(),
-      capacityMin: capacity.min,
-      capacityMax: capacity.max,
-      provingPeriodMin: provingPeriod.min,
-      provingPeriodMax: provingPeriod.max,
+      capacityMin,
+      capacityMax,
+      provingPeriodMin,
+      provingPeriodMax,
       ipni: Array.from(ipni).sort(),
     } as const
   }, [data])
