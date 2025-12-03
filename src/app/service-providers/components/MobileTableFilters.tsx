@@ -17,6 +17,7 @@ import { InpiFilter } from './InpiFilter'
 import { ProvingPeriodFilter } from './ProvingPeriodFilter'
 import { StatusFilter } from './StatusFilter'
 import type { useFilterOptions } from '../hooks/useFilterOptions'
+import { useFilterQueryState } from '../hooks/useFilterQueryState'
 
 type MobileTableFiltersProps = {
   options: ReturnType<typeof useFilterOptions>
@@ -24,6 +25,7 @@ type MobileTableFiltersProps = {
 
 export function MobileTableFilters({ options }: MobileTableFiltersProps) {
   const [open, setOpen] = useState(false)
+  const { clearFilterQueries } = useFilterQueryState()
 
   const { theme } = useBackground()
 
@@ -60,9 +62,12 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
 
           {ipniOptions.length > 1 && <InpiFilter options={ipniOptions} />}
 
-          <div className="pt-8 flex justify-center">
-            <Button variant="ghost" onClick={() => setOpen(false)}>
+          <div className="pt-8 flex flex-col gap-4">
+            <Button variant="primary" onClick={() => setOpen(false)}>
               Close Filters Panel
+            </Button>
+            <Button variant="ghost" onClick={clearFilterQueries}>
+              Reset Filters
             </Button>
           </div>
         </div>
