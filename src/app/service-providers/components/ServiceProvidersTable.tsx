@@ -21,7 +21,6 @@ import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
 
-import { ResetTableFilters } from './ResetTableFilters'
 import { TableFilters } from './TableFilters'
 import { columns } from '../data/column-definition'
 import { useFilterOptions } from '../hooks/useFilterOptions'
@@ -100,7 +99,6 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
           </div>
 
           <RefreshButton onClick={() => refetch()} disabled={isRefetching} />
-          <ResetTableFilters />
         </div>
       </ProvidersTableFiltersContainer>
 
