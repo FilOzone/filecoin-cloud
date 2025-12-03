@@ -21,13 +21,11 @@ const columnHelper = createColumnHelper<ServiceProvider>()
 
 export const columns = [
   columnHelper.accessor('id', {
-    id: 'id',
     header: 'ID',
     cell: (info) => <ID number={info.getValue()} />,
     sortingFn: 'basic',
   }),
   columnHelper.accessor((row) => row.name, {
-    id: 'provider',
     header: 'Provider',
     maxSize: 380,
     cell: (info) => {
@@ -82,7 +80,6 @@ export const columns = [
     filterFn: statusFilterFn,
   }),
   columnHelper.accessor('location', {
-    id: 'location',
     header: 'Location',
     cell: (info) => info.getValue(),
     sortingFn: 'alphanumeric',
