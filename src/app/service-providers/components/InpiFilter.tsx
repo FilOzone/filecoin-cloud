@@ -1,3 +1,5 @@
+import { Fieldset } from '@headlessui/react'
+
 import { CheckboxesContainer } from './CheckboxesContainer'
 import { CheckboxWithLabel } from './CheckboxWithLabel'
 import { FilterHeading } from './FilterHeading'
@@ -11,7 +13,7 @@ export function InpiFilter({ options }: InpiFilterProps) {
   const { filterQueries, toggleFilterQuery } = useFilterQueryState()
 
   return (
-    <div>
+    <Fieldset>
       <FilterHeading>IPNI</FilterHeading>
       <CheckboxesContainer>
         {options.map((option) => (
@@ -23,6 +25,6 @@ export function InpiFilter({ options }: InpiFilterProps) {
           />
         ))}
       </CheckboxesContainer>
-    </div>
+    </Fieldset>
   )
 }
