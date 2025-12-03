@@ -44,18 +44,20 @@ export function useFilterQueryState() {
 
   const toggleFilterQuery = useCallback(
     (key: ArrayStringKeys<FilterState>, value: string) => {
-      const updated = toggleValueInArray(filterQueries[key], value)
-      setFilterQueries({ ...filterQueries, [key]: updated })
+      setFilterQueries((prev) => {
+        const updated = toggleValueInArray(prev[key], value)
+        return { ...prev, [key]: updated }
+      })
     },
-    [filterQueries, setFilterQueries],
+    [setFilterQueries],
   )
 
   const updateNumberQuery = useCallback(
     (key: NumberKeys<FilterState>, value: string) => {
       const updated = parseNumericInput(value)
-      setFilterQueries({ ...filterQueries, [key]: updated })
+      setFilterQueries((prev) => ({ ...prev, [key]: updated }))
     },
-    [filterQueries, setFilterQueries],
+    [setFilterQueries],
   )
 
   const hasActiveFilters = useMemo(() => {
