@@ -27,7 +27,7 @@ export type DesktopTableFiltersProps = {
 
 export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
   const { theme } = useBackground()
-  const { clearFilterQueries } = useFilterQueryState()
+  const { clearFilterQueries, hasActiveFilters } = useFilterQueryState()
 
   const {
     country: countryOptions,
@@ -84,6 +84,7 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
             <div className="pt-6 mt-6 flex justify-center border-t border-zinc-950/10">
               <Button
                 variant="ghost"
+                disabled={!hasActiveFilters}
                 onClick={() => {
                   clearFilterQueries()
                   close()
