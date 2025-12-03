@@ -4,7 +4,7 @@ import {
   parseAsString,
   useQueryStates,
 } from 'nuqs'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 
 import { parseNumericInput } from '../utils/parse-numeric-input'
 import { toggleValueInArray } from '../utils/toggle-value-in-array'
@@ -58,8 +58,18 @@ export function useFilterQueryState() {
     [filterQueries, setFilterQueries],
   )
 
+  const hasActiveFilters = useMemo(() => {
+    return Object.values(filterQueries).some((value) => {
+      if (Array.isArray(value)) {
+        return value.length > 0
+      }
+      return value !== null
+    })
+  }, [filterQueries])
+
   return {
     filterQueries,
+    hasActiveFilters,
     toggleFilterQuery,
     updateNumberQuery,
     clearFilterQueries: () => setFilterQueries(null),

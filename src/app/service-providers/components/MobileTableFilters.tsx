@@ -25,7 +25,7 @@ type MobileTableFiltersProps = {
 
 export function MobileTableFilters({ options }: MobileTableFiltersProps) {
   const [open, setOpen] = useState(false)
-  const { clearFilterQueries } = useFilterQueryState()
+  const { clearFilterQueries, hasActiveFilters } = useFilterQueryState()
 
   const { theme } = useBackground()
 
@@ -66,7 +66,11 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
             <Button variant="primary" onClick={() => setOpen(false)}>
               Close Filters Panel
             </Button>
-            <Button variant="ghost" onClick={clearFilterQueries}>
+            <Button
+              variant="ghost"
+              disabled={!hasActiveFilters}
+              onClick={clearFilterQueries}
+            >
               Reset Filters
             </Button>
           </div>
