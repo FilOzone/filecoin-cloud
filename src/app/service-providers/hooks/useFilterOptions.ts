@@ -24,8 +24,8 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
     }
 
     const provingPeriod = {
-      min: Math.min(...data.map((p) => Number(p.minProvingPeriod || 0))),
-      max: Math.max(...data.map((p) => Number(p.minProvingPeriod || 0))),
+      min: Math.min(...data.map((p) => Number(p.minProvingPeriod))),
+      max: Math.max(...data.map((p) => Number(p.minProvingPeriod))),
     }
 
     return {
