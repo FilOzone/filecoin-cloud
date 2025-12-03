@@ -1,7 +1,11 @@
+import { Fieldset } from '@headlessui/react'
+
+import { ErrorMessage } from './ErrorMessage'
 import { FilterHeading } from './FilterHeading'
 import { InputsContainer } from './InputsContainer'
 import { NumberInputWithLabel } from './NumberInputWithLabel'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
+import { isMinAboveMax } from '../utils/is-min-above-max'
 
 type ProvingPeriodFilterProps = {
   provingPeriodMin: number
@@ -14,8 +18,13 @@ export function ProvingPeriodFilter({
 }: ProvingPeriodFilterProps) {
   const { filterQueries, updateNumberQuery } = useFilterQueryState()
 
+  const minAboveMax = isMinAboveMax(
+    filterQueries.provingPeriodMin,
+    filterQueries.provingPeriodMax,
+  )
+
   return (
-    <div>
+    <Fieldset>
       <FilterHeading>Proving Period (Epochs)</FilterHeading>
       <InputsContainer>
         <NumberInputWithLabel
@@ -35,6 +44,9 @@ export function ProvingPeriodFilter({
           max={provingPeriodMax}
         />
       </InputsContainer>
-    </div>
+      {minAboveMax && (
+        <ErrorMessage message="Minimum shouldn't be above maximum" />
+      )}
+    </Fieldset>
   )
 }
