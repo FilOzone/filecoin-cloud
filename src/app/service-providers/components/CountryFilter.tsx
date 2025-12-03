@@ -7,14 +7,14 @@ type CountryFilterProps = {
   options: Array<string>
 }
 
-export function CountryFilter({ options: countryOptions }: CountryFilterProps) {
+export function CountryFilter({ options }: CountryFilterProps) {
   const { filterQueries, toggleFilterQuery } = useFilterQueryState()
 
   return (
     <div>
-      <FilterHeading>Country</FilterHeading>
+      <FilterHeading>Location</FilterHeading>
       <CheckboxesContainer>
-        {countryOptions.map((option) => (
+        {options.map((option) => (
           <CheckboxWithLabel
             key={option}
             checked={filterQueries.country.includes(option)}
