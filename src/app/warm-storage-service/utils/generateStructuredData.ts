@@ -1,6 +1,6 @@
 import type { WebPageGraph } from '@/components/StructuredDataScript'
 
-import { PATHS, type StaticPath } from '@/constants/paths'
+import { PATHS } from '@/constants/paths'
 import type { StructuredDataParams } from '@/types/structured-data-params'
 import { generatePageStructuredData } from '@/utils/generate-page-structured-data'
 
@@ -10,7 +10,7 @@ export function generateStructuredData(
   return generatePageStructuredData({
     title: seo.title,
     description: seo.description,
-    path: PATHS.WARM_STORAGE_SERVICE.path as StaticPath,
+    path: PATHS.WARM_STORAGE_SERVICE.path,
     pageType: 'WebPage',
     service: {
       name: 'Warm Storage Service',

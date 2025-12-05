@@ -1,11 +1,8 @@
 import { PATHS } from '@/constants/paths'
-import type { createPathConfig } from '@/utils/create-path-config'
-
-type PathConfig = ReturnType<typeof createPathConfig>
 
 type LegalLink = {
-  label: PathConfig['label']
-  href: PathConfig['path']
+  label: string
+  href: string
 }
 
 export const legalLinks: Array<LegalLink> = [

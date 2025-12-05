@@ -1,6 +1,6 @@
+import type { Route } from 'next'
 import type { WebPage } from 'schema-dts'
 
-import type { StaticPath } from '@/constants/paths'
 import { BASE_URL } from '@/constants/site-metadata'
 import type { StructuredDataParams } from '@/types/structured-data-params'
 
@@ -20,7 +20,7 @@ import { generateImageObject } from './generate-image-object'
 import { generateServiceSchema } from './generate-service-schema'
 
 type GenerateWebPageStructuredDataProps = StructuredDataParams & {
-  path: StaticPath
+  path: Route
   pageType: PageType
   imageUrl?: string
   service?: {
