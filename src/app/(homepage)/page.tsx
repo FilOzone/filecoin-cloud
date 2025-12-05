@@ -122,23 +122,25 @@ export default function Homepage() {
           title="Running on Filecoin Onchain Cloud"
           description="Projects using Filecoin Onchain Cloud to power verifiable, onchain applications and infrastructure."
         >
-          <CardGrid as="ul" variant="smTwoLgThreeWider">
-            {runningOnFilecoinOnchainCloud.map(
-              ({ title, description, image, link }) => (
-                <Card
-                  key={title}
-                  as="li"
-                  title={title}
-                  description={description}
-                  image={image}
-                  cta={{
-                    href: link,
-                    text: `Explore ${title}`,
-                  }}
-                />
-              ),
-            )}
-          </CardGrid>
+          <div className="[&>ul]:gap-y-20">
+            <CardGrid as="ul" variant="smTwoLgThreeWider">
+              {runningOnFilecoinOnchainCloud.map(
+                ({ title, description, image, link }) => (
+                  <Card
+                    key={title}
+                    as="li"
+                    title={title}
+                    description={description}
+                    image={image}
+                    cta={{
+                      href: link,
+                      text: `Explore ${title}`,
+                    }}
+                  />
+                ),
+              )}
+            </CardGrid>
+          </div>
         </SectionContent>
       </PageSection>
 
