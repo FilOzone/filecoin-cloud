@@ -1,5 +1,7 @@
+export type NextRoute = __next_route_internal_types__.StaticRoutes
+
 type PathConfig = {
-  path: __next_route_internal_types__.StaticRoutes
+  path: NextRoute
   label: string
 }
 

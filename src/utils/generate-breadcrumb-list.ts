@@ -1,13 +1,12 @@
-import type { Route } from 'next'
 import type { BreadcrumbList, ListItem } from 'schema-dts'
 
-import { PATHS } from '@/constants/paths'
+import { type NextRoute, PATHS } from '@/constants/paths'
 import { BASE_URL } from '@/constants/site-metadata'
 
 type GenerateBreadcrumbListProps = {
   path: string
   title: string
-  parentPaths?: Array<{ path: Route; title: string }>
+  parentPaths?: Array<{ path: NextRoute; title: string }>
 }
 
 export function generateBreadcrumbList({
