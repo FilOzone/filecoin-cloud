@@ -1,19 +1,29 @@
-import { createPathConfig } from '@/utils/create-path-config'
+export type NextRoute = __next_route_internal_types__.StaticRoutes
 
-export type StaticPath =
-  | '/'
-  | '/privacy-policy'
-  | '/service-providers'
-  | '/terms-of-use'
-  | '/warm-storage-service'
+type PathConfig = {
+  path: NextRoute
+  label: string
+}
 
 export const PATHS = {
-  HOMEPAGE: createPathConfig('/', 'Homepage'),
-  PRIVACY_POLICY: createPathConfig('/privacy-policy', 'Privacy Policy'),
-  SERVICE_PROVIDERS: createPathConfig(
-    '/service-providers',
-    'Service Providers',
-  ),
-  TERMS_OF_USE: createPathConfig('/terms-of-use', 'Terms of Use'),
-  WARM_STORAGE_SERVICE: createPathConfig('/warm-storage-service', 'Store'),
-}
+  HOMEPAGE: {
+    path: '/',
+    label: 'Homepage',
+  },
+  PRIVACY_POLICY: {
+    path: '/privacy-policy',
+    label: 'Privacy Policy',
+  },
+  SERVICE_PROVIDERS: {
+    path: '/service-providers',
+    label: 'Service Providers',
+  },
+  TERMS_OF_USE: {
+    path: '/terms-of-use',
+    label: 'Terms of Use',
+  },
+  WARM_STORAGE_SERVICE: {
+    path: '/warm-storage-service',
+    label: 'Store',
+  },
+} as const satisfies Record<string, PathConfig>

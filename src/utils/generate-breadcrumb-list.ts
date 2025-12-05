@@ -1,15 +1,14 @@
 import type { BreadcrumbList, ListItem } from 'schema-dts'
 
-import { PATHS, type StaticPath } from '@/constants/paths'
+import { type NextRoute, PATHS } from '@/constants/paths'
 import { BASE_URL } from '@/constants/site-metadata'
 
 type GenerateBreadcrumbListProps = {
   path: string
   title: string
-  parentPaths?: Array<{ path: StaticPath; title: string }>
+  parentPaths?: Array<{ path: NextRoute; title: string }>
 }
 
-// TODO: We could reuse the function from filecoin-site, we just need to move it the the shared UI-FILECOIN library
 export function generateBreadcrumbList({
   path,
   title,
@@ -22,7 +21,7 @@ export function generateBreadcrumbList({
     item: BASE_URL,
   }
 
-  if (path === (PATHS.HOMEPAGE.path as `/${string}`)) {
+  if (path === PATHS.HOMEPAGE.path) {
     return null
   }
 
