@@ -50,18 +50,19 @@ export const capacityRangeFilterFn: FilterFn<ServiceProvider> = (
 ) => {
   const { min, max } = filterValue as Range
 
-  // If no filter is applied, show all rows including those without capacity data
-  if (min === null && max === null) return true
+  const hasMinFilter = min !== null
+  const hasMaxFilter = max !== null
+
+  const noFilterApplied = !hasMinFilter && !hasMaxFilter
+  if (noFilterApplied) return true
 
   const capacity = row.original.capacityTb
-
-  // If filter IS applied but row has no capacity data, exclude it from results
   if (!capacity) return false
 
   const capacityNum = Number(capacity)
 
-  if (min !== null && capacityNum < min) return false
-  if (max !== null && capacityNum > max) return false
+  if (hasMinFilter && capacityNum < min) return false
+  if (hasMaxFilter && capacityNum > max) return false
 
   return true
 }
@@ -73,13 +74,16 @@ export const provingPeriodRangeFilterFn: FilterFn<ServiceProvider> = (
 ) => {
   const { min, max } = filterValue as Range
 
-  // If no filter is applied, show all rows including those without capacity data
-  if (min === null && max === null) return true
+  const hasMinFilter = min !== null
+  const hasMaxFilter = max !== null
+
+  const noFilterApplied = !hasMinFilter && !hasMaxFilter
+  if (noFilterApplied) return true
 
   const provingPeriodNum = Number(row.original.minProvingPeriod)
 
-  if (min !== null && provingPeriodNum < min) return false
-  if (max !== null && provingPeriodNum > max) return false
+  if (hasMinFilter && provingPeriodNum < min) return false
+  if (hasMaxFilter && provingPeriodNum > max) return false
 
   return true
 }

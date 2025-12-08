@@ -35,7 +35,6 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
       country.add(provider.location)
       ipni.add(getYesNoFromBoolean(provider.ipniIpfs))
 
-      // Only consider providers with capacity data
       if (provider.capacityTb) {
         const cap = Number(provider.capacityTb)
         capacityMin = Math.min(capacityMin, cap)
@@ -47,9 +46,11 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
       provingPeriodMax = Math.max(provingPeriodMax, pp)
     }
 
-    // Handle case where no provider has capacity data
-    if (capacityMin === Infinity) capacityMin = 0
-    if (capacityMax === -Infinity) capacityMax = 0
+    const noMinCapacityFound = capacityMin === Infinity
+    if (noMinCapacityFound) capacityMin = 0
+
+    const noMaxCapacityFound = capacityMax === -Infinity
+    if (noMaxCapacityFound) capacityMax = 0
 
     return {
       status: Array.from(status).sort(),
