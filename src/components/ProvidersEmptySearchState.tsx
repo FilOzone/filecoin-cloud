@@ -5,9 +5,9 @@ export function ProvidersEmptySearchState() {
   return (
     <EmptyStateCard
       icon={MagnifyingGlassIcon}
-      title="No providers match your search"
+      title="No matching providers"
       titleTag="h3"
-      description="There are no providers available for this search query. Try updating your search terms."
+      description="Refine your search terms or filters to view more results."
     />
   )
 }

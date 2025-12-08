@@ -20,5 +20,14 @@ const sortParser = createParser({
 })
 
 export function useSortingQueryState() {
-  return useQueryState(SORT_KEY, sortParser.withOptions({ shallow: false }))
+  const [sortQuery, setSortQuery] = useQueryState(
+    SORT_KEY,
+    sortParser.withOptions({ shallow: false }),
+  )
+
+  return {
+    sortQuery,
+    setSortQuery,
+    clearSortQuery: () => setSortQuery(null),
+  } as const
 }
