@@ -1,6 +1,5 @@
 'use client'
 
-import { RefreshButton } from '@filecoin-foundation/ui-filecoin/RefreshButton'
 import { SearchInput } from '@filecoin-foundation/ui-filecoin/SearchInput'
 import { TanstackTable } from '@filecoin-foundation/ui-filecoin/Table/TanstackTable'
 import {
@@ -15,9 +14,7 @@ import { useCallback, useMemo } from 'react'
 
 import { NetworkSelector } from '@/components/NetworkSelector'
 import { ProvidersEmptySearchState } from '@/components/ProvidersEmptySearchState'
-import { ProvidersTableFiltersContainer } from '@/components/ProvidersTableFiltersContainer'
 
-import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
 
@@ -34,8 +31,6 @@ export type ServiceProvidersTableProps = {
 }
 
 export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
-  const { isRefetching, refetch } = useProviders()
-
   const { searchQuery, setSearchQuery } = useSearchQueryState()
   const { sortQuery, setSortQuery } = useSortingQueryState()
   const { filterQueries, setFilterQueries } = useFilterQueryState()
@@ -81,13 +76,13 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
   return (
     <>
-      <ProvidersTableFiltersContainer>
+      <div className="flex flex-col sm:flex-row md:items-center md:justify-between gap-6">
         <div className="md:w-96 w-full">
           <SearchInput value={searchQuery} onChange={setSearchQuery} />
         </div>
 
-        <div className="flex flex-wrap gap-6 grow md:grow-0">
-          <div className="md:w-48 w-full">
+        <div className="flex gap-6 grow md:grow-0">
+          <div className="md:w-48">
             <TableFilters
               state={filterQueries}
               setState={setFilterQueries}
@@ -97,10 +92,8 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
           <div className="md:w-56 w-full">
             <NetworkSelector />
           </div>
-
-          <RefreshButton onClick={() => refetch()} disabled={isRefetching} />
         </div>
-      </ProvidersTableFiltersContainer>
+      </div>
 
       {hasSearchResults ? (
         <TanstackTable table={table} />

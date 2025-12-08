@@ -11,7 +11,6 @@ import {
 } from '@tanstack/react-table'
 
 import { ProvidersEmptySearchState } from '@/components/ProvidersEmptySearchState'
-import { ProvidersTableFiltersContainer } from '@/components/ProvidersTableFiltersContainer'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
@@ -43,13 +42,13 @@ export function WarmStorageProvidersTable({
 
   return (
     <>
-      <ProvidersTableFiltersContainer>
+      <div className="flex items-center justify-between flex-wrap gap-6">
         <div className="md:w-96 w-full">
           <SearchInput value={searchQuery} onChange={table.setGlobalFilter} />
         </div>
 
         <RefreshButton onClick={() => refetch()} disabled={isRefetching} />
-      </ProvidersTableFiltersContainer>
+      </div>
 
       {hasSearchResults ? (
         <TanstackTable table={table} />
