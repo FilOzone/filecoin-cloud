@@ -81,7 +81,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
           <SearchInput value={searchQuery} onChange={setSearchQuery} />
         </div>
 
-        <div className="flex flex-wrap gap-6 grow md:grow-0">
+        <div className="flex gap-6 grow md:grow-0">
           <div className="md:w-48 w-full">
             <TableFilters options={filterOptions} />
           </div>
