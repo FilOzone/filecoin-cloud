@@ -5,11 +5,11 @@ import { CheckboxWithLabel } from './CheckboxWithLabel'
 import { FilterHeading } from './FilterHeading'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 
-type InpiFilterProps = {
+type IpniFilterProps = {
   options: Array<string>
 }
 
-export function InpiFilter({ options }: InpiFilterProps) {
+export function IpniFilter({ options }: IpniFilterProps) {
   const { filterQueries, toggleFilterQuery } = useFilterQueryState()
 
   return (

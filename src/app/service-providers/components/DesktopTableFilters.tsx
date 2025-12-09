@@ -15,7 +15,7 @@ import { clsx } from 'clsx'
 
 import { CapacityFilter } from './CapacityFilter'
 import { CountryFilter } from './CountryFilter'
-import { InpiFilter } from './InpiFilter'
+import { IpniFilter } from './IpniFilter'
 import { ProvingPeriodFilter } from './ProvingPeriodFilter'
 import { StatusFilter } from './StatusFilter'
 import type { useFilterOptions } from '../hooks/useFilterOptions'
@@ -77,7 +77,7 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
                 {statusOptions.length > 1 && (
                   <StatusFilter options={statusOptions} />
                 )}
-                {ipniOptions.length > 1 && <InpiFilter options={ipniOptions} />}
+                {ipniOptions.length > 1 && <IpniFilter options={ipniOptions} />}
               </div>
             </div>
 

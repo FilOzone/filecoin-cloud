@@ -13,7 +13,7 @@ import { useState } from 'react'
 
 import { CapacityFilter } from './CapacityFilter'
 import { CountryFilter } from './CountryFilter'
-import { InpiFilter } from './InpiFilter'
+import { IpniFilter } from './IpniFilter'
 import { ProvingPeriodFilter } from './ProvingPeriodFilter'
 import { StatusFilter } from './StatusFilter'
 import type { useFilterOptions } from '../hooks/useFilterOptions'
@@ -60,7 +60,7 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
             provingPeriodMax={provingPeriodMax}
           />
 
-          {ipniOptions.length > 1 && <InpiFilter options={ipniOptions} />}
+          {ipniOptions.length > 1 && <IpniFilter options={ipniOptions} />}
 
           <div className="pt-8 flex flex-col gap-4">
             <Button variant="primary" onClick={() => setOpen(false)}>
