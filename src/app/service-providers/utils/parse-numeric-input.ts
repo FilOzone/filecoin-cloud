@@ -1,4 +1,5 @@
 export function parseNumericInput(value: string) {
-  const parsed = value === '' ? null : Number.parseInt(value, 10)
+  const trimmed = value.trim()
+  const parsed = trimmed === '' ? null : Number.parseInt(trimmed, 10)
   return Number.isNaN(parsed) ? null : parsed
 }
