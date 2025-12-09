@@ -45,7 +45,7 @@ export function CapacityFilter({
         />
       </InputsContainer>
       {minAboveMax && (
-        <ErrorMessage message="Minimum period must be less than or equal to maximum" />
+        <ErrorMessage message="Minimum capacity must be less than or equal to maximum" />
       )}
     </Fieldset>
   )
