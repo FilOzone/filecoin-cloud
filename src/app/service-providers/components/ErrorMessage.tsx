@@ -1,3 +1,11 @@
-export function ErrorMessage({ message }: { message: string }) {
-  return <p className="text-red-500 text-sm pt-2">{message}</p>
+type ErrorMessageProps = {
+  message: string
+}
+
+export function ErrorMessage({ message }: ErrorMessageProps) {
+  return (
+    <p className="text-(--color-brand-error) text-sm pt-2" role="alert">
+      {message}
+    </p>
+  )
 }
