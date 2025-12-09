@@ -5,11 +5,11 @@ import { CheckboxWithLabel } from './CheckboxWithLabel'
 import { FilterHeading } from './FilterHeading'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 
-type CountryFilterProps = {
+type LocationFilterProps = {
   options: Array<string>
 }
 
-export function CountryFilter({ options }: CountryFilterProps) {
+export function LocationFilter({ options }: LocationFilterProps) {
   const { filterQueries, toggleFilterQuery } = useFilterQueryState()
 
   return (
@@ -19,8 +19,8 @@ export function CountryFilter({ options }: CountryFilterProps) {
         {options.map((option) => (
           <CheckboxWithLabel
             key={option}
-            checked={filterQueries.country.includes(option)}
-            onChange={() => toggleFilterQuery('country', option)}
+            checked={filterQueries.location.includes(option)}
+            onChange={() => toggleFilterQuery('location', option)}
             label={option}
           />
         ))}

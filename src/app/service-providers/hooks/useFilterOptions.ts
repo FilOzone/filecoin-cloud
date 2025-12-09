@@ -9,7 +9,7 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
     if (data.length === 0) {
       return {
         status: [],
-        country: [],
+        location: [],
         capacityMin: 0,
         capacityMax: 0,
         provingPeriodMin: 0,
@@ -19,7 +19,7 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
     }
 
     const status = new Set<string>()
-    const country = new Set<string>()
+    const location = new Set<string>()
     const ipni = new Set<string>()
 
     let capacityMin = Infinity
@@ -32,7 +32,7 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
         status.add(provider.serviceStatus)
       }
 
-      country.add(provider.location)
+      location.add(provider.location)
       ipni.add(getYesNoFromBoolean(provider.ipniIpfs))
 
       if (provider.capacityTb) {
@@ -54,7 +54,7 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
 
     return {
       status: Array.from(status).sort(),
-      country: Array.from(country).sort(),
+      location: Array.from(location).sort(),
       capacityMin,
       capacityMax,
       provingPeriodMin,

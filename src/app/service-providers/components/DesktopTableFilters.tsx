@@ -14,8 +14,8 @@ import { FunnelSimpleIcon } from '@phosphor-icons/react/dist/ssr'
 import { clsx } from 'clsx'
 
 import { CapacityFilter } from './CapacityFilter'
-import { CountryFilter } from './CountryFilter'
 import { IpniFilter } from './IpniFilter'
+import { LocationFilter } from './LocationFilter'
 import { ProvingPeriodFilter } from './ProvingPeriodFilter'
 import { StatusFilter } from './StatusFilter'
 import type { useFilterOptions } from '../hooks/useFilterOptions'
@@ -30,7 +30,7 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
   const { clearFilterQueries, hasActiveFilters } = useFilterQueryState()
 
   const {
-    country: countryOptions,
+    location: locationOptions,
     status: statusOptions,
     ipni: ipniOptions,
     capacityMin,
@@ -61,7 +61,7 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
           >
             <div className="flex gap-16">
               <div className="shrink-0">
-                <CountryFilter options={countryOptions} />
+                <LocationFilter options={locationOptions} />
               </div>
 
               <div className="flex flex-col gap-8 grow">

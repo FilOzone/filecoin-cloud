@@ -12,8 +12,8 @@ import { sortSoftwareVersion } from '@/utils/sort-software-version'
 
 import {
   capacityRangeFilterFn,
-  countryFilterFn,
   ipniFilterFn,
+  locationFilterFn,
   provingPeriodRangeFilterFn,
   statusFilterFn,
 } from '../utils/service-provider-filters'
@@ -77,7 +77,7 @@ export const columns = [
     cell: (info) => info.getValue(),
     sortingFn: 'text',
     sortUndefined: 'last',
-    filterFn: countryFilterFn,
+    filterFn: locationFilterFn,
   }),
   columnHelper.accessor('capacityTb', {
     header: 'Capacity (TiB)',

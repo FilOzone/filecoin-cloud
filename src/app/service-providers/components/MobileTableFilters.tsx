@@ -12,8 +12,8 @@ import { clsx } from 'clsx'
 import { useState } from 'react'
 
 import { CapacityFilter } from './CapacityFilter'
-import { CountryFilter } from './CountryFilter'
 import { IpniFilter } from './IpniFilter'
+import { LocationFilter } from './LocationFilter'
 import { ProvingPeriodFilter } from './ProvingPeriodFilter'
 import { StatusFilter } from './StatusFilter'
 import type { useFilterOptions } from '../hooks/useFilterOptions'
@@ -30,7 +30,7 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
   const { theme } = useBackground()
 
   const {
-    country: countryOptions,
+    location: locationOptions,
     status: statusOptions,
     ipni: ipniOptions,
     capacityMin,
@@ -53,7 +53,7 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
           )}
         >
           {statusOptions.length > 1 && <StatusFilter options={statusOptions} />}
-          <CountryFilter options={countryOptions} />
+          <LocationFilter options={locationOptions} />
           <CapacityFilter capacityMin={capacityMin} capacityMax={capacityMax} />
           <ProvingPeriodFilter
             provingPeriodMin={provingPeriodMin}

@@ -11,7 +11,7 @@ import { toggleValueInArray } from '../utils/toggle-value-in-array'
 
 export type FilterState = {
   status: Array<string>
-  country: Array<string>
+  location: Array<string>
   capacityMin: number | null
   capacityMax: number | null
   provingPeriodMin: number | null
@@ -21,7 +21,7 @@ export type FilterState = {
 
 const filterParsers = {
   status: parseAsArrayOf(parseAsString).withDefault([]),
-  country: parseAsArrayOf(parseAsString).withDefault([]),
+  location: parseAsArrayOf(parseAsString).withDefault([]),
   capacityMin: parseAsInteger,
   capacityMax: parseAsInteger,
   provingPeriodMin: parseAsInteger,
