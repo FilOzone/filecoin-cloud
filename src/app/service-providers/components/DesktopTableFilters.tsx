@@ -56,7 +56,7 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
             anchor={{ to: 'bottom', gap: 16 }}
             className={clsx(
               backgroundVariants[theme],
-              '@container bg-white w-[640px] max-h-[80vh] overflow-y-auto p-6 rounded-2xl border border-(--color-listbox-border) shadow-xs',
+              '@container w-[640px] max-h-[80vh] overflow-y-auto p-6 rounded-2xl border border-(--color-listbox-border) shadow-xs',
             )}
           >
             <div className="flex gap-16">
