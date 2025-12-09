@@ -46,7 +46,7 @@ export function WarmStorageServicesClient() {
           centered
           title="Warm Storage Service"
           description={
-            <p className="md:text-xl text-balance text-center mx-auto">
+            <p>
               New era of Filecoin storage: fast, verifiable storage powered by{' '}
               <ExternalTextLink
                 href={FOC_URLS.documentation.proofOfDataPossession}

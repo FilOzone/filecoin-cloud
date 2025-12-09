@@ -52,12 +52,7 @@ export default function Homepage() {
             <PageHeader
               centered
               title="Bring the Cloud Onchain"
-              description={
-                <p className="text-zinc-200 md:text-xl text-balance max-w-xl text-center mx-auto">
-                  Filecoin Onchain Cloud lets you build applications that own
-                  their data, payments, and logic.
-                </p>
-              }
+              description="Filecoin Onchain Cloud lets you build applications that own their data, payments, and logic."
               cta={
                 <Button
                   href={FOC_URLS.documentation.gettingStarted}
