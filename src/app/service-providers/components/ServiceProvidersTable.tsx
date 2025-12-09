@@ -33,7 +33,7 @@ export type ServiceProvidersTableProps = {
 export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
   const { searchQuery, setSearchQuery } = useSearchQueryState()
   const { sortQuery, setSortQuery } = useSortingQueryState()
-  const { filterQueries, setFilterQueries } = useFilterQueryState()
+  const { filterQueries } = useFilterQueryState()
 
   const filterOptions = useFilterOptions(data)
 
@@ -82,14 +82,10 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
         </div>
 
         <div className="flex gap-6 grow md:grow-0">
-          <div className="md:w-48">
-            <TableFilters
-              state={filterQueries}
-              setState={setFilterQueries}
-              options={filterOptions}
-            />
+          <div className="md:w-48 w-full">
+            <TableFilters options={filterOptions} />
           </div>
-          <div className="md:w-56 w-full">
+          <div className="md:w-56">
             <NetworkSelector />
           </div>
         </div>

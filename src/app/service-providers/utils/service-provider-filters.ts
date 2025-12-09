@@ -18,16 +18,16 @@ export const statusFilterFn: FilterFn<ServiceProvider> = (
   return serviceStatus ? statusArray.includes(serviceStatus) : false
 }
 
-export const countryFilterFn: FilterFn<ServiceProvider> = (
+export const locationFilterFn: FilterFn<ServiceProvider> = (
   row,
   _columnId,
   filterValue,
 ) => {
-  const countryArray = filterValue as FilterState['country']
-  if (countryArray.length === 0) return true
+  const locationArray = filterValue as FilterState['location']
+  if (locationArray.length === 0) return true
 
   const location = row.original.location
-  return countryArray.includes(location)
+  return locationArray.includes(location)
 }
 
 export const ipniFilterFn: FilterFn<ServiceProvider> = (

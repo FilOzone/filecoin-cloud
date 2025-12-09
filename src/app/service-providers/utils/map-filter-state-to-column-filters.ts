@@ -15,7 +15,7 @@ type ServiveProviderColumnFilters = Array<{
 
 export function mapFilterStateToColumnFilters({
   status,
-  country,
+  location,
   capacityMin,
   capacityMax,
   provingPeriodMin,
@@ -27,8 +27,8 @@ export function mapFilterStateToColumnFilters({
   if (status.length > 0) {
     columnFilters.push({ id: 'serviceStatus', value: status })
   }
-  if (country.length > 0) {
-    columnFilters.push({ id: 'location', value: country })
+  if (location.length > 0) {
+    columnFilters.push({ id: 'location', value: location })
   }
   if (ipni.length > 0) {
     columnFilters.push({ id: 'ipniIpfs', value: ipni })
