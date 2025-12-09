@@ -2,12 +2,13 @@
 
 import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { FilterButton } from '@filecoin-foundation/ui-filecoin/FilterButton'
+import { IconButton } from '@filecoin-foundation/ui-filecoin/IconButton'
 import {
   backgroundVariants,
   useBackground,
 } from '@filecoin-foundation/ui-filecoin/Section/Section'
 import { SlideOver } from '@filecoin-foundation/ui-filecoin/SlideOver'
-import { FunnelSimpleIcon } from '@phosphor-icons/react'
+import { FunnelSimpleIcon, XIcon } from '@phosphor-icons/react'
 import { clsx } from 'clsx'
 import { useState } from 'react'
 
@@ -49,9 +50,17 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
         <div
           className={clsx(
             backgroundVariants[theme],
-            '@container p-8 flex flex-col gap-8',
+            '@container p-8 flex flex-col gap-8 relative',
           )}
         >
+          <div className="absolute top-8 right-8">
+            <IconButton
+              icon={XIcon}
+              label="Close filters"
+              onClick={() => setOpen(false)}
+            />
+          </div>
+
           {statusOptions.length > 1 && <StatusFilter options={statusOptions} />}
           <LocationFilter options={locationOptions} />
           <CapacityFilter capacityMin={capacityMin} capacityMax={capacityMax} />
@@ -63,9 +72,6 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
           {ipniOptions.length > 1 && <IpniFilter options={ipniOptions} />}
 
           <div className="pt-8 flex flex-col gap-4">
-            <Button variant="primary" onClick={() => setOpen(false)}>
-              Close Filters Panel
-            </Button>
             <Button
               variant="ghost"
               disabled={!hasActiveFilters}
