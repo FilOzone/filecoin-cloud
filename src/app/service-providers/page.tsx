@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 import { StructuredDataScript } from '@/components/StructuredDataScript'
 
 import { PATHS } from '@/constants/paths'
@@ -13,7 +15,9 @@ export default function ServiceProviders() {
       <StructuredDataScript
         structuredData={generateStructuredData(SERVICE_PROVIDERS_SEO)}
       />
-      <ServiceProvidersClient />
+      <Suspense>
+        <ServiceProvidersClient />
+      </Suspense>
     </>
   )
 }

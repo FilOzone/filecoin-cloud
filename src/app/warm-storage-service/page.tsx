@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 import { StructuredDataScript } from '@/components/StructuredDataScript'
 
 import { PATHS } from '@/constants/paths'
@@ -13,7 +15,9 @@ export default function WarmStorageService() {
       <StructuredDataScript
         structuredData={generateStructuredData(WARM_STORAGE_SERVICE_SEO)}
       />
-      <WarmStorageServicesClient />
+      <Suspense>
+        <WarmStorageServicesClient />
+      </Suspense>
     </>
   )
 }
