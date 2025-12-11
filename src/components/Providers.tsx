@@ -2,7 +2,6 @@
 
 import '@/app/config-initializer' // Just import to run initialization
 
-import { NetworkProvider } from '@filecoin-foundation/ui-filecoin/Network/NetworkProvider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import PlausibleProvider from 'next-plausible'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
@@ -23,9 +22,7 @@ export function Providers({ children }: ProvidersProps) {
       domain={BASE_DOMAIN.replace('www.', '')}
     >
       <QueryClientProvider client={queryClient}>
-        <NuqsAdapter>
-          <NetworkProvider>{children}</NetworkProvider>
-        </NuqsAdapter>
+        <NuqsAdapter>{children}</NuqsAdapter>
       </QueryClientProvider>
     </PlausibleProvider>
   )

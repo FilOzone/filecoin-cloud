@@ -11,7 +11,7 @@
     "format": "biome format --write ."
   },
   "dependencies": {
-    "@filecoin-foundation/ui-filecoin": "^0.5.7",
+    "@filecoin-foundation/ui-filecoin": "^0.5.8",
     "@filoz/synapse-sdk": "^0.36.0",
     "@headlessui/react": "^2.2.9",
     "@phosphor-icons/react": "^2.1.10",

@@ -1,4 +1,4 @@
-import { useNetwork } from '@filecoin-foundation/ui-filecoin/Network/NetworkProvider'
+import { useNetwork } from '@filecoin-foundation/ui-filecoin/Network/useNetwork'
 import { useQuery } from '@tanstack/react-query'
 
 import { fetchProviders } from '@/services/providers'
@@ -10,7 +10,7 @@ type UseProvidersOptions = {
 }
 
 export function useProviders({ filter = 'all' }: UseProvidersOptions = {}) {
-  const { network } = useNetwork()
+  const [network] = useNetwork()
   const networkId = getNetworkId(network)
 
   return useQuery({
