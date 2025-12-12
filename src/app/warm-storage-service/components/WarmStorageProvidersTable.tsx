@@ -1,6 +1,5 @@
 'use client'
 
-import { RefreshButton } from '@filecoin-foundation/ui-filecoin/RefreshButton'
 import { SearchInput } from '@filecoin-foundation/ui-filecoin/SearchInput'
 import { TanstackTable } from '@filecoin-foundation/ui-filecoin/Table/TanstackTable'
 import {
@@ -9,14 +8,18 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
+import { useMemo } from 'react'
 
 import { ProvidersEmptySearchState } from '@/components/ProvidersEmptySearchState'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
 
+import { LocationFilter } from './LocationFilter'
 import { columns } from '../data/column-definition'
-import { useProviders } from '../hooks/use-providers'
+import { useLocationOptions } from '../hooks/use-location-options'
+import { useLocationQueryState } from '../hooks/use-location-query-state'
+import { getColumnFilters } from '../utils/get-column-filters'
 
 export type WarmStorageProvidersTableProps = {
   data: Array<ServiceProvider>
@@ -25,7 +28,10 @@ export type WarmStorageProvidersTableProps = {
 export function WarmStorageProvidersTable({
   data,
 }: WarmStorageProvidersTableProps) {
-  const { isRefetching, refetch } = useProviders({ filter: 'approved' })
+  const { locations } = useLocationQueryState()
+  const locationOptions = useLocationOptions(data)
+
+  const columnFilters = useMemo(() => getColumnFilters(locations), [locations])
 
   const table = useReactTable({
     data,
@@ -35,6 +41,7 @@ export function WarmStorageProvidersTable({
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     globalFilterFn: globalTableSearchFn,
+    state: { columnFilters },
   })
 
   const searchQuery = table.getState().globalFilter?.toString() || ''
@@ -43,11 +50,13 @@ export function WarmStorageProvidersTable({
   return (
     <>
       <div className="flex items-center justify-between flex-wrap gap-6">
-        <div className="md:w-96 w-full">
+        <div className="sm:w-96 w-full">
           <SearchInput value={searchQuery} onChange={table.setGlobalFilter} />
         </div>
 
-        <RefreshButton onClick={() => refetch()} disabled={isRefetching} />
+        <div className="sm:w-48 w-full">
+          <LocationFilter options={locationOptions} />
+        </div>
       </div>
 
       {hasSearchResults ? (
