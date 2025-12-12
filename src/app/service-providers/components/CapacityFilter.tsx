@@ -1,9 +1,10 @@
 import { Fieldset } from '@headlessui/react'
 
-import { ErrorMessage } from './ErrorMessage'
-import { FilterHeading } from './FilterHeading'
-import { InputsContainer } from './InputsContainer'
-import { NumberInputWithLabel } from './NumberInputWithLabel'
+import { ErrorMessage } from '@/components/ErrorMessage'
+import { FilterHeading } from '@/components/FilterHeading'
+import { InputsContainer } from '@/components/InputsContainer'
+import { NumberInputWithLabel } from '@/components/NumberInputWithLabel'
+
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 import { isMinAboveMax } from '../utils/is-min-above-max'
 
