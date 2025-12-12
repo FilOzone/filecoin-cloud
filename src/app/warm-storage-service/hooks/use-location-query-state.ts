@@ -1,7 +1,7 @@
 import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
 import { useCallback } from 'react'
 
-import { toggleValueInArray } from '@/app/service-providers/utils/toggle-value-in-array'
+import { toggleValueInArray } from '@/utils/toggle-value-in-array'
 
 const LOCATION_KEY = 'location'
 
