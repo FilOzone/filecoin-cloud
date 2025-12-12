@@ -6,6 +6,7 @@ import { createColumnHelper } from '@tanstack/react-table'
 import { ProviderOverview } from '@/components/ProviderOverview'
 import { SoftwareVersion } from '@/components/SoftwareVersion'
 
+import { locationFilterFn } from '@/app/service-providers/utils/service-provider-filters'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { sortSoftwareVersion } from '@/utils/sort-software-version'
 
@@ -58,6 +59,7 @@ export const columns = [
     cell: (info) => info.getValue(),
     sortingFn: 'text',
     sortUndefined: 'last',
+    filterFn: locationFilterFn,
   }),
   columnHelper.accessor('peerId', {
     id: 'peerId',

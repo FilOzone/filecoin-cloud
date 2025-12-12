@@ -1,8 +1,9 @@
 import { Fieldset } from '@headlessui/react'
 
-import { CheckboxesContainer } from './CheckboxesContainer'
-import { CheckboxWithLabel } from './CheckboxWithLabel'
-import { FilterHeading } from './FilterHeading'
+import { CheckboxesContainer } from '@/components/CheckboxesContainer'
+import { CheckboxWithLabel } from '@/components/CheckboxWithLabel'
+import { FilterHeading } from '@/components/FilterHeading'
+
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 
 type StatusFilterProps = {

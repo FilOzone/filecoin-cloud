@@ -6,8 +6,9 @@ import {
 } from 'nuqs'
 import { useCallback, useMemo } from 'react'
 
+import { toggleValueInArray } from '@/utils/toggle-value-in-array'
+
 import { parseNumericInput } from '../utils/parse-numeric-input'
-import { toggleValueInArray } from '../utils/toggle-value-in-array'
 
 export type FilterState = {
   status: Array<string>
