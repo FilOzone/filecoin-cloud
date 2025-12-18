@@ -12,6 +12,7 @@ import { useMemo } from 'react'
 
 import { ProvidersEmptySearchState } from '@/components/ProvidersEmptySearchState'
 
+import { useSearchQueryState } from '@/hooks/use-search-query-state'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
 
@@ -31,6 +32,8 @@ export function WarmStorageProvidersTable({
   const { locations } = useLocationQueryState()
   const locationOptions = useLocationOptions(data)
 
+  const { searchQuery, setSearchQuery } = useSearchQueryState()
+
   const columnFilters = useMemo(() => getColumnFilters(locations), [locations])
 
   const table = useReactTable({
@@ -41,10 +44,10 @@ export function WarmStorageProvidersTable({
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     globalFilterFn: globalTableSearchFn,
-    state: { columnFilters },
+    state: { columnFilters, globalFilter: searchQuery },
+    onGlobalFilterChange: setSearchQuery,
   })
 
-  const searchQuery = table.getState().globalFilter?.toString() || ''
   const hasSearchResults = Boolean(table.getRowModel().rows.length)
 
   return (
