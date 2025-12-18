@@ -38,11 +38,4 @@ export const buildPhases: Array<
       'New payment and swapping end points will allow builders to pay in their native token and use Filecoin onchain verifiable storage.',
     status: 'upcoming',
   },
-  {
-    date: 'Upcoming',
-    title: 'Expose an S3-compatible Object Storage API',
-    description:
-      'Migrate from centralized S3 services to reduce trust dependencies on hyperscalers and enable user ownership of their data.',
-    status: 'upcoming',
-  },
 ]
