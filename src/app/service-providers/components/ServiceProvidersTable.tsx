@@ -59,6 +59,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
   const table = useReactTable({
     data,
     columns,
+    enableMultiSort: false,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
