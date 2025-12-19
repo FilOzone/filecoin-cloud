@@ -7,6 +7,8 @@ import PlausibleProvider from 'next-plausible'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { type ReactNode, useState } from 'react'
 
+import { ConsoleGreeting } from '@/components/ConsoleGreeting'
+
 import { BASE_DOMAIN } from '@/constants/site-metadata'
 
 type ProvidersProps = Readonly<{ children: ReactNode }>
@@ -22,7 +24,10 @@ export function Providers({ children }: ProvidersProps) {
       domain={BASE_DOMAIN.replace('www.', '')}
     >
       <QueryClientProvider client={queryClient}>
-        <NuqsAdapter>{children}</NuqsAdapter>
+        <NuqsAdapter>
+          <ConsoleGreeting />
+          {children}
+        </NuqsAdapter>
       </QueryClientProvider>
     </PlausibleProvider>
   )
