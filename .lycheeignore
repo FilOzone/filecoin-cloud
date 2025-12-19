@@ -1,0 +1,12 @@
+# Lychee link checker ignore patterns
+# https://github.com/lycheeverse/lychee#ignoring-links
+
+# Base URLs that require dynamic parameters to be appended at runtime
+# These URLs are incomplete by design and will 404 when checked directly
+
+# Blockscout explorer URLs - require Filecoin address to be appended
+https://filecoin.blockscout.com/address/$
+https://filecoin-testnet.blockscout.com/address/$
+
+# GitHub commit URL - requires commit hash to be appended
+https://github.com/filecoin-project/curio/commit/$
