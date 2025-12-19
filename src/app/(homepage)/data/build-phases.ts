@@ -18,7 +18,7 @@ export const buildPhases: Array<
     status: 'current',
   },
   {
-    date: 'Jan 2026',
+    date: 'Early 2026',
     title: 'Filecoin Onchain Cloud Live on Mainnet',
     description:
       'Launching on mainnet with programmable storage, retrieval, and onchain payments.',
