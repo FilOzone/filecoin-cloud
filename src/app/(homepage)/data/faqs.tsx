@@ -103,15 +103,11 @@ export const faqs: Array<Question> = [
             retrievals and verified egress.
           </li>
           <li>
-            <strong>Transparent rankings:</strong>{' '}
+            <strong>Transparent rankings:</strong> The{' '}
             <MarkdownLink href="https://dealbot-ga.fwss.io/">
               Storage
             </MarkdownLink>{' '}
-            and{' '}
-            <MarkdownLink href="https://github.com/filbeam/bot">
-              retrieval
-            </MarkdownLink>{' '}
-            deal checkers continuously test retrievals across the network,
+            deal checker continuously tests retrievals across the network,
             executing real deals with providers to track latency, success rates,
             and throughput.{' '}
             <MarkdownLink href="https://dashboard.filbeam.com/">
