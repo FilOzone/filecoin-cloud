@@ -64,7 +64,11 @@ export const columns = [
   columnHelper.accessor('peerId', {
     id: 'peerId',
     header: 'Peer ID',
-    cell: (info) => <CompactPeerID peerId={info.getValue()} />,
+    cell: (info) => {
+      const peerId = info.getValue()
+      if (!peerId) return <span>-</span>
+      return <CompactPeerID peerId={peerId} />
+    },
     sortingFn: 'alphanumeric',
     sortUndefined: 'last',
   }),
