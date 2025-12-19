@@ -13,7 +13,7 @@ jobs:
       issues: write
 
     env:
-      BASE_URL: https://www.filecoin.cloud
+      BASE_URL: https://filecoin.cloud
 
     steps:
       - name: Check out code
