@@ -15,6 +15,7 @@ import { useCallback, useMemo } from 'react'
 import { NetworkSelector } from '@/components/NetworkSelector'
 import { ProvidersEmptySearchState } from '@/components/ProvidersEmptySearchState'
 
+import { useSearchQueryState } from '@/hooks/use-search-query-state'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
 
@@ -22,7 +23,6 @@ import { TableFilters } from './TableFilters'
 import { columns } from '../data/column-definition'
 import { useFilterOptions } from '../hooks/useFilterOptions'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
-import { useSearchQueryState } from '../hooks/useSearchQueryState'
 import { useSortingQueryState } from '../hooks/useSortingQueryState'
 import { mapFilterStateToColumnFilters } from '../utils/map-filter-state-to-column-filters'
 
@@ -59,6 +59,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
   const table = useReactTable({
     data,
     columns,
+    enableMultiSort: false,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),

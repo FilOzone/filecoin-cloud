@@ -39,9 +39,7 @@ type NumberKeys<T> = {
 }[keyof T]
 
 export function useFilterQueryState() {
-  const [filterQueries, setFilterQueries] = useQueryStates(filterParsers, {
-    shallow: false,
-  })
+  const [filterQueries, setFilterQueries] = useQueryStates(filterParsers)
 
   const toggleFilterQuery = useCallback(
     (key: ArrayStringKeys<FilterState>, value: string) => {
