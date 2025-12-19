@@ -99,7 +99,6 @@ export const faqs: Array<Question> = [
             storage proofs are public and onchain.
           </li>
           <li>
-            Up
             <strong>Fast delivery:</strong> Filecoin Beam provides fast
             retrievals and verified egress.
           </li>
