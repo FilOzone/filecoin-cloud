@@ -103,8 +103,7 @@ export const faqs: Array<Question> = [
             retrievals and verified egress.
           </li>
           <li>
-            <strong>Transparent rankings:</strong>{' '}
-            The{' '}
+            <strong>Transparent rankings:</strong> The{' '}
             <MarkdownLink href="https://dealbot-ga.fwss.io/">
               Storage
             </MarkdownLink>{' '}
