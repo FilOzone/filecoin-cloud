@@ -16,7 +16,7 @@ You may not access or use, or attempt to access or use, the Website to take any 
 - Take any action that imposes an unreasonable or disproportionately large load on our network or infrastructure.
 - Use any device, software, or routine to interfere or attempt to interfere with the proper working of the Website or any activity conducted on the Website.
 - Attempt to probe, scan, test the vulnerability of, or breach the security of any system or network.
-- Attempt to decipher, decompile, disassemble, or reverse-engineer any of the software comprising or in any way making up a part of the Website.xte
+- Attempt to decipher, decompile, disassemble, or reverse-engineer any of the software comprising or in any way making up a part of the Website.
 - Engage in any other conduct that restricts or inhibits any person from using or enjoying the Website, or that, in our sole judgment, exposes us or any of our users, affiliates, or any other third party to any liability, damages, or detriment of any type.
 
 Violations of system or network security may result in civil or criminal liability. We may investigate and work with law enforcement authorities to prosecute users who violate these Terms. We may suspend or terminate your access to the Website for any or no reason at any time without notice.
