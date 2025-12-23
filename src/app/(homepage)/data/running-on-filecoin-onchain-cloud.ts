@@ -50,7 +50,7 @@ export const runningOnFilecoinOnchainCloud = [
   {
     title: 'ENS',
     description:
-      'Store and verify ENS metadata and content, ensuring decentralized domains remain live, verifiable, and tamper-proof.',
+      'Store and verify ENS metadata and content, pay with crypto, and verify storage services.',
     image: {
       data: ensLogo,
       alt: 'ENS (Ethereum Name Service) logo on a galaxy background',
