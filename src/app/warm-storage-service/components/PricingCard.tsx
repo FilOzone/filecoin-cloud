@@ -6,7 +6,7 @@ import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
 
 export function PricingCard() {
   return (
-    <article className="relative flex h-full flex-col rounded-2xl border border-(--color-border-muted) sm:p-10 p-6 divide-y divide-(--color-border-muted) shadow-lg">
+    <article className="relative flex h-full flex-col rounded-2xl border border-(--color-border-muted) sm:p-10 p-6 divide-y divide-(--color-border-muted)">
       <div className="space-y-10 pb-10">
         <div className="space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
