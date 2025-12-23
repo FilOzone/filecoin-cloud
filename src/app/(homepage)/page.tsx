@@ -73,28 +73,19 @@ export default function Homepage() {
         />
       </PageSection>
 
-      {/* TODO: Check button key issue  */}
       <PageSection backgroundVariant="dark">
         <SectionContent
           centerCTA
           title="Own every part of what you build—verifiable by design"
-          description="Ship faster. Trust your stack. Scale without dependencies. Build products people can trust because every action proves itself."
-          cta={[
+          description="Ship faster. Verify your stack. Build products people can trust because every action proves itself."
+          cta={
             <Button
-              key="start-building"
               href={FOC_URLS.documentation.gettingStarted}
               variant="primary"
             >
               Start building
-            </Button>,
-            <Button
-              key="view-source-code"
-              href={FOC_URLS.warmStorageService.synapseSdk}
-              variant="ghost"
-            >
-              View source code
-            </Button>,
-          ]}
+            </Button>
+          }
         >
           <CardGrid as="ul" variant="smTwoLgThreeWider">
             {focFeatures.map(({ title, description, icon }) => (
