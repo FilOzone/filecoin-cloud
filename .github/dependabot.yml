@@ -3,23 +3,26 @@
 
 version: 2
 updates:
-  - package-ecosystem: 'npm'
-    directory: '/'
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: 'weekly'
-      day: 'sunday'
+      interval: "weekly"
+      day: "sunday"
+    ignore:
+      - dependency-name: "next"
+      - dependency-name: "@types/node"
     groups:
       dependencies:
         patterns:
-          - '*'
+          - "*"
     versioning-strategy: increase
 
-  - package-ecosystem: 'github-actions'
-    directory: '/'
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: 'weekly'
-      day: 'sunday'
+      interval: "weekly"
+      day: "sunday"
     groups:
       actions:
         patterns:
-          - '*'
+          - "*"
