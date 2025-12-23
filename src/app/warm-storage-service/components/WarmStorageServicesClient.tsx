@@ -45,6 +45,7 @@ export function WarmStorageServicesClient() {
         <PageHeader
           centered
           title="Warm Storage Service"
+          variant="highContrast"
           description={
             <p>
               New era of Filecoin storage: fast, verifiable storage powered by{' '}
@@ -97,7 +98,7 @@ export function WarmStorageServicesClient() {
         <IntegrateStorageSection />
       </PageSection>
 
-      <PageSection backgroundVariant="light" paddingVariant="topOnly">
+      <PageSection backgroundVariant="light" paddingVariant="bottomNone">
         <SectionContent
           centerCTA
           centerTitle

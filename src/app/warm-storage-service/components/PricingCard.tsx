@@ -11,9 +11,7 @@ export function PricingCard() {
         <div className="space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="w-fit sm:order-last">
-              <Badge variant="primary" capitalize={false}>
-                Limited time offer
-              </Badge>
+              <Badge variant="primary">Limited time offer</Badge>
             </div>
             <div className="text-brand-800">
               <Heading tag="h3" variant="card-heading">

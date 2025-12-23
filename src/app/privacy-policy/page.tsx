@@ -22,7 +22,7 @@ export default function PrivacyPolicy() {
       />
 
       <Navigation backgroundVariant="light" />
-      <PageSection backgroundVariant="light" paddingVariant="compact">
+      <PageSection backgroundVariant="light" paddingVariant="topCompact">
         <MarkdownPage>
           <MarkdownContent>{body}</MarkdownContent>
         </MarkdownPage>

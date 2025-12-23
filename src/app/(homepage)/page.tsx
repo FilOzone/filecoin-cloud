@@ -38,10 +38,7 @@ export default function Homepage() {
         />
 
         <Navigation backgroundVariant="transparentDark" />
-        <PageSection
-          backgroundVariant="transparentDark"
-          paddingVariant="medium"
-        >
+        <PageSection backgroundVariant="transparentDark">
           <div className="space-y-10">
             <Announcement
               href="https://filecoin.io/blog/posts/introducing-filecoin-onchain-cloud"
@@ -51,6 +48,7 @@ export default function Homepage() {
             </Announcement>
             <PageHeader
               centered
+              variant="highContrast"
               title="Bring the Cloud Onchain"
               description="Filecoin Onchain Cloud lets you build applications that own their data, payments, and logic."
               cta={
@@ -140,7 +138,7 @@ export default function Homepage() {
       <PageSection backgroundVariant="dark">
         <SectionContent
           centerCTA
-          title="Filecoin Onchain Cloud Building Blocks"
+          title="Compose the Building Blocks"
           description="Modular services you can mix, match, and deploy, all built for openness, performance, and control."
         >
           <CardGrid as="ul" variant="smTwoXlFourWider">
@@ -194,7 +192,7 @@ export default function Homepage() {
         </SectionContent>
       </PageSection>
 
-      <PageSection backgroundVariant="dark" paddingVariant="topOnly">
+      <PageSection backgroundVariant="dark" paddingVariant="bottomNone">
         <Faq questions={faqs} />
       </PageSection>
 
