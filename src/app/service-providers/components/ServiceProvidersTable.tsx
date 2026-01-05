@@ -1,5 +1,5 @@
 'use client'
-
+import { BreakoutContainer } from '@filecoin-foundation/ui-filecoin/Container'
 import { SearchInput } from '@filecoin-foundation/ui-filecoin/SearchInput'
 import { TanstackTable } from '@filecoin-foundation/ui-filecoin/Table/TanstackTable'
 import {
@@ -93,7 +93,9 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
       </div>
 
       {hasSearchResults ? (
-        <TanstackTable table={table} />
+        <BreakoutContainer>
+          <TanstackTable table={table} />
+        </BreakoutContainer>
       ) : (
         <ProvidersEmptySearchState />
       )}
