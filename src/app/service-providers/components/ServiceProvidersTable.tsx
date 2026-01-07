@@ -94,7 +94,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
       {hasSearchResults ? (
         <BreakoutContainer>
-          <TanstackTable table={table} />
+          <TanstackTable table={table} maxHeight="100vh" />
         </BreakoutContainer>
       ) : (
         <ProvidersEmptySearchState />

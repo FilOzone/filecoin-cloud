@@ -102,6 +102,7 @@ export function WarmStorageServicesClient() {
         <SectionContent
           centerCTA
           centerTitle
+          headingTag="h2"
           title="Pricing"
           cta={
             <Button
@@ -122,6 +123,7 @@ export function WarmStorageServicesClient() {
         <SectionContent
           centerCTA
           centerTitle
+          headingTag="h2"
           title="Warm Storage Details"
           description="View contract addresses and browse approved storage providers."
           cta={
