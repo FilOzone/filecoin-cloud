@@ -21,6 +21,7 @@ export function ServiceProvidersClient() {
       <Navigation backgroundVariant="light" />
       <PageSection backgroundVariant="light">
         <SectionContent
+          headingTag="h1"
           title="Service Providers"
           description="Explore registered service providers offering verifiable storage and data services on Filecoin Onchain Cloud."
         >

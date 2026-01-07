@@ -76,6 +76,7 @@ export default function Homepage() {
       <PageSection backgroundVariant="dark">
         <SectionContent
           centerCTA
+          headingTag="h2"
           title="Own every part of what you build—verifiable by design"
           description="Ship faster. Verify your stack. Build products people can trust because every action proves itself."
           cta={
@@ -103,6 +104,7 @@ export default function Homepage() {
 
       <PageSection backgroundVariant="light">
         <SectionContent
+          headingTag="h2"
           title="Running on Filecoin Onchain Cloud"
           description="Projects using Filecoin Onchain Cloud to power verifiable, onchain applications and infrastructure."
         >
@@ -129,6 +131,7 @@ export default function Homepage() {
       <PageSection backgroundVariant="dark">
         <SectionContent
           centerCTA
+          headingTag="h2"
           title="Compose the Building Blocks"
           description="Modular services you can mix, match, and deploy, all built for openness, performance, and control."
         >
@@ -151,6 +154,7 @@ export default function Homepage() {
       <PageSection backgroundVariant="light">
         <SectionContent
           centerCTA
+          headingTag="h2"
           title="Build with us"
           description="Join us in shaping the next wave of open, verifiable cloud services."
           cta={
@@ -189,6 +193,7 @@ export default function Homepage() {
 
       <PageSection backgroundVariant="dark">
         <SectionContent
+          headingTag="h2"
           title="Everything you need to build on Filecoin"
           description="SDKs, docs, and a builder community working together to take back the cloud."
         >

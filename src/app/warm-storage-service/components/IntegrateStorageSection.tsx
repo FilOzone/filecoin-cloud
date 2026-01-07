@@ -16,6 +16,7 @@ export function IntegrateStorageSection() {
     <SectionContent
       centerCTA
       centerTitle
+      headingTag="h2"
       title="Integrate warm storage in your app"
       description="Get started with storage in just a few lines of code"
       cta={[

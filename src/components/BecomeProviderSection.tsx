@@ -10,6 +10,7 @@ export function BecomeProviderSection() {
       <SectionContent
         centerCTA
         centerTitle
+        headingTag="h2"
         title="Become a Service Provider"
         description="Learn how to set up and run a storage provider node and join the network to offer verifiable warm storage service."
         cta={

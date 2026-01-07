@@ -20,7 +20,7 @@ export function Faq({ questions }: FaqProps) {
 
   return (
     <div className="max-w-4xl">
-      <SectionContent title="Frequently asked questions">
+      <SectionContent headingTag="h2" title="Frequently asked questions">
         <Accordion type="single" collapsible className="divide-white/20">
           {questions.map(({ question, answer }) => {
             return (
