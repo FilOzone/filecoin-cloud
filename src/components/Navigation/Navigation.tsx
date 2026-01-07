@@ -20,14 +20,14 @@ export function Navigation({ backgroundVariant }: NavigationProps) {
         <nav className="flex items-center justify-between py-8 xl:gap-24">
           <HomeLogoIconLink />
 
-          <div className="block xl:hidden">
+          <div className="block lg:hidden">
             <MobileNavigation
               items={headerNavigationItems}
               HomeLogoIconLinkComponent={HomeLogoIconLink}
             />
           </div>
 
-          <div className="hidden xl:block xl:flex-1">
+          <div className="hidden lg:block lg:flex-1">
             <DesktopNavigation />
           </div>
         </nav>
