@@ -9,7 +9,6 @@ import {
 import {
   Fieldset,
   Popover,
-  PopoverBackdrop,
   PopoverButton,
   PopoverPanel,
 } from '@headlessui/react'
@@ -52,13 +51,11 @@ export function LocationFilter({ options }: LocationFilterProps) {
             </span>
           </PopoverButton>
 
-          <PopoverBackdrop className="fixed inset-0 bg-zinc-950/5" />
-
           <PopoverPanel
             anchor={{ to: 'bottom', gap: 16 }}
             className={clsx(
               backgroundVariants[theme],
-              'w-80 max-h-96 overflow-y-auto p-6 rounded-2xl border border-(--color-listbox-border) shadow-xs',
+              'w-80 max-h-96 overflow-y-auto p-6 rounded-2xl border border-(--color-listbox-border) shadow-xl z-20',
             )}
           >
             <Fieldset>
