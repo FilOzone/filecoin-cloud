@@ -34,7 +34,7 @@
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
     "slugify": "^1.6.6",
-    "viem": "^2.43.5",
+    "viem": "^2.44.1",
     "zod": "^4.3.5"
   },
   "devDependencies": {
