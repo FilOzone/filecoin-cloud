@@ -35,7 +35,12 @@ export function SimpleCardWithImage({
         className="aspect-13/5 rounded-t-2xl object-cover"
       />
       <div className="p-8">
-        <CardContent title={title} description={description} border="all" />
+        <CardContent
+          title={title}
+          description={description}
+          border="all"
+          headingTag="h3"
+        />
         <CTALink inset href={cta.href} textClassName="bottom-8 left-8">
           {cta.text}
         </CTALink>
