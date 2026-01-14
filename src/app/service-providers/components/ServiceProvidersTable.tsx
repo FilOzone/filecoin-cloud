@@ -22,11 +22,12 @@ import { globalTableSearchFn } from '@/utils/global-table-search'
 import { ExportToCsvLink } from './ExportToCsvLink'
 import { TableFilters } from './TableFilters'
 import { columns } from '../data/column-definition'
+import { useExplorerUrl } from '../hooks/useExplorerUrl'
 import { useFilterOptions } from '../hooks/useFilterOptions'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 import { useSortingQueryState } from '../hooks/useSortingQueryState'
 import { mapFilterStateToColumnFilters } from '../utils/map-filter-state-to-column-filters'
-import { mapProviderToCsvRow } from '../utils/mapProviderToCsvRow'
+import { mapProviderToCsvRow } from '../utils/map-provider-to-csv-row'
 
 export type ServiceProvidersTableProps = {
   data: Array<ServiceProvider>
@@ -38,6 +39,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
   const { filterQueries } = useFilterQueryState()
 
   const filterOptions = useFilterOptions(data)
+  const { explorerUrl } = useExplorerUrl()
 
   const sortingState: SortingState = useMemo(
     () => (sortQuery ? [sortQuery] : []),
@@ -77,12 +79,15 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
   const hasSearchResults = Boolean(table.getRowModel().rows.length)
 
-  const csvData = data.map((provider) => mapProviderToCsvRow(provider))
+  const csvData = useMemo(() => {
+    return table
+      .getFilteredRowModel()
+      .rows.map((row) =>
+        mapProviderToCsvRow({ provider: row.original, explorerUrl }),
+      )
+  }, [table, explorerUrl])
 
-  const csvFilename = useMemo(() => {
-    const timestamp = new Date().toISOString().split('T')[0]
-    return `service-providers-${timestamp}.csv`
-  }, [])
+  const csvFilename = `service-providers-${new Date().toISOString().split('T')[0]}.csv`
 
   return (
     <BreakoutContainer>
