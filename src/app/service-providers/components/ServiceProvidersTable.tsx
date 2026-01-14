@@ -19,12 +19,15 @@ import { useSearchQueryState } from '@/hooks/use-search-query-state'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
 
+import { ExportToCsvLink } from './ExportToCsvLink'
 import { TableFilters } from './TableFilters'
 import { columns } from '../data/column-definition'
+import { useExplorerUrl } from '../hooks/useExplorerUrl'
 import { useFilterOptions } from '../hooks/useFilterOptions'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 import { useSortingQueryState } from '../hooks/useSortingQueryState'
 import { mapFilterStateToColumnFilters } from '../utils/map-filter-state-to-column-filters'
+import { mapProviderToCsvRow } from '../utils/map-provider-to-csv-row'
 
 export type ServiceProvidersTableProps = {
   data: Array<ServiceProvider>
@@ -36,6 +39,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
   const { filterQueries } = useFilterQueryState()
 
   const filterOptions = useFilterOptions(data)
+  const { explorerUrl } = useExplorerUrl()
 
   const sortingState: SortingState = useMemo(
     () => (sortQuery ? [sortQuery] : []),
@@ -75,6 +79,16 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
   const hasSearchResults = Boolean(table.getRowModel().rows.length)
 
+  const csvData = useMemo(() => {
+    return table
+      .getFilteredRowModel()
+      .rows.map((row) =>
+        mapProviderToCsvRow({ provider: row.original, explorerUrl }),
+      )
+  }, [table, explorerUrl])
+
+  const csvFilename = `service-providers-${new Date().toISOString().split('T')[0]}.csv`
+
   return (
     <>
       <div className="flex flex-col sm:flex-row md:items-center md:justify-between gap-6">
@@ -88,6 +102,9 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
           </div>
           <div className="md:w-56">
             <NetworkSelector />
+          </div>
+          <div className="md:w-auto flex items-center">
+            <ExportToCsvLink csvData={csvData} csvFilename={csvFilename} />
           </div>
         </div>
       </div>

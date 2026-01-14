@@ -66,7 +66,10 @@ export const columns = [
     header: 'Status',
     cell: (info) => {
       const serviceStatus = info.getValue() || '-'
-      return serviceStatus.toUpperCase()
+      return (
+        serviceStatus.charAt(0).toUpperCase() +
+        serviceStatus.slice(1).toLowerCase()
+      )
     },
     sortingFn: 'text',
     sortUndefined: 'last',
