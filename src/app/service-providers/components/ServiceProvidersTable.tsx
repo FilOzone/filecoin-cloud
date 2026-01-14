@@ -19,12 +19,14 @@ import { useSearchQueryState } from '@/hooks/use-search-query-state'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
 
+import { ExportToCsvLink } from './ExportToCsvLink'
 import { TableFilters } from './TableFilters'
 import { columns } from '../data/column-definition'
 import { useFilterOptions } from '../hooks/useFilterOptions'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 import { useSortingQueryState } from '../hooks/useSortingQueryState'
 import { mapFilterStateToColumnFilters } from '../utils/map-filter-state-to-column-filters'
+import { mapProviderToCsvRow } from '../utils/mapProviderToCsvRow'
 
 export type ServiceProvidersTableProps = {
   data: Array<ServiceProvider>
@@ -75,6 +77,13 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
   const hasSearchResults = Boolean(table.getRowModel().rows.length)
 
+  const csvData = data.map((provider) => mapProviderToCsvRow(provider))
+
+  const csvFilename = useMemo(() => {
+    const timestamp = new Date().toISOString().split('T')[0]
+    return `service-providers-${timestamp}.csv`
+  }, [])
+
   return (
     <BreakoutContainer>
       <div className="flex flex-col sm:flex-row md:items-center md:justify-between gap-4 sm:gap-6 mb-4">
@@ -88,6 +97,9 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
           </div>
           <div className="w-full">
             <NetworkSelector />
+          </div>
+          <div className="md:w-auto flex items-center">
+            <ExportToCsvLink csvData={csvData} csvFilename={csvFilename} />
           </div>
         </div>
       </div>
