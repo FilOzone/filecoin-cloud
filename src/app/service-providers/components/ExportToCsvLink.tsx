@@ -1,7 +1,7 @@
 import { DownloadSimpleIcon } from '@phosphor-icons/react'
 import { CSVLink } from 'react-csv'
 
-import type { mapProviderToCsvRow } from '../utils/mapProviderToCsvRow'
+import type { mapProviderToCsvRow } from '../utils/map-provider-to-csv-row'
 
 type ExportToCsvLinkProps = {
   csvData: ReturnType<typeof mapProviderToCsvRow>[]
@@ -14,9 +14,9 @@ export function ExportToCsvLink({
 }: ExportToCsvLinkProps) {
   return (
     <CSVLink
+      aria-label="Export table data as CSV file"
       data={csvData}
       filename={csvFilename}
-      className="flex items-center gap-2"
     >
       <span className="flex items-center gap-2">
         <DownloadSimpleIcon size={20} />
