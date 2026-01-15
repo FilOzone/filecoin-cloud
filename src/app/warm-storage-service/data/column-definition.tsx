@@ -1,5 +1,5 @@
 import { ID } from '@filecoin-foundation/ui-filecoin/Table/ID'
-// import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
+import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { createColumnHelper } from '@tanstack/react-table'
 
 import { CompactPeerID } from '@/components/CompactPeerID'
@@ -45,15 +45,14 @@ export const columns = [
     sortingFn: sortSoftwareVersion,
     sortUndefined: 'last',
   }),
-  // TODO: Add check activity link
-  // columnHelper.accessor('checkActivityUrl', {
-  //   header: 'Check Activity',
-  //   cell: (info) => (
-  //     <ExternalTextLink href={info.getValue() || '#todo'}>
-  //       View on PDP Scan
-  //     </ExternalTextLink>
-  //   ),
-  // }),
+  columnHelper.accessor('checkActivityUrl', {
+    header: 'Check Activity',
+    cell: (info) => (
+      <ExternalTextLink href={info.getValue()}>
+        View on PDP Scan
+      </ExternalTextLink>
+    ),
+  }),
   columnHelper.accessor('location', {
     header: 'Location',
     cell: (info) => info.getValue(),

@@ -12,6 +12,7 @@ import {
   type ServiceProvider,
 } from '@/schemas/provider-schema'
 import type { FetchProvidersOptions, ProviderFilter } from '@/types/providers'
+import { getCheckActivityUrl } from '@/utils/provider-urls'
 
 import { VERSION_FETCH_CONCURRENCY } from './constants'
 import {
@@ -79,10 +80,11 @@ async function fetchProvidersByFilter(
 }
 
 /**
- * Enrich providers with software version information
+ * Enrich providers with additional information (software version and check activity URL)
  */
-async function enrichProvidersWithVersions(
+async function enrichProviders(
   providers: ProviderWithoutSoftwareVersion[],
+  network: Network,
 ): Promise<ServiceProvider[]> {
   const providersWithVersions: Array<
     ProviderWithoutSoftwareVersion & { softwareVersion?: string }
@@ -94,7 +96,11 @@ async function enrichProvidersWithVersions(
     const batchResults = await Promise.all(
       batch.map(async (provider) => {
         const softwareVersion = await fetchSoftwareVersion(provider.serviceUrl)
-        return { ...provider, softwareVersion }
+        const checkActivityUrl = getCheckActivityUrl(
+          network,
+          provider.payeeAddress,
+        )
+        return { ...provider, softwareVersion, checkActivityUrl }
       }),
     )
     providersWithVersions.push(...batchResults)
@@ -178,6 +184,6 @@ export async function fetchProviders(
     serviceRegistry,
   })
 
-  // Enrich with software versions
-  return enrichProvidersWithVersions(fetchedProviders)
+  // Enrich with additional information
+  return enrichProviders(fetchedProviders, network)
 }
