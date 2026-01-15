@@ -1,9 +1,9 @@
 import type { ServiceProvider } from '@/schemas/provider-schema'
 
 /**
- * Provider without software version (before version fetch)
+ * Base provider data from contract (before enrichment with software version and check activity URL)
  */
-export type ProviderWithoutSoftwareVersion = Omit<
+export type BaseProviderData = Omit<
   ServiceProvider,
-  'softwareVersion'
+  'softwareVersion' | 'checkActivityUrl'
 >
