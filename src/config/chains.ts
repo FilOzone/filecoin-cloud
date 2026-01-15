@@ -3,18 +3,16 @@ import type { Address, Chain as ViemChain } from 'viem'
 import { ServiceRegistryABI, WarmStorageABI, WarmStorageViewABI } from './abis'
 
 export type Contract = {
-  implementation: string
-  proxy: string
+  implementation: Address
+  proxy: Address
 }
 
-export type WarmStorage = {
-  implementation: string
-  proxy: string
-  stateView: string
+export type WarmStorage = Contract & {
+  stateView: Address
 }
 
 export type Contracts = {
-  pdp?: Partial<Contract>
+  pdp: Contract
   warmStorage: WarmStorage
   serviceProviderRegistry: Contract
 }
