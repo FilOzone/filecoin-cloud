@@ -12,7 +12,7 @@ export function ServiceOffered({ isActive, isApproved }: ServiceOfferedProps) {
 
   if (serviceTier === ServiceTier.INACTIVE) {
     return (
-      <div className="py-4">
+      <div className="py-4 flex flex-col items-start">
         <Badge variant="tertiary">Inactive</Badge>
       </div>
     )
