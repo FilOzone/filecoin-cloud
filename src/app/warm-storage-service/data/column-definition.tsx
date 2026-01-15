@@ -52,6 +52,7 @@ export const columns = [
         View on PDP Scan
       </ExternalTextLink>
     ),
+    enableSorting: false,
   }),
   columnHelper.accessor('location', {
     header: 'Location',

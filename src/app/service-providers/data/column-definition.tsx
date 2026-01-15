@@ -59,6 +59,7 @@ export const columns = [
         View on PDP Scan
       </ExternalTextLink>
     ),
+    enableSorting: false,
   }),
   // TODO: Add Service Offered Column
   columnHelper.accessor('serviceStatus', {
