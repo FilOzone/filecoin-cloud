@@ -17,6 +17,7 @@ import {
   ipniFilterFn,
   locationFilterFn,
   provingPeriodRangeFilterFn,
+  serviceTierFilterFn,
   statusFilterFn,
 } from '../utils/service-provider-filters'
 
@@ -71,6 +72,7 @@ export const columns = [
       return <ServiceOffered isActive={isActive} isApproved={isApproved} />
     },
     sortingFn: sortServiceTier,
+    filterFn: serviceTierFilterFn,
   }),
   columnHelper.accessor('serviceStatus', {
     header: 'Status',

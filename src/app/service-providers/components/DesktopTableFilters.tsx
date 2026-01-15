@@ -17,6 +17,7 @@ import { CapacityFilter } from './CapacityFilter'
 import { IpniFilter } from './IpniFilter'
 import { LocationFilter } from './LocationFilter'
 import { ProvingPeriodFilter } from './ProvingPeriodFilter'
+import { ServiceTierFilter } from './ServiceTierFilter'
 import { StatusFilter } from './StatusFilter'
 import type { useFilterOptions } from '../hooks/useFilterOptions'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
@@ -33,6 +34,7 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
     location: locationOptions,
     status: statusOptions,
     ipni: ipniOptions,
+    serviceTier: serviceTierOptions,
     capacityMin,
     capacityMax,
     provingPeriodMin,
@@ -78,6 +80,9 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
                   <StatusFilter options={statusOptions} />
                 )}
                 {ipniOptions.length > 1 && <IpniFilter options={ipniOptions} />}
+                {serviceTierOptions.length > 1 && (
+                  <ServiceTierFilter options={serviceTierOptions} />
+                )}
               </div>
             </div>
 
