@@ -1,6 +1,7 @@
 import type { FilterFn } from '@tanstack/react-table'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
+import { getServiceTier } from '@/utils/service-tier'
 
 import { getYesNoFromBoolean } from './get-yes-no-from-boolean'
 import type { Range } from './map-filter-state-to-column-filters'
@@ -86,4 +87,16 @@ export const provingPeriodRangeFilterFn: FilterFn<ServiceProvider> = (
   if (hasMaxFilter && provingPeriodNum > max) return false
 
   return true
+}
+
+export const serviceTierFilterFn: FilterFn<ServiceProvider> = (
+  row,
+  _columnId,
+  filterValue,
+) => {
+  const serviceTierArray = filterValue as FilterState['serviceTier']
+  if (serviceTierArray.length === 0) return true
+
+  const tier = getServiceTier(row.original.isActive, row.original.isApproved)
+  return serviceTierArray.includes(tier)
 }

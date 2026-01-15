@@ -1,4 +1,5 @@
 import type { ServiceProvider } from '@/schemas/provider-schema'
+import type { ServiceTier } from '@/utils/service-tier'
 
 import type { FilterState } from '../hooks/useFilterQueryState'
 
@@ -9,8 +10,8 @@ export type Range = {
 
 // Same shape as ColumnFiltersState from @tanstack/react-table
 type ServiveProviderColumnFilters = Array<{
-  id: keyof ServiceProvider
-  value: Array<string> | Range
+  id: keyof ServiceProvider | 'serviceOffered'
+  value: Array<string> | Array<ServiceTier> | Range
 }>
 
 export function mapFilterStateToColumnFilters({
@@ -21,6 +22,7 @@ export function mapFilterStateToColumnFilters({
   provingPeriodMin,
   provingPeriodMax,
   ipni,
+  serviceTier,
 }: FilterState) {
   const columnFilters: ServiveProviderColumnFilters = []
 
@@ -47,6 +49,9 @@ export function mapFilterStateToColumnFilters({
         max: provingPeriodMax,
       },
     })
+  }
+  if (serviceTier.length > 0) {
+    columnFilters.push({ id: 'serviceOffered', value: serviceTier })
   }
 
   return columnFilters

@@ -6,6 +6,7 @@ import {
 } from 'nuqs'
 import { useCallback, useMemo } from 'react'
 
+import type { ServiceTier } from '@/utils/service-tier'
 import { toggleValueInArray } from '@/utils/toggle-value-in-array'
 
 import { parseNumericInput } from '../utils/parse-numeric-input'
@@ -18,6 +19,7 @@ export type FilterState = {
   provingPeriodMin: number | null
   provingPeriodMax: number | null
   ipni: Array<string>
+  serviceTier: Array<ServiceTier>
 }
 
 const filterParsers = {
@@ -28,10 +30,11 @@ const filterParsers = {
   provingPeriodMin: parseAsInteger,
   provingPeriodMax: parseAsInteger,
   ipni: parseAsArrayOf(parseAsString).withDefault([]),
+  serviceTier: parseAsArrayOf(parseAsInteger).withDefault([]),
 }
 
-type ArrayStringKeys<T> = {
-  [K in keyof T]: T[K] extends Array<string> ? K : never
+type ArrayKeys<T> = {
+  [K in keyof T]: T[K] extends Array<unknown> ? K : never
 }[keyof T]
 
 type NumberKeys<T> = {
@@ -42,9 +45,14 @@ export function useFilterQueryState() {
   const [filterQueries, setFilterQueries] = useQueryStates(filterParsers)
 
   const toggleFilterQuery = useCallback(
-    (key: ArrayStringKeys<FilterState>, value: string) => {
+    <K extends ArrayKeys<FilterState>>(
+      key: K,
+      value: FilterState[K] extends Array<infer U> ? U : never,
+    ) => {
       setFilterQueries((prev) => {
-        const updated = toggleValueInArray(prev[key], value)
+        const currentArray = prev[key]
+        // @ts-expect-error - Generic array toggle works for both string[] and number[]
+        const updated = toggleValueInArray(currentArray, value)
         return { ...prev, [key]: updated }
       })
     },
