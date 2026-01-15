@@ -63,7 +63,7 @@ export const columns = [
   //     </ExternalTextLink>
   //   ),
   // }),
-  columnHelper.display({
+  columnHelper.accessor('isActive', {
     id: 'serviceOffered',
     header: 'Service Offered',
     cell: (info) => {
