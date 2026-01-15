@@ -4,7 +4,7 @@ import type { ServiceRegistryABI, WarmStorageViewABI } from '@/config/abis'
 
 import { BATCH_SIZE, PDP_PRODUCT_TYPE, PROVIDER_FETCH_LIMIT } from './constants'
 import { processProviderData } from './processor'
-import type { ProviderWithoutSoftwareVersion } from './types'
+import type { BaseProviderData } from './types'
 
 /**
  * Fetch approved provider IDs from WarmStorageView contract with pagination
@@ -50,8 +50,8 @@ export async function fetchProvidersBulk(
   >,
   onlyActive: boolean,
   approvedProviderIds?: Set<bigint>,
-): Promise<ProviderWithoutSoftwareVersion[]> {
-  const providers: ProviderWithoutSoftwareVersion[] = []
+): Promise<BaseProviderData[]> {
+  const providers: BaseProviderData[] = []
   let offset = 0
   let hasMore = true
 
@@ -117,7 +117,7 @@ export async function fetchProviderById(
     PublicClient
   >,
   isApproved = false,
-): Promise<ProviderWithoutSoftwareVersion | undefined> {
+): Promise<BaseProviderData | undefined> {
   const providerData =
     await serviceRegistryContract.read.getProviderWithProduct([
       providerId,

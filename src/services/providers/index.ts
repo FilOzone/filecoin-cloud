@@ -20,7 +20,7 @@ import {
   fetchProviderById,
   fetchProvidersBulk,
 } from './contract'
-import type { ProviderWithoutSoftwareVersion } from './types'
+import type { BaseProviderData } from './types'
 import { fetchSoftwareVersion } from './version'
 
 /**
@@ -35,7 +35,7 @@ async function fetchProvidersByFilter(
       PublicClient
     >
   },
-): Promise<ProviderWithoutSoftwareVersion[]> {
+): Promise<BaseProviderData[]> {
   const { storageView, serviceRegistry } = contracts
 
   // Fetch approved provider IDs for marking providers
@@ -71,8 +71,7 @@ async function fetchProvidersByFilter(
 
     const providers = await Promise.all(providerPromises)
     return providers.filter(
-      (provider): provider is ProviderWithoutSoftwareVersion =>
-        provider !== null,
+      (provider): provider is BaseProviderData => provider !== null,
     )
   }
 
@@ -83,11 +82,11 @@ async function fetchProvidersByFilter(
  * Enrich providers with additional information (software version and check activity URL)
  */
 async function enrichProviders(
-  providers: ProviderWithoutSoftwareVersion[],
+  providers: BaseProviderData[],
   network: Network,
 ): Promise<ServiceProvider[]> {
   const providersWithVersions: Array<
-    ProviderWithoutSoftwareVersion & { softwareVersion?: string }
+    BaseProviderData & { softwareVersion?: string; checkActivityUrl?: string }
   > = []
 
   // Process providers in batches
