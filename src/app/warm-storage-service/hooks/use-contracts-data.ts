@@ -9,27 +9,20 @@ export function useContractsData(network: Network = 'calibration') {
     const { contracts } = chain
     const explorerUrl = chain.blockExplorers?.default?.url || ''
 
-    const warmStorageContracts = Object.entries(contracts.warmStorage).map(
-      ([key, address]) =>
-        formatContractForCard(
-          formatContractLabel(key as keyof WarmStorage),
-          address as Address,
-          explorerUrl,
-        ),
+    const warmStorageContracts = (
+      Object.entries(contracts.warmStorage) as [keyof WarmStorage, Address][]
+    ).map(([key, address]) =>
+      formatContractForCard(formatContractLabel(key), address, explorerUrl),
     )
 
-    const serviceRegistryContracts = contracts.serviceProviderRegistry?.proxy
-      ? [
-          formatContractForCard(
-            'Service Registry',
-            contracts.serviceProviderRegistry.proxy as Address,
-            explorerUrl,
-          ),
-        ]
-      : []
+    const pdpVerifierContract = formatContractForCard(
+      'PDP Verifier',
+      contracts.pdp.proxy,
+      explorerUrl,
+    )
 
     return {
-      contractsData: [...warmStorageContracts, ...serviceRegistryContracts],
+      contractsData: [...warmStorageContracts, pdpVerifierContract],
     }
   }, [network])
 }
