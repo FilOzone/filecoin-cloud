@@ -6,13 +6,9 @@ import { CURIO_GITHUB_URL } from '../constants/providers'
 
 export type MapProviderToCsvRowProps = {
   provider: ServiceProvider
-  explorerUrl: string
 }
 
-export function mapProviderToCsvRow({
-  provider,
-  explorerUrl,
-}: MapProviderToCsvRowProps) {
+export function mapProviderToCsvRow({ provider }: MapProviderToCsvRowProps) {
   const versionInfo = parseVersionString(provider.softwareVersion || '')
 
   const gitCommitUrl = versionInfo?.commit
@@ -22,8 +18,8 @@ export function mapProviderToCsvRow({
   return {
     ID: String(provider.id),
     Provider: provider.name,
-    'Provider Address': `${explorerUrl}${provider.serviceProviderAddress}`,
-    'Service URL': provider.serviceUrl.toString(),
+    'Provider Address': provider.serviceProviderAddress,
+    'Service URL': provider.serviceUrl,
     'Provider Description': provider.description,
     'Version Number': versionInfo?.version || '-',
     Network: versionInfo?.network || '-',
@@ -32,11 +28,9 @@ export function mapProviderToCsvRow({
     'Build Date': versionInfo?.date || '-',
     Status: provider.serviceStatus?.toUpperCase() || '-',
     Location: provider.location,
-    'Capacity (TiB)': provider.capacityTb
-      ? provider.capacityTb.toLocaleString('en-US')
-      : '-',
+    'Capacity (TiB)': provider.capacityTb ? String(provider.capacityTb) : '-',
     'Proving Period (Epochs)': provider.minProvingPeriod
-      ? provider.minProvingPeriod.toLocaleString('en-US')
+      ? String(provider.minProvingPeriod)
       : '-',
     IPNI: provider.ipniIpfs ? 'Yes' : 'No',
     'Peer ID': provider.peerId || '-',
