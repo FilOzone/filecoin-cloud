@@ -87,8 +87,6 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
     )
   }, [filteredProviders])
 
-  const csvFilename = `service-providers-${new Date().toISOString().split('T')[0]}.csv`
-
   return (
     <BreakoutContainer>
       <div className="flex flex-col sm:flex-row md:items-center md:justify-between gap-4 sm:gap-6 mb-4">
@@ -104,7 +102,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
             <NetworkSelector />
           </div>
           <div className="md:w-auto flex items-center">
-            <ExportToCsvLink csvData={csvData} csvFilename={csvFilename} />
+            <ExportToCsvLink csvData={csvData} />
           </div>
         </div>
       </div>
