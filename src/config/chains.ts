@@ -18,6 +18,7 @@ export type Contracts = {
   serviceProviderRegistry: UpgradableContract
   payments: ChainContract
   sessionKeyRegistry: ChainContract
+  endorsementSet: ChainContract
 }
 
 /**
@@ -113,6 +114,9 @@ const mainnet: Chain = {
     sessionKeyRegistry: {
       address: mainnetAddresses.SESSION_KEY_REGISTRY_ADDRESS,
     },
+    endorsementSet: {
+      address: mainnetAddresses.ENDORSEMENT_SET_ADDRESS,
+    },
   },
 }
 
@@ -182,6 +186,9 @@ export const calibration: Chain = {
     payments: { address: calibrationAddresses.FILECOIN_PAY_ADDRESS },
     sessionKeyRegistry: {
       address: calibrationAddresses.SESSION_KEY_REGISTRY_ADDRESS,
+    },
+    endorsementSet: {
+      address: calibrationAddresses.ENDORSEMENT_SET_ADDRESS,
     },
   },
 }

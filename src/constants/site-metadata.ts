@@ -46,6 +46,26 @@ const FOC_URLS = {
       'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/FilecoinWarmStorageService.sol',
     spDocumentation: 'https://docs.filecoin.io/storage-providers/pdp/',
     synapseSdk: 'https://github.com/FilOzone/synapse-sdk',
+    serviceProviderRegistryCode:
+      'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/ServiceProviderRegistry.sol',
+    endorsementSetCode:
+      'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/ProviderIdSet.sol',
+  },
+  payments: {
+    contractSourceCode:
+      'https://github.com/FilOzone/filecoin-pay/tree/main/src',
+    sourceCode:
+      'https://github.com/FilOzone/filecoin-pay/blob/main/src/FilecoinPayV1.sol',
+  },
+  sessionKeyRegistry: {
+    contractSourceCode:
+      'https://github.com/FilOzone/SessionKeyRegistry/tree/main/src',
+    sourceCode:
+      'https://github.com/FilOzone/SessionKeyRegistry/blob/main/src/SessionKeyRegistry.sol',
+  },
+  pdp: {
+    contractSourceCode: 'https://github.com/FilOzone/pdp/tree/main/src',
+    sourceCode: 'https://github.com/FilOzone/pdp/tree/main/src/PDPVerifier.sol',
   },
 }
 
