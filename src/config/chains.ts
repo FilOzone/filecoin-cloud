@@ -1,20 +1,23 @@
-import type { Address, Chain as ViemChain } from 'viem'
+import type { Address, ChainContract, Chain as ViemChain } from 'viem'
 
 import { ServiceRegistryABI, WarmStorageABI, WarmStorageViewABI } from './abis'
+import deployments from './deployments'
 
-export type Contract = {
+export type UpgradableContract = {
   implementation: Address
   proxy: Address
 }
 
-export type WarmStorage = Contract & {
+export type WarmStorage = UpgradableContract & {
   stateView: Address
 }
 
 export type Contracts = {
-  pdp: Contract
+  pdp: UpgradableContract
   warmStorage: WarmStorage
-  serviceProviderRegistry: Contract
+  serviceProviderRegistry: UpgradableContract
+  payments: ChainContract
+  sessionKeyRegistry: ChainContract
 }
 
 /**
@@ -38,6 +41,10 @@ export interface Chain extends ViemChain {
   contracts: Contracts
   linkToRelease?: string
 }
+
+// Contract addresses from deployments.json
+const mainnetAddresses = deployments['314']
+const calibrationAddresses = deployments['314159']
 
 const mainnet: Chain = {
   id: 314,
@@ -75,31 +82,36 @@ const mainnet: Chain = {
   },
   contractsWithAbi: {
     warmStorage: {
-      address: '0x8408502033C418E1bbC97cE9ac48E5528F371A9f',
+      address: mainnetAddresses.FWSS_PROXY_ADDRESS,
       abi: WarmStorageABI,
     },
     warmStorageView: {
-      address: '0x9e4e6699d8F67dFc883d6b0A7344Bd56F7E80B46',
+      address: mainnetAddresses.FWSS_VIEW_ADDRESS,
       abi: WarmStorageViewABI,
     },
     serviceRegistry: {
-      address: '0xf55dDbf63F1b55c3F1D4FA7e339a68AB7b64A5eB',
+      address: mainnetAddresses.SERVICE_PROVIDER_REGISTRY_PROXY_ADDRESS,
       abi: ServiceRegistryABI,
     },
   },
   contracts: {
     pdp: {
-      implementation: '0xe2Dc211BffcA499761570E04e8143Be2BA66095f',
-      proxy: '0xBADd0B92C1c71d02E7d520f64c0876538fa2557F',
+      implementation: mainnetAddresses.PDP_VERIFIER_IMPLEMENTATION_ADDRESS,
+      proxy: mainnetAddresses.PDP_VERIFIER_PROXY_ADDRESS,
     },
     warmStorage: {
-      implementation: '0xd60b90f6D3C42B26a246E141ec701a20Dde2fA61',
-      proxy: '0x8408502033C418E1bbC97cE9ac48E5528F371A9f',
-      stateView: '0x9e4e6699d8F67dFc883d6b0A7344Bd56F7E80B46',
+      implementation: mainnetAddresses.FWSS_IMPLEMENTATION_ADDRESS,
+      proxy: mainnetAddresses.FWSS_PROXY_ADDRESS,
+      stateView: mainnetAddresses.FWSS_VIEW_ADDRESS,
     },
     serviceProviderRegistry: {
-      proxy: '0xf55dDbf63F1b55c3F1D4FA7e339a68AB7b64A5eB',
-      implementation: '0xe255D3a89D6B326b48bc0fC94a472A839471D6B0',
+      proxy: mainnetAddresses.SERVICE_PROVIDER_REGISTRY_PROXY_ADDRESS,
+      implementation:
+        mainnetAddresses.SERVICE_PROVIDER_REGISTRY_IMPLEMENTATION_ADDRESS,
+    },
+    payments: { address: mainnetAddresses.FILECOIN_PAY_ADDRESS },
+    sessionKeyRegistry: {
+      address: mainnetAddresses.SESSION_KEY_REGISTRY_ADDRESS,
     },
   },
 }
@@ -140,31 +152,36 @@ export const calibration: Chain = {
   },
   contractsWithAbi: {
     warmStorage: {
-      address: '0x02925630df557F957f70E112bA06e50965417CA0',
+      address: calibrationAddresses.FWSS_PROXY_ADDRESS,
       abi: WarmStorageABI,
     },
     warmStorageView: {
-      address: '0xA5D87b04086B1d591026cCE10255351B5AA4689B',
+      address: calibrationAddresses.FWSS_VIEW_ADDRESS,
       abi: WarmStorageViewABI,
     },
     serviceRegistry: {
-      address: '0x839e5c9988e4e9977d40708d0094103c0839Ac9D',
+      address: calibrationAddresses.SERVICE_PROVIDER_REGISTRY_PROXY_ADDRESS,
       abi: ServiceRegistryABI,
     },
   },
   contracts: {
     pdp: {
-      implementation: '0x2355Cb19BA1eFF51673562E1a5fc5eE292AF9D42',
-      proxy: '0x85e366Cf9DD2c0aE37E963d9556F5f4718d6417C',
+      implementation: calibrationAddresses.PDP_VERIFIER_IMPLEMENTATION_ADDRESS,
+      proxy: calibrationAddresses.PDP_VERIFIER_PROXY_ADDRESS,
     },
     warmStorage: {
-      implementation: '0x4BCc752555Bf08A5Bd9a4Ce467a12607277450bA',
-      proxy: '0x02925630df557F957f70E112bA06e50965417CA0',
-      stateView: '0xA5D87b04086B1d591026cCE10255351B5AA4689B',
+      implementation: calibrationAddresses.FWSS_IMPLEMENTATION_ADDRESS,
+      proxy: calibrationAddresses.FWSS_PROXY_ADDRESS,
+      stateView: calibrationAddresses.FWSS_VIEW_ADDRESS,
     },
     serviceProviderRegistry: {
-      proxy: '0x839e5c9988e4e9977d40708d0094103c0839Ac9D',
-      implementation: '0xb32Bb530638d20f1B59B40CDD2Ce4208430f7DE3',
+      proxy: calibrationAddresses.SERVICE_PROVIDER_REGISTRY_PROXY_ADDRESS,
+      implementation:
+        calibrationAddresses.SERVICE_PROVIDER_REGISTRY_IMPLEMENTATION_ADDRESS,
+    },
+    payments: { address: calibrationAddresses.FILECOIN_PAY_ADDRESS },
+    sessionKeyRegistry: {
+      address: calibrationAddresses.SESSION_KEY_REGISTRY_ADDRESS,
     },
   },
 }
