@@ -16,7 +16,7 @@
 import { z } from 'zod'
 
 import * as fs from 'node:fs'
-import * as path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import {
   type Deployments,
   deploymentsSchema,
@@ -25,12 +25,8 @@ import {
 const UPSTREAM_URL =
   'https://raw.githubusercontent.com/FilOzone/filecoin-services/main/service_contracts/deployments.json'
 
-const LOCAL_PATH = path.join(
-  __dirname,
-  '..',
-  'src',
-  'config',
-  'deployments.json',
+const LOCAL_PATH = fileURLToPath(
+  new URL('../src/config/deployments.json', import.meta.url),
 )
 
 interface Diff {
@@ -66,42 +62,71 @@ function readLocal(): Deployments {
     throw new Error(`Local deployments.json not found: ${LOCAL_PATH}`)
   }
   const data = JSON.parse(fs.readFileSync(LOCAL_PATH, 'utf-8'))
-  return deploymentsSchema.parse(data)
+
+  // Validate structure but preserve all fields for comparison
+  deploymentsSchema.parse(data)
+
+  // Return raw data to preserve extra fields for bidirectional comparison
+  return data as Deployments
 }
 
 function compareDeployments(local: Deployments, upstream: Deployments): Diff[] {
   const diffs: Diff[] = []
+  const allChainIds = new Set([
+    ...Object.keys(upstream),
+    ...Object.keys(local),
+  ]) as Set<keyof Deployments>
 
-  for (const chainId of Object.keys(upstream) as Array<keyof Deployments>) {
+  for (const chainId of allChainIds) {
     const upstreamChain = upstream[chainId]
     const localChain = local[chainId]
 
-    if (!localChain) {
-      // New chain added upstream
-      for (const [key, value] of Object.entries(upstreamChain)) {
+    // Case 1: Chain exists in only one side (local or upstream)
+    if (!localChain || !upstreamChain) {
+      const existingChain = localChain || upstreamChain
+      for (const [key, value] of Object.entries(existingChain)) {
         if (key !== 'metadata' && typeof value === 'string') {
           diffs.push({
             chainId,
             field: key,
-            local: '(missing)',
-            upstream: value,
+            local: localChain ? value : '(missing)',
+            upstream: upstreamChain ? value : '(missing)',
           })
         }
       }
       continue
     }
 
-    for (const [key, upstreamValue] of Object.entries(upstreamChain)) {
-      if (key === 'metadata' || typeof upstreamValue !== 'string') continue
+    // Case 2: Chain exists in both - compare fields bidirectionally
+    if (localChain && upstreamChain) {
+      const allFields = new Set([
+        ...Object.keys(upstreamChain),
+        ...Object.keys(localChain),
+      ])
 
-      const localValue = localChain[key as keyof typeof localChain]
-      if (localValue !== upstreamValue) {
-        diffs.push({
-          chainId,
-          field: key,
-          local: typeof localValue === 'string' ? localValue : '(missing)',
-          upstream: upstreamValue,
-        })
+      for (const key of allFields) {
+        if (key === 'metadata') continue
+
+        const upstreamValue = upstreamChain[key as keyof typeof upstreamChain]
+        const localValue = localChain[key as keyof typeof localChain]
+
+        // Only compare string values (contract addresses)
+        if (
+          typeof upstreamValue !== 'string' &&
+          typeof localValue !== 'string'
+        ) {
+          continue
+        }
+
+        if (localValue !== upstreamValue) {
+          diffs.push({
+            chainId,
+            field: key,
+            local: typeof localValue === 'string' ? localValue : '(missing)',
+            upstream:
+              typeof upstreamValue === 'string' ? upstreamValue : '(missing)',
+          })
+        }
       }
     }
   }
@@ -113,7 +138,14 @@ function formatDiffs(diffs: Diff[]): string {
   if (diffs.length === 0) return ''
 
   const lines: string[] = []
-  const byChain = Map.groupBy(diffs, (d) => d.chainId)
+
+  // Group diffs by chainId manually (Node 20 compatible)
+  const byChain = new Map<string, Diff[]>()
+  for (const diff of diffs) {
+    const existing = byChain.get(diff.chainId) || []
+    existing.push(diff)
+    byChain.set(diff.chainId, existing)
+  }
 
   for (const [chainId, chainDiffs] of byChain) {
     const networkName =
@@ -126,12 +158,8 @@ function formatDiffs(diffs: Diff[]): string {
     lines.push('')
     lines.push('| Field | Local | Upstream |')
     lines.push('|-------|-------|----------|')
-    if (chainDiffs) {
-      for (const diff of chainDiffs) {
-        lines.push(
-          `| ${diff.field} | \`${diff.local}\` | \`${diff.upstream}\` |`,
-        )
-      }
+    for (const diff of chainDiffs) {
+      lines.push(`| ${diff.field} | \`${diff.local}\` | \`${diff.upstream}\` |`)
     }
   }
 

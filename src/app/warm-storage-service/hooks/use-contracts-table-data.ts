@@ -16,7 +16,7 @@ export function useContractsTableData(network: Network = 'calibration') {
         name: 'Warm Storage Proxy',
         address: contracts.warmStorage.proxy,
         explorerUrl: `${explorerUrl}/address/${contracts.warmStorage.proxy}`,
-        sourceCodeUrl: `${FOC_URLS.warmStorageService.sourceCode}/FilecoinWarmStorageService.sol`,
+        sourceCodeUrl: FOC_URLS.warmStorageService.sourceCode,
       },
       {
         name: 'Warm Storage Implementation',

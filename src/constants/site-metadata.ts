@@ -65,7 +65,7 @@ const FOC_URLS = {
   },
   pdp: {
     contractSourceCode: 'https://github.com/FilOzone/pdp/tree/main/src',
-    sourceCode: 'https://github.com/FilOzone/pdp/tree/main/src/PDPVerifier.sol',
+    sourceCode: 'https://github.com/FilOzone/pdp/tree/blob/src/PDPVerifier.sol',
   },
 }
 
