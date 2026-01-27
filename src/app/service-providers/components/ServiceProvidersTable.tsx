@@ -77,16 +77,16 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
   return (
     <BreakoutContainer>
-      <div className="flex flex-col sm:flex-row md:items-center md:justify-between gap-6 mb-4">
-        <div className="md:w-2xl w-full">
+      <div className="flex flex-col sm:flex-row md:items-center md:justify-between gap-4 sm:gap-6 mb-4">
+        <div className="md:max-w-2xl w-full">
           <SearchInput value={searchQuery} onChange={setSearchQuery} />
         </div>
 
-        <div className="flex gap-6 grow md:grow-0">
-          <div className="lg:w-auto w-full">
+        <div className="flex gap-4 grow md:grow-0">
+          <div className="w-full">
             <TableFilters options={filterOptions} />
           </div>
-          <div className="lg:w-auto w-full">
+          <div className="w-full">
             <NetworkSelector />
           </div>
         </div>
