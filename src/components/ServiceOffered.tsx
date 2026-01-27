@@ -1,6 +1,10 @@
 import { Badge } from '@filecoin-foundation/ui-filecoin/Badge'
 
-import { getServiceTier, ServiceTier } from '@/utils/service-tier'
+import {
+  getServiceTier,
+  SERVICE_TIER_LABELS,
+  ServiceTier,
+} from '@/utils/service-tier'
 
 type ServiceOfferedProps = {
   isActive: boolean
@@ -13,7 +17,9 @@ export function ServiceOffered({ isActive, isApproved }: ServiceOfferedProps) {
   if (serviceTier === ServiceTier.INACTIVE) {
     return (
       <div className="py-4 flex flex-col items-start">
-        <Badge variant="tertiary">Inactive</Badge>
+        <Badge variant="tertiary">
+          {SERVICE_TIER_LABELS[ServiceTier.INACTIVE]}
+        </Badge>
       </div>
     )
   }
@@ -21,9 +27,11 @@ export function ServiceOffered({ isActive, isApproved }: ServiceOfferedProps) {
   return (
     <div className="py-4 flex flex-col gap-2 items-start">
       {serviceTier === ServiceTier.WARM_AND_PDP && (
-        <Badge variant="secondary">Warm Storage</Badge>
+        <Badge variant="secondary">
+          {SERVICE_TIER_LABELS[ServiceTier.WARM_AND_PDP]}
+        </Badge>
       )}
-      <Badge>PDP Storage</Badge>
+      <Badge>{SERVICE_TIER_LABELS[ServiceTier.PDP_ONLY]}</Badge>
     </div>
   )
 }

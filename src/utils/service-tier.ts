@@ -9,6 +9,15 @@ export enum ServiceTier {
 }
 
 /**
+ * Human-readable labels for service tiers
+ */
+export const SERVICE_TIER_LABELS: Record<ServiceTier, string> = {
+  [ServiceTier.WARM_AND_PDP]: 'Warm Storage',
+  [ServiceTier.PDP_ONLY]: 'PDP Storage',
+  [ServiceTier.INACTIVE]: 'Inactive',
+}
+
+/**
  * Determines the service tier based on provider status
  *
  * @param isActive - Whether the provider is active
@@ -23,7 +32,7 @@ export function getServiceTier(
     return ServiceTier.INACTIVE
   }
 
-  if (isActive && isApproved) {
+  if (isApproved) {
     return ServiceTier.WARM_AND_PDP
   }
 

@@ -10,6 +10,7 @@ import type { ServiceTier } from '@/utils/service-tier'
 import { toggleValueInArray } from '@/utils/toggle-value-in-array'
 
 import { parseNumericInput } from '../utils/parse-numeric-input'
+import { parseAsServiceTier } from '../utils/parse-service-tier'
 
 export type FilterState = {
   status: Array<string>
@@ -30,7 +31,7 @@ const filterParsers = {
   provingPeriodMin: parseAsInteger,
   provingPeriodMax: parseAsInteger,
   ipni: parseAsArrayOf(parseAsString).withDefault([]),
-  serviceTier: parseAsArrayOf(parseAsInteger).withDefault([]),
+  serviceTier: parseAsArrayOf(parseAsServiceTier).withDefault([]),
 }
 
 type ArrayKeys<T> = {
