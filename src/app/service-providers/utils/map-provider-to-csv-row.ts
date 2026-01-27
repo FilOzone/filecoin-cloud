@@ -1,8 +1,7 @@
 import { parseVersionString } from '@filecoin-foundation/ui-filecoin/Table/SoftwareVersion'
 
+import { CURIO_GITHUB_URL } from '@/constants/github-urls'
 import type { ServiceProvider } from '@/schemas/provider-schema'
-
-import { CURIO_GITHUB_URL } from '../constants/providers'
 
 export type MapProviderToCsvRowProps = {
   provider: ServiceProvider
