@@ -85,9 +85,7 @@ async function enrichProviders(
   providers: BaseProviderData[],
   network: Network,
 ): Promise<ServiceProvider[]> {
-  const providersWithVersions: Array<
-    BaseProviderData & { softwareVersion?: string; checkActivityUrl?: string }
-  > = []
+  const providersWithVersions: ServiceProvider[] = []
 
   // Process providers in batches
   for (let i = 0; i < providers.length; i += VERSION_FETCH_CONCURRENCY) {
