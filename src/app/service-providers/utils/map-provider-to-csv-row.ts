@@ -11,7 +11,7 @@ export type MapProviderToCsvRowProps = {
 export function mapProviderToCsvRow({ provider }: MapProviderToCsvRowProps) {
   const versionInfo = parseVersionString(provider.softwareVersion || '')
 
-  const EMPTY_VALUE = '-'
+  const EMPTY_VALUE = ''
 
   const gitCommitUrl = versionInfo?.commit
     ? `${CURIO_GITHUB_URL}${versionInfo.commit}`
@@ -28,7 +28,7 @@ export function mapProviderToCsvRow({ provider }: MapProviderToCsvRowProps) {
     'Git Commit': versionInfo?.commit || EMPTY_VALUE,
     'Git Commit URL': gitCommitUrl,
     'Build Date': versionInfo?.date || EMPTY_VALUE,
-    Status: provider.serviceStatus?.toUpperCase() || EMPTY_VALUE,
+    Status: provider.serviceStatus || EMPTY_VALUE,
     Location: provider.location,
     'Capacity (TiB)': provider.capacityTb
       ? String(provider.capacityTb)
@@ -36,7 +36,7 @@ export function mapProviderToCsvRow({ provider }: MapProviderToCsvRowProps) {
     'Proving Period (Epochs)': provider.minProvingPeriod
       ? String(provider.minProvingPeriod)
       : EMPTY_VALUE,
-    IPNI: provider.ipniIpfs ? 'Yes' : 'No',
+    IPNI: provider.ipniIpfs ? 'True' : 'False',
     'Peer ID': provider.peerId || EMPTY_VALUE,
   }
 }

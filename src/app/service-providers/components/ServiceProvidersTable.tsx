@@ -26,7 +26,6 @@ import { useFilterOptions } from '../hooks/useFilterOptions'
 import { useFilterQueryState } from '../hooks/useFilterQueryState'
 import { useSortingQueryState } from '../hooks/useSortingQueryState'
 import { mapFilterStateToColumnFilters } from '../utils/map-filter-state-to-column-filters'
-import { mapProviderToCsvRow } from '../utils/map-provider-to-csv-row'
 
 export type ServiceProvidersTableProps = {
   data: Array<ServiceProvider>
@@ -79,13 +78,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
   const filteredProviders = useMemo(() => {
     return table.getFilteredRowModel().rows.map((row) => row.original)
-  }, [table])
-
-  const csvData = useMemo(() => {
-    return filteredProviders.map((provider) =>
-      mapProviderToCsvRow({ provider }),
-    )
-  }, [filteredProviders])
+  }, [data, searchQuery, columnFilters, sortingState])
 
   return (
     <BreakoutContainer>
@@ -102,7 +95,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
             <NetworkSelector />
           </div>
           <div className="md:w-auto flex items-center">
-            <ExportToCsvLink csvData={csvData} />
+            <ExportToCsvLink filteredProviders={filteredProviders} />
           </div>
         </div>
       </div>
