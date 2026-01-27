@@ -1,5 +1,5 @@
 import { DownloadSimpleIcon } from '@phosphor-icons/react'
-import { useCallback, useRef, useState } from 'react'
+import { useMemo } from 'react'
 import { CSVLink } from 'react-csv'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
@@ -12,17 +12,12 @@ type ExportToCsvLinkProps = {
 
 export function ExportToCsvLink({ filteredProviders }: ExportToCsvLinkProps) {
   const csvFilename = `service-providers-${new Date().toISOString().split('T')[0]}.csv`
-  const [csvData, setCsvData] = useState<
-    ReturnType<typeof mapProviderToCsvRow>[]
-  >([])
-  const providersRef = useRef(filteredProviders)
 
-  const handleClick = useCallback(() => {
-    const csvRows = providersRef.current.map((provider) =>
+  const csvData = useMemo(() => {
+    return filteredProviders.map((provider) =>
       mapProviderToCsvRow({ provider }),
     )
-    setCsvData(csvRows)
-  }, [])
+  }, [filteredProviders])
 
   return (
     <CSVLink
@@ -30,7 +25,6 @@ export function ExportToCsvLink({ filteredProviders }: ExportToCsvLinkProps) {
       className="focus:brand-outline"
       data={csvData}
       filename={csvFilename}
-      onClick={handleClick}
     >
       <span className="flex items-center gap-2 shrink-0">
         <DownloadSimpleIcon size={20} />
