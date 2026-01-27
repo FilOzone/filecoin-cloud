@@ -9,7 +9,6 @@ import {
 import {
   Fieldset,
   Popover,
-  PopoverBackdrop,
   PopoverButton,
   PopoverPanel,
 } from '@headlessui/react'
@@ -51,8 +50,6 @@ export function LocationFilter({ options }: LocationFilterProps) {
               )}
             </span>
           </PopoverButton>
-
-          <PopoverBackdrop className="fixed inset-0 bg-zinc-950/5" />
 
           <PopoverPanel
             anchor={{ to: 'bottom', gap: 16 }}

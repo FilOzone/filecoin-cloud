@@ -57,7 +57,7 @@ export function WarmStorageProvidersTable({
           <SearchInput value={searchQuery} onChange={table.setGlobalFilter} />
         </div>
 
-        <div className="sm:w-48 w-full">
+        <div className="sm:w-auto w-full">
           <LocationFilter options={locationOptions} />
         </div>
       </div>
