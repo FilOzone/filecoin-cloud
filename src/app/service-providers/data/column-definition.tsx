@@ -5,9 +5,11 @@ import { createColumnHelper } from '@tanstack/react-table'
 
 import { CompactPeerID } from '@/components/CompactPeerID'
 import { ProviderOverview } from '@/components/ProviderOverview'
+import { ServiceOffered } from '@/components/ServiceOffered'
 import { SoftwareVersion } from '@/components/SoftwareVersion'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
+import { sortServiceTier } from '@/utils/sort-service-tier'
 import { sortSoftwareVersion } from '@/utils/sort-software-version'
 
 import {
@@ -15,6 +17,7 @@ import {
   ipniFilterFn,
   locationFilterFn,
   provingPeriodRangeFilterFn,
+  serviceTierFilterFn,
   statusFilterFn,
 } from '../utils/service-provider-filters'
 
@@ -61,7 +64,16 @@ export const columns = [
   //     </ExternalTextLink>
   //   ),
   // }),
-  // TODO: Add Service Offered Column
+  columnHelper.accessor('isActive', {
+    id: 'serviceOffered',
+    header: 'Service Offered',
+    cell: (info) => {
+      const { isActive, isApproved } = info.row.original
+      return <ServiceOffered isActive={isActive} isApproved={isApproved} />
+    },
+    sortingFn: sortServiceTier,
+    filterFn: serviceTierFilterFn,
+  }),
   columnHelper.accessor('serviceStatus', {
     header: 'Status',
     cell: (info) => {

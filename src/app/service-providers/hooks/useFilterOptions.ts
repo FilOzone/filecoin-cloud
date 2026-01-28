@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 
 import type { ServiceProvider } from '@/schemas/provider-schema'
+import { getServiceTier, type ServiceTier } from '@/utils/service-tier'
 
 import { getYesNoFromBoolean } from '../utils/get-yes-no-from-boolean'
 
@@ -15,12 +16,14 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
         provingPeriodMin: 0,
         provingPeriodMax: 0,
         ipni: [],
+        serviceTier: [],
       }
     }
 
     const status = new Set<string>()
     const location = new Set<string>()
     const ipni = new Set<string>()
+    const serviceTier = new Set<ServiceTier>()
 
     let capacityMin = Infinity
     let capacityMax = -Infinity
@@ -34,6 +37,7 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
 
       location.add(provider.location)
       ipni.add(getYesNoFromBoolean(provider.ipniIpfs))
+      serviceTier.add(getServiceTier(provider.isActive, provider.isApproved))
 
       if (provider.capacityTb) {
         const cap = Number(provider.capacityTb)
@@ -60,6 +64,7 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
       provingPeriodMin,
       provingPeriodMax,
       ipni: Array.from(ipni).sort(),
+      serviceTier: Array.from(serviceTier).sort((a, b) => b - a),
     } as const
   }, [data])
 }
