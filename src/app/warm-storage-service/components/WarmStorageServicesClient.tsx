@@ -3,16 +3,13 @@
 import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
-import { InfoCard } from '@filecoin-foundation/ui-filecoin/InfoCard'
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
-import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
-import { InfoCardGrid } from '@/components/InfoCardGrid'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { NetworkSelector } from '@/components/NetworkSelector'
 import { ProvidersEmptyLoadingState } from '@/components/ProvidersEmptyLoadingState'
@@ -20,17 +17,17 @@ import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 
 import { PATHS } from '@/constants/paths'
 import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
-import { truncateAddress } from '@/utils/truncate-address'
 
 import { IntegrateStorageSection } from './IntegrateStorageSection'
 import { PricingCard } from './PricingCard'
+import { WarmStorageContractsTable } from './WarmStorageContractsTable'
 import { WarmStorageProvidersTable } from './WarmStorageProvidersTable'
 import { storageFeatures } from '../data/storage-features'
-import { useContractsData } from '../hooks/use-contracts-data'
+import { useContractsTableData } from '../hooks/use-contracts-table-data'
 import { useProviders } from '../hooks/use-providers'
 
 export function WarmStorageServicesClient() {
-  const { contractsData } = useContractsData()
+  const { contractsData } = useContractsTableData()
   const {
     data: providers,
     isLoading,
@@ -140,26 +137,7 @@ export function WarmStorageServicesClient() {
               </div>
             </div>
 
-            <InfoCardGrid>
-              {contractsData.map(({ label, address, href }) => (
-                <InfoCard
-                  key={label}
-                  label={label}
-                  text={truncateAddress(address)}
-                  href={href}
-                  ariaLabel={`View ${label} contract address ${address} on explorer`}
-                />
-              ))}
-            </InfoCardGrid>
-
-            <Button
-              href={FOC_URLS.warmStorageService.contactSourceCode}
-              variant="tertiary"
-              icon={GithubLogoIcon}
-              className="self-start"
-            >
-              View contract source code
-            </Button>
+            <WarmStorageContractsTable data={contractsData} />
           </div>
 
           <div className="flex flex-col gap-6">
