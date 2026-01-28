@@ -1,6 +1,6 @@
 import { SoftwareVersion as SharedSoftwareVersion } from '@filecoin-foundation/ui-filecoin/Table/SoftwareVersion'
 
-const CURIO_GITHUB_URL = 'https://github.com/filecoin-project/curio/commit/'
+import { CURIO_GITHUB_URL } from '@/constants/github-urls'
 
 type SoftwareVersionProps = {
   info: string
