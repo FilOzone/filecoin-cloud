@@ -86,13 +86,14 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
         <div className="md:max-w-2xl w-full">
           <SearchInput value={searchQuery} onChange={setSearchQuery} />
         </div>
-
-        <div className="flex gap-4 grow md:grow-0">
-          <div className="w-full">
-            <TableFilters options={filterOptions} />
-          </div>
-          <div className="w-full">
-            <NetworkSelector />
+        <div className="flex flex-col sm:flex-row gap-6">
+          <div className="flex gap-4 grow md:grow-0">
+            <div className="w-full sm:w-auto">
+              <TableFilters options={filterOptions} />
+            </div>
+            <div className="w-full sm:w-auto">
+              <NetworkSelector />
+            </div>
           </div>
           <div className="md:w-auto flex items-center">
             <ExportToCsvLink filteredProviders={filteredProviders} />

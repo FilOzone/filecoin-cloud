@@ -28,7 +28,7 @@ export function ExportToCsvLink({ filteredProviders }: ExportToCsvLinkProps) {
     >
       <span className="flex items-center gap-2 shrink-0">
         <DownloadSimpleIcon size={20} />
-        <span className="whitespace-nowrap md:flex hidden">Export CSV</span>
+        <span className="whitespace-nowrap">Export CSV</span>
       </span>
     </CSVLink>
   )
