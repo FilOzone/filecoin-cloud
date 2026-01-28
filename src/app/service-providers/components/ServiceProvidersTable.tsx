@@ -76,29 +76,27 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
   const hasSearchResults = Boolean(table.getRowModel().rows.length)
 
   return (
-    <>
-      <div className="flex flex-col sm:flex-row md:items-center md:justify-between gap-6">
-        <div className="md:w-96 w-full">
+    <BreakoutContainer>
+      <div className="flex flex-col sm:flex-row md:items-center md:justify-between gap-4 sm:gap-6 mb-4">
+        <div className="md:max-w-2xl w-full">
           <SearchInput value={searchQuery} onChange={setSearchQuery} />
         </div>
 
-        <div className="flex gap-6 grow md:grow-0">
-          <div className="md:w-48 w-full">
+        <div className="flex gap-4 grow md:grow-0">
+          <div className="w-full">
             <TableFilters options={filterOptions} />
           </div>
-          <div className="md:w-56">
+          <div className="w-full">
             <NetworkSelector />
           </div>
         </div>
       </div>
 
       {hasSearchResults ? (
-        <BreakoutContainer>
-          <TanstackTable table={table} maxHeight="100vh" />
-        </BreakoutContainer>
+        <TanstackTable table={table} maxHeight="100vh" />
       ) : (
         <ProvidersEmptySearchState />
       )}
-    </>
+    </BreakoutContainer>
   )
 }

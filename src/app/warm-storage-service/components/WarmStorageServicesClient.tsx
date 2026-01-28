@@ -135,7 +135,7 @@ export function WarmStorageServicesClient() {
           <div className="flex flex-col gap-6">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <h3 className="text-2xl font-medium">Contract Addresses</h3>
-              <div className="sm:w-56 w-full">
+              <div className="sm:w-auto w-full">
                 <NetworkSelector />
               </div>
             </div>

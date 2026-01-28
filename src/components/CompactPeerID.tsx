@@ -34,7 +34,7 @@ export function CompactPeerID({ peerId }: CompactPeerIDProps) {
             <Icon component={CheckSquareIcon} size={18} />
           </span>
         ) : (
-          <span className="text-zinc-700">
+          <span className="text-zinc-500">
             <Icon component={CopyIcon} size={18} />
           </span>
         )}
