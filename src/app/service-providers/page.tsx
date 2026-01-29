@@ -7,7 +7,7 @@ import { createMetadata } from '@/utils/create-metadata'
 
 import { ServiceProvidersClient } from './components/ServiceProvidersClient'
 import { SERVICE_PROVIDERS_SEO } from './constants/seo'
-import { generateStructuredData } from './utils/generateStructuredData'
+import { generateStructuredData } from './utils/generate-structured-data'
 
 export default function ServiceProviders() {
   return (
