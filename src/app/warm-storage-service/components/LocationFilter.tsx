@@ -17,6 +17,7 @@ import { clsx } from 'clsx'
 
 import { CheckboxesContainer } from '@/components/CheckboxesContainer'
 import { CheckboxWithLabel } from '@/components/CheckboxWithLabel'
+import { CountBadge } from '@/components/CountBadge'
 
 import { useLocationQueryState } from '../hooks/use-location-query-state'
 
@@ -43,11 +44,7 @@ export function LocationFilter({ options }: LocationFilterProps) {
             <span className="flex items-center gap-2">
               <Icon component={FunnelSimpleIcon} size={20} />
               Location
-              {locations.length > 0 && (
-                <span className="text-sm rounded-full bg-brand-700 text-brand-50 size-5 grid place-content-center">
-                  {locations.length}
-                </span>
-              )}
+              {hasActiveLocations && <CountBadge count={locations.length} />}
             </span>
           </PopoverButton>
 

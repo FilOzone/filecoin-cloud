@@ -12,6 +12,8 @@ import { FunnelSimpleIcon, XIcon } from '@phosphor-icons/react'
 import { clsx } from 'clsx'
 import { useState } from 'react'
 
+import { CountBadge } from '@/components/CountBadge'
+
 import { CapacityFilter } from './CapacityFilter'
 import { IpniFilter } from './IpniFilter'
 import { LocationFilter } from './LocationFilter'
@@ -27,7 +29,8 @@ type MobileTableFiltersProps = {
 
 export function MobileTableFilters({ options }: MobileTableFiltersProps) {
   const [open, setOpen] = useState(false)
-  const { clearFilterQueries, hasActiveFilters } = useFilterQueryState()
+  const { clearFilterQueries, hasActiveFilters, activeFilterCount } =
+    useFilterQueryState()
 
   const { theme } = useBackground()
 
@@ -46,6 +49,7 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
     <>
       <FilterButton Icon={FunnelSimpleIcon} onClick={() => setOpen(true)}>
         Filters
+        {activeFilterCount > 0 && <CountBadge count={activeFilterCount} />}
       </FilterButton>
 
       <SlideOver open={open} setOpen={setOpen}>

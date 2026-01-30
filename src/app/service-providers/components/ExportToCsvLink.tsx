@@ -22,9 +22,9 @@ export function ExportToCsvLink({ filteredProviders }: ExportToCsvLinkProps) {
   return (
     <CSVLink
       aria-label="Export table data as CSV file"
-      className="focus:brand-outline"
       data={csvData}
       filename={csvFilename}
+      className="button button--tertiary"
     >
       <span className="flex items-center gap-2 shrink-0">
         <DownloadSimpleIcon size={20} />

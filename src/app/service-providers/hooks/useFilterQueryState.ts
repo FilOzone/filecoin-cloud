@@ -77,9 +77,18 @@ export function useFilterQueryState() {
     })
   }, [filterQueries])
 
+  const activeFilterCount = useMemo(() => {
+    return Object.entries(filterQueries).reduce((count, [_, value]) => {
+      if (Array.isArray(value)) return count + (value.length > 0 ? 1 : 0)
+      if (value != null) return count + 1
+      return count
+    }, 0)
+  }, [filterQueries])
+
   return {
     filterQueries,
     hasActiveFilters,
+    activeFilterCount,
     toggleFilterQuery,
     updateNumberQuery,
     clearFilterQueries: () => setFilterQueries(null),
