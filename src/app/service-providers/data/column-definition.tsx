@@ -1,9 +1,9 @@
 import { ID } from '@filecoin-foundation/ui-filecoin/Table/ID'
 import { YesNoStatus } from '@filecoin-foundation/ui-filecoin/Table/YesNoStatus'
-// import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { createColumnHelper } from '@tanstack/react-table'
 
 import { CompactPeerID } from '@/components/CompactPeerID'
+import { PdpScanLink } from '@/components/PdpScanLink'
 import { ProviderOverview } from '@/components/ProviderOverview'
 import { ServiceOffered } from '@/components/ServiceOffered'
 import { SoftwareVersion } from '@/components/SoftwareVersion'
@@ -55,15 +55,6 @@ export const columns = [
     sortingFn: sortSoftwareVersion,
     sortUndefined: 'last',
   }),
-  // TODO: Add check activity link
-  // columnHelper.accessor('checkActivityUrl', {
-  //   header: 'Check Activity',
-  //   cell: (info) => (
-  //     <ExternalTextLink href={info.getValue() || '#todo'}>
-  //       View on PDP Scan
-  //     </ExternalTextLink>
-  //   ),
-  // }),
   columnHelper.accessor('isActive', {
     id: 'serviceOffered',
     header: 'Service Offered',
@@ -74,11 +65,23 @@ export const columns = [
     sortingFn: sortServiceTier,
     filterFn: serviceTierFilterFn,
   }),
+  columnHelper.accessor('checkActivityUrl', {
+    header: 'Check Activity',
+    cell: (info) => (
+      <PdpScanLink
+        pdpScanUrl={info.getValue()}
+        providerName={info.row.original.name}
+      />
+    ),
+    enableSorting: false,
+  }),
   columnHelper.accessor('serviceStatus', {
     header: 'Status',
     cell: (info) => {
       const serviceStatus = info.getValue() || '-'
-      return serviceStatus.toUpperCase()
+      return (
+        serviceStatus[0]?.toUpperCase() + serviceStatus.slice(1).toLowerCase()
+      )
     },
     sortingFn: 'text',
     sortUndefined: 'last',

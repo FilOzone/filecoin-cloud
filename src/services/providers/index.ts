@@ -12,6 +12,7 @@ import {
   type ServiceProvider,
 } from '@/schemas/provider-schema'
 import type { FetchProvidersOptions, ProviderFilter } from '@/types/providers'
+import { getCheckActivityUrl } from '@/utils/provider-urls'
 
 import { VERSION_FETCH_CONCURRENCY } from './constants'
 import {
@@ -19,7 +20,7 @@ import {
   fetchProviderById,
   fetchProvidersBulk,
 } from './contract'
-import type { ProviderWithoutSoftwareVersion } from './types'
+import type { BaseProviderData } from './types'
 import { fetchSoftwareVersion } from './version'
 
 /**
@@ -34,7 +35,7 @@ async function fetchProvidersByFilter(
       PublicClient
     >
   },
-): Promise<ProviderWithoutSoftwareVersion[]> {
+): Promise<BaseProviderData[]> {
   const { storageView, serviceRegistry } = contracts
 
   // Fetch approved provider IDs for marking providers
@@ -70,8 +71,7 @@ async function fetchProvidersByFilter(
 
     const providers = await Promise.all(providerPromises)
     return providers.filter(
-      (provider): provider is ProviderWithoutSoftwareVersion =>
-        provider !== null,
+      (provider): provider is BaseProviderData => provider !== null,
     )
   }
 
@@ -79,14 +79,13 @@ async function fetchProvidersByFilter(
 }
 
 /**
- * Enrich providers with software version information
+ * Enrich providers with additional information (software version and check activity URL)
  */
-async function enrichProvidersWithVersions(
-  providers: ProviderWithoutSoftwareVersion[],
+async function enrichProviders(
+  providers: BaseProviderData[],
+  network: Network,
 ): Promise<ServiceProvider[]> {
-  const providersWithVersions: Array<
-    ProviderWithoutSoftwareVersion & { softwareVersion?: string }
-  > = []
+  const providersWithVersions: ServiceProvider[] = []
 
   // Process providers in batches
   for (let i = 0; i < providers.length; i += VERSION_FETCH_CONCURRENCY) {
@@ -94,7 +93,11 @@ async function enrichProvidersWithVersions(
     const batchResults = await Promise.all(
       batch.map(async (provider) => {
         const softwareVersion = await fetchSoftwareVersion(provider.serviceUrl)
-        return { ...provider, softwareVersion }
+        const checkActivityUrl = getCheckActivityUrl(
+          network,
+          provider.payeeAddress,
+        )
+        return { ...provider, softwareVersion, checkActivityUrl }
       }),
     )
     providersWithVersions.push(...batchResults)
@@ -178,6 +181,6 @@ export async function fetchProviders(
     serviceRegistry,
   })
 
-  // Enrich with software versions
-  return enrichProvidersWithVersions(fetchedProviders)
+  // Enrich with additional information
+  return enrichProviders(fetchedProviders, network)
 }

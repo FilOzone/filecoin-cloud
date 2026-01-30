@@ -19,6 +19,7 @@ import { useSearchQueryState } from '@/hooks/use-search-query-state'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
 
+import { ExportToCsvLink } from './ExportToCsvLink'
 import { TableFilters } from './TableFilters'
 import { columns } from '../data/column-definition'
 import { useFilterOptions } from '../hooks/useFilterOptions'
@@ -75,30 +76,36 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
   const hasSearchResults = Boolean(table.getRowModel().rows.length)
 
+  const filteredProviders = useMemo(() => {
+    return table.getFilteredRowModel().rows.map((row) => row.original)
+  }, [data, searchQuery, columnFilters, sortingState])
+
   return (
-    <>
-      <div className="flex flex-col sm:flex-row md:items-center md:justify-between gap-6">
-        <div className="md:w-96 w-full">
+    <BreakoutContainer>
+      <div className="flex flex-col sm:flex-row md:items-center md:justify-between gap-4 sm:gap-6 mb-4">
+        <div className="md:max-w-2xl w-full">
           <SearchInput value={searchQuery} onChange={setSearchQuery} />
         </div>
-
-        <div className="flex gap-6 grow md:grow-0">
-          <div className="md:w-48 w-full">
-            <TableFilters options={filterOptions} />
+        <div className="flex flex-col sm:flex-row gap-6">
+          <div className="flex gap-4 grow md:grow-0">
+            <div className="w-full sm:w-auto">
+              <TableFilters options={filterOptions} />
+            </div>
+            <div className="w-full sm:w-auto">
+              <NetworkSelector />
+            </div>
           </div>
-          <div className="md:w-56">
-            <NetworkSelector />
+          <div className="md:w-auto flex items-center">
+            <ExportToCsvLink filteredProviders={filteredProviders} />
           </div>
         </div>
       </div>
 
       {hasSearchResults ? (
-        <BreakoutContainer>
-          <TanstackTable table={table} maxHeight="100vh" />
-        </BreakoutContainer>
+        <TanstackTable table={table} maxHeight="100vh" />
       ) : (
         <ProvidersEmptySearchState />
       )}
-    </>
+    </BreakoutContainer>
   )
 }

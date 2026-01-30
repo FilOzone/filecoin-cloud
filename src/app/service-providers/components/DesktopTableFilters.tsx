@@ -4,12 +4,7 @@ import {
   backgroundVariants,
   useBackground,
 } from '@filecoin-foundation/ui-filecoin/Section/Section'
-import {
-  Popover,
-  PopoverBackdrop,
-  PopoverButton,
-  PopoverPanel,
-} from '@headlessui/react'
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import { FunnelSimpleIcon } from '@phosphor-icons/react/dist/ssr'
 import { clsx } from 'clsx'
 
@@ -51,8 +46,6 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
               Filters
             </span>
           </PopoverButton>
-
-          <PopoverBackdrop className="fixed inset-0 bg-zinc-950/5" />
 
           <PopoverPanel
             anchor={{ to: 'bottom', gap: 16 }}
