@@ -8,6 +8,8 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import { FunnelSimpleIcon } from '@phosphor-icons/react/dist/ssr'
 import { clsx } from 'clsx'
 
+import { CountBadge } from '@/components/CountBadge'
+
 import { CapacityFilter } from './CapacityFilter'
 import { IpniFilter } from './IpniFilter'
 import { LocationFilter } from './LocationFilter'
@@ -22,7 +24,8 @@ export type DesktopTableFiltersProps = {
 
 export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
   const { theme } = useBackground()
-  const { clearFilterQueries, hasActiveFilters } = useFilterQueryState()
+  const { clearFilterQueries, hasActiveFilters, activeFilterCount } =
+    useFilterQueryState()
 
   const {
     location: locationOptions,
@@ -34,6 +37,8 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
     provingPeriodMax,
   } = options
 
+  console.log(hasActiveFilters)
+
   return (
     <Popover>
       {({ close }) => (
@@ -42,6 +47,9 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
             <span className="flex items-center gap-2">
               <Icon component={FunnelSimpleIcon} size={20} />
               Filters
+              {activeFilterCount > 0 && (
+                <CountBadge count={activeFilterCount} />
+              )}
             </span>
           </PopoverButton>
 

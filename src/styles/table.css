@@ -6,3 +6,7 @@
   --color-table-background: var(--color-zinc-100);
   --color-table-border: var(--color-zinc-200);
 }
+
+table .text-link {
+  @apply text-brand-800 no-underline hover:underline;
+}
