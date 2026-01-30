@@ -9,7 +9,7 @@ const ethereumAddressSchema = z.custom<Address>(
 export const providerSchema = z.object({
   capabilityKeys: z.array(z.string()),
   capacityTb: z.bigint().optional(),
-  // checkActivityUrl: z.url().optional(), // TODO: Remove optional
+  checkActivityUrl: z.url(),
   description: z.string(),
   id: z.number(),
   ipniIpfs: z.boolean(),

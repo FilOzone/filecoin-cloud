@@ -5,7 +5,7 @@ import type { ProviderData } from '@/types/contract-types'
 import { decodePDPCapabilities } from '@/utils/decode-pdp-capabilities'
 import { parseLocation } from '@/utils/parse-location'
 
-import type { ProviderWithoutSoftwareVersion } from './types'
+import type { BaseProviderData } from './types'
 
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
@@ -40,7 +40,7 @@ function buildCapabilities(
 export function processProviderData(
   providerData: ProviderData,
   isApproved = false,
-): ProviderWithoutSoftwareVersion | undefined {
+): BaseProviderData | undefined {
   const { providerId, providerInfo, product, productCapabilityValues } =
     providerData
 
