@@ -8,5 +8,5 @@
 }
 
 table .text-link {
-  @apply text-brand-800 no-underline hover:underline;
+  @apply text-brand-800 no-underline hover:underline focus-visible:underline;
 }
