@@ -37,8 +37,6 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
     provingPeriodMax,
   } = options
 
-  console.log(hasActiveFilters)
-
   return (
     <Popover>
       {({ close }) => (
