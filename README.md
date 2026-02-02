@@ -18,6 +18,10 @@ We welcome contributions! If you find a bug or have a feature request, please [o
 This is a [Next.js](https://nextjs.org) project. To run the development server:
 
 ```bash
+# If using nvm
+nvm use
+
+# Install dependencies
 npm install
 npm run dev
 ```
