@@ -14,6 +14,10 @@ export const PATHS = {
     path: '/privacy-policy',
     label: 'Privacy Policy',
   },
+  REQUESTS_FOR_STARTUPS: {
+    path: '/requests-for-startups',
+    label: 'Requests for Startups',
+  },
   SERVICE_PROVIDERS: {
     path: '/service-providers',
     label: 'Service Providers',
