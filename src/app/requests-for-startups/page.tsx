@@ -21,8 +21,8 @@ export default function RequestsForStartups() {
         structuredData={generateStructuredData(REQUESTS_FOR_STARTUPS_SEO)}
       />
 
-      <Navigation backgroundVariant="light" />
-      <PageSection backgroundVariant="light">
+      <Navigation backgroundVariant="dark" />
+      <PageSection backgroundVariant="dark" paddingVariant="topCompact">
         <SectionContent
           headingTag="h1"
           title="Requests for Startups"
@@ -38,7 +38,34 @@ export default function RequestsForStartups() {
         />
       </PageSection>
 
-      <PageSection backgroundVariant="light" paddingVariant="topNone">
+      <PageSection backgroundVariant="gray">
+        <SectionContent headingTag="h2" title="Submission Guidelines">
+          <div className="prose prose-xl">
+            <p>To be considered a strong submission, teams must deliver:</p>
+            <ul>
+              <li>
+                Deployment against Filecoin Onchain Cloud contracts on test,
+                extra points for mainnet
+              </li>
+              <li>A 2-minute demo recording showing the system in action</li>
+              <li>A live, interactive example (not just docs or diagrams)</li>
+              <li>
+                Clear explanation of why Filecoin is essential (not incidental)
+              </li>
+              <li>
+                Working code demonstrating real storage, payments, and usage
+              </li>
+            </ul>
+            <p>
+              Submissions that only include architecture diagrams,
+              documentation, mockups, or testnet-only deployments will not be
+              considered sufficient.
+            </p>
+          </div>
+        </SectionContent>
+      </PageSection>
+
+      <PageSection backgroundVariant="light">
         <SectionContent headingTag="h2" title="Open Requests">
           <CardGrid as="ul" variant="smTwoXlThreeWide">
             {requestsForStartups.map(({ title, description, cta, id }) => (
