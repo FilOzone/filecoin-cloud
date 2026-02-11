@@ -1,3 +1,9 @@
+---
+id: "6"
+title: "Autonomous Infrastructure Brokerage"
+description: "An agent-native procurement layer where agents negotiate, compare, and procure storage on behalf of other agents — autonomous GTM for decentralized infrastructure."
+---
+
 # RFS-6: Autonomous Infrastructure Brokerage
 
 ## Concept

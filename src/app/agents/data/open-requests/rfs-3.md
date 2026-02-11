@@ -1,3 +1,9 @@
+---
+id: "3"
+title: "Agent Reputation & Portable Identity"
+description: "A long-lived, tamper-resistant reputation system for AI agents where behavioral history is anchored to Filecoin. Identities persist across runtimes, frameworks, platforms, and chains, with economic disincentives for identity reset and Sybil cycling."
+---
+
 # RFS-3: Agent Reputation & Portable Identity
 
 ## Concept

@@ -4,7 +4,7 @@ import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 
 import { Navigation } from '@/components/Navigation/Navigation'
 
-import rfsMarkdown from '../data/open-requests/rfs-4-autonomous-agent-economy-testbed.md'
+import rfsMarkdown from '../data/open-requests/rfs-4.md'
 
 const { body } = rfsMarkdown
 

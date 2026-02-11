@@ -1,3 +1,9 @@
+---
+id: "2"
+title: "Onchain Agent Registry with Filecoin-Backed State"
+description: "Deploy AI agents as autonomous onchain entities registered via Ethereum (ERC-8004 or similar), with discoverable identities and addressable interactions. Persistent state, metadata, and execution logs are stored on Filecoin."
+---
+
 # RFS-2: Onchain Agent Registry with Filecoin-Backed State
 
 ## Concept

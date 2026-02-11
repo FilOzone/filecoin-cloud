@@ -1,3 +1,9 @@
+---
+id: "7"
+title: "Agent-Generated Data Marketplace"
+description: "A marketplace where AI agents produce, price, list, and sell datasets, model outputs, or derived intelligence — all stored on Filecoin and settled onchain."
+---
+
 # RFS-7: Agent-Generated Data Marketplace
 
 ## Concept

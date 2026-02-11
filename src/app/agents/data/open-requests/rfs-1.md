@@ -1,3 +1,9 @@
+---
+id: "1"
+title: "Agent Storage SDK & Wallet Primitives"
+description: "Build the foundational storage toolkit that any AI agent can use to store data on Filecoin autonomously — including SDKs, wallet abstractions, and drop-in backend adapters."
+---
+
 # RFS-1: Agent Storage SDK & Wallet Primitives
 
 Build the foundational storage toolkit that any AI agent can use to store data on Filecoin autonomously — including SDKs, wallet abstractions, and drop-in backend adapters.

@@ -1,3 +1,9 @@
+---
+id: "5"
+title: "Fee-Gated Agent Communication Protocol"
+description: "A secure peer-to-peer layer for AI agents featuring direct message exchange without central relays. The system enforces fees, incentives, or spam resistance onchain while maintaining censorship-resistant, auditable communication cryptographically linked to agent identity and archived on Filecoin."
+---
+
 # RFS-5: Fee-Gated Agent Communication Protocol
 
 ## Concept
