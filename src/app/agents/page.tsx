@@ -14,7 +14,7 @@ import { AGENTS_SEO } from './constants/seo'
 import { generateStructuredData } from './utils/generateStructuredData'
 import { getAllRFSData } from './utils/getRFSData'
 
-export default function RequestsForStartups() {
+export default function Agents() {
   const rfsDataList = getAllRFSData()
 
   return (
