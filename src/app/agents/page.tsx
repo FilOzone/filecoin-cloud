@@ -10,7 +10,7 @@ import { StructuredDataScript } from '@/components/StructuredDataScript'
 import { PATHS } from '@/constants/paths'
 import { createMetadata } from '@/utils/create-metadata'
 
-import { REQUESTS_FOR_STARTUPS_SEO } from './constants/seo'
+import { AGENTS_SEO } from './constants/seo'
 import { requestsForStartups } from './data/requests-for-startups-data'
 import { generateStructuredData } from './utils/generateStructuredData'
 
@@ -18,7 +18,7 @@ export default function RequestsForStartups() {
   return (
     <>
       <StructuredDataScript
-        structuredData={generateStructuredData(REQUESTS_FOR_STARTUPS_SEO)}
+        structuredData={generateStructuredData(AGENTS_SEO)}
       />
 
       <Navigation backgroundVariant="dark" />
@@ -90,7 +90,7 @@ export default function RequestsForStartups() {
 }
 
 export const metadata = createMetadata({
-  title: REQUESTS_FOR_STARTUPS_SEO.title,
-  description: REQUESTS_FOR_STARTUPS_SEO.description,
-  path: PATHS.REQUESTS_FOR_STARTUPS.path,
+  title: AGENTS_SEO.title,
+  description: AGENTS_SEO.description,
+  path: PATHS.AGENTS.path,
 })

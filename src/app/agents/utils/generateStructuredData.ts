@@ -10,7 +10,7 @@ export function generateStructuredData(
   return generatePageStructuredData({
     title: seo.title,
     description: seo.description,
-    path: PATHS.REQUESTS_FOR_STARTUPS.path,
+    path: PATHS.AGENTS.path,
     pageType: 'WebPage',
   })
 }
