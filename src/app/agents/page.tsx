@@ -11,10 +11,12 @@ import { PATHS } from '@/constants/paths'
 import { createMetadata } from '@/utils/create-metadata'
 
 import { AGENTS_SEO } from './constants/seo'
-import { requestsForStartups } from './data/requests-for-startups-data'
 import { generateStructuredData } from './utils/generateStructuredData'
+import { getAllRFSData } from './utils/getRFSData'
 
 export default function RequestsForStartups() {
+  const rfsDataList = getAllRFSData()
+
   return (
     <>
       <StructuredDataScript
@@ -68,16 +70,19 @@ export default function RequestsForStartups() {
       <PageSection backgroundVariant="light">
         <SectionContent headingTag="h2" title="Open Requests">
           <CardGrid as="ul" variant="smTwoXlThreeWide">
-            {requestsForStartups.map(({ title, description, cta, id }) => (
+            {rfsDataList.map(({ title, description, id, slug }) => (
               <SimpleCard
                 key={title}
                 as="li"
                 title={title}
                 headingTag="h3"
                 description={description}
-                cta={cta}
+                cta={{
+                  href: `${PATHS.AGENTS.path}/${slug}`,
+                  text: 'View details',
+                }}
                 badge={{
-                  text: id,
+                  text: `RFS-${id}`,
                   variant: 'primary',
                 }}
               />
