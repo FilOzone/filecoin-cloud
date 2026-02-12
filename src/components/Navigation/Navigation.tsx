@@ -5,7 +5,7 @@ import {
   type SectionProps,
 } from '@filecoin-foundation/ui-filecoin/Section/Section'
 
-import { headerNavigationItems } from './constants/navigation'
+import { mobileNavigationItems } from './constants/navigation'
 import { DesktopNavigation } from './DesktopNavigation'
 import { HomeLogoIconLink } from './HomeLogoIconLink'
 
@@ -22,7 +22,7 @@ export function Navigation({ backgroundVariant }: NavigationProps) {
 
           <div className="block lg:hidden">
             <MobileNavigation
-              items={headerNavigationItems}
+              items={mobileNavigationItems}
               HomeLogoIconLinkComponent={HomeLogoIconLink}
             />
           </div>
