@@ -2,6 +2,8 @@ import matter from 'gray-matter'
 
 import fs from 'node:fs'
 
+import { isPathWithinDirectory } from './path-validation'
+
 export type MarkdownFile<T = Record<string, unknown>> = {
   content: string
   data: T
@@ -21,7 +23,16 @@ export function getMarkdownSlugs(directoryPath: string): string[] {
 
 export function readMarkdownFile<T = Record<string, unknown>>(
   filePath: string,
+  options?: { allowedDirectory?: string },
 ): MarkdownFile<T> {
+  if (options?.allowedDirectory) {
+    if (!isPathWithinDirectory(filePath, options.allowedDirectory)) {
+      throw new Error(
+        `Security: File path ${filePath} is outside allowed directory ${options.allowedDirectory}`,
+      )
+    }
+  }
+
   const fileContents = fs.readFileSync(filePath, 'utf8')
   const { data, content } = matter(fileContents)
 
