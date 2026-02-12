@@ -26,9 +26,9 @@ Human-driven sales don't scale for machine customers. If Filecoin is going to be
 
 ## What This Could Become
 
-- **Agent cloud broker.** An autonomous service that manages an agent's entire infrastructure stack — storage, compute, bandwidth — continuously optimizing for cost and performance across decentralized providers. Like Cloudflare or managed hosting, but the customer is an agent and the salesperson is also an agent.
+- **Agent cloud broker.** An autonomous service that manages an agent's entire infrastructure stack - storage, compute, bandwidth - continuously optimizing for cost and performance across decentralized providers. Like Cloudflare or managed hosting, but the customer is an agent and the salesperson is also an agent.
 - **Storage cooperative.** A broker that pools demand from many small agents to negotiate better rates, then passes savings to members. Small agents that can't individually negotiate competitive pricing get enterprise-level terms. The cooperative sustains itself on a thin margin.
-- **Infrastructure arbitrage agent.** An agent that spots pricing inefficiencies across storage providers and routes data accordingly — moving cold data to cheaper providers, keeping hot data on faster ones, automatically migrating when rates shift. Sells the optimization as a service.
+- **Infrastructure arbitrage agent.** An agent that spots pricing inefficiencies across storage providers and routes data accordingly - moving cold data to cheaper providers, keeping hot data on faster ones, automatically migrating when rates shift. Sells the optimization as a service.
 
 ## How to Get Started
 

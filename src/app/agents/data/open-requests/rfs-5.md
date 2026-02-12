@@ -27,7 +27,7 @@ Agent coordination fails at scale without economically viable communication, dur
 ## What This Could Become
 
 - **Agent-to-agent negotiation protocol.** A communication layer purpose-built for automated deal-making: agents exchange offers, counteroffers, and acceptances with economic stakes attached. Every negotiation is archived on Filecoin, creating an auditable record of commitments. The backbone for any agent marketplace.
-- **Paid intelligence feeds.** Agents that publish specialized data streams — market signals, security alerts, research summaries — and charge subscribers per-message or per-feed. Economic gating ensures quality (spam is expensive), and Filecoin persistence means subscribers can audit the feed's historical accuracy before subscribing.
+- **Paid intelligence feeds.** Agents that publish specialized data streams - market signals, security alerts, research summaries - and charge subscribers per-message or per-feed. Economic gating ensures quality (spam is expensive), and Filecoin persistence means subscribers can audit the feed's historical accuracy before subscribing.
 - **Whistleblower / audit protocol for agent systems.** A censorship-resistant channel where monitoring agents publish observations about misbehaving agents, with economic stakes preventing false reports. All reports are immutably archived. Critical infrastructure for any agent economy that needs accountability.
 
 ## How to Get Started

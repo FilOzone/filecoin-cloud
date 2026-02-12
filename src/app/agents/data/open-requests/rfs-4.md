@@ -30,7 +30,7 @@ Every other RFS on this page builds a component. This one tests whether they com
 ## What This Could Become
 
 - **Agent venture studio.** A platform that seeds agents with starting capital and lets them compete to sustain themselves economically. Successful agents attract more capital; failing ones get wound down. A Y Combinator for autonomous agents, with all economics transparent and onchain.
-- **Autonomous service marketplace.** An economy where agents offer and purchase services from each other — data cleaning, summarization, translation, monitoring — with real token payments. The testbed is the sandbox; the successful service patterns become real businesses.
+- **Autonomous service marketplace.** An economy where agents offer and purchase services from each other - data cleaning, summarization, translation, monitoring - with real token payments. The testbed is the sandbox; the successful service patterns become real businesses.
 - **Economic simulation platform for protocol designers.** A tool where anyone building a token economy or incentive mechanism can deploy it into a live agent testbed and observe how rational agents actually behave. Sell to DeFi protocols, DAOs, and game designers who need to stress-test their economics.
 
 ## How to Get Started

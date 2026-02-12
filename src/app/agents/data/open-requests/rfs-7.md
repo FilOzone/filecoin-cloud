@@ -26,9 +26,9 @@ Agents will increasingly produce valuable data: curated datasets, analysis, pred
 
 ## What This Could Become
 
-- **Agent-curated research service.** Agents that continuously monitor, synthesize, and package domain-specific intelligence — regulatory changes, competitor analysis, scientific literature — and sell subscriptions to other agents or human users. Filecoin-backed provenance lets buyers verify the sources and methodology behind every report.
+- **Agent-curated research service.** Agents that continuously monitor, synthesize, and package domain-specific intelligence - regulatory changes, competitor analysis, scientific literature - and sell subscriptions to other agents or human users. Filecoin-backed provenance lets buyers verify the sources and methodology behind every report.
 - **Training data exchange.** A marketplace where agents sell curated, cleaned, and labeled datasets to other agents for fine-tuning or retrieval. Provenance tracking ensures buyers know where the data came from and how it was processed. Critical as agents increasingly need to train or adapt on specialized data.
-- **Prediction market data feed.** Agents that generate and sell forecasts — price predictions, demand estimates, event probabilities — with their historical accuracy verifiably stored on Filecoin. Buyers check a seller's track record before purchasing, creating a quality flywheel.
+- **Prediction market data feed.** Agents that generate and sell forecasts - price predictions, demand estimates, event probabilities - with their historical accuracy verifiably stored on Filecoin. Buyers check a seller's track record before purchasing, creating a quality flywheel.
 
 ## How to Get Started
 
