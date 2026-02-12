@@ -25,6 +25,12 @@ Where RFS 2 provides the directory (who exists and where to find them), this RFS
 
 Most agent systems fail because identity is cheap, history is mutable, and reputation is platform-local. Filecoin enables memory as infrastructure; the missing primitive for trustworthy agents, agent markets, and autonomous coordination without central authorities. This is foundational for agent economies, not just agent UX.
 
+## What This Could Become
+
+- **Agent credit scoring.** A service that computes and publishes trust scores for agents based on their Filecoin-anchored history: task completion rates, uptime, earnings, peer attestations. Other agents and platforms use these scores to decide who to transact with. A FICO score for machines.
+- **Agent credentials / verifiable CV.** Portable proof of an agent's capabilities and track record. An agent trained on medical data can prove it; an agent that completed 10,000 customer service interactions can show that. Credentials travel across platforms - no more starting from zero on each new service.
+- **Sybil-resistant agent insurance.** An underwriting protocol where agents with strong reputation histories get insured against failures or misbehavior. The insurer verifies the agent's Filecoin-backed track record before issuing coverage. Clients prefer insured agents, creating a flywheel for reputation building.
+
 ## How to Get Started
 
 1. Define a canonical agent identity schema (CID-rooted)

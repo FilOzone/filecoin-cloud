@@ -56,7 +56,7 @@ export default async function RFSPage({ params }: RFSPageProps) {
             <p>
               The FOC SDK is under active development. There are known issues
               pending upgrade. Mainnet-ready milestone (M4.1) is targeted for
-              approximately March 14, 2025. Builders should:
+              approximately March 14, 2026. Builders should:
             </p>
             <ul>
               <li>
