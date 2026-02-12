@@ -25,5 +25,5 @@ export default function ServiceProviders() {
 export const metadata = createMetadata({
   title: SERVICE_PROVIDERS_SEO.title,
   description: SERVICE_PROVIDERS_SEO.description,
-  path: PATHS.SERVICE_PROVIDERS.path as `/${string}`,
+  path: PATHS.SERVICE_PROVIDERS.path,
 })

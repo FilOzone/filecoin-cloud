@@ -25,5 +25,5 @@ export default function WarmStorageService() {
 export const metadata = createMetadata({
   title: WARM_STORAGE_SERVICE_SEO.title,
   description: WARM_STORAGE_SERVICE_SEO.description,
-  path: PATHS.WARM_STORAGE_SERVICE.path as `/${string}`,
+  path: PATHS.WARM_STORAGE_SERVICE.path,
 })
