@@ -43,8 +43,6 @@ This is the canonical storage primitive for AI agents. Every other RFS on this p
 - [FOC Storage MCP](https://github.com/FIL-Builders/foc-storage-mcp)
 - [Synapse SDK](https://github.com/FilOzone/synapse-sdk)
 
-<div style="font-size: 0.85em">
-
 ## A Note on FOC's Storage Model
 
 FOC uses PDP-based (Proof of Data Possession) warm storage with continuous onchain payment rails. You upload pieces to datasets, they get proven every period, and you pay an ongoing rate. This is not the traditional Filecoin storage deal model based on PoRep (Proof of Replication). Think of PDP as: upload data, it stays warm and provably available, you pay continuously.
@@ -58,5 +56,3 @@ The FOC SDK is under active development. There are known issues pending upgrade.
 - Reach out to the FOC team when things break; active support is available during the build period
 
 We'll update this page as the SDK stabilizes.
-
-</div>
