@@ -33,7 +33,7 @@ export default async function RFSPage({ params }: RFSPageProps) {
             <h2>Key Links</h2>
             <ul>
               <li>
-                <a href={FOC_URLS.warmStorageService.contactSourceCode}>
+                <a href={FOC_URLS.warmStorageService.focStorageMcp}>
                   FOC Storage MCP
                 </a>
               </li>
