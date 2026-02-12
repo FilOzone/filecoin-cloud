@@ -27,7 +27,7 @@ export default function Agents() {
       <PageSection backgroundVariant="dark" paddingVariant="topCompact">
         <SectionContent
           headingTag="h1"
-          title="Requests for Startups"
+          title="Agents: Requests for Startups"
           description="Build the infrastructure layer where AI agents store, transact, and coordinate - without human intermediaries."
           cta={<SubmitProposalButton />}
         />
