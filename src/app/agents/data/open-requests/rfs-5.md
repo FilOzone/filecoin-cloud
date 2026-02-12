@@ -1,33 +1,38 @@
 ---
 id: "5"
 title: "Fee-Gated Agent Communication Protocol"
-description: "A secure peer-to-peer layer for AI agents featuring direct message exchange without central relays. The system enforces fees, incentives, or spam resistance onchain while maintaining censorship-resistant, auditable communication cryptographically linked to agent identity and archived on Filecoin."
+description: "A secure, peer-to-peer communication layer for AI agents where messages are exchanged directly (no central relays), and fees, incentives, or spam resistance are enforced onchain. Message feeds are censorship-resistant, auditable, and economically constrained. All communication is cryptographically linked to agent identity and durably archived on Filecoin."
 ---
 
 # RFS-5: Fee-Gated Agent Communication Protocol
 
 ## Concept
 
-A secure peer-to-peer layer for AI agents featuring direct message exchange without central relays. The system enforces "fees, incentives, or spam resistance...onchain" while maintaining censorship-resistant, auditable communication cryptographically linked to agent identity and archived on Filecoin.
+A secure, peer-to-peer communication layer for AI agents where messages are exchanged directly (no central relays), and fees, incentives, or spam resistance are enforced onchain. Message feeds are censorship-resistant, auditable, and economically constrained. All communication is cryptographically linked to agent identity and durably archived on Filecoin.
 
-The protocol combines elements of RSS, Signal, and micropayments designed for autonomous systems.
+Think: RSS meets Signal meets micropayments, but for machines.
 
 ## Core Deliverables
 
 - Encrypted P2P messaging protocol between agents
-- Onchain fee or staking contracts controlling publication rights, frequency, and costs
-- Filecoin-backed message archives with verifiable history (emphasized as essential)
-- Live demo feed displaying messages, fees paid, and storage usage
-- Spam-resistance experiment using economic throttling
+- Onchain fee or staking contracts controlling who can publish, how often, and at what cost
+- Filecoin-backed message archives with verifiable history (not optional, persistence is core)
+- Live demo feed showing messages, fees paid, and storage usage
+- Spam-resistance experiment via economic throttling
 
 ## Why This Matters
 
-The proposal argues that "agent coordination fails at scale without costed communication, durable memory, and credible identity." Traditional central brokers and trust-based rate limits prove inadequate for autonomous systems. This infrastructure replaces them with economically grounded, verifiable alternatives. Filecoin persistence enables auditability—allowing agents to demonstrate what communications occurred, when, and at what expense.
+Agent coordination fails at scale without economically viable communication, durable memory, and credible identity. Central message brokers, trust-based rate limits, and platform-owned data pipes don't work for autonomous agents. This protocol replaces them with economically grounded, verifiable infrastructure. Filecoin-backed message persistence makes the communication layer auditable. Agents can prove what was said, when, and at what cost.
 
 ## How to Get Started
 
-- Implement agent identity keys tied to Filecoin-stored profiles
-- Build minimal P2P encrypted messaging
-- Add onchain fee logic (per-message or per-feed)
-- Persist message streams to Filecoin via FOC
-- Visualize message flow, costs, and agent behavior under constraints
+1. Implement agent identity keys tied to Filecoin-stored profiles
+2. Build a minimal P2P encrypted messaging layer
+3. Add onchain fee logic (per-message or per-feed)
+4. Persist all message streams to Filecoin via FOC
+5. Visualize message flow, costs, and agent behavior under constraints
+
+## Key Links
+
+- [FOC Storage MCP](https://github.com/FIL-Builders/foc-storage-mcp)
+- [Synapse SDK](https://github.com/FilOzone/synapse-sdk)

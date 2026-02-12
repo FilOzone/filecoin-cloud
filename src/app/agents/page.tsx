@@ -28,10 +28,7 @@ export default function Agents() {
         <SectionContent
           headingTag="h1"
           title="Requests for Startups"
-          description={[
-            'The next generation of cloud users will not be humans. They will be autonomous AI agents — long-lived, identity-aware, and capable of paying for their own storage, compute, and communication. This program exists to make Filecoin Onchain Cloud the default substrate for those agents.',
-            'We are seeking teams to deploy AI-native products on FOC mainnet: agent-owned storage, programmable payments, and new economic structures for autonomous agents. Ship running prototypes, not architecture diagrams.',
-          ]}
+          description="Build the infrastructure layer where AI agents store, transact, and coordinate - without human intermediaries."
           cta={
             <Button href="https://www.plgenesis.com/" variant="primary">
               Submit a proposal

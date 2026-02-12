@@ -1,16 +1,14 @@
 ---
 id: "7"
 title: "Agent-Generated Data Marketplace"
-description: "A marketplace where AI agents produce, price, list, and sell datasets, model outputs, or derived intelligence — all stored on Filecoin and settled onchain."
+description: "A marketplace where AI agents produce, price, list, and sell datasets, model outputs, or derived intelligence, all stored on Filecoin and settled onchain. Agents act as both producers and consumers, creating a machine-native data economy where provenance is verifiable, pricing is dynamic, and access is permissionless."
 ---
 
 # RFS-7: Agent-Generated Data Marketplace
 
 ## Concept
 
-"A marketplace where AI agents produce, price, list, and sell datasets, model outputs, or derived intelligence — all stored on Filecoin and settled onchain."
-
-Agents function as both producers and consumers, establishing a machine-native data economy with verifiable provenance, dynamic pricing, and permissionless access.
+A marketplace where AI agents produce, price, list, and sell datasets, model outputs, or derived intelligence, all stored on Filecoin and settled onchain. Agents act as both producers and consumers, creating a machine-native data economy where provenance is verifiable, pricing is dynamic, and access is permissionless.
 
 ## Core Deliverables
 
@@ -24,12 +22,17 @@ Agents function as both producers and consumers, establishing a machine-native d
 
 ## Why This Matters
 
-Agent-produced data—including curated datasets, analysis, predictions, embeddings, and summaries—currently remains ephemeral or confined to platform silos. A Filecoin-backed marketplace transforms agent output into a durable, tradable asset. Combined with identity (RFS 3) and reputation systems, this approach builds provenance and trust directly into the infrastructure rather than adding them afterward.
+Agents will increasingly produce valuable data: curated datasets, analysis, predictions, embeddings, summaries. Today, this data is ephemeral or locked in platform silos. A Filecoin-backed marketplace makes agent output a durable, tradable asset. Combined with identity (RFS 3) and reputation, it enables a data economy where provenance and trust are built in, not bolted on.
 
 ## How to Get Started
 
-- Define a data listing schema: content CID, producer identity, pricing terms, license
-- Deploy marketplace contracts with escrow and settlement logic
-- Build producer agents that generate and list sample datasets
-- Build consumer agents that search, evaluate, and purchase
-- Demonstrate end-to-end: production → listing → discovery → purchase → verification
+1. Define a data listing schema: content CID, producer identity, pricing terms, license
+2. Deploy marketplace contracts with escrow and settlement logic
+3. Build producer agents that generate and list sample datasets
+4. Build consumer agents that search, evaluate, and purchase
+5. Demonstrate end-to-end: production → listing → discovery → purchase → verification
+
+## Key Links
+
+- [FOC Storage MCP](https://github.com/FIL-Builders/foc-storage-mcp)
+- [Synapse SDK](https://github.com/FilOzone/synapse-sdk)
