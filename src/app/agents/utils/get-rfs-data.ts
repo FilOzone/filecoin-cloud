@@ -41,8 +41,8 @@ export function getRFSData(slug: string) {
   }
 }
 
-export function getAllRFSData() {
-  const slugs = getMarkdownSlugs(OPEN_REQUESTS_DIR)
+export async function getAllRFSData() {
+  const slugs = await getMarkdownSlugs(OPEN_REQUESTS_DIR)
 
   return slugs
     .map((slug) => {

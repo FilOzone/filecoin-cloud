@@ -81,7 +81,7 @@ export default async function RFSPage({ params }: RFSPageProps) {
 }
 
 export async function generateStaticParams() {
-  const slugs = getMarkdownSlugs(OPEN_REQUESTS_DIR)
+  const slugs = await getMarkdownSlugs(OPEN_REQUESTS_DIR)
   return slugs.map((slug) => ({ slug }))
 }
 

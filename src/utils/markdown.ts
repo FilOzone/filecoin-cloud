@@ -1,3 +1,4 @@
+import fg from 'fast-glob'
 import matter from 'gray-matter'
 
 import { isPathWithinDirectory } from './path-validation'
@@ -8,16 +9,9 @@ export type MarkdownFile<T = Record<string, unknown>> = {
   data: T
 }
 
-export function getMarkdownSlugs(directoryPath: string) {
-  try {
-    const files = fs.readdirSync(directoryPath)
-    return files
-      .filter((file) => file.endsWith('.md'))
-      .map((file) => file.replace('.md', ''))
-  } catch (error) {
-    console.error(`Error reading directory ${directoryPath}:`, error)
-    return []
-  }
+export async function getMarkdownSlugs(directoryPath: string) {
+  const filenames = await fg('**/*.md', { cwd: directoryPath })
+  return filenames.map((file) => file.replace('.md', ''))
 }
 
 export function readMarkdownFile<T = Record<string, unknown>>(
