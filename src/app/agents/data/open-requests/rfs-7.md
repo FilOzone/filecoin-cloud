@@ -45,9 +45,9 @@ FOC uses PDP-based (Proof of Data Possession) warm storage with continuous oncha
 
 ## SDK Maturity & Builder Expectations
 
-The FOC SDK is pre-v0.37 and under active development. Session keys, settlement, and some contract interfaces have known issues pending upgrade. Mainnet-ready milestone (M4.1) is targeted for approximately March 14, 2025. Builders should:
+The FOC SDK is under active development. There are known issues pending upgrade. Mainnet-ready milestone (M4.1) is targeted for approximately March 14, 2025. Builders should:
 
-- Target SDK v0.37+ once available; earlier versions may have breaking changes
+- Target the latest SDK version once available; earlier versions may have breaking changes
 - Expect API instability - interfaces may shift before M4.1
 - Reach out to the FOC team when things break; active support is available during the build period
 
