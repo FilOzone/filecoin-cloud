@@ -60,29 +60,39 @@ export default async function Agents() {
         </SectionContent>
       </PageSection>
 
-      <PageSection backgroundVariant="light">
-        <SectionContent headingTag="h2" title="Open Requests">
-          <CardGrid as="ul" variant="smTwoXlThreeWide">
-            {rfsDataList.map(({ title, description, id, slug }) => (
-              <SimpleCard
-                key={title}
-                as="li"
-                title={title}
-                headingTag="h3"
-                description={description}
-                cta={{
-                  href: `${PATHS.AGENTS.path}/${slug}`,
-                  text: 'View details',
-                }}
-                badge={{
-                  text: `RFS-${id}`,
-                  variant: 'primary',
-                }}
-              />
-            ))}
-          </CardGrid>
-        </SectionContent>
-      </PageSection>
+      {
+        <PageSection backgroundVariant="light">
+          <SectionContent headingTag="h2" title="Open Requests">
+            {rfsDataList.length > 0 ? (
+              <CardGrid as="ul" variant="smTwoXlThreeWide">
+                {rfsDataList.map(({ data, slug }) => {
+                  const { id, title, description } = data
+
+                  return (
+                    <SimpleCard
+                      key={title}
+                      as="li"
+                      title={title}
+                      headingTag="h3"
+                      description={description}
+                      cta={{
+                        href: `${PATHS.AGENTS.path}/${slug}`,
+                        text: 'View details',
+                      }}
+                      badge={{
+                        text: `RFS-${id}`,
+                        variant: 'primary',
+                      }}
+                    />
+                  )
+                })}
+              </CardGrid>
+            ) : (
+              <p>There are currently no open requests.</p>
+            )}
+          </SectionContent>
+        </PageSection>
+      }
     </>
   )
 }

@@ -1,35 +1,40 @@
 import path from 'node:path'
 
-export function isPathWithinDirectory(
-  filePath: string,
-  allowedDirectory: string,
-) {
-  const resolvedPath = path.resolve(filePath)
-  const resolvedDir = path.resolve(allowedDirectory)
-
-  return resolvedPath.startsWith(resolvedDir)
+type ValidateSlugAndGetPathArgs = {
+  slug: string
+  baseDir: string
+  extension: `.${string}`
 }
 
-export function validateSlugAndGetPath(
-  slug: string,
-  baseDir: string,
-  extension = '.md',
-) {
+export function buildFilePath({
+  baseDir,
+  slug,
+  extension,
+}: ValidateSlugAndGetPathArgs) {
   if (!/^[a-z0-9-_]+$/i.test(slug)) {
-    if (process.env.NODE_ENV === 'development') {
-      console.error(`Invalid slug format: ${slug}`)
-    }
-    return null
+    throw new Error(`Invalid slug format: ${slug}`)
   }
 
   const filePath = path.join(baseDir, `${slug}${extension}`)
 
-  if (!isPathWithinDirectory(filePath, baseDir)) {
-    if (process.env.NODE_ENV === 'development') {
-      console.error(`Path traversal attempt detected: ${slug}`)
-    }
-    return null
+  if (!isPathWithinDirectory({ filePath, allowedDirectory: baseDir })) {
+    console.error(`Path traversal attempt detected: ${slug}`)
   }
 
   return filePath
+}
+
+type IsPathWithinDirectoryArgs = {
+  filePath: string
+  allowedDirectory: string
+}
+
+function isPathWithinDirectory({
+  filePath,
+  allowedDirectory,
+}: IsPathWithinDirectoryArgs) {
+  const resolvedPath = path.resolve(filePath)
+  const resolvedDir = path.resolve(allowedDirectory)
+
+  return resolvedPath.startsWith(resolvedDir)
 }
