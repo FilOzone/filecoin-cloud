@@ -1,10 +1,10 @@
 ---
 id: "1"
-title: "Agent Storage SDK"
+title: "Agentic Storage SDK"
 description: "Build the foundational storage toolkit that any AI agent, regardless of framework, runtime, or chain of origin, can use to store data on Filecoin autonomously."
 ---
 
-# RFS-1: Agent Storage SDK & Wallet Primitives
+# RFS-1: Agentic Storage SDK
 
 ## Concept
 
@@ -31,10 +31,16 @@ The SDK should support:
 
 This is the canonical storage primitive for AI agents. Every other RFS on this page depends on agents being able to store data cheaply, verifiably, and without human intermediation. This SDK is the entry point.
 
+## What This Could Become
+
+- **Agent memory platform.** A hosted service where agents from any framework store and retrieve long-term memory - conversation history, learned preferences, accumulated knowledge - persisted on Filecoin. Agents switch runtimes or providers without losing their memory. Think "Mem0 but decentralized."
+- **Agent-native backup and disaster recovery.** Autonomous agents that continuously snapshot their own state to Filecoin, with rollback capabilities. If an agent crashes or gets corrupted, it restores from its last verified checkpoint — agents that survive infrastructure failures without human intervention.
+- **Drop-in S3 replacement for AI-native apps.** An API-compatible storage layer that any AI application can swap in for S3, with verifiable persistence and no vendor lock-in. Target the wave of AI-native startups that don't want AWS dependency.
+
 ## How to Get Started
 
 1. Define a minimal agent storage interface (upload, retrieve, monitor proofs, manage payment)
-2. Build or integrate wallet abstraction suitable for agent use (evaluate ERC-4337 or custom)
+2. Build or integrate wallet tooling suitable for agent use (evaluate ERC-4337 or custom)
 3. Build adapters for at least two agent-native platforms or frameworks
 4. Deploy on FOC calibnet and mainnet with default storage policies
 5. Publish agent-consumable documentation (e.g., skills.md or equivalent)
