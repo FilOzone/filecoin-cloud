@@ -36,3 +36,21 @@ Agents will increasingly produce valuable data: curated datasets, analysis, pred
 
 - [FOC Storage MCP](https://github.com/FIL-Builders/foc-storage-mcp)
 - [Synapse SDK](https://github.com/FilOzone/synapse-sdk)
+
+<div style="font-size: 0.85em">
+
+## A Note on FOC's Storage Model
+
+FOC uses PDP-based (Proof of Data Possession) warm storage with continuous onchain payment rails. You upload pieces to datasets, they get proven every period, and you pay an ongoing rate. This is not the traditional Filecoin storage deal model based on PoRep (Proof of Replication). Think of PDP as: upload data, it stays warm and provably available, you pay continuously.
+
+## SDK Maturity & Builder Expectations
+
+The FOC SDK is pre-v0.37 and under active development. Session keys, settlement, and some contract interfaces have known issues pending upgrade. Mainnet-ready milestone (M4.1) is targeted for approximately March 14, 2025. Builders should:
+
+- Target SDK v0.37+ once available; earlier versions may have breaking changes
+- Expect API instability - interfaces may shift before M4.1
+- Reach out to the FOC team when things break; active support is available during the build period
+
+We'll update this page as the SDK stabilizes.
+
+</div>

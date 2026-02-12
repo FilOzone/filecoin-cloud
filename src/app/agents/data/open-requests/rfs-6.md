@@ -15,10 +15,10 @@ This is “autonomous GTM” for decentralized infrastructure. The brokerage age
 ## Core Deliverables
 
 - Broker agents that discover, evaluate, and recommend storage deals to other agents
-- Price comparison and SLA negotiation across storage providers
-- Automated deal migration when better terms are available
+- Price comparison and rate negotiation across FOC storage providers
+- Automated dataset migration when better terms are available
 - Onchain commission or fee model sustaining the brokerage
-- Metrics dashboard: deals brokered, storage onboarded, agent retention
+- Metrics dashboard: storage onboarded, agents served, agent retained (churn)
 
 ## Why This Matters
 
@@ -26,13 +26,31 @@ Human-driven sales don't scale for machine customers. If Filecoin is going to be
 
 ## How to Get Started
 
-1. Build a broker agent that can evaluate FOC storage deals (price, duration, redundancy)
+1. Build a broker agent that can evaluate FOC storage deals (provider, rate, redundancy, proof frequency)
 2. Implement a recommendation engine that matches client agent needs to available deals
-3. Add automated deal creation and renewal on behalf of client agents
-4. Deploy an onchain fee model (per-deal commission or subscription)
-5. Measure: are client agents getting better deals than they would on their own?
+3. Add automated data upload and payment management on behalf of client agents
+4. Deploy an onchain fee model (per-upload commission or subscription)
+5. Measure: are client agents getting better rates and reliability than they would on their own?
 
 ## Key Links
 
 - [FOC Storage MCP](https://github.com/FIL-Builders/foc-storage-mcp)
 - [Synapse SDK](https://github.com/FilOzone/synapse-sdk)
+
+<div style="font-size: 0.85em">
+
+## A Note on FOC's Storage Model
+
+FOC uses PDP-based (Proof of Data Possession) warm storage with continuous onchain payment rails. You upload pieces to datasets, they get proven every period, and you pay an ongoing rate. This is not the traditional Filecoin storage deal model based on PoRep (Proof of Replication). Think of PDP as: upload data, it stays warm and provably available, you pay continuously.
+
+## SDK Maturity & Builder Expectations
+
+The FOC SDK is pre-v0.37 and under active development. Session keys, settlement, and some contract interfaces have known issues pending upgrade. Mainnet-ready milestone (M4.1) is targeted for approximately March 14, 2025. Builders should:
+
+- Target SDK v0.37+ once available; earlier versions may have breaking changes
+- Expect API instability - interfaces may shift before M4.1
+- Reach out to the FOC team when things break; active support is available during the build period
+
+We'll update this page as the SDK stabilizes.
+
+</div>
