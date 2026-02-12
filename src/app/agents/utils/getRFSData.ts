@@ -44,5 +44,5 @@ export function getAllRFSData() {
       }
     })
     .filter((item): item is NonNullable<typeof item> => item !== null)
-    .sort((a, b) => parseInt(a.id) - parseInt(b.id))
+    .sort((a, b) => parseInt(a.id, 10) - parseInt(b.id, 10))
 }
