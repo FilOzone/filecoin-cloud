@@ -3,7 +3,7 @@ import path from 'node:path'
 export function isPathWithinDirectory(
   filePath: string,
   allowedDirectory: string,
-): boolean {
+) {
   const resolvedPath = path.resolve(filePath)
   const resolvedDir = path.resolve(allowedDirectory)
 
@@ -14,7 +14,7 @@ export function validateSlugAndGetPath(
   slug: string,
   baseDir: string,
   extension = '.md',
-): string | null {
+) {
   if (!/^[a-z0-9-_]+$/i.test(slug)) {
     if (process.env.NODE_ENV === 'development') {
       console.error(`Invalid slug format: ${slug}`)
