@@ -18,7 +18,10 @@ export function getRFSData(slug: string) {
 
   try {
     return readMarkdownFile<RFSFrontmatter>(filePath)
-  } catch {
+  } catch (error) {
+    if (process.env.NODE_ENV === 'development') {
+      console.error(`Failed to read RFS file ${slug}:`, error)
+    }
     return null
   }
 }
@@ -33,7 +36,10 @@ export function getAllRFSData() {
       try {
         const { data } = readMarkdownFile<RFSFrontmatter>(filePath)
         return { ...data, slug }
-      } catch {
+      } catch (error) {
+        if (process.env.NODE_ENV === 'development') {
+          console.error(`Failed to read RFS file ${slug}:`, error)
+        }
         return null
       }
     })
