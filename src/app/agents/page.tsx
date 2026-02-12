@@ -1,4 +1,3 @@
-import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
@@ -8,9 +7,9 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { StructuredDataScript } from '@/components/StructuredDataScript'
 
 import { PATHS } from '@/constants/paths'
-import { FOC_URLS } from '@/constants/site-metadata'
 import { createMetadata } from '@/utils/create-metadata'
 
+import { SubmitProposalButton } from './components/SubmitProposalButton'
 import { AGENTS_SEO } from './constants/seo'
 import { generateStructuredData } from './utils/generate-structured-data'
 import { getAllRFSData } from './utils/get-rfs-data'
@@ -30,11 +29,7 @@ export default function Agents() {
           headingTag="h1"
           title="Requests for Startups"
           description="Build the infrastructure layer where AI agents store, transact, and coordinate - without human intermediaries."
-          cta={
-            <Button href={FOC_URLS.agents.plgenesis} variant="primary">
-              Submit a proposal
-            </Button>
-          }
+          cta={<SubmitProposalButton />}
         />
       </PageSection>
 
