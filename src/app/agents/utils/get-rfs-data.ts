@@ -1,18 +1,15 @@
+import { z } from 'zod'
+
 import { getMarkdownSlugs, readMarkdownFile } from '@/utils/markdown'
 import { validateSlugAndGetPath } from '@/utils/path-validation'
 
 import path from 'node:path'
+import { RFSFrontmatterSchema } from '../schemas/rfs-frontmatter'
 
 export const OPEN_REQUESTS_DIR = path.join(
   process.cwd(),
   'src/app/agents/data/open-requests',
 )
-
-type RFSFrontmatter = {
-  id: string
-  title: string
-  description: string
-}
 
 export function getRFSData(slug: string) {
   const filePath = validateSlugAndGetPath(slug, OPEN_REQUESTS_DIR)
@@ -22,12 +19,23 @@ export function getRFSData(slug: string) {
   }
 
   try {
-    return readMarkdownFile<RFSFrontmatter>(filePath, {
+    const result = readMarkdownFile(filePath, {
       allowedDirectory: OPEN_REQUESTS_DIR,
     })
+
+    const validatedData = RFSFrontmatterSchema.parse(result.data)
+
+    return {
+      ...result,
+      data: validatedData,
+    }
   } catch (error) {
     if (process.env.NODE_ENV === 'development') {
-      console.error(`Failed to read RFS file ${slug}:`, error)
+      if (error instanceof z.ZodError) {
+        console.error(`Invalid frontmatter in ${slug}:`, error.issues)
+      } else {
+        console.error(`Failed to read RFS file ${slug}:`, error)
+      }
     }
     return null
   }
@@ -45,13 +53,20 @@ export function getAllRFSData() {
       }
 
       try {
-        const { data } = readMarkdownFile<RFSFrontmatter>(filePath, {
+        const result = readMarkdownFile(filePath, {
           allowedDirectory: OPEN_REQUESTS_DIR,
         })
-        return { ...data, slug }
+
+        const validatedData = RFSFrontmatterSchema.parse(result.data)
+
+        return { ...validatedData, slug }
       } catch (error) {
         if (process.env.NODE_ENV === 'development') {
-          console.error(`Failed to read RFS file ${slug}:`, error)
+          if (error instanceof z.ZodError) {
+            console.error(`Invalid frontmatter in ${slug}:`, error.issues)
+          } else {
+            console.error(`Failed to read RFS file ${slug}:`, error)
+          }
         }
         return null
       }
