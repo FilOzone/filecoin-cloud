@@ -10,7 +10,7 @@ import { createMetadata } from '@/utils/create-metadata'
 
 import { TERMS_OF_USE_SEO } from './constants/seo'
 import termsOfUseMarkdown from './terms-of-use.md'
-import { generateStructuredData } from './utils/generateStructuredData'
+import { generateStructuredData } from './utils/generate-structured-data'
 
 const { body } = termsOfUseMarkdown
 
@@ -34,5 +34,5 @@ export default function TermsOfUse() {
 export const metadata = createMetadata({
   title: TERMS_OF_USE_SEO.title,
   description: TERMS_OF_USE_SEO.description,
-  path: PATHS.TERMS_OF_USE.path as `/${string}`,
+  path: PATHS.TERMS_OF_USE.path,
 })

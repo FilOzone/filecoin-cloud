@@ -67,6 +67,9 @@ const FOC_URLS = {
     contractSourceCode: 'https://github.com/FilOzone/pdp/tree/main/src',
     sourceCode: 'https://github.com/FilOzone/pdp/blob/main/src/PDPVerifier.sol',
   },
+  agents: {
+    plgenesis: 'https://www.plgenesis.com/',
+  },
 }
 
 const DEFAULT_METADATA: Metadata = {

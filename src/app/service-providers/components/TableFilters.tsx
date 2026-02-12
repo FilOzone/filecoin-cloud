@@ -1,6 +1,6 @@
 import { DesktopTableFilters } from './DesktopTableFilters'
 import { MobileTableFilters } from './MobileTableFilters'
-import type { useFilterOptions } from '../hooks/useFilterOptions'
+import type { useFilterOptions } from '../hooks/use-filter-options'
 
 export type TableFiltersProps = {
   options: ReturnType<typeof useFilterOptions>

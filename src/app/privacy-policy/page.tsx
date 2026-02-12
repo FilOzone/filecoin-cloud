@@ -10,7 +10,7 @@ import { createMetadata } from '@/utils/create-metadata'
 
 import { PRIVACY_POLICY_SEO } from './constants/seo'
 import privacyPolicyMarkdown from './privacy-policy.md'
-import { generateStructuredData } from './utils/generateStructuredData'
+import { generateStructuredData } from './utils/generate-structured-data'
 
 const { body } = privacyPolicyMarkdown
 
@@ -34,5 +34,5 @@ export default function PrivacyPolicy() {
 export const metadata = createMetadata({
   title: PRIVACY_POLICY_SEO.title,
   description: PRIVACY_POLICY_SEO.description,
-  path: PATHS.PRIVACY_POLICY.path as `/${string}`,
+  path: PATHS.PRIVACY_POLICY.path,
 })

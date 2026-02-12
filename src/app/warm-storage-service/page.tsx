@@ -7,7 +7,7 @@ import { createMetadata } from '@/utils/create-metadata'
 
 import { WarmStorageServicesClient } from './components/WarmStorageServicesClient'
 import { WARM_STORAGE_SERVICE_SEO } from './constants/seo'
-import { generateStructuredData } from './utils/generateStructuredData'
+import { generateStructuredData } from './utils/generate-structured-data'
 
 export default function WarmStorageService() {
   return (
@@ -25,5 +25,5 @@ export default function WarmStorageService() {
 export const metadata = createMetadata({
   title: WARM_STORAGE_SERVICE_SEO.title,
   description: WARM_STORAGE_SERVICE_SEO.description,
-  path: PATHS.WARM_STORAGE_SERVICE.path as `/${string}`,
+  path: PATHS.WARM_STORAGE_SERVICE.path,
 })

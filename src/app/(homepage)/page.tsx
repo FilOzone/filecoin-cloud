@@ -25,7 +25,7 @@ import { faqs } from './data/faqs'
 import { filecoinOnchainCloudProducts } from './data/filecoin-onchain-cloud-products'
 import { focFeatures } from './data/foc-features'
 import { runningOnFilecoinOnchainCloud } from './data/running-on-filecoin-onchain-cloud'
-import { generateStructuredData } from './utils/generateStructuredData'
+import { generateStructuredData } from './utils/generate-structured-data'
 
 export default function Homepage() {
   return (

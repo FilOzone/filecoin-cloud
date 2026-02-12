@@ -13,6 +13,10 @@ export const headerNavigationItems: Array<NavItem> = [
     href: PATHS.SERVICE_PROVIDERS.path,
   },
   {
+    label: PATHS.AGENTS.label,
+    href: PATHS.AGENTS.path,
+  },
+  {
     label: 'Filecoin Pay',
     href: FOC_URLS.filecoinPay,
   },

@@ -5,7 +5,7 @@ import { FilterHeading } from '@/components/FilterHeading'
 import { InputsContainer } from '@/components/InputsContainer'
 import { NumberInputWithLabel } from '@/components/NumberInputWithLabel'
 
-import { useFilterQueryState } from '../hooks/useFilterQueryState'
+import { useFilterQueryState } from '../hooks/use-filter-query-state'
 import { isMinAboveMax } from '../utils/is-min-above-max'
 
 type CapacityFilterProps = {

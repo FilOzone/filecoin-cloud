@@ -4,7 +4,7 @@ import { CheckboxesContainer } from '@/components/CheckboxesContainer'
 import { CheckboxWithLabel } from '@/components/CheckboxWithLabel'
 import { FilterHeading } from '@/components/FilterHeading'
 
-import { useFilterQueryState } from '../hooks/useFilterQueryState'
+import { useFilterQueryState } from '../hooks/use-filter-query-state'
 
 type IpniFilterProps = {
   options: Array<string>

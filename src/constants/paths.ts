@@ -6,6 +6,10 @@ type PathConfig = {
 }
 
 export const PATHS = {
+  AGENTS: {
+    path: '/agents',
+    label: 'Agents',
+  },
   HOMEPAGE: {
     path: '/',
     label: 'Homepage',

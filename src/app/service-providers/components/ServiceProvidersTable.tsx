@@ -22,9 +22,9 @@ import { globalTableSearchFn } from '@/utils/global-table-search'
 import { ExportToCsvLink } from './ExportToCsvLink'
 import { TableFilters } from './TableFilters'
 import { columns } from '../data/column-definition'
-import { useFilterOptions } from '../hooks/useFilterOptions'
-import { useFilterQueryState } from '../hooks/useFilterQueryState'
-import { useSortingQueryState } from '../hooks/useSortingQueryState'
+import { useFilterOptions } from '../hooks/use-filter-options'
+import { useFilterQueryState } from '../hooks/use-filter-query-state'
+import { useSortingQueryState } from '../hooks/use-sorting-query-state'
 import { mapFilterStateToColumnFilters } from '../utils/map-filter-state-to-column-filters'
 
 export type ServiceProvidersTableProps = {
@@ -78,7 +78,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
   const filteredProviders = useMemo(() => {
     return table.getFilteredRowModel().rows.map((row) => row.original)
-  }, [data, searchQuery, columnFilters, sortingState])
+  }, [table.getFilteredRowModel])
 
   return (
     <BreakoutContainer>
