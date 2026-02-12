@@ -15,7 +15,7 @@ type RFSPageProps = {
 
 export default async function RFSPage({ params }: RFSPageProps) {
   const { slug } = await params
-  const rfsData = await getRFSData(slug)
+  const rfsData = getRFSData(slug)
 
   if (!rfsData) {
     notFound()
@@ -40,7 +40,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: RFSPageProps) {
   const { slug } = await params
-  const rfsData = await getRFSData(slug)
+  const rfsData = getRFSData(slug)
 
   if (!rfsData) {
     return {

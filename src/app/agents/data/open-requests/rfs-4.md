@@ -14,7 +14,7 @@ This is not a simulation. Agents use real tokens, pay real storage costs, and fa
 
 ## Core Deliverables
 
-- FOC calibent (extra points for mainnet) contracts governing agent economics (budgets, fees, resource allocation)
+- FOC calibnet (extra points for mainnet) contracts governing agent economics (budgets, fees, resource allocation)
 - Filecoin-backed storage for all agent state and memory
 - A cohort of live agents operating under real cost constraints for a sustained period
 - Transparent accounting: observable storage costs, compute usage, token flows
