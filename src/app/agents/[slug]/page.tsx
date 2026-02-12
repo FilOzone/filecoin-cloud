@@ -7,7 +7,7 @@ import { Navigation } from '@/components/Navigation/Navigation'
 
 import { getMarkdownSlugs } from '@/utils/markdown'
 
-import { getRFSData, OPEN_REQUESTS_DIR } from '../utils/getRFSData'
+import { getRFSData, OPEN_REQUESTS_DIR } from '../utils/get-rfs-data'
 
 type RFSPageProps = {
   params: Promise<{ slug: string }>
