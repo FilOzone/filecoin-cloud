@@ -8,7 +8,7 @@ export type MarkdownFile<T = Record<string, unknown>> = {
   data: T
 }
 
-export function getMarkdownSlugs(directoryPath: string): string[] {
+export function getMarkdownSlugs(directoryPath: string) {
   try {
     const files = fs.readdirSync(directoryPath)
     return files
@@ -23,7 +23,7 @@ export function getMarkdownSlugs(directoryPath: string): string[] {
 export function readMarkdownFile<T = Record<string, unknown>>(
   filePath: string,
   options?: { allowedDirectory?: string },
-): MarkdownFile<T> {
+) {
   if (options?.allowedDirectory) {
     if (!isPathWithinDirectory(filePath, options.allowedDirectory)) {
       throw new Error(
