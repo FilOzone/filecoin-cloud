@@ -42,6 +42,7 @@ const FOC_URLS = {
   warmStorageService: {
     contactSourceCode:
       'https://github.com/FilOzone/filecoin-services/tree/main/service_contracts/src',
+    focStorageMcp: 'https://github.com/FIL-Builders/foc-storage-mcp',
     sourceCode:
       'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/FilecoinWarmStorageService.sol',
     spDocumentation: 'https://docs.filecoin.io/storage-providers/pdp/',
