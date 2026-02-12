@@ -5,7 +5,7 @@ import { getServiceTier } from '@/utils/service-tier'
 
 import { getYesNoFromBoolean } from './get-yes-no-from-boolean'
 import type { Range } from './map-filter-state-to-column-filters'
-import type { FilterState } from '../hooks/useFilterQueryState'
+import type { FilterState } from '../hooks/use-filter-query-state'
 
 export const statusFilterFn: FilterFn<ServiceProvider> = (
   row,

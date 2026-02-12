@@ -1,7 +1,7 @@
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import type { ServiceTier } from '@/utils/service-tier'
 
-import type { FilterState } from '../hooks/useFilterQueryState'
+import type { FilterState } from '../hooks/use-filter-query-state'
 
 export type Range = {
   min: number | null
