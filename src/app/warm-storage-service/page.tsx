@@ -7,7 +7,7 @@ import { createMetadata } from '@/utils/create-metadata'
 
 import { WarmStorageServicesClient } from './components/WarmStorageServicesClient'
 import { WARM_STORAGE_SERVICE_SEO } from './constants/seo'
-import { generateStructuredData } from './utils/generateStructuredData'
+import { generateStructuredData } from './utils/generate-structured-data'
 
 export default function WarmStorageService() {
   return (

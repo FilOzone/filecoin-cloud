@@ -2,7 +2,7 @@ import { ID } from '@filecoin-foundation/ui-filecoin/Table/ID'
 import { YesNoStatus } from '@filecoin-foundation/ui-filecoin/Table/YesNoStatus'
 import { createColumnHelper } from '@tanstack/react-table'
 
-import { CompactPeerID } from '@/components/CompactPeerID'
+import { CompactPeerID } from '@/components/compact-peer-id'
 import { PdpScanLink } from '@/components/PdpScanLink'
 import { ProviderOverview } from '@/components/ProviderOverview'
 import { ServiceOffered } from '@/components/ServiceOffered'

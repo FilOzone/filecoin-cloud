@@ -20,8 +20,8 @@ import { LocationFilter } from './LocationFilter'
 import { ProvingPeriodFilter } from './ProvingPeriodFilter'
 import { ServiceTierFilter } from './ServiceTierFilter'
 import { StatusFilter } from './StatusFilter'
-import type { useFilterOptions } from '../hooks/useFilterOptions'
-import { useFilterQueryState } from '../hooks/useFilterQueryState'
+import type { useFilterOptions } from '../hooks/use-filter-options'
+import { useFilterQueryState } from '../hooks/use-filter-query-state'
 
 type MobileTableFiltersProps = {
   options: ReturnType<typeof useFilterOptions>

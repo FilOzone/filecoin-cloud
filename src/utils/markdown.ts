@@ -1,8 +1,7 @@
 import matter from 'gray-matter'
 
-import fs from 'node:fs'
-
 import { isPathWithinDirectory } from './path-validation'
+import fs from 'node:fs'
 
 export type MarkdownFile<T = Record<string, unknown>> = {
   content: string

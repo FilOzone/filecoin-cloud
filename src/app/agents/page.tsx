@@ -12,8 +12,8 @@ import { FOC_URLS } from '@/constants/site-metadata'
 import { createMetadata } from '@/utils/create-metadata'
 
 import { AGENTS_SEO } from './constants/seo'
-import { generateStructuredData } from './utils/generateStructuredData'
-import { getAllRFSData } from './utils/getRFSData'
+import { generateStructuredData } from './utils/generate-structured-data'
+import { getAllRFSData } from './utils/get-rfs-data'
 
 export default function Agents() {
   const rfsDataList = getAllRFSData()

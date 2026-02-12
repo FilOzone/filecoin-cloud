@@ -10,7 +10,7 @@ import { createMetadata } from '@/utils/create-metadata'
 
 import { TERMS_OF_USE_SEO } from './constants/seo'
 import termsOfUseMarkdown from './terms-of-use.md'
-import { generateStructuredData } from './utils/generateStructuredData'
+import { generateStructuredData } from './utils/generate-structured-data'
 
 const { body } = termsOfUseMarkdown
 

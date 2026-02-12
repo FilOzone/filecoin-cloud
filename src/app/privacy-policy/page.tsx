@@ -10,7 +10,7 @@ import { createMetadata } from '@/utils/create-metadata'
 
 import { PRIVACY_POLICY_SEO } from './constants/seo'
 import privacyPolicyMarkdown from './privacy-policy.md'
-import { generateStructuredData } from './utils/generateStructuredData'
+import { generateStructuredData } from './utils/generate-structured-data'
 
 const { body } = privacyPolicyMarkdown
 

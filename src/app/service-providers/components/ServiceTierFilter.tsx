@@ -6,7 +6,7 @@ import { FilterHeading } from '@/components/FilterHeading'
 
 import { SERVICE_TIER_LABELS, type ServiceTier } from '@/utils/service-tier'
 
-import { useFilterQueryState } from '../hooks/useFilterQueryState'
+import { useFilterQueryState } from '../hooks/use-filter-query-state'
 
 type ServiceTierFilterProps = {
   options: Array<ServiceTier>
