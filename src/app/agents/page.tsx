@@ -8,6 +8,7 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { StructuredDataScript } from '@/components/StructuredDataScript'
 
 import { PATHS } from '@/constants/paths'
+import { FOC_URLS } from '@/constants/site-metadata'
 import { createMetadata } from '@/utils/create-metadata'
 
 import { AGENTS_SEO } from './constants/seo'
@@ -30,7 +31,7 @@ export default function Agents() {
           title="Requests for Startups"
           description="Build the infrastructure layer where AI agents store, transact, and coordinate - without human intermediaries."
           cta={
-            <Button href="https://www.plgenesis.com/" variant="primary">
+            <Button href={FOC_URLS.agents.plgenesis} variant="primary">
               Submit a proposal
             </Button>
           }
