@@ -1,16 +1,12 @@
 import path from 'node:path'
 
-type ValidateSlugAndGetPathArgs = {
+type BuildFilePathArgs = {
   slug: string
   baseDir: string
   extension: `.${string}`
 }
 
-export function buildFilePath({
-  baseDir,
-  slug,
-  extension,
-}: ValidateSlugAndGetPathArgs) {
+export function buildFilePath({ baseDir, slug, extension }: BuildFilePathArgs) {
   if (!/^[a-z0-9-_]+$/i.test(slug)) {
     throw new Error(`Invalid slug format: ${slug}`)
   }
@@ -18,7 +14,7 @@ export function buildFilePath({
   const filePath = path.join(baseDir, `${slug}${extension}`)
 
   if (!isPathWithinDirectory({ filePath, allowedDirectory: baseDir })) {
-    console.error(`Path traversal attempt detected: ${slug}`)
+    throw new Error(`Path traversal attempt detected: ${slug}`)
   }
 
   return filePath
