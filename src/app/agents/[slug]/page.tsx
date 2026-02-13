@@ -77,7 +77,7 @@ export default async function RFSPage({ params }: RFSPageProps) {
       </>
     )
   } catch (error) {
-    console.log(`Error loading RFS data for slug "${slug}":`, error)
+    console.error(`Error loading RFS data for slug "${slug}":`, error)
     notFound()
   }
 }
