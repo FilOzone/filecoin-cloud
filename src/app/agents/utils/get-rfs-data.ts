@@ -9,11 +9,13 @@ export const OPEN_REQUESTS_DIR = path.join(
   'src/app/agents/data/open-requests',
 )
 
-export async function getRFSData(slug: string) {
+type RFSDataItem = Awaited<ReturnType<typeof readRFSFile>>
+
+export async function getRFSData(slug: string): Promise<RFSDataItem> {
   return readRFSFile(slug)
 }
 
-export async function getAllRFSData() {
+export async function getAllRFSData(): Promise<RFSDataItem[]> {
   const slugs = await getMarkdownSlugs(OPEN_REQUESTS_DIR)
   const results = await Promise.all(slugs.map(getRFSData))
   return results.sort(

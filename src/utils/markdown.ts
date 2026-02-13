@@ -3,9 +3,11 @@ import matter from 'gray-matter'
 
 import fs from 'node:fs/promises'
 
-export async function getMarkdownSlugs(directoryPath: string) {
+export async function getMarkdownSlugs(
+  directoryPath: string,
+): Promise<string[]> {
   const filenames = await fg('*.md', { cwd: directoryPath })
-  return filenames.map((file) => file.replace('.md', ''))
+  return filenames.map((file: string) => file.replace('.md', ''))
 }
 
 export async function readMarkdownFile(filePath: string) {
