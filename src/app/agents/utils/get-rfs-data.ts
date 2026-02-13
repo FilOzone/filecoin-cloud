@@ -15,12 +15,10 @@ export async function getRFSData(slug: string) {
 
 export async function getAllRFSData() {
   const slugs = await getMarkdownSlugs(OPEN_REQUESTS_DIR)
-
   const results = await Promise.all(slugs.map(getRFSData))
-
-  return results
-    .filter(Boolean)
-    .sort((a, b) => parseInt(a.data.id, 10) - parseInt(b.data.id, 10))
+  return results.sort(
+    (a, b) => parseInt(a.data.id, 10) - parseInt(b.data.id, 10),
+  )
 }
 
 async function readRFSFile(slug: string) {
