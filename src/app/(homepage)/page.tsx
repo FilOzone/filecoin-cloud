@@ -41,10 +41,10 @@ export default function Homepage() {
         <PageSection backgroundVariant="transparentDark">
           <div className="space-y-10">
             <Announcement
-              href="https://filecoin.io/blog/posts/introducing-filecoin-onchain-cloud"
+              href="https://pl-genesis-frontiers-of-collaboration-hackathon.devspot.app/?activeTab=challenges&challenge=466"
               centered
             >
-              Announcing Filecoin Onchain Cloud
+              PL_Genesis Hackathon · Feb 10 - Mar 16 · $2,500 Filecoin Bounty
             </Announcement>
             <PageHeader
               centered
