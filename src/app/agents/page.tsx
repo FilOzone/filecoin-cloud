@@ -14,8 +14,8 @@ import { AGENTS_SEO } from './constants/seo'
 import { generateStructuredData } from './utils/generate-structured-data'
 import { getAllRFSData } from './utils/get-rfs-data'
 
-export default function Agents() {
-  const rfsDataList = getAllRFSData()
+export default async function Agents() {
+  const rfsDataList = await getAllRFSData()
 
   return (
     <>
@@ -62,25 +62,33 @@ export default function Agents() {
 
       <PageSection backgroundVariant="light">
         <SectionContent headingTag="h2" title="Open Requests">
-          <CardGrid as="ul" variant="smTwoXlThreeWide">
-            {rfsDataList.map(({ title, description, id, slug }) => (
-              <SimpleCard
-                key={title}
-                as="li"
-                title={title}
-                headingTag="h3"
-                description={description}
-                cta={{
-                  href: `${PATHS.AGENTS.path}/${slug}`,
-                  text: 'View details',
-                }}
-                badge={{
-                  text: `RFS-${id}`,
-                  variant: 'primary',
-                }}
-              />
-            ))}
-          </CardGrid>
+          {rfsDataList.length > 0 ? (
+            <CardGrid as="ul" variant="smTwoXlThreeWide">
+              {rfsDataList.map(({ data, slug }) => {
+                const { id, title, description } = data
+
+                return (
+                  <SimpleCard
+                    key={title}
+                    as="li"
+                    title={title}
+                    headingTag="h3"
+                    description={description}
+                    cta={{
+                      href: `${PATHS.AGENTS.path}/${slug}`,
+                      text: 'View details',
+                    }}
+                    badge={{
+                      text: `RFS-${id}`,
+                      variant: 'primary',
+                    }}
+                  />
+                )
+              })}
+            </CardGrid>
+          ) : (
+            <p>There are currently no open requests.</p>
+          )}
         </SectionContent>
       </PageSection>
     </>
