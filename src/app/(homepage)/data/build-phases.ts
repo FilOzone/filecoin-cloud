@@ -15,27 +15,27 @@ export const buildPhases: Array<
     title: 'Filecoin Onchain Cloud Testnet Launch',
     description:
       'Open, verifiable cloud platform delivering programmable storage, retrieval, and onchain payments for unstoppable decentralized applications.',
+    status: 'completed',
+  },
+  {
+    date: 'Live',
+    title: 'Mainnet',
+    description:
+      '2 independent replicas across separate storage providers. PDP proofs verify data on-chain every 24 hours. Payments halt automatically if proofs stop.',
     status: 'current',
   },
   {
-    date: 'Early 2026',
-    title: 'Filecoin Onchain Cloud Live on Mainnet',
+    date: 'Post-GA',
+    title: 'Automated Repair',
     description:
-      'Launching on mainnet with programmable storage, retrieval, and onchain payments.',
+      'Fault-triggered re-replication from healthy copies without manual intervention. Recovery time drops from hours to minutes.',
     status: 'upcoming',
   },
   {
-    date: 'Upcoming',
-    title: 'Automate Repair and Replication',
+    date: 'Future',
+    title: 'Durable Backups',
     description:
-      'Upcoming service contracts and replication layers will make storage self-healing and redundant.',
-    status: 'upcoming',
-  },
-  {
-    date: 'Upcoming',
-    title: 'Bring Filecoin Onchain Cloud to Your Chain',
-    description:
-      'New payment and swapping end points will allow builders to pay in their native token and use Filecoin onchain verifiable storage.',
+      'Sealed backup copies alongside hot replicas for defense-in-depth durability.',
     status: 'upcoming',
   },
 ]
