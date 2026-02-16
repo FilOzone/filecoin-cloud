@@ -13,11 +13,12 @@ type ServiceOfferedProps = {
 
 export function ServiceOffered({ isActive, isApproved }: ServiceOfferedProps) {
   const serviceTier = getServiceTier(isActive, isApproved)
+  const labelTextTransform = 'none'
 
   if (serviceTier === ServiceTier.INACTIVE) {
     return (
       <div className="py-4 flex flex-col items-start">
-        <Badge variant="tertiary">
+        <Badge textTransform={labelTextTransform} variant="tertiary">
           {SERVICE_TIER_LABELS[ServiceTier.INACTIVE]}
         </Badge>
       </div>
@@ -27,11 +28,13 @@ export function ServiceOffered({ isActive, isApproved }: ServiceOfferedProps) {
   return (
     <div className="py-4 flex flex-col gap-2 items-start">
       {serviceTier === ServiceTier.WARM_AND_PDP && (
-        <Badge variant="secondary">
+        <Badge textTransform={labelTextTransform} variant="secondary">
           {SERVICE_TIER_LABELS[ServiceTier.WARM_AND_PDP]}
         </Badge>
       )}
-      <Badge>{SERVICE_TIER_LABELS[ServiceTier.PDP_ONLY]}</Badge>
+      <Badge textTransform={labelTextTransform}>
+        {SERVICE_TIER_LABELS[ServiceTier.PDP_ONLY]}
+      </Badge>
     </div>
   )
 }
