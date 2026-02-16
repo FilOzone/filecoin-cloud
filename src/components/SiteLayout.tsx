@@ -1,11 +1,22 @@
+import '@/styles/globals.css'
+
+import { setUIConfig } from '@filecoin-foundation/ui-filecoin/config/ui-config'
 import { clsx } from 'clsx'
 import localFont from 'next/font/local'
-import '@/styles/globals.css'
+import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 import { BreakpointDebugger } from '@/components/_BreakpointDebugger'
 import { Footer } from '@/components/Footer/Footer'
 import { Providers } from '@/components/Providers'
+
+import { BASE_DOMAIN } from '@/constants/site-metadata'
+
+// Initialize UI config before any components render
+setUIConfig({
+  baseDomain: BASE_DOMAIN,
+  Link: Link,
+})
 
 const funnelSans = localFont({
   src: '../fonts/Funnel_Sans/FunnelSans[wght].woff2',
