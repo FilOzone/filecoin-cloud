@@ -14,7 +14,7 @@ This is not a simulation. Agents use real tokens, pay real storage costs via FOC
 
 Scope note: This RFS is focused on storage economics via FOC. Compute is not yet available on FOC but it is on the roadmap! If your agents need compute, they can use external services for now. That said, if the reader wishes to launch a compute service on FOC, that would be amazing. Please [reach out to the team](https://t.me/+Xj6_zTPfcUA4MGQ1).
 
-## Core Deliverables
+## What You Might Build
 
 - FOC calibnet (extra points for mainnet) contracts governing agent economics (budgets, fees, resource allocation)
 - Filecoin-backed storage for all agent state and memory
@@ -25,7 +25,7 @@ Scope note: This RFS is focused on storage economics via FOC. Compute is not yet
 
 ## Why This Matters
 
-Every other RFS on this page builds a component. This one tests whether they compose into something real. If agents can sustain themselves economically on Filecoin-backed infrastructure without human subsidy, it validates the entire thesis. If they can't, the failure modes are invaluable.
+Every other RFS in this set builds a component. This one tests whether they compose into something real. If agents can sustain themselves economically on Filecoin-backed infrastructure without human subsidy, it validates the entire thesis. If they can't, what we learn from the failures is invaluable.
 
 ## What This Could Become
 

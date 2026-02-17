@@ -19,17 +19,17 @@ The SDK should support:
 - Paying for storage continuously without human involvement
 - Plugging into agent-native platforms as a drop-in storage backend (replacing S3, centralized databases, and human-owned infra accounts)
 
-## Core Deliverables
+## What You Might Build
 
 - Agent-oriented wallet tooling (built or integrated) enabling autonomous payment
 - Framework-agnostic SDK with clear integration guides, targeting latest FOC SDK version
 - Platform adapters usable by agent runtimes (compatible with social, coordination, and publishing networks)
 - Default storage policies tuned for agents (data redundancy, proof frequency, payment rate)
-- Deployed FOC-backed storage on calibnet, (extra point for mainnet) with transparent cost and lifecycle management
+- Deployed FOC-backed storage on calibnet (extra point for mainnet), with transparent cost and lifecycle management
 
 ## Why This Matters
 
-This is the canonical storage primitive for AI agents. Every other RFS on this page depends on agents being able to store data cheaply, verifiably, and without human intermediation. This SDK is the entry point.
+This is the canonical storage primitive for AI agents on Filecoin. Every other RFS in this set depends on agents being able to store data cheaply, verifiably, and without human intermediation. This SDK is the entry point.
 
 ## What This Could Become
 

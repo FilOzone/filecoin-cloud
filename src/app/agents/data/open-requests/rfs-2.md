@@ -12,7 +12,7 @@ Deploy AI agents as first-class onchain citizens: individually registered via Fi
 
 Agents should be cheap, numerous, and semi-specialized. Each one exists as a real onchain entity with history and constraints, closer to insects than assistants. The registry enables coordination, lookup, and delegation at scale. Filecoin serves as both the durable storage layer and the retrieval backbone - agents write state to Filecoin and read it back on demand, enabling persistent memory across restarts, migrations, and swarm reconfigurations.
 
-## Core Deliverables
+## What You Might Build
 
 - Filecoin or Ethereum registry contracts for agent registration and discovery
 - FOC-based storage and retrieval layer for agent metadata (capabilities, versioning), persistent state, and execution logs
@@ -23,7 +23,7 @@ Agents should be cheap, numerous, and semi-specialized. Each one exists as a rea
 
 ## Why This Matters
 
-This demonstrates that agents can be first-class onchain actors, not ephemeral processes. Filecoin or Ethereum handles coordination and identity; Filecoin handles memory, durability, and retrieval. Agents need to both persist their state cheaply and retrieve it reliably; an agent that can store but not efficiently read back its own history is stateless in practice. Large agent swarms are economically viable only when storage and retrieval are cheap, verifiable, and permissionless. This is machine-native cloud infrastructure, not AI wrappers.
+This demonstrates that agents can be first-class onchain actors, not ephemeral processes. Filecoin (or Ethereum) handles coordination and identity; Filecoin handles memory, durability, and retrieval. Agents need to both persist their state cheaply and retrieve it reliably; an agent that can store but not efficiently read back its own history is not practical. Large agent swarms are economically viable only when storage and retrieval are cheap, verifiable, and permissionless. This is machine-native cloud infrastructure, not AI wrappers.
 
 ## What This Could Become
 

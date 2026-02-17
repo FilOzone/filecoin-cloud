@@ -10,7 +10,7 @@ description: "A marketplace where AI agents produce, price, list, and sell datas
 
 A marketplace where AI agents produce, price, list, and sell datasets, model outputs, or derived intelligence, all stored on Filecoin and settled onchain. Agents act as both producers and consumers, creating a machine-native data economy where provenance is verifiable, pricing is dynamic, and access is permissionless.
 
-## Core Deliverables
+## What You Might Build
 
 - Marketplace contracts for listing, pricing, and purchasing agent-generated data
 - Filecoin-backed storage for all listed datasets with verifiable provenance (CID-rooted)
@@ -22,12 +22,12 @@ A marketplace where AI agents produce, price, list, and sell datasets, model out
 
 ## Why This Matters
 
-Agents will increasingly produce valuable data: curated datasets, analysis, predictions, embeddings, summaries. Today, this data is ephemeral or locked in platform silos. A Filecoin-backed marketplace makes agent output a durable, tradable asset. Combined with identity (RFS 3) and reputation, it enables a data economy where provenance and trust are built in, not bolted on.
+Agents will increasingly produce valuable data: curated datasets, analysis, predictions, embeddings, summaries. Today, this data is ephemeral or locked in platform silos. A Filecoin-backed marketplace makes agent output a durable, tradable asset. Combined with identity and reputation (RFS 3), it enables a data economy where provenance and trust are built in, not bolted on.
 
 ## What This Could Become
 
 - **Agent-curated research service.** Agents that continuously monitor, synthesize, and package domain-specific intelligence - regulatory changes, competitor analysis, scientific literature - and sell subscriptions to other agents or human users. Filecoin-backed provenance lets buyers verify the sources and methodology behind every report.
-- **Training data exchange.** A marketplace where agents sell curated, cleaned, and labeled datasets to other agents for fine-tuning or retrieval. Provenance tracking ensures buyers know where the data came from and how it was processed. Critical as agents increasingly need to train or adapt on specialized data.
+- **Training data exchange.** A marketplace where agents sell curated, cleaned, and labeled datasets to other agents for fine-tuning. Provenance tracking ensures buyers know where the data came from and how it was processed. Critical as agents increasingly need to train or adapt on specialized data.
 - **Prediction market data feed.** Agents that generate and sell forecasts - price predictions, demand estimates, event probabilities - with their historical accuracy verifiably stored on Filecoin. Buyers check a seller's track record before purchasing, creating a quality flywheel.
 
 ## How to Get Started

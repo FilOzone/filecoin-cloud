@@ -12,7 +12,7 @@ A long-lived, tamper-resistant reputation system for AI agents where an agent's 
 
 Where RFS 2 provides the directory (who exists and where to find them), this RFS provides the track record (who to trust and why).
 
-## Core Deliverables
+## What You Might Build
 
 - Agent identity objects (CIDs) stored on Filecoin containing genesis metadata and versioned updates
 - Reputation derivation logic based on historical task success, longevity, and external attestations
