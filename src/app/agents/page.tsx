@@ -80,6 +80,7 @@ export default async function Agents() {
                     }}
                     badge={{
                       text: `RFS-${id}`,
+                      textTransform: 'none',
                       variant: 'primary',
                     }}
                   />
