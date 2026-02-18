@@ -12,8 +12,8 @@ export enum ServiceTier {
  * Human-readable labels for service tiers
  */
 export const SERVICE_TIER_LABELS: Record<ServiceTier, string> = {
-  [ServiceTier.WARM_AND_PDP]: 'Warm Storage',
-  [ServiceTier.PDP_ONLY]: 'PDP Storage',
+  [ServiceTier.WARM_AND_PDP]: 'Warm storage',
+  [ServiceTier.PDP_ONLY]: 'PDP storage',
   [ServiceTier.INACTIVE]: 'Inactive',
 }
 
