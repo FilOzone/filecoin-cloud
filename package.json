@@ -37,11 +37,11 @@
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
     "slugify": "^1.6.6",
-    "viem": "^2.46.1",
+    "viem": "^2.46.2",
     "zod": "^4.3.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.0",
+    "@biomejs/biome": "2.4.4",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.19",
