@@ -37,16 +37,19 @@ export default async function Agents() {
       </PageSection>
 
       <PageSection backgroundVariant="dark">
-        <SectionContent headingTag="h2" title="Building the default cloud for AI agents">
+        <SectionContent
+          headingTag="h2"
+          title="Building the default cloud for AI agents"
+        >
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <p className="text-xl">
               The next generation of cloud users will not be humans.
             </p>
             <div className="space-y-6">
               <p>
-                They will be autonomous AI agents — long-lived,
-                identity-aware, and capable of paying for their own storage,
-                compute, and communication.
+                They will be autonomous AI agents — long-lived, identity-aware,
+                and capable of paying for their own storage, compute, and
+                communication.
               </p>
               <p>
                 We are seeking teams to deploy AI-native products on FOC
@@ -54,9 +57,9 @@ export default async function Agents() {
                 economic structures for autonomous agents.
               </p>
               <p>
-                If you are building AI agents that need memory,
-                identity-linked storage (e.g. ERC-8004), or autonomous
-                onchain payments, then Filecoin Onchain Cloud is for you.
+                If you are building AI agents that need memory, identity-linked
+                storage (e.g. ERC-8004), or autonomous onchain payments, then
+                Filecoin Onchain Cloud is for you.
               </p>
               <p>Ship running prototypes, not architecture diagrams.</p>
             </div>
@@ -65,7 +68,7 @@ export default async function Agents() {
       </PageSection>
 
       <PageSection backgroundVariant="dark">
-        <SectionContent headingTag="h2" title="Submission Guidelines">
+        <SectionContent headingTag="h2" title="Submission guidelines">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <p className="text-xl">Build something real. Show it running.</p>
             <div className="space-y-6">
@@ -80,9 +83,7 @@ export default async function Agents() {
                 </ExternalTextLink>{' '}
                 from the ERC-8004 team uses Filecoin Pin.
               </p>
-              <p>
-                To be considered a strong submission, teams must deliver:
-              </p>
+              <p>To be considered a strong submission, teams must deliver:</p>
               <ul className="list-disc space-y-2 pl-5">
                 <li>
                   Deployment against Filecoin Onchain Cloud contracts on test,
@@ -109,7 +110,11 @@ export default async function Agents() {
       </PageSection>
 
       <PageSection backgroundVariant="light">
-        <SectionContent headingTag="h2" title="Open Requests">
+        <SectionContent
+          headingTag="h2"
+          title="Open requests"
+          description="For technically curious people who want to go deeper into how Filecoin actually works."
+        >
           {rfsDataList.length > 0 ? (
             <CardGrid as="ul" variant="smTwoXlThreeWide">
               {rfsDataList.map(({ data, slug }) => {
