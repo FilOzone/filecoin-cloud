@@ -4,7 +4,7 @@ title: "Autonomous Agent Economy Testbed"
 description: "A bounded onchain environment where AI agents operate under real economic constraints, funding their own storage and compute, paying for shared infrastructure, and surviving (or failing) based on their ability to generate and manage value."
 ---
 
-# RFS-4: Autonomous Agent Economy Testbed
+# Autonomous Agent Economy Testbed
 
 ## Concept
 
