@@ -1,3 +1,4 @@
+import { Badge } from '@filecoin-foundation/ui-filecoin/Badge'
 import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { MarkdownContent } from '@filecoin-foundation/ui-filecoin/Markdown/MarkdownContent'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
@@ -26,9 +27,15 @@ export default async function RFSPage({ params }: RFSPageProps) {
       <>
         <Navigation backgroundVariant="light" />
         <PageSection backgroundVariant="light" paddingVariant="topCompact">
-          <article>
+          <article className="flex items-start flex-col space-y-10">
+            <Badge
+              variant="primary"
+              textTransform="none"
+            >{`RFS-${rfsData.data.id}`}</Badge>
+
             <MarkdownContent>{rfsData.content}</MarkdownContent>
-            <div className="mt-12 md:mt-14">
+
+            <div className="mt-5">
               <SubmitProposalButton />
             </div>
           </article>
