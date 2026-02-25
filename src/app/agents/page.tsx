@@ -1,4 +1,5 @@
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
+import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { SimpleCard } from '@filecoin-foundation/ui-filecoin/SimpleCard'
@@ -24,9 +25,9 @@ export default async function Agents() {
       />
 
       <Navigation backgroundVariant="dark" />
-      <PageSection backgroundVariant="dark" paddingVariant="topCompact">
-        <SectionContent
-          headingTag="h1"
+      <PageSection backgroundVariant="dark">
+        <PageHeader
+          centered
           title="Agents: Requests for Startups"
           description="Build the infrastructure layer where AI agents store, transact, and coordinate - without human intermediaries."
           cta={<SubmitProposalButton />}
