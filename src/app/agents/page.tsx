@@ -34,6 +34,34 @@ export default async function Agents() {
         />
       </PageSection>
 
+      <PageSection backgroundVariant="dark">
+        <SectionContent headingTag="h2" title="Building the default cloud for AI agents">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+            <p className="text-xl">
+              The next generation of cloud users will not be humans.
+            </p>
+            <div className="space-y-6">
+              <p>
+                They will be autonomous AI agents — long-lived,
+                identity-aware, and capable of paying for their own storage,
+                compute, and communication.
+              </p>
+              <p>
+                We are seeking teams to deploy AI-native products on FOC
+                mainnet: agent-owned storage, programmable payments, and new
+                economic structures for autonomous agents.
+              </p>
+              <p>
+                If you are building AI agents that need memory,
+                identity-linked storage (e.g. ERC-8004), or autonomous
+                onchain payments, then Filecoin Onchain Cloud is for you.
+              </p>
+              <p>Ship running prototypes, not architecture diagrams.</p>
+            </div>
+          </div>
+        </SectionContent>
+      </PageSection>
+
       <PageSection backgroundVariant="gray">
         <SectionContent headingTag="h2" title="Submission Guidelines">
           <div className="prose prose-xl">
