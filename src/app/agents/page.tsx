@@ -3,11 +3,13 @@ import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { SimpleCard } from '@filecoin-foundation/ui-filecoin/SimpleCard'
+import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 
 import { Navigation } from '@/components/Navigation/Navigation'
 import { StructuredDataScript } from '@/components/StructuredDataScript'
 
 import { PATHS } from '@/constants/paths'
+import { FOC_URLS } from '@/constants/site-metadata'
 import { createMetadata } from '@/utils/create-metadata'
 
 import { SubmitProposalButton } from './components/SubmitProposalButton'
@@ -62,29 +64,46 @@ export default async function Agents() {
         </SectionContent>
       </PageSection>
 
-      <PageSection backgroundVariant="gray">
+      <PageSection backgroundVariant="dark">
         <SectionContent headingTag="h2" title="Submission Guidelines">
-          <div className="prose prose-xl">
-            <p>To be considered a strong submission, teams must deliver:</p>
-            <ul>
-              <li>
-                Deployment against Filecoin Onchain Cloud contracts on test,
-                extra points for mainnet
-              </li>
-              <li>A 2-minute demo recording showing the system in action</li>
-              <li>A live, interactive example (not just docs or diagrams)</li>
-              <li>
-                Clear explanation of why Filecoin is essential (not incidental)
-              </li>
-              <li>
-                Working code demonstrating real storage, payments, and usage
-              </li>
-            </ul>
-            <p>
-              Submissions that only include architecture diagrams,
-              documentation, mockups, or testnet-only deployments will not be
-              considered sufficient.
-            </p>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+            <p className="text-xl">Build something real. Show it running.</p>
+            <div className="space-y-6">
+              <p>
+                If you&apos;re exploring agent-native storage, review{' '}
+                <ExternalTextLink href={FOC_URLS.agents.erc8004Tutorial}>
+                  Build an ERC-8004 agent using Filecoin Onchain Cloud
+                </ExternalTextLink>{' '}
+                and how{' '}
+                <ExternalTextLink href={FOC_URLS.agents.agent0Docs}>
+                  Agent0
+                </ExternalTextLink>{' '}
+                from the ERC-8004 team uses Filecoin Pin.
+              </p>
+              <p>
+                To be considered a strong submission, teams must deliver:
+              </p>
+              <ul className="list-disc space-y-2 pl-5">
+                <li>
+                  Deployment against Filecoin Onchain Cloud contracts on test,
+                  extra points for mainnet
+                </li>
+                <li>A 2-minute demo recording showing the system in action</li>
+                <li>A live, interactive example (not just docs or diagrams)</li>
+                <li>
+                  Clear explanation of why Filecoin is essential (not
+                  incidental)
+                </li>
+                <li>
+                  Working code demonstrating real storage, payments, and usage
+                </li>
+              </ul>
+              <p>
+                Submissions that only include architecture diagrams,
+                documentation, mockups, or testnet-only deployments will not be
+                considered sufficient.
+              </p>
+            </div>
           </div>
         </SectionContent>
       </PageSection>

@@ -70,6 +70,9 @@ const FOC_URLS = {
   },
   agents: {
     plgenesis: 'https://www.plgenesis.com/',
+    erc8004Tutorial:
+      'https://docs.filecoin.io/builder-cookbook/filecoin-pin/erc-8004-agent-registration',
+    agent0Docs: 'https://sdk.ag0.xyz/docs',
   },
 }
 
