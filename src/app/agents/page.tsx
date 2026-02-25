@@ -145,6 +145,16 @@ export default async function Agents() {
           )}
         </SectionContent>
       </PageSection>
+
+      <PageSection backgroundVariant="dark">
+        <PageHeader
+          centered
+          variant="highContrast"
+          title="Build for autonomous agents"
+          description="Deploy on Filecoin Onchain Cloud. Ship a working system that stores, pays, and verifies onchain."
+          cta={<SubmitProposalButton />}
+        />
+      </PageSection>
     </>
   )
 }
