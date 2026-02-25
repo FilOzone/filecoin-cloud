@@ -1,3 +1,4 @@
+import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
@@ -14,6 +15,7 @@ import { createMetadata } from '@/utils/create-metadata'
 
 import { SubmitProposalButton } from './components/SubmitProposalButton'
 import { AGENTS_SEO } from './constants/seo'
+import { agentFeatures } from './data/agent-features'
 import { generateStructuredData } from './utils/generate-structured-data'
 import { getAllRFSData } from './utils/get-rfs-data'
 
@@ -64,6 +66,26 @@ export default async function Agents() {
               <p>Ship running prototypes, not architecture diagrams.</p>
             </div>
           </div>
+        </SectionContent>
+      </PageSection>
+
+      <PageSection backgroundVariant="light">
+        <SectionContent
+          headingTag="h2"
+          title="Why agent builders are choosing FOC mainnet"
+          description="Autonomous agents introduce new storage constraints traditional systems don't support:"
+        >
+          <CardGrid as="ul" variant="smTwoLgThreeWider">
+            {agentFeatures.map(({ title, description, icon }) => (
+              <Card
+                key={title}
+                as="li"
+                title={title}
+                description={description}
+                icon={icon}
+              />
+            ))}
+          </CardGrid>
         </SectionContent>
       </PageSection>
 
