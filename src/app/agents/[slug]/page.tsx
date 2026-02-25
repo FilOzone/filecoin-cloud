@@ -1,5 +1,7 @@
+import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { MarkdownContent } from '@filecoin-foundation/ui-filecoin/Markdown/MarkdownContent'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
+import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { notFound } from 'next/navigation'
 
 import { Navigation } from '@/components/Navigation/Navigation'
@@ -26,57 +28,72 @@ export default async function RFSPage({ params }: RFSPageProps) {
         <PageSection backgroundVariant="light" paddingVariant="topCompact">
           <article>
             <MarkdownContent>{rfsData.content}</MarkdownContent>
-
-            <div className="prose sm:prose-lg md:prose-xl my-12 md:my-14">
-              <h2>Key Links</h2>
-              <ul>
-                <li>
-                  <a href={FOC_URLS.warmStorageService.focStorageMcp}>
-                    FOC Storage MCP
-                  </a>
-                </li>
-                <li>
-                  <a href={FOC_URLS.warmStorageService.synapseSdk}>
-                    Synapse SDK
-                  </a>
-                </li>
-              </ul>
-
-              <h2>A Note on FOC&apos;s Storage Model</h2>
-              <p>
-                FOC uses PDP-based (Proof of Data Possession) warm storage with
-                continuous onchain payment rails. You upload pieces to datasets,
-                they get proven every period, and you pay an ongoing rate. This
-                is not the traditional Filecoin storage deal model based on
-                PoRep (Proof of Replication). Think of PDP as: upload data, it
-                stays warm and provably available, you pay continuously.
-              </p>
-
-              <h2>SDK Maturity &amp; Builder Expectations</h2>
-              <p>
-                The FOC SDK is under active development. There are known issues
-                pending upgrade. Mainnet-ready milestone (M4.1) is targeted for
-                approximately March 14, 2026. Builders should:
-              </p>
-              <ul>
-                <li>
-                  Target the latest SDK version once available; earlier versions
-                  may have breaking changes
-                </li>
-                <li>
-                  Expect API instability - interfaces may shift before M4.1
-                </li>
-                <li>
-                  Reach out to the FOC team when things break; active support is
-                  available during the build period
-                </li>
-              </ul>
-
-              <p>We&apos;ll update this page as the SDK stabilizes.</p>
+            <div className="mt-12 md:mt-14">
+              <SubmitProposalButton />
             </div>
           </article>
+        </PageSection>
 
-          <SubmitProposalButton />
+        <PageSection backgroundVariant="gray">
+          <div className="prose sm:prose-lg md:prose-xl">
+            <h2>A Note on FOC&apos;s Storage Model</h2>
+            <p>
+              FOC uses PDP-based (Proof of Data Possession) warm storage with
+              continuous onchain payment rails. You upload pieces to datasets,
+              they get proven every period, and you pay an ongoing rate. This
+              is not the traditional Filecoin storage deal model based on
+              PoRep (Proof of Replication). Think of PDP as: upload data, it
+              stays warm and provably available, you pay continuously.
+            </p>
+
+            <h2>SDK Maturity &amp; Builder Expectations</h2>
+            <p>
+              The FOC SDK is under active development. There are known issues
+              pending upgrade. Mainnet-ready milestone (M4.1) is targeted for
+              approximately March 14, 2026. Builders should:
+            </p>
+            <ul>
+              <li>
+                Target the latest SDK version once available; earlier versions
+                may have breaking changes
+              </li>
+              <li>
+                Expect API instability - interfaces may shift before M4.1
+              </li>
+              <li>
+                Reach out to the FOC team when things break; active support is
+                available during the build period
+              </li>
+            </ul>
+
+            <p>We&apos;ll update this page as the SDK stabilizes.</p>
+          </div>
+        </PageSection>
+
+        <PageSection backgroundVariant="dark">
+          <SectionContent
+            centerCTA
+            centerTitle
+            headingTag="h2"
+            title="Start building with the FOC stack"
+            description="Use FOC Storage MCP for onchain-backed storage and Synapse SDK to integrate programmable agent workflows. These are the core building blocks for deploying on Filecoin Onchain Cloud."
+            cta={
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button
+                  href={FOC_URLS.warmStorageService.focStorageMcp}
+                  variant="primary"
+                >
+                  FOC Storage MCP
+                </Button>
+                <Button
+                  href={FOC_URLS.warmStorageService.synapseSdk}
+                  variant="primary"
+                >
+                  Synapse SDK
+                </Button>
+              </div>
+            }
+          />
         </PageSection>
       </>
     )
