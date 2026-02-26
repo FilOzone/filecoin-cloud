@@ -43,29 +43,25 @@ export default async function Agents() {
         <SectionContent
           headingTag="h2"
           title="Building the default cloud for AI agents"
+          description="The next generation of cloud users will not be humans."
         >
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <p className="text-xl">
-              The next generation of cloud users will not be humans.
+          <div className="space-y-6">
+            <p>
+              They will be autonomous AI agents — long-lived, identity-aware,
+              and capable of paying for their own storage, compute, and
+              communication.
             </p>
-            <div className="space-y-6">
-              <p>
-                They will be autonomous AI agents — long-lived, identity-aware,
-                and capable of paying for their own storage, compute, and
-                communication.
-              </p>
-              <p>
-                We are seeking teams to deploy AI-native products on FOC
-                mainnet: agent-owned storage, programmable payments, and new
-                economic structures for autonomous agents.
-              </p>
-              <p>
-                If you are building AI agents that need memory, identity-linked
-                storage (e.g. ERC-8004), or autonomous onchain payments, then
-                Filecoin Onchain Cloud is for you.
-              </p>
-              <p>Ship running prototypes, not architecture diagrams.</p>
-            </div>
+            <p>
+              We are seeking teams to deploy AI-native products on FOC mainnet:
+              agent-owned storage, programmable payments, and new economic
+              structures for autonomous agents.
+            </p>
+            <p>
+              If you are building AI agents that need memory, identity-linked
+              storage (e.g. ERC-8004), or autonomous onchain payments, then
+              Filecoin Onchain Cloud is for you.
+            </p>
+            <p>Ship running prototypes, not architecture diagrams.</p>
           </div>
         </SectionContent>
       </PageSection>
@@ -110,43 +106,43 @@ export default async function Agents() {
       </PageSection>
 
       <PageSection backgroundVariant="dark">
-        <SectionContent headingTag="h2" title="Submission guidelines">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <p className="text-xl">Build something real. Show it running.</p>
-            <div className="space-y-6">
-              <p>
-                If you&apos;re exploring agent-native storage, review{' '}
-                <ExternalTextLink href={FOC_URLS.agents.erc8004Tutorial}>
-                  Build an ERC-8004 agent using Filecoin Onchain Cloud
-                </ExternalTextLink>{' '}
-                and how{' '}
-                <ExternalTextLink href={FOC_URLS.agents.agent0Docs}>
-                  Agent0
-                </ExternalTextLink>{' '}
-                from the ERC-8004 team uses Filecoin Pin.
-              </p>
-              <p>To be considered a strong submission, teams must deliver:</p>
-              <ul className="list-disc space-y-2 pl-5">
-                <li>
-                  Deployment against Filecoin Onchain Cloud contracts on test,
-                  extra points for mainnet
-                </li>
-                <li>A 2-minute demo recording showing the system in action</li>
-                <li>A live, interactive example (not just docs or diagrams)</li>
-                <li>
-                  Clear explanation of why Filecoin is essential (not
-                  incidental)
-                </li>
-                <li>
-                  Working code demonstrating real storage, payments, and usage
-                </li>
-              </ul>
-              <p>
-                Submissions that only include architecture diagrams,
-                documentation, mockups, or testnet-only deployments will not be
-                considered sufficient.
-              </p>
-            </div>
+        <SectionContent
+          headingTag="h2"
+          title="Submission guidelines"
+          description="Build something real. Show it running."
+        >
+          <div className="space-y-6">
+            <p>
+              If you&apos;re exploring agent-native storage, review{' '}
+              <ExternalTextLink href={FOC_URLS.agents.erc8004Tutorial}>
+                Build an ERC-8004 agent using Filecoin Onchain Cloud
+              </ExternalTextLink>{' '}
+              and how{' '}
+              <ExternalTextLink href={FOC_URLS.agents.agent0Docs}>
+                Agent0
+              </ExternalTextLink>{' '}
+              from the ERC-8004 team uses Filecoin Pin.
+            </p>
+            <p>To be considered a strong submission, teams must deliver:</p>
+            <ul className="list-disc space-y-2 pl-5">
+              <li>
+                Deployment against Filecoin Onchain Cloud contracts on test,
+                extra points for mainnet
+              </li>
+              <li>A 2-minute demo recording showing the system in action</li>
+              <li>A live, interactive example (not just docs or diagrams)</li>
+              <li>
+                Clear explanation of why Filecoin is essential (not incidental)
+              </li>
+              <li>
+                Working code demonstrating real storage, payments, and usage
+              </li>
+            </ul>
+            <p>
+              Submissions that only include architecture diagrams,
+              documentation, mockups, or testnet-only deployments will not be
+              considered sufficient.
+            </p>
           </div>
         </SectionContent>
       </PageSection>
