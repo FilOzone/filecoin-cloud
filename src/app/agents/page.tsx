@@ -16,6 +16,7 @@ import { createMetadata } from '@/utils/create-metadata'
 import { SubmitProposalButton } from './components/SubmitProposalButton'
 import { AGENTS_SEO } from './constants/seo'
 import { agentFeatures } from './data/agent-features'
+import { focCapabilities } from './data/foc-capabilities'
 import { generateStructuredData } from './utils/generate-structured-data'
 import { getAllRFSData } from './utils/get-rfs-data'
 
@@ -69,7 +70,7 @@ export default async function Agents() {
         </SectionContent>
       </PageSection>
 
-      <PageSection backgroundVariant="light">
+      <PageSection backgroundVariant="gray">
         <SectionContent
           headingTag="h2"
           title="Why agent builders are choosing FOC mainnet"
@@ -83,6 +84,25 @@ export default async function Agents() {
                 title={title}
                 description={description}
                 icon={icon}
+              />
+            ))}
+          </CardGrid>
+        </SectionContent>
+      </PageSection>
+
+      <PageSection backgroundVariant="light">
+        <SectionContent
+          headingTag="h2"
+          title="The infrastructure for autonomous agents"
+          description="Filecoin Onchain Cloud enables:"
+        >
+          <CardGrid as="ul" variant="lgTwoWide">
+            {focCapabilities.map(({ title, description }) => (
+              <Card
+                key={title}
+                as="li"
+                title={title}
+                description={description}
               />
             ))}
           </CardGrid>
