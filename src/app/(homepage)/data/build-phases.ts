@@ -35,7 +35,7 @@ export const buildPhases: Array<
     date: 'Future',
     title: 'Durable Backups',
     description:
-      'Sealed backup copies alongside hot replicas for defense-in-depth durability.',
+      'Sealed backup copies alongside hot replicas for higher durability.',
     status: 'upcoming',
   },
 ]
