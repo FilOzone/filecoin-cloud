@@ -1,3 +1,5 @@
+import type { CardData } from '@filecoin-foundation/ui-filecoin/Card'
+
 export const focCapabilities = [
   {
     title: 'IPFS-compatible storage access',
@@ -19,4 +21,4 @@ export const focCapabilities = [
     description:
       'Filecoin ensures data integrity over time through cryptographic proofs, enabling agents to maintain durable, audit-ready memory across years or decades.',
   },
-]
+] as const satisfies Array<CardData>
