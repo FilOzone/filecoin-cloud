@@ -28,7 +28,7 @@ export const buildPhases: Array<
     date: 'Post-GA',
     title: 'Automated Repair',
     description:
-      'Fault-triggered re-replication from healthy copies without manual intervention. Recovery time drops from hours to minutes.',
+      'Fault-triggered re-replication from healthy copies without manual intervention. Faster recovery time and higher durability.',
     status: 'upcoming',
   },
   {
