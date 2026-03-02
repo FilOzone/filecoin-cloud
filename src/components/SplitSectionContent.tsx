@@ -1,8 +1,11 @@
+'use client'
+
 import {
   ButtonRow,
   type ButtonRowProps,
 } from '@filecoin-foundation/ui-filecoin/ButtonRow'
 import { Heading } from '@filecoin-foundation/ui-filecoin/Heading'
+import { useBackground } from '@filecoin-foundation/ui-filecoin/Section/Section'
 import { clsx } from 'clsx'
 import type { ReactNode } from 'react'
 
@@ -22,6 +25,8 @@ export function SplitSectionContent({
   children,
   cta,
 }: SideBySideContentProps) {
+  const { isDark } = useBackground()
+
   const descriptionArray =
     description !== undefined
       ? Array.isArray(description)
@@ -50,7 +55,14 @@ export function SplitSectionContent({
             ))}
           </div>
         ) : (
-          <div className="prose text-xl/7 text-pretty">{children}</div>
+          <div
+            className={clsx(
+              'prose text-xl/7 text-pretty',
+              isDark && 'prose-invert',
+            )}
+          >
+            {children}
+          </div>
         )}
 
         {cta && <ButtonRow buttons={cta} />}
