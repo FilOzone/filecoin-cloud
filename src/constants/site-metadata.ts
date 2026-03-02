@@ -24,13 +24,35 @@ const FIL_OZ_URL = 'https://www.filoz.org/'
 const FILECOIN_FOUNDATION_URL = 'https://fil.org/'
 
 const FOC_URLS = {
+  agents: {
+    agent0Docs: 'https://sdk.ag0.xyz/docs',
+    erc8004Tutorial:
+      'https://docs.filecoin.io/builder-cookbook/filecoin-pin/erc-8004-agent-registration',
+    plgenesis: 'https://www.plgenesis.com/',
+  },
   documentation: {
-    home: 'https://docs.filecoin.cloud',
     gettingStarted: 'https://docs.filecoin.cloud/getting-started/',
+    home: 'https://docs.filecoin.cloud',
     proofOfDataPossession:
       'https://docs.filecoin.cloud/core-concepts/pdp-overview/',
   },
   filecoinPay: 'https://pay.filecoin.cloud',
+  payments: {
+    contractSourceCode:
+      'https://github.com/FilOzone/filecoin-pay/tree/main/src',
+    sourceCode:
+      'https://github.com/FilOzone/filecoin-pay/blob/main/src/FilecoinPayV1.sol',
+  },
+  pdp: {
+    contractSourceCode: 'https://github.com/FilOzone/pdp/tree/main/src',
+    sourceCode: 'https://github.com/FilOzone/pdp/blob/main/src/PDPVerifier.sol',
+  },
+  sessionKeyRegistry: {
+    contractSourceCode:
+      'https://github.com/FilOzone/SessionKeyRegistry/tree/main/src',
+    sourceCode:
+      'https://github.com/FilOzone/SessionKeyRegistry/blob/main/src/SessionKeyRegistry.sol',
+  },
   social: {
     github: 'https://github.com/FilOzone',
     linkedIn: 'https://www.linkedin.com/company/filoz/',
@@ -42,37 +64,15 @@ const FOC_URLS = {
   warmStorageService: {
     contactSourceCode:
       'https://github.com/FilOzone/filecoin-services/tree/main/service_contracts/src',
+    endorsementSetCode:
+      'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/ProviderIdSet.sol',
     focStorageMcp: 'https://github.com/FIL-Builders/foc-storage-mcp',
+    serviceProviderRegistryCode:
+      'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/ServiceProviderRegistry.sol',
     sourceCode:
       'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/FilecoinWarmStorageService.sol',
     spDocumentation: 'https://docs.filecoin.io/storage-providers/pdp/',
     synapseSdk: 'https://github.com/FilOzone/synapse-sdk',
-    serviceProviderRegistryCode:
-      'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/ServiceProviderRegistry.sol',
-    endorsementSetCode:
-      'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/ProviderIdSet.sol',
-  },
-  payments: {
-    contractSourceCode:
-      'https://github.com/FilOzone/filecoin-pay/tree/main/src',
-    sourceCode:
-      'https://github.com/FilOzone/filecoin-pay/blob/main/src/FilecoinPayV1.sol',
-  },
-  sessionKeyRegistry: {
-    contractSourceCode:
-      'https://github.com/FilOzone/SessionKeyRegistry/tree/main/src',
-    sourceCode:
-      'https://github.com/FilOzone/SessionKeyRegistry/blob/main/src/SessionKeyRegistry.sol',
-  },
-  pdp: {
-    contractSourceCode: 'https://github.com/FilOzone/pdp/tree/main/src',
-    sourceCode: 'https://github.com/FilOzone/pdp/blob/main/src/PDPVerifier.sol',
-  },
-  agents: {
-    plgenesis: 'https://www.plgenesis.com/',
-    erc8004Tutorial:
-      'https://docs.filecoin.io/builder-cookbook/filecoin-pin/erc-8004-agent-registration',
-    agent0Docs: 'https://sdk.ag0.xyz/docs',
   },
 }
 
