@@ -4,7 +4,7 @@ title: "Onchain Agent Registry with Filecoin-Backed State"
 description: "Deploy AI agents as first-class onchain citizens: individually registered via Ethereum onchain registries (ERC-8004 or similar), discoverable and addressable onchain, with persistent state, metadata, and execution logs stored and retrieved from Filecoin."
 ---
 
-# RFS-2: Onchain Agent Registry with Filecoin-Backed State
+# Onchain Agent Registry with Filecoin-Backed State
 
 ## Concept
 

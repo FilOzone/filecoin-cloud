@@ -4,7 +4,7 @@ title: "Autonomous Infrastructure Brokerage"
 description: "Build an agent-native procurement layer where agents negotiate, compare, and procure storage (and eventually compute) on behalf of other agents. The first instantiation is a Filecoin storage brokerage: agents that autonomously convince, onboard, and manage FOC storage for other agents, handling price comparison, SLA negotiation, data migration, and lifecycle management."
 ---
 
-# RFS-6: Autonomous Infrastructure Brokerage
+# Autonomous Infrastructure Brokerage
 
 ## Concept
 

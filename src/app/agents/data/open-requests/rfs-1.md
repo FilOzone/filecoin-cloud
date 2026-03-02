@@ -4,7 +4,7 @@ title: "Agentic Storage SDK"
 description: "Build the foundational storage toolkit that any AI agent, regardless of framework, runtime, or chain of origin, can use to store data on Filecoin autonomously."
 ---
 
-# RFS-1: Agentic Storage SDK
+# Agentic Storage SDK
 
 ## Concept
 
