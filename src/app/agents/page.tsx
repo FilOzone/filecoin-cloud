@@ -7,6 +7,7 @@ import { SimpleCard } from '@filecoin-foundation/ui-filecoin/SimpleCard'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 
 import { Navigation } from '@/components/Navigation/Navigation'
+import { SplitSectionContent } from '@/components/SplitSectionContent'
 import { StructuredDataScript } from '@/components/StructuredDataScript'
 
 import { PATHS } from '@/constants/paths'
@@ -43,26 +44,16 @@ export default async function Agents() {
         <SectionContent
           headingTag="h2"
           title="Building the default cloud for AI agents"
-          description="The next generation of cloud users will not be humans."
         >
-          <div className="space-y-6">
-            <p>
-              They will be autonomous AI agents — long-lived, identity-aware,
-              and capable of paying for their own storage, compute, and
-              communication.
-            </p>
-            <p>
-              We are seeking teams to deploy AI-native products on FOC mainnet:
-              agent-owned storage, programmable payments, and new economic
-              structures for autonomous agents.
-            </p>
-            <p>
-              If you are building AI agents that need memory, identity-linked
-              storage (e.g. ERC-8004), or autonomous onchain payments, then
-              Filecoin Onchain Cloud is for you.
-            </p>
-            <p>Ship running prototypes, not architecture diagrams.</p>
-          </div>
+          <SplitSectionContent
+            title="The next generation of cloud users will not be humans."
+            description={[
+              'They will be autonomous AI agents — long-lived, identity-aware, and capable of paying for their own storage, compute, and communication.',
+              'We are seeking teams to deploy AI-native products on FOC mainnet: agent-owned storage, programmable payments, and new economic structures for autonomous agents.',
+              'If you are building AI agents that need memory, identity-linked storage (e.g. ERC-8004), or autonomous onchain payments, then Filecoin Onchain Cloud is for you.',
+              'Ship running prototypes, not architecture diagrams.',
+            ]}
+          />
         </SectionContent>
       </PageSection>
 
@@ -106,12 +97,8 @@ export default async function Agents() {
       </PageSection>
 
       <PageSection backgroundVariant="dark">
-        <SectionContent
-          headingTag="h2"
-          title="Submission guidelines"
-          description="Build something real. Show it running."
-        >
-          <div className="space-y-6">
+        <SectionContent headingTag="h2" title="Submission guidelines">
+          <SplitSectionContent title="Build something real. Show it running.">
             <p>
               If you&apos;re exploring agent-native storage, review{' '}
               <ExternalTextLink href={FOC_URLS.agents.erc8004Tutorial}>
@@ -124,7 +111,7 @@ export default async function Agents() {
               from the ERC-8004 team uses Filecoin Pin.
             </p>
             <p>To be considered a strong submission, teams must deliver:</p>
-            <ul className="list-disc space-y-2 pl-5">
+            <ul>
               <li>
                 Deployment against Filecoin Onchain Cloud contracts on test,
                 extra points for mainnet
@@ -143,7 +130,7 @@ export default async function Agents() {
               documentation, mockups, or testnet-only deployments will not be
               considered sufficient.
             </p>
-          </div>
+          </SplitSectionContent>
         </SectionContent>
       </PageSection>
 
