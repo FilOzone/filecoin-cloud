@@ -25,6 +25,13 @@ export const buildPhases: Array<
     status: 'current',
   },
   {
+    date: 'GA',
+    title: 'General Availability',
+    description:
+      'Hardening on SLA and tooling from real-users feedback. Full developer support channels and for agentic-development.',
+    status: 'upcoming',
+  },
+  {
     date: 'Post-GA',
     title: 'Automated Repair',
     description:
