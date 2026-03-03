@@ -24,7 +24,7 @@ export function SplitSectionContent({
   description,
   children,
   cta,
-}: SideBySideContentProps) {
+}: SplitSectionContentProps) {
   const { isDark } = useBackground()
 
   const descriptionArray =
