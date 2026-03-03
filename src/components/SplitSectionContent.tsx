@@ -9,7 +9,7 @@ import { useBackground } from '@filecoin-foundation/ui-filecoin/Section/Section'
 import { clsx } from 'clsx'
 import type { ReactNode } from 'react'
 
-type SideBySideContentProps = {
+type SplitSectionContentProps = {
   title: string
   cta?: ButtonRowProps['buttons']
 } & (
