@@ -7,6 +7,7 @@ import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 import { BreakpointDebugger } from '@/components/_BreakpointDebugger'
+import { FeedbackButton } from '@/components/FeedbackButton'
 import { Footer } from '@/components/Footer/Footer'
 import { Providers } from '@/components/Providers'
 
@@ -49,6 +50,7 @@ export function SiteLayout({ children }: SiteLayoutProps) {
         <Providers>
           <main className="flex-1">{children}</main>
           <Footer />
+          <FeedbackButton />
 
           {process.env.NODE_ENV === 'development' && <BreakpointDebugger />}
         </Providers>
