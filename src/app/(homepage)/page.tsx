@@ -44,7 +44,7 @@ export default function Homepage() {
               href="https://pl-genesis-frontiers-of-collaboration-hackathon.devspot.app/?activeTab=challenges&challenge=466"
               centered
             >
-              PL_Genesis Hackathon · Feb 10 - Mar 16 · $2,500 Filecoin Bounty
+              PL_Genesis Hackathon · Feb 10 - Mar 31· $2,500 Filecoin Bounty
             </Announcement>
             <PageHeader
               centered
