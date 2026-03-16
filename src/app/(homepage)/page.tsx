@@ -16,7 +16,12 @@ import { SimpleCardWithImage } from '@/components/SimpleCardWithImage'
 import { StructuredDataScript } from '@/components/StructuredDataScript'
 
 import { PATHS } from '@/constants/paths'
-import { FOC_URLS, SEO } from '@/constants/site-metadata'
+import {
+  FOC_URLS,
+  META_DESCRIPTION,
+  META_TITLE,
+  SEO,
+} from '@/constants/site-metadata'
 import CometVideoPoster from '@/public/assets/comet-video-poster.webp'
 import { createMetadata } from '@/utils/create-metadata'
 
@@ -28,12 +33,6 @@ import { filecoinOnchainCloudProducts } from './data/filecoin-onchain-cloud-prod
 import { focFeatures } from './data/foc-features'
 import { runningOnFilecoinOnchainCloud } from './data/running-on-filecoin-onchain-cloud'
 import { generateStructuredData } from './utils/generate-structured-data'
-
-export const metadata = createMetadata({
-  title: 'Filecoin Onchain Cloud | Bring the Cloud Onchain',
-  description: SEO.description,
-  path: PATHS.HOMEPAGE.path,
-})
 
 export default function Homepage() {
   return (
@@ -222,3 +221,9 @@ export default function Homepage() {
     </>
   )
 }
+
+export const metadata = createMetadata({
+  title: META_TITLE,
+  description: META_DESCRIPTION,
+  path: PATHS.HOMEPAGE.path,
+})

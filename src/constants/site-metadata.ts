@@ -12,8 +12,7 @@ const SEO = {
     'Cloud services with onchain guarantees: ownership, verifiability, and programmability.',
 }
 
-const META_TITLE =
-  'Cloud Services with Onchain Verifiability, Programmability & Ownership'
+const META_TITLE = 'Filecoin Onchain Cloud | Bring the Cloud Onchain'
 const META_DESCRIPTION =
   'Cloud services with onchain guarantees: ownership, verifiability, and programmability.'
 
