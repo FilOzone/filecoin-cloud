@@ -15,8 +15,15 @@ import { Phase } from '@/components/Phase'
 import { SimpleCardWithImage } from '@/components/SimpleCardWithImage'
 import { StructuredDataScript } from '@/components/StructuredDataScript'
 
-import { FOC_URLS, SEO } from '@/constants/site-metadata'
+import { PATHS } from '@/constants/paths'
+import {
+  FOC_URLS,
+  META_DESCRIPTION,
+  META_TITLE,
+  SEO,
+} from '@/constants/site-metadata'
 import CometVideoPoster from '@/public/assets/comet-video-poster.webp'
+import { createMetadata } from '@/utils/create-metadata'
 
 import { buildPhases } from './data/build-phases'
 import { buildersLogos } from './data/builders-logos'
@@ -214,3 +221,9 @@ export default function Homepage() {
     </>
   )
 }
+
+export const metadata = createMetadata({
+  title: META_TITLE,
+  description: META_DESCRIPTION,
+  path: PATHS.HOMEPAGE.path,
+})
