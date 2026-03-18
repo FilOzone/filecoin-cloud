@@ -1,5 +1,6 @@
 'use client'
 import { BreakoutContainer } from '@filecoin-foundation/ui-filecoin/Container'
+import { NetworkSelector } from '@filecoin-foundation/ui-filecoin/Network/NetworkSelector'
 import { SearchInput } from '@filecoin-foundation/ui-filecoin/SearchInput'
 import { TanstackTable } from '@filecoin-foundation/ui-filecoin/Table/TanstackTable'
 import {
@@ -12,7 +13,7 @@ import {
 } from '@tanstack/react-table'
 import { useCallback, useMemo } from 'react'
 
-import { NetworkSelector } from '@/components/NetworkSelector'
+import { networkOptions } from '@/components/Network/network-options'
 import { ProvidersEmptySearchState } from '@/components/ProvidersEmptySearchState'
 
 import { useSearchQueryState } from '@/hooks/use-search-query-state'
@@ -92,7 +93,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
               <TableFilters options={filterOptions} />
             </div>
             <div className="w-full sm:w-auto">
-              <NetworkSelector />
+              <NetworkSelector options={networkOptions} />
             </div>
           </div>
           <div className="md:w-auto flex items-center">
