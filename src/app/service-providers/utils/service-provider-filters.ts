@@ -44,6 +44,19 @@ export const ipniFilterFn: FilterFn<ServiceProvider> = (
   return ipniArray.includes(ipniValue)
 }
 
+export const reachableFilterFn: FilterFn<ServiceProvider> = (
+  row,
+  _columnId,
+  filterValue,
+) => {
+  const reachableArray = filterValue as FilterState['reachable']
+  if (reachableArray.length === 0) return true
+
+  const isAccessible = Boolean(row.original.softwareVersion)
+  const reachableValue = String(isAccessible)
+  return reachableArray.includes(reachableValue)
+}
+
 export const capacityRangeFilterFn: FilterFn<ServiceProvider> = (
   row,
   _columnId,

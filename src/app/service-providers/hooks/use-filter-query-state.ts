@@ -21,7 +21,10 @@ export type FilterState = {
   provingPeriodMax: number | null
   ipni: Array<string>
   serviceTier: Array<ServiceTier>
+  reachable: Array<string>
 }
+
+const DEFAULT_REACHABLE_FILTER = ['true']
 
 const filterParsers = {
   status: parseAsArrayOf(parseAsString).withDefault([]),
@@ -32,6 +35,9 @@ const filterParsers = {
   provingPeriodMax: parseAsInteger,
   ipni: parseAsArrayOf(parseAsString).withDefault([]),
   serviceTier: parseAsArrayOf(parseAsServiceTier).withDefault([]),
+  reachable: parseAsArrayOf(parseAsString).withDefault(
+    DEFAULT_REACHABLE_FILTER,
+  ),
 }
 
 type ArrayKeys<T> = {
@@ -79,7 +85,9 @@ export function useFilterQueryState() {
 
   const activeFilterCount = useMemo(() => {
     return Object.entries(filterQueries).reduce((count, [_, value]) => {
-      if (Array.isArray(value)) return count + (value.length > 0 ? 1 : 0)
+      if (Array.isArray(value)) {
+        return count + (value.length > 0 ? 1 : 0)
+      }
       if (value != null) return count + 1
       return count
     }, 0)

@@ -17,6 +17,7 @@ import {
   ipniFilterFn,
   locationFilterFn,
   provingPeriodRangeFilterFn,
+  reachableFilterFn,
   serviceTierFilterFn,
   statusFilterFn,
 } from '../utils/service-provider-filters'
@@ -54,6 +55,7 @@ export const columns = [
     },
     sortingFn: sortSoftwareVersion,
     sortUndefined: 'last',
+    filterFn: reachableFilterFn,
   }),
   columnHelper.accessor('isActive', {
     id: 'serviceOffered',
