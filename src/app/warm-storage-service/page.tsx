@@ -14,7 +14,7 @@ import { WARM_STORAGE_SERVICE_SEO } from './constants/seo'
 import { generateStructuredData } from './utils/generate-structured-data'
 
 type WarmStorageServicePageProps = {
-  searchParams: PageSearchParams | Promise<PageSearchParams>
+  searchParams: Promise<PageSearchParams>
 }
 
 export default async function WarmStorageService({

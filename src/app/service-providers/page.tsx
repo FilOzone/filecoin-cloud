@@ -14,7 +14,7 @@ import { SERVICE_PROVIDERS_SEO } from './constants/seo'
 import { generateStructuredData } from './utils/generate-structured-data'
 
 type ServiceProvidersPageProps = {
-  searchParams: PageSearchParams | Promise<PageSearchParams>
+  searchParams: Promise<PageSearchParams>
 }
 
 export default async function ServiceProviders({
