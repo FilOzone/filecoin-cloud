@@ -101,6 +101,10 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
         </div>
       </div>
 
+      <p className="mb-3 text-sm text-(--color-text-muted)">
+        <span aria-hidden>🏅</span> Endorsed Provider (approved list)
+      </p>
+
       {hasSearchResults ? (
         <TanstackTable table={table} maxHeight="100vh" />
       ) : (

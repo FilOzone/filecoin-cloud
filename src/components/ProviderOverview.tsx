@@ -12,6 +12,7 @@ type ProviderOverviewProps = {
   description: string
   address: string
   serviceUrl: string
+  isApproved: boolean
 }
 
 export function ProviderOverview({
@@ -19,6 +20,7 @@ export function ProviderOverview({
   description,
   address,
   serviceUrl,
+  isApproved,
 }: ProviderOverviewProps) {
   const [network] = useNetwork()
   const networkId = getNetworkId(network)
@@ -32,7 +34,18 @@ export function ProviderOverview({
         href={`${explorerUrl}${address}`}
         aria-label={`View provider ${name} on PDP Scan`}
       >
-        <span className="font-medium">{name}</span>
+        <span className="font-medium inline-flex items-center gap-1">
+          <span>{name}</span>
+          {isApproved && (
+            <span
+              role="img"
+              aria-label="Endorsed Provider"
+              title="Endorsed Provider"
+            >
+              🏅
+            </span>
+          )}
+        </span>
       </ExternalTextLink>
 
       <p className="truncate pt-1 text-sm text-gray-600">{description}</p>
