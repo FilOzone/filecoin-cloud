@@ -1,4 +1,3 @@
-import type { Route } from 'next'
 import { redirect } from 'next/navigation'
 
 export type PageSearchParams = Record<string, string | string[] | undefined>
@@ -29,5 +28,5 @@ export function redirectWithDefaultChain(
   }
 
   nextSearchParams.set('chain', '314')
-  redirect(`${path}?${nextSearchParams.toString()}` as Route)
+  redirect(`${path}?${nextSearchParams.toString()}`)
 }
