@@ -15,7 +15,6 @@ import { useCallback, useMemo } from 'react'
 
 import { ProvidersEmptySearchState } from '@/components/ProvidersEmptySearchState'
 
-import { networkOptions } from '@/constants/network-options'
 import { useSearchQueryState } from '@/hooks/use-search-query-state'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
@@ -93,7 +92,7 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
               <TableFilters options={filterOptions} />
             </div>
             <div className="w-full sm:w-auto">
-              <NetworkSelector options={networkOptions} />
+              <NetworkSelector />
             </div>
           </div>
           <div className="md:w-auto flex items-center">

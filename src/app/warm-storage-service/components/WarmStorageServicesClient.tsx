@@ -16,7 +16,6 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { ProvidersEmptyLoadingState } from '@/components/ProvidersEmptyLoadingState'
 import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 
-import { networkOptions } from '@/constants/network-options'
 import { PATHS } from '@/constants/paths'
 import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
 import { getNetworkId } from '@/utils/get-network-id'
@@ -138,7 +137,7 @@ export function WarmStorageServicesClient() {
             <div className="flex items-center justify-between flex-wrap gap-4">
               <h3 className="text-2xl font-medium">Contract Addresses</h3>
               <div className="sm:w-auto w-full">
-                <NetworkSelector options={networkOptions} />
+                <NetworkSelector />
               </div>
             </div>
 
