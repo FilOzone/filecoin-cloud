@@ -13,10 +13,10 @@ import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/Exte
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Navigation } from '@/components/Navigation/Navigation'
-import { networkOptions } from '@/components/Network/network-options'
 import { ProvidersEmptyLoadingState } from '@/components/ProvidersEmptyLoadingState'
 import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 
+import { networkOptions } from '@/constants/network-options'
 import { PATHS } from '@/constants/paths'
 import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
 import { getNetworkId } from '@/utils/get-network-id'

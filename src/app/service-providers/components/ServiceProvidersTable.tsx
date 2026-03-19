@@ -13,9 +13,9 @@ import {
 } from '@tanstack/react-table'
 import { useCallback, useMemo } from 'react'
 
-import { networkOptions } from '@/components/Network/network-options'
 import { ProvidersEmptySearchState } from '@/components/ProvidersEmptySearchState'
 
+import { networkOptions } from '@/constants/network-options'
 import { useSearchQueryState } from '@/hooks/use-search-query-state'
 import type { ServiceProvider } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
