@@ -30,7 +30,7 @@ export function ServiceProvidersClient() {
           description="Explore registered service providers offering verifiable storage and data services on Filecoin Onchain Cloud."
           cta={
             <Button
-              href={FOC_URLS.social.github}
+              href={FOC_URLS.warmStorageService.sourceCode}
               variant="ghost"
               icon={GithubLogoIcon}
             >
