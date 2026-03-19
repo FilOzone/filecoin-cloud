@@ -12,7 +12,7 @@ type ProviderOverviewProps = {
   description: string
   address: string
   serviceUrl: string
-  isApproved: boolean
+  isApproved?: boolean
 }
 
 export function ProviderOverview({
@@ -20,7 +20,7 @@ export function ProviderOverview({
   description,
   address,
   serviceUrl,
-  isApproved,
+  isApproved = false,
 }: ProviderOverviewProps) {
   const [network] = useNetwork()
   const networkId = getNetworkId(network)
