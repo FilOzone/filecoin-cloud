@@ -12,5 +12,5 @@ export const legalLinks: Array<LegalLink> = [
     href: PATHS.PRIVACY_POLICY.path,
   },
   { label: PATHS.TERMS_OF_USE.label, href: PATHS.TERMS_OF_USE.path },
-  { label: 'GitHub', href: FOC_URLS.social.github },
+  { label: 'GitHub', href: FOC_URLS.filecoinCloud.repository },
 ]
