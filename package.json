@@ -24,7 +24,7 @@
     "ethers": "^6.15.0",
     "frontmatter-markdown-loader": "^3.7.0",
     "gray-matter": "^4.0.3",
-    "next": "^16.1.6",
+    "next": "^16.1.7",
     "next-plausible": "^3.12.5",
     "nuqs": "^2.8.9",
     "prop-types": "^15.8.1",
