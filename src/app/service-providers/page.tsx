@@ -4,25 +4,12 @@ import { StructuredDataScript } from '@/components/StructuredDataScript'
 
 import { PATHS } from '@/constants/paths'
 import { createMetadata } from '@/utils/create-metadata'
-import {
-  type PageSearchParams,
-  redirectWithDefaultChain,
-} from '@/utils/redirect-with-default-chain'
 
 import { ServiceProvidersClient } from './components/ServiceProvidersClient'
 import { SERVICE_PROVIDERS_SEO } from './constants/seo'
 import { generateStructuredData } from './utils/generate-structured-data'
 
-type ServiceProvidersPageProps = {
-  searchParams: Promise<PageSearchParams>
-}
-
-export default async function ServiceProviders({
-  searchParams,
-}: ServiceProvidersPageProps) {
-  const resolvedSearchParams = await searchParams
-  redirectWithDefaultChain(resolvedSearchParams, PATHS.SERVICE_PROVIDERS.path)
-
+export default function ServiceProviders() {
   return (
     <>
       <StructuredDataScript
