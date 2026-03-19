@@ -4,13 +4,13 @@ import { ExternalLink } from '@/components/ExternalLink'
 
 import { useDistanceFromTop } from '@/hooks/use-distance-from-top'
 
-const BUFFER_DISTANCE = 400
+const BUFFER_DISTANCE = 50
 
 export function FeedbackButton() {
   const distance = useDistanceFromTop()
   const opacity =
     distance > BUFFER_DISTANCE
-      ? Math.min((distance - BUFFER_DISTANCE) / BUFFER_DISTANCE, 1)
+      ? Math.min((distance - BUFFER_DISTANCE) / (BUFFER_DISTANCE * 10), 1)
       : 0
 
   return (
