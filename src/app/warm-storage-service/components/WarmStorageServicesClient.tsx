@@ -4,6 +4,8 @@ import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
 import { LoadingStateCard } from '@filecoin-foundation/ui-filecoin/LoadingStateCard'
+import { NetworkSelector } from '@filecoin-foundation/ui-filecoin/Network/NetworkSelector'
+import { useNetwork } from '@filecoin-foundation/ui-filecoin/Network/useNetwork'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
@@ -11,12 +13,12 @@ import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/Exte
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Navigation } from '@/components/Navigation/Navigation'
-import { NetworkSelector } from '@/components/NetworkSelector'
 import { ProvidersEmptyLoadingState } from '@/components/ProvidersEmptyLoadingState'
 import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 
 import { PATHS } from '@/constants/paths'
 import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
+import { getNetworkId } from '@/utils/get-network-id'
 
 import { IntegrateStorageSection } from './IntegrateStorageSection'
 import { PricingCard } from './PricingCard'
@@ -27,7 +29,9 @@ import { useContractsTableData } from '../hooks/use-contracts-table-data'
 import { useProviders } from '../hooks/use-providers'
 
 export function WarmStorageServicesClient() {
-  const { contractsData } = useContractsTableData()
+  const [network] = useNetwork()
+  const networkId = getNetworkId(network)
+  const { contractsData } = useContractsTableData(networkId)
   const {
     data: providers,
     isLoading,

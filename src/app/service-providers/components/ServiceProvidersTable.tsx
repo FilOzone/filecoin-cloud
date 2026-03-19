@@ -1,5 +1,6 @@
 'use client'
 import { BreakoutContainer } from '@filecoin-foundation/ui-filecoin/Container'
+import { NetworkSelector } from '@filecoin-foundation/ui-filecoin/Network/NetworkSelector'
 import { SearchInput } from '@filecoin-foundation/ui-filecoin/SearchInput'
 import { TanstackTable } from '@filecoin-foundation/ui-filecoin/Table/TanstackTable'
 import {
@@ -12,7 +13,6 @@ import {
 } from '@tanstack/react-table'
 import { useCallback, useMemo } from 'react'
 
-import { NetworkSelector } from '@/components/NetworkSelector'
 import { ProvidersEmptySearchState } from '@/components/ProvidersEmptySearchState'
 
 import { useSearchQueryState } from '@/hooks/use-search-query-state'
