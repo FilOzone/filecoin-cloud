@@ -11,7 +11,8 @@ export function redirectWithDefaultChain(
   const hasChain =
     typeof chainParam === 'string'
       ? chainParam.length > 0
-      : Array.isArray(chainParam) && chainParam.some((entry) => entry.length > 0)
+      : Array.isArray(chainParam) &&
+        chainParam.some((entry) => entry.length > 0)
 
   if (hasChain) return
 
