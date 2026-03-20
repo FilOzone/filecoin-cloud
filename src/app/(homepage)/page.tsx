@@ -73,11 +73,11 @@ export default function Homepage() {
 
       <PageSection backgroundVariant="dark" paddingVariant="none">
         <LogoSection
-          gradientMode="dark"
           autoPlay
+          gradientVariant="dark"
           headingTag="h2"
-          title="Already building with Filecoin Onchain Cloud..."
           logos={buildersLogos}
+          title="Already building with Filecoin Onchain Cloud..."
         />
       </PageSection>
 
