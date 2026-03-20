@@ -51,7 +51,7 @@ export default function Homepage() {
               href="https://pl-genesis-frontiers-of-collaboration-hackathon.devspot.app/?activeTab=challenges&challenge=466"
               centered
             >
-              PL_Genesis Hackathon · Feb 10 - Mar 31· $2,500 Filecoin Bounty
+              PL_Genesis Hackathon · Feb 10 - Mar 31 · $2,500 Filecoin Bounty
             </Announcement>
             <PageHeader
               centered
@@ -73,6 +73,7 @@ export default function Homepage() {
 
       <PageSection backgroundVariant="dark" paddingVariant="none">
         <LogoSection
+          gradientMode="dark"
           autoPlay
           headingTag="h2"
           title="Already building with Filecoin Onchain Cloud..."
