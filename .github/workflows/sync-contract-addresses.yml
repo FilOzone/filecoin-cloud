@@ -30,10 +30,17 @@ jobs:
       - name: Check for differences
         id: check
         run: |
-          if npx tsx scripts/sync-contract-addresses.ts --check; then
+          set +e
+          npx tsx scripts/sync-contract-addresses.ts --check
+          status=$?
+          set -e
+
+          if [ "$status" -eq 0 ]; then
             echo "changed=false" >> $GITHUB_OUTPUT
-          else
+          elif [ "$status" -eq 2 ]; then
             echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            exit "$status"
           fi
 
       - name: Sync contract addresses
