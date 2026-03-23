@@ -10,7 +10,7 @@
  *   npx tsx scripts/sync-contract-addresses.ts [--check]
  *
  * Options:
- *   --check  Only check for differences, don't update files (exit code 1 if different)
+ *   --check  Only check for differences, don't update files (exit code 2 if different)
  */
 
 import { z } from 'zod'
@@ -35,6 +35,8 @@ interface Diff {
   local: string
   upstream: string
 }
+
+const EXIT_CODE_OUT_OF_SYNC = 2
 
 async function fetchUpstream(): Promise<Deployments> {
   const response = await fetch(UPSTREAM_URL)
@@ -63,11 +65,7 @@ function readLocal(): Deployments {
   }
   const data = JSON.parse(fs.readFileSync(LOCAL_PATH, 'utf-8'))
 
-  // Validate structure but preserve all fields for comparison
-  deploymentsSchema.parse(data)
-
-  // Return raw data to preserve extra fields for bidirectional comparison
-  return data as Deployments
+  return deploymentsSchema.parse(data)
 }
 
 function compareDeployments(local: Deployments, upstream: Deployments): Diff[] {
@@ -188,7 +186,7 @@ async function main(): Promise<void> {
 
   if (checkOnly) {
     console.log('\n✗ Contract addresses are out of sync (check mode)')
-    process.exit(1)
+    process.exit(EXIT_CODE_OUT_OF_SYNC)
   }
 
   // Update local file with upstream content
