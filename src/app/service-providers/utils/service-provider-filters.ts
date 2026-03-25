@@ -52,8 +52,14 @@ export const reachableFilterFn: FilterFn<ServiceProvider> = (
   const reachableArray = filterValue as FilterState['reachable']
   if (reachableArray.length === 0) return true
 
-  const isAccessible = Boolean(row.original.softwareVersion)
-  const reachableValue = String(isAccessible)
+  // Reachability proxy: Curio only populates softwareVersion when the node is reachable.
+  // Treat any defined value (including empty string) as reachable.
+  const hasSoftwareVersion =
+    row.original.softwareVersion !== null &&
+    row.original.softwareVersion !== undefined
+  const reachableValue: FilterState['reachable'][number] = hasSoftwareVersion
+    ? 'true'
+    : 'false'
   return reachableArray.includes(reachableValue)
 }
 

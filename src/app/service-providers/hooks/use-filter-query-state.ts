@@ -10,7 +10,10 @@ import type { ServiceTier } from '@/utils/service-tier'
 import { toggleValueInArray } from '@/utils/toggle-value-in-array'
 
 import { parseNumericInput } from '../utils/parse-numeric-input'
+import { parseAsReachableFilterValue } from '../utils/parse-reachable-filter-value'
 import { parseAsServiceTier } from '../utils/parse-service-tier'
+
+export type ReachableFilterValue = 'true' | 'false'
 
 export type FilterState = {
   status: Array<string>
@@ -21,10 +24,10 @@ export type FilterState = {
   provingPeriodMax: number | null
   ipni: Array<string>
   serviceTier: Array<ServiceTier>
-  reachable: Array<string>
+  reachable: Array<ReachableFilterValue>
 }
 
-const DEFAULT_REACHABLE_FILTER = ['true']
+const DEFAULT_REACHABLE_FILTER: Array<ReachableFilterValue> = ['true']
 
 const filterParsers = {
   status: parseAsArrayOf(parseAsString).withDefault([]),
@@ -35,7 +38,7 @@ const filterParsers = {
   provingPeriodMax: parseAsInteger,
   ipni: parseAsArrayOf(parseAsString).withDefault([]),
   serviceTier: parseAsArrayOf(parseAsServiceTier).withDefault([]),
-  reachable: parseAsArrayOf(parseAsString).withDefault(
+  reachable: parseAsArrayOf(parseAsReachableFilterValue).withDefault(
     DEFAULT_REACHABLE_FILTER,
   ),
 }
