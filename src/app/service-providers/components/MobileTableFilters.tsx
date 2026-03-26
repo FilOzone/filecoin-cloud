@@ -19,7 +19,6 @@ import { IpniFilter } from './IpniFilter'
 import { LocationFilter } from './LocationFilter'
 import { ProvingPeriodFilter } from './ProvingPeriodFilter'
 import { ServiceTierFilter } from './ServiceTierFilter'
-import { StatusFilter } from './StatusFilter'
 import type { useFilterOptions } from '../hooks/use-filter-options'
 import { useFilterQueryState } from '../hooks/use-filter-query-state'
 
@@ -36,7 +35,6 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
 
   const {
     location: locationOptions,
-    status: statusOptions,
     ipni: ipniOptions,
     serviceTier: serviceTierOptions,
     capacityMin,
@@ -70,7 +68,6 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
           {serviceTierOptions.length > 1 && (
             <ServiceTierFilter options={serviceTierOptions} />
           )}
-          {statusOptions.length > 1 && <StatusFilter options={statusOptions} />}
           <LocationFilter options={locationOptions} />
           <CapacityFilter capacityMin={capacityMin} capacityMax={capacityMax} />
           <ProvingPeriodFilter

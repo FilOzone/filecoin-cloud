@@ -13,7 +13,6 @@ import { parseNumericInput } from '../utils/parse-numeric-input'
 import { parseAsServiceTier } from '../utils/parse-service-tier'
 
 export type FilterState = {
-  status: Array<string>
   location: Array<string>
   capacityMin: number | null
   capacityMax: number | null
@@ -24,7 +23,6 @@ export type FilterState = {
 }
 
 const filterParsers = {
-  status: parseAsArrayOf(parseAsString).withDefault([]),
   location: parseAsArrayOf(parseAsString).withDefault([]),
   capacityMin: parseAsInteger,
   capacityMax: parseAsInteger,
