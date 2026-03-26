@@ -18,7 +18,6 @@ import {
   locationFilterFn,
   provingPeriodRangeFilterFn,
   serviceTierFilterFn,
-  statusFilterFn,
 } from '../utils/service-provider-filters'
 
 const columnHelper = createColumnHelper<ServiceProvider>()
@@ -74,18 +73,6 @@ export const columns = [
       />
     ),
     enableSorting: false,
-  }),
-  columnHelper.accessor('serviceStatus', {
-    header: 'Status',
-    cell: (info) => {
-      const serviceStatus = info.getValue() || '-'
-      return (
-        serviceStatus[0]?.toUpperCase() + serviceStatus.slice(1).toLowerCase()
-      )
-    },
-    sortingFn: 'text',
-    sortUndefined: 'last',
-    filterFn: statusFilterFn,
   }),
   columnHelper.accessor('location', {
     header: 'Location',

@@ -7,18 +7,6 @@ import { getYesNoFromBoolean } from './get-yes-no-from-boolean'
 import type { Range } from './map-filter-state-to-column-filters'
 import type { FilterState } from '../hooks/use-filter-query-state'
 
-export const statusFilterFn: FilterFn<ServiceProvider> = (
-  row,
-  _columnId,
-  filterValue,
-) => {
-  const statusArray = filterValue as FilterState['status']
-  if (statusArray.length === 0) return true
-
-  const serviceStatus = row.original.serviceStatus
-  return serviceStatus ? statusArray.includes(serviceStatus) : false
-}
-
 export const locationFilterFn: FilterFn<ServiceProvider> = (
   row,
   _columnId,
