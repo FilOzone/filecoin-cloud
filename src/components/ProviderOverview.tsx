@@ -12,7 +12,7 @@ type ProviderOverviewProps = {
   description: string
   address: string
   serviceUrl: string
-  isApproved: boolean
+  isEndorsed: boolean
 }
 
 export function ProviderOverview({
@@ -20,7 +20,7 @@ export function ProviderOverview({
   description,
   address,
   serviceUrl,
-  isApproved,
+  isEndorsed,
 }: ProviderOverviewProps) {
   const [network] = useNetwork()
   const networkId = getNetworkId(network)
@@ -36,7 +36,7 @@ export function ProviderOverview({
       >
         <span className="font-medium inline-flex items-center gap-1">
           <span>{name}</span>
-          {isApproved && (
+          {isEndorsed && (
             <span
               role="img"
               aria-label="Endorsed Provider"

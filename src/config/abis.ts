@@ -11,6 +11,11 @@ export const WarmStorageViewABI = parseAbi([
   'function isProviderApproved(uint256 providerId) view returns (bool)',
 ])
 
+export const EndorsementSetABI = parseAbi([
+  'function getProviderIds() view returns (uint256[])',
+  'function containsProviderId(uint256 providerId) view returns (bool)',
+])
+
 export const ServiceRegistryABI = parseAbi([
   'function getProvider(uint256 providerId) view returns ((uint256 providerId, (address serviceProvider, address payee, string name, string description, bool isActive) info))',
   'function getProductCapabilities(uint256 providerId, uint8 productType, string[] keys) view returns (bytes[])',

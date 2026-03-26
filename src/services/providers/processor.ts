@@ -36,10 +36,12 @@ function buildCapabilities(
  *
  * @param providerData - Raw provider data from contract
  * @param isApproved - Whether this provider is in the approved list (default: false)
+ * @param isEndorsed - Whether this provider is in the endorsement set (default: false)
  */
 export function processProviderData(
   providerData: ProviderData,
   isApproved = false,
+  isEndorsed = false,
 ): BaseProviderData | undefined {
   const { providerId, providerInfo, product, productCapabilityValues } =
     providerData
@@ -72,6 +74,7 @@ export function processProviderData(
     maxPieceSize: pdpOffering.maxPieceSizeInBytes,
     isActive: finalIsActive,
     isApproved,
+    isEndorsed,
     providerId: Number(providerId),
     location: parseLocation(pdpOffering.location),
     ipniPiece: pdpOffering.ipniPiece,

@@ -4,7 +4,11 @@ import {
   type PublicClient,
 } from 'viem'
 
-import type { ServiceRegistryABI, WarmStorageViewABI } from '@/config/abis'
+import type {
+  EndorsementSetABI,
+  ServiceRegistryABI,
+  WarmStorageViewABI,
+} from '@/config/abis'
 import { getChain, type Network } from '@/config/chains'
 import { getPublicClient } from '@/config/client'
 import {
@@ -17,6 +21,7 @@ import { getCheckActivityUrl } from '@/utils/provider-urls'
 import { VERSION_FETCH_CONCURRENCY } from './constants'
 import {
   fetchApprovedProviderIds,
+  fetchEndorsedProviderIds,
   fetchProviderById,
   fetchProvidersBulk,
 } from './contract'
@@ -30,22 +35,33 @@ async function fetchProvidersByFilter(
   filter: ProviderFilter,
   contracts: {
     storageView: GetContractReturnType<typeof WarmStorageViewABI, PublicClient>
+    endorsementSet: GetContractReturnType<
+      typeof EndorsementSetABI,
+      PublicClient
+    >
     serviceRegistry: GetContractReturnType<
       typeof ServiceRegistryABI,
       PublicClient
     >
   },
 ): Promise<BaseProviderData[]> {
-  const { storageView, serviceRegistry } = contracts
+  const { storageView, endorsementSet, serviceRegistry } = contracts
 
   // Fetch approved provider IDs for marking providers
   const approvedProviderIds = await fetchApprovedProviderIds(storageView)
   const approvedSet = new Set(approvedProviderIds)
+  const endorsedProviderIds = await fetchEndorsedProviderIds(endorsementSet)
+  const endorsedSet = new Set(endorsedProviderIds)
 
   // Use optimized bulk fetch for 'active' and 'all' filters
   if (filter === 'active' || filter === 'all') {
     const onlyActive = filter === 'active'
-    return fetchProvidersBulk(serviceRegistry, onlyActive, approvedSet)
+    return fetchProvidersBulk(
+      serviceRegistry,
+      onlyActive,
+      approvedSet,
+      endorsedSet,
+    )
   }
 
   // For 'approved' filter, fetch individual providers from WarmStorageView
@@ -57,7 +73,12 @@ async function fetchProvidersByFilter(
     // Fetch details for each approved provider
     const providerPromises = approvedProviderIds.map(async (providerId) => {
       try {
-        return await fetchProviderById(providerId, serviceRegistry, true)
+        return await fetchProviderById(
+          providerId,
+          serviceRegistry,
+          true,
+          endorsedSet.has(providerId),
+        )
       } catch (error) {
         const errorMessage =
           error instanceof Error ? error.message : 'Unknown error'
@@ -142,9 +163,17 @@ function initializeContracts(network: Network) {
     client: publicClient,
   })
 
+  // Connect to EndorsementSet contract
+  const endorsementSetContract = getContract({
+    address: chain.contractsWithAbi.endorsementSet.address,
+    abi: chain.contractsWithAbi.endorsementSet.abi,
+    client: publicClient,
+  })
+
   return {
     warmStorage: warmStorageContract,
     storageView: storageViewContract,
+    endorsementSet: endorsementSetContract,
     serviceRegistry: serviceRegistryContract,
     publicClient,
   }
@@ -173,11 +202,13 @@ export async function fetchProviders(
   const filter: ProviderFilter = options?.filter ?? 'approved'
 
   // Initialize contracts
-  const { storageView, serviceRegistry } = initializeContracts(network)
+  const { storageView, endorsementSet, serviceRegistry } =
+    initializeContracts(network)
 
   // Fetch providers based on filter
   const fetchedProviders = await fetchProvidersByFilter(filter, {
     storageView,
+    endorsementSet,
     serviceRegistry,
   })
 

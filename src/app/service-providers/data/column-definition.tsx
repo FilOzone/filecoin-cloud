@@ -42,7 +42,7 @@ export const columns = [
           description={row.description}
           address={row.serviceProviderAddress}
           serviceUrl={row.serviceUrl}
-          isApproved={row.isApproved}
+          isEndorsed={row.isEndorsed}
         />
       )
     },

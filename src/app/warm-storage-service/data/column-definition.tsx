@@ -27,7 +27,7 @@ export const columns = [
         description,
         serviceProviderAddress,
         serviceUrl,
-        isApproved,
+        isEndorsed,
       } = info.row.original
 
       return (
@@ -36,7 +36,7 @@ export const columns = [
           description={description}
           address={serviceProviderAddress}
           serviceUrl={serviceUrl}
-          isApproved={isApproved}
+          isEndorsed={isEndorsed}
         />
       )
     },
