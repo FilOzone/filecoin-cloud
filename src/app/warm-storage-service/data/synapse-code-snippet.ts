@@ -1,4 +1,4 @@
-export const SYNAPSE_CODE_SNIPPET = `import { Synapse, parseUnits } from "@filoz/synapse-sdk"
+export const SYNAPSE_CODE_SNIPPET = `import { Synapse } from "@filoz/synapse-sdk"
 import { privateKeyToAccount } from "viem/accounts"
 
 const synapse = Synapse.create({
