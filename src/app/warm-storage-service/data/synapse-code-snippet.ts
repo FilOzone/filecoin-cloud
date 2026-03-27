@@ -7,7 +7,7 @@ const synapse = Synapse.create({
 })
 
 const data = new TextEncoder().encode(`
-  🚀 Welcome to decentralized storage on Filecoin Onchain Cloud!
+  :rocket: Welcome to decentralized storage on Filecoin Onchain Cloud!
   Onchain Proof of Data Possession ensures your data is always verifiable and secure.
 `)
 
