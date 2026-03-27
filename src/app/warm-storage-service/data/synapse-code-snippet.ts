@@ -8,10 +8,12 @@ const synapse = Synapse.create({
 
 const data = new TextEncoder().encode(\`
   🚀 Welcome to decentralized storage on Filecoin Onchain Cloud!
-  Onchain Proof of Data Possession ensures your data is always verifiable and secure.
+  Onchain Proof of Data Possession ensures your data is always verifiable.
 \`)
 
-const { transaction } = await synapse.storage.prepare({ dataSize: BigInt(data.length) })
+const { transaction } = await synapse.storage.prepare({
+  dataSize: BigInt(data.length)
+})
 if (transaction) await transaction.execute()
 
 const { pieceCid } = await synapse.storage.upload(data)
