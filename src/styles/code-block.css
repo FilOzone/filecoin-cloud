@@ -1,0 +1,34 @@
+/* Container query context: all sizing is relative to container width */
+.synapse-code-wrapper {
+  container-type: inline-size;
+}
+
+/* Titlebar */
+.synapse-code-titlebar {
+  padding: 1.5cqi 1.5cqi;
+}
+
+.synapse-code-title {
+  font-size: 1.4cqi;
+}
+
+.synapse-code-spacer {
+  width: 7cqi;
+}
+
+/* Code block */
+.synapse-code-block pre {
+  margin: 0;
+  padding: 0cqi 1.5cqi 1.5cqi;
+  overflow: hidden;
+}
+
+.synapse-code-block code {
+  font-family:
+    "SF Mono", SFMono-Regular, ui-monospace, Menlo, Consolas, "Liberation Mono",
+    monospace;
+  font-size: 1.60cqi;
+  line-height: 1.35;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

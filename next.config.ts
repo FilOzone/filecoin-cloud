@@ -15,6 +15,7 @@ const markdownRule = {
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
+  serverExternalPackages: ['twoslash', '@typescript/vfs'],
   images: {
     qualities: [75, 100],
   },
