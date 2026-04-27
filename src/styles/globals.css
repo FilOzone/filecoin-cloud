@@ -4,6 +4,7 @@
 @import "./accordion.css";
 @import "./table.css";
 @import "./listbox.css";
+@import "./code-block.css";
 
 @source "../../node_modules/@filecoin-foundation/ui-filecoin";
 
