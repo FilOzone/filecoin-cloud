@@ -22,8 +22,13 @@ export const columns = [
     id: 'provider',
     header: 'Provider',
     cell: (info) => {
-      const { name, description, serviceProviderAddress, serviceUrl } =
-        info.row.original
+      const {
+        name,
+        description,
+        serviceProviderAddress,
+        serviceUrl,
+        isEndorsed,
+      } = info.row.original
 
       return (
         <ProviderOverview
@@ -31,6 +36,7 @@ export const columns = [
           description={description}
           address={serviceProviderAddress}
           serviceUrl={serviceUrl}
+          isEndorsed={isEndorsed}
         />
       )
     },

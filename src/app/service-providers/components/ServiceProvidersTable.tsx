@@ -101,6 +101,11 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
         </div>
       </div>
 
+      <p className="mb-3 text-xs text-(--color-text-muted)">
+        Legend: <span aria-hidden>🏅</span> Endorsed = Endorsed (EndorsementSet)
+        | Warm storage = Approved (FWSS)
+      </p>
+
       {hasSearchResults ? (
         <TanstackTable table={table} maxHeight="100vh" />
       ) : (

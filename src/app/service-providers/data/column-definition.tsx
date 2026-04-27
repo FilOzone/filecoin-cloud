@@ -17,6 +17,7 @@ import {
   ipniFilterFn,
   locationFilterFn,
   provingPeriodRangeFilterFn,
+  reachableFilterFn,
   serviceTierFilterFn,
 } from '../utils/service-provider-filters'
 
@@ -40,6 +41,7 @@ export const columns = [
           description={row.description}
           address={row.serviceProviderAddress}
           serviceUrl={row.serviceUrl}
+          isEndorsed={row.isEndorsed}
         />
       )
     },
@@ -53,6 +55,7 @@ export const columns = [
     },
     sortingFn: sortSoftwareVersion,
     sortUndefined: 'last',
+    filterFn: reachableFilterFn,
   }),
   columnHelper.accessor('isActive', {
     id: 'serviceOffered',

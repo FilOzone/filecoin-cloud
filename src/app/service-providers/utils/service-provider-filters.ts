@@ -32,6 +32,25 @@ export const ipniFilterFn: FilterFn<ServiceProvider> = (
   return ipniArray.includes(ipniValue)
 }
 
+export const reachableFilterFn: FilterFn<ServiceProvider> = (
+  row,
+  _columnId,
+  filterValue,
+) => {
+  const reachableArray = filterValue as FilterState['reachable']
+  if (reachableArray.length === 0) return true
+
+  // Reachability proxy: Curio only populates softwareVersion when the node is reachable.
+  // Treat any defined value (including empty string) as reachable.
+  const hasSoftwareVersion =
+    row.original.softwareVersion !== null &&
+    row.original.softwareVersion !== undefined
+  const reachableValue: FilterState['reachable'][number] = hasSoftwareVersion
+    ? 'true'
+    : 'false'
+  return reachableArray.includes(reachableValue)
+}
+
 export const capacityRangeFilterFn: FilterFn<ServiceProvider> = (
   row,
   _columnId,

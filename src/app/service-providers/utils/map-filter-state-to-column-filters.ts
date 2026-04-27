@@ -22,6 +22,7 @@ export function mapFilterStateToColumnFilters({
   provingPeriodMax,
   ipni,
   serviceTier,
+  reachable,
 }: FilterState) {
   const columnFilters: ServiveProviderColumnFilters = []
 
@@ -48,6 +49,9 @@ export function mapFilterStateToColumnFilters({
   }
   if (serviceTier.length > 0) {
     columnFilters.push({ id: 'serviceOffered', value: serviceTier })
+  }
+  if (reachable.length > 0) {
+    columnFilters.push({ id: 'softwareVersion', value: reachable })
   }
 
   return columnFilters

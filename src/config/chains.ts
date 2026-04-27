@@ -1,6 +1,11 @@
 import type { Address, ChainContract, Chain as ViemChain } from 'viem'
 
-import { ServiceRegistryABI, WarmStorageABI, WarmStorageViewABI } from './abis'
+import {
+  EndorsementSetABI,
+  ServiceRegistryABI,
+  WarmStorageABI,
+  WarmStorageViewABI,
+} from './abis'
 import deployments from './deployments'
 
 export type UpgradableContract = {
@@ -37,6 +42,10 @@ export interface Chain extends ViemChain {
     serviceRegistry: {
       address: Address
       abi: typeof ServiceRegistryABI
+    }
+    endorsementSet: {
+      address: Address
+      abi: typeof EndorsementSetABI
     }
   }
   contracts: Contracts
@@ -93,6 +102,10 @@ const mainnet: Chain = {
     serviceRegistry: {
       address: mainnetAddresses.SERVICE_PROVIDER_REGISTRY_PROXY_ADDRESS,
       abi: ServiceRegistryABI,
+    },
+    endorsementSet: {
+      address: mainnetAddresses.ENDORSEMENT_SET_ADDRESS,
+      abi: EndorsementSetABI,
     },
   },
   contracts: {
@@ -166,6 +179,10 @@ export const calibration: Chain = {
     serviceRegistry: {
       address: calibrationAddresses.SERVICE_PROVIDER_REGISTRY_PROXY_ADDRESS,
       abi: ServiceRegistryABI,
+    },
+    endorsementSet: {
+      address: calibrationAddresses.ENDORSEMENT_SET_ADDRESS,
+      abi: EndorsementSetABI,
     },
   },
   contracts: {

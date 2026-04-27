@@ -1,6 +1,10 @@
 import type { GetContractReturnType, PublicClient } from 'viem'
 
-import type { ServiceRegistryABI, WarmStorageViewABI } from '@/config/abis'
+import type {
+  EndorsementSetABI,
+  ServiceRegistryABI,
+  WarmStorageViewABI,
+} from '@/config/abis'
 
 import { BATCH_SIZE, PDP_PRODUCT_TYPE, PROVIDER_FETCH_LIMIT } from './constants'
 import { processProviderData } from './processor'
@@ -37,11 +41,25 @@ export async function fetchApprovedProviderIds(
 }
 
 /**
+ * Fetch endorsed provider IDs from EndorsementSet contract
+ */
+export async function fetchEndorsedProviderIds(
+  endorsementSetContract: GetContractReturnType<
+    typeof EndorsementSetABI,
+    PublicClient
+  >,
+): Promise<bigint[]> {
+  const providerIds = await endorsementSetContract.read.getProviderIds()
+  return Array.from(providerIds)
+}
+
+/**
  * Fetch providers in bulk using getProvidersByProductType
  *
  * @param serviceRegistryContract - Service registry contract instance
  * @param onlyActive - Whether to fetch only active providers
  * @param approvedProviderIds - Optional set of approved provider IDs for marking providers
+ * @param endorsedProviderIds - Optional set of endorsed provider IDs for marking providers
  */
 export async function fetchProvidersBulk(
   serviceRegistryContract: GetContractReturnType<
@@ -50,6 +68,7 @@ export async function fetchProvidersBulk(
   >,
   onlyActive: boolean,
   approvedProviderIds?: Set<bigint>,
+  endorsedProviderIds?: Set<bigint>,
 ): Promise<BaseProviderData[]> {
   const providers: BaseProviderData[] = []
   let offset = 0
@@ -75,7 +94,14 @@ export async function fetchProvidersBulk(
           const isApproved = approvedProviderIds
             ? approvedProviderIds.has(providerData.providerId)
             : false
-          const processed = processProviderData(providerData, isApproved)
+          const isEndorsed = endorsedProviderIds
+            ? endorsedProviderIds.has(providerData.providerId)
+            : false
+          const processed = processProviderData(
+            providerData,
+            isApproved,
+            isEndorsed,
+          )
           if (processed) {
             providers.push(processed)
           }
@@ -109,6 +135,7 @@ export async function fetchProvidersBulk(
  * @param providerId - Provider ID to fetch
  * @param serviceRegistryContract - Service registry contract instance
  * @param isApproved - Whether this provider is approved (default: false)
+ * @param isEndorsed - Whether this provider is endorsed (default: false)
  */
 export async function fetchProviderById(
   providerId: bigint,
@@ -117,6 +144,7 @@ export async function fetchProviderById(
     PublicClient
   >,
   isApproved = false,
+  isEndorsed = false,
 ): Promise<BaseProviderData | undefined> {
   const providerData =
     await serviceRegistryContract.read.getProviderWithProduct([
@@ -126,5 +154,5 @@ export async function fetchProviderById(
 
   if (!providerData) return undefined
 
-  return processProviderData(providerData, isApproved)
+  return processProviderData(providerData, isApproved, isEndorsed)
 }

@@ -14,6 +14,7 @@ import { CapacityFilter } from './CapacityFilter'
 import { IpniFilter } from './IpniFilter'
 import { LocationFilter } from './LocationFilter'
 import { ProvingPeriodFilter } from './ProvingPeriodFilter'
+import { ReachableFilter } from './ReachableFilter'
 import { ServiceTierFilter } from './ServiceTierFilter'
 import type { useFilterOptions } from '../hooks/use-filter-options'
 import { useFilterQueryState } from '../hooks/use-filter-query-state'
@@ -72,6 +73,7 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
                   provingPeriodMin={provingPeriodMin}
                   provingPeriodMax={provingPeriodMax}
                 />
+                <ReachableFilter />
                 {ipniOptions.length > 1 && <IpniFilter options={ipniOptions} />}
                 {serviceTierOptions.length > 1 && (
                   <ServiceTierFilter options={serviceTierOptions} />

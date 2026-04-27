@@ -16,6 +16,7 @@ export const providerSchema = z.object({
   ipniPiece: z.boolean(),
   isActive: z.boolean(),
   isApproved: z.boolean(),
+  isEndorsed: z.boolean(),
   location: z.string(),
   maxPieceSize: z.bigint(),
   minPieceSize: z.bigint(),
