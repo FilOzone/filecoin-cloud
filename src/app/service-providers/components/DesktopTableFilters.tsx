@@ -16,7 +16,6 @@ import { LocationFilter } from './LocationFilter'
 import { ProvingPeriodFilter } from './ProvingPeriodFilter'
 import { ReachableFilter } from './ReachableFilter'
 import { ServiceTierFilter } from './ServiceTierFilter'
-import { StatusFilter } from './StatusFilter'
 import type { useFilterOptions } from '../hooks/use-filter-options'
 import { useFilterQueryState } from '../hooks/use-filter-query-state'
 
@@ -31,7 +30,6 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
 
   const {
     location: locationOptions,
-    status: statusOptions,
     ipni: ipniOptions,
     serviceTier: serviceTierOptions,
     capacityMin,
@@ -76,10 +74,6 @@ export function DesktopTableFilters({ options }: DesktopTableFiltersProps) {
                   provingPeriodMax={provingPeriodMax}
                 />
                 <ReachableFilter />
-
-                {statusOptions.length > 1 && (
-                  <StatusFilter options={statusOptions} />
-                )}
                 {ipniOptions.length > 1 && <IpniFilter options={ipniOptions} />}
                 {serviceTierOptions.length > 1 && (
                   <ServiceTierFilter options={serviceTierOptions} />

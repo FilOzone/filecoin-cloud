@@ -1,23 +1,20 @@
-export const SYNAPSE_CODE_SNIPPET = `import { Synapse, RPC_URLS, TIME_CONSTANTS } from "@filoz/synapse-sdk";
-import { ethers } from "ethers";
+export const SYNAPSE_CODE_SNIPPET = `import { Synapse } from "@filoz/synapse-sdk"
+import { privateKeyToAccount } from "viem/accounts"
 
-const synapse = await Synapse.create({
-  privateKey: "YOUR_PRIVATE_KEY",
-  rpcURL: RPC_URLS.calibration.http,
-});
+const synapse = Synapse.create({
+  account: privateKeyToAccount("YOUR_PRIVATE_KEY"),
+  source: "my-app",
+})
 
-const tx = await synapse.payments.depositWithPermitAndApproveOperator(
-  ethers.parseUnits("10", 18),
-  synapse.getWarmStorageAddress(),
-  ethers.MaxUint256,
-  ethers.MaxUint256,
-  30n * TIME_CONSTANTS.EPOCHS_PER_DAY,
-);
-await tx.wait();
+const data = new TextEncoder().encode(\`
+  🚀 Welcome to decentralized storage on Filecoin Onchain Cloud!
+  Onchain Proof of Data Possession ensures your data is always verifiable.
+\`)
 
-const dataBytes = new TextEncoder().encode(
-  ":rocket: Welcome to decentralized storage on Filecoin Onchain Cloud!",
-);
-const { pieceCid } = await synapse.storage.upload(dataBytes);
+const { transaction } = await synapse.storage.prepare({
+  dataSize: BigInt(data.length)
+})
+if (transaction) await transaction.execute()
 
-await synapse.storage.download(pieceCid);`
+const { pieceCid } = await synapse.storage.upload(data)
+await synapse.storage.download({ pieceCid })`

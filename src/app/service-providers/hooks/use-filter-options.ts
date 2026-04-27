@@ -9,7 +9,6 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
   return useMemo(() => {
     if (data.length === 0) {
       return {
-        status: [],
         location: [],
         capacityMin: 0,
         capacityMax: 0,
@@ -20,7 +19,6 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
       }
     }
 
-    const status = new Set<string>()
     const location = new Set<string>()
     const ipni = new Set<string>()
     const serviceTier = new Set<ServiceTier>()
@@ -31,10 +29,6 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
     let provingPeriodMax = -Infinity
 
     for (const provider of data) {
-      if (provider.serviceStatus) {
-        status.add(provider.serviceStatus)
-      }
-
       location.add(provider.location)
       ipni.add(getYesNoFromBoolean(provider.ipniIpfs))
       serviceTier.add(getServiceTier(provider.isActive, provider.isApproved))
@@ -57,7 +51,6 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
     if (noMaxCapacityFound) capacityMax = 0
 
     return {
-      status: Array.from(status).sort(),
       location: Array.from(location).sort(),
       capacityMin,
       capacityMax,

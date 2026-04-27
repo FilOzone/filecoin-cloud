@@ -11,12 +11,12 @@
     "format": "biome format --write ."
   },
   "dependencies": {
-    "@filecoin-foundation/ui-filecoin": "^0.8.4",
-    "@filoz/synapse-sdk": "^0.39.0",
+    "@filecoin-foundation/ui-filecoin": "^0.9.0",
+    "@filoz/synapse-sdk": "^0.40.0",
     "@headlessui/react": "^2.2.9",
     "@phosphor-icons/react": "^2.1.10",
     "@radix-ui/react-accordion": "^1.2.12",
-    "@tanstack/react-query": "^5.90.16",
+    "@tanstack/react-query": "^5.95.2",
     "@tanstack/react-table": "^8.21.3",
     "bs58": "^6.0.0",
     "class-variance-authority": "^0.7.1",
@@ -24,7 +24,7 @@
     "ethers": "^6.15.0",
     "frontmatter-markdown-loader": "^3.7.0",
     "gray-matter": "^4.0.3",
-    "next": "^16.1.6",
+    "next": "^16.2.1",
     "next-plausible": "^3.12.5",
     "nuqs": "^2.8.9",
     "prop-types": "^15.8.1",
@@ -37,11 +37,11 @@
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
     "slugify": "^1.6.8",
-    "viem": "^2.47.4",
+    "viem": "^2.47.6",
     "zod": "^4.3.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.7",
+    "@biomejs/biome": "2.4.9",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.19",
@@ -54,10 +54,10 @@
     "fast-glob": "^3.3.3",
     "frontmatter-markdown-loader": "^3.7.0",
     "postcss": "^8.5.8",
-    "schema-dts": "^1.1.5",
+    "schema-dts": "^2.0.0",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
-    "typescript": "^5"
+    "typescript": "^6"
   },
   "engines": {
     "node": "^24.0.0",

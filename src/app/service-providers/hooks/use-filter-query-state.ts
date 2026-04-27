@@ -16,7 +16,6 @@ import { parseAsServiceTier } from '../utils/parse-service-tier'
 export type ReachableFilterValue = 'true' | 'false'
 
 export type FilterState = {
-  status: Array<string>
   location: Array<string>
   capacityMin: number | null
   capacityMax: number | null
@@ -30,7 +29,6 @@ export type FilterState = {
 const DEFAULT_REACHABLE_FILTER: Array<ReachableFilterValue> = ['true']
 
 const filterParsers = {
-  status: parseAsArrayOf(parseAsString).withDefault([]),
   location: parseAsArrayOf(parseAsString).withDefault([]),
   capacityMin: parseAsInteger,
   capacityMax: parseAsInteger,

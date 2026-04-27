@@ -35,6 +35,9 @@ const FOC_URLS = {
     proofOfDataPossession:
       'https://docs.filecoin.cloud/core-concepts/pdp-overview/',
   },
+  filecoinCloud: {
+    repository: 'https://github.com/FilOzone/filecoin-cloud',
+  },
   filecoinPay: 'https://pay.filecoin.cloud',
   payments: {
     contractSourceCode:

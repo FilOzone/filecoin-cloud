@@ -15,7 +15,6 @@ type ServiveProviderColumnFilters = Array<{
 }>
 
 export function mapFilterStateToColumnFilters({
-  status,
   location,
   capacityMin,
   capacityMax,
@@ -27,9 +26,6 @@ export function mapFilterStateToColumnFilters({
 }: FilterState) {
   const columnFilters: ServiveProviderColumnFilters = []
 
-  if (status.length > 0) {
-    columnFilters.push({ id: 'serviceStatus', value: status })
-  }
   if (location.length > 0) {
     columnFilters.push({ id: 'location', value: location })
   }
