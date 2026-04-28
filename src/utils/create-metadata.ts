@@ -39,6 +39,7 @@ export function createMetadata({
 }: MetadataParams) {
   const imageUrl = image || DEFAULT_SOCIAL_IMAGE
   const defaultImage = [{ url: imageUrl }]
+  const pageUrl = `${BASE_URL}${path}`
 
   const {
     metadataBase,
@@ -57,7 +58,7 @@ export function createMetadata({
       title: openGraph.title || title,
       description: openGraph.description || description,
       images: openGraph.image ? [{ url: openGraph.image }] : defaultImage,
-      url: BASE_URL,
+      url: pageUrl,
     },
     twitter: {
       ...defaultTwitter,

@@ -1,6 +1,5 @@
 import type { WebPage } from 'schema-dts'
 
-import type { NextRoute } from '@/constants/paths'
 import { BASE_URL } from '@/constants/site-metadata'
 import type { StructuredDataParams } from '@/types/structured-data-params'
 
@@ -20,9 +19,10 @@ import { generateImageObject } from './generate-image-object'
 import { generateServiceSchema } from './generate-service-schema'
 
 type GenerateWebPageStructuredDataProps = StructuredDataParams & {
-  path: NextRoute
+  path: `/${string}`
   pageType: PageType
   imageUrl?: string
+  parentPaths?: Array<{ path: string; title: string }>
   service?: {
     name: string
     description: string
@@ -40,6 +40,7 @@ export function generatePageStructuredData({
   path,
   pageType,
   imageUrl,
+  parentPaths,
   service,
 }: GenerateWebPageStructuredDataProps): WebPageGraph {
   const webPageUrl = `${BASE_URL}${path}`
@@ -77,7 +78,7 @@ export function generatePageStructuredData({
     graph.push(serviceSchema)
   }
 
-  const breadcrumbList = generateBreadcrumbList({ path, title })
+  const breadcrumbList = generateBreadcrumbList({ path, title, parentPaths })
   if (breadcrumbList) {
     graph.push(breadcrumbList)
   }
