@@ -6,11 +6,16 @@ import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { notFound } from 'next/navigation'
 
 import { Navigation } from '@/components/Navigation/Navigation'
+import { StructuredDataScript } from '@/components/StructuredDataScript'
 
+import { PATHS } from '@/constants/paths'
 import { FOC_URLS } from '@/constants/site-metadata'
+import { createMetadata } from '@/utils/create-metadata'
 import { getMarkdownSlugs } from '@/utils/markdown'
 
 import { SubmitProposalButton } from '../components/SubmitProposalButton'
+import { getRFSSeo } from '../constants/seo'
+import { generateRFSStructuredData } from '../utils/generate-structured-data'
 import { getRFSData, OPEN_REQUESTS_DIR } from '../utils/get-rfs-data'
 
 type RFSPageProps = {
@@ -25,6 +30,13 @@ export default async function RFSPage({ params }: RFSPageProps) {
 
     return (
       <>
+        <StructuredDataScript
+          structuredData={generateRFSStructuredData({
+            ...rfsData.data,
+            slug,
+          })}
+        />
+
         <Navigation backgroundVariant="light" />
         <PageSection backgroundVariant="light" paddingVariant="topCompact">
           <article className="flex items-start flex-col space-y-10">
@@ -116,11 +128,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: RFSPageProps) {
   const { slug } = await params
   const rfsData = await getRFSData(slug)
+  const seo = getRFSSeo(rfsData.data)
 
-  return {
-    title: rfsData.data.title,
-    description: rfsData.data.description,
-  }
+  return createMetadata({
+    title: seo.title,
+    description: seo.description,
+    path: `${PATHS.AGENTS.path}/${slug}`,
+  })
 }
 
 export const dynamicParams = false

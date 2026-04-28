@@ -27,7 +27,10 @@ export default async function Agents() {
   return (
     <>
       <StructuredDataScript
-        structuredData={generateStructuredData(AGENTS_SEO)}
+        structuredData={generateStructuredData(
+          AGENTS_SEO,
+          rfsDataList.map(({ data, slug }) => ({ ...data, slug })),
+        )}
       />
 
       <Navigation backgroundVariant="dark" />

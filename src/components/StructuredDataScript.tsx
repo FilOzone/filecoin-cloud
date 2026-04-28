@@ -1,5 +1,7 @@
 import type {
+  Article,
   BreadcrumbList,
+  ItemList,
   Organization,
   Service,
   Thing,
@@ -12,7 +14,15 @@ import type { SCHEMA_CONTEXT_URL } from '@/constants/structured-data'
 
 export type WebPageGraph = {
   '@context': typeof SCHEMA_CONTEXT_URL
-  '@graph': Array<WebPage | BreadcrumbList | Organization | WebSite | Service>
+  '@graph': Array<
+    | WebPage
+    | BreadcrumbList
+    | Organization
+    | WebSite
+    | Service
+    | ItemList
+    | Article
+  >
 }
 
 export type ServicePageGraph = {
