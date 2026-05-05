@@ -28,7 +28,13 @@ import { storageFeatures } from '../data/storage-features'
 import { useContractsTableData } from '../hooks/use-contracts-table-data'
 import { useProviders } from '../hooks/use-providers'
 
-export function WarmStorageServicesClient() {
+type WarmStorageServicesClientProps = {
+  highlightedCode: string
+}
+
+export function WarmStorageServicesClient({
+  highlightedCode,
+}: WarmStorageServicesClientProps) {
   const [network] = useNetwork()
   const networkId = getNetworkId(network)
   const { contractsData } = useContractsTableData(networkId)
@@ -96,7 +102,7 @@ export function WarmStorageServicesClient() {
         </CardGrid>
 
         <div className="pb-15 md:pb-25" />
-        <IntegrateStorageSection />
+        <IntegrateStorageSection highlightedCode={highlightedCode} />
       </PageSection>
 
       <PageSection backgroundVariant="light" paddingVariant="bottomNone">
