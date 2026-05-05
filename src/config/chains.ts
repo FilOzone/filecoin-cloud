@@ -66,7 +66,7 @@ const mainnet: Chain = {
   },
   rpcUrls: {
     default: {
-      http: ['https://api.node.glif.io/'],
+      http: ['https://filecoin.chain.love/'],
       webSocket: ['wss://wss.node.glif.io/apigw/lotus/rpc/v1'],
     },
   },

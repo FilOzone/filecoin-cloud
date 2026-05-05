@@ -104,7 +104,9 @@ export const faqs: Array<Question> = [
           </li>
           <li>
             <strong>Transparent rankings:</strong> The{' '}
-            <MarkdownLink href="https://dealbot.fwss.io/">Storage</MarkdownLink>{' '}
+            <MarkdownLink href="https://dealbot.filoz.org">
+              Storage
+            </MarkdownLink>{' '}
             deal checker continuously tests retrievals across the network,
             executing real deals with providers to track latency, success rates,
             and throughput.{' '}
