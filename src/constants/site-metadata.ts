@@ -38,7 +38,7 @@ const FOC_URLS = {
   filecoinCloud: {
     repository: 'https://github.com/FilOzone/filecoin-cloud',
   },
-  filecoinPay: 'https://pay.filecoin.cloud',
+  filecoinPay: 'https://pay.filecoin.cloud/mainnet',
   payments: {
     contractSourceCode:
       'https://github.com/FilOzone/filecoin-pay/tree/main/src',
@@ -73,7 +73,7 @@ const FOC_URLS = {
       'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/ServiceProviderRegistry.sol',
     sourceCode:
       'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/FilecoinWarmStorageService.sol',
-    spDocumentation: 'https://docs.filecoin.io/storage-providers/pdp/',
+    spDocumentation: 'https://docs.filecoin.io/storage-providers/pdp',
     synapseSdk: 'https://github.com/FilOzone/synapse-sdk',
   },
 }
