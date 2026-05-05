@@ -15,16 +15,11 @@ import {
 } from './data/synapse-code-snippet'
 import { generateStructuredData } from './utils/generate-structured-data'
 
-export default async function WarmStorageService() {
-  // Type-check the code snippet at build time using twoslash.
-  // If @filoz/synapse-sdk introduces breaking changes, this will throw and fail the build.
+// Computed once per process — inputs are constants so there is no need to rerun per request.
+function buildHighlightedCode(): Promise<string> {
+  // Type-check the snippet at module load time; throws on breaking SDK changes.
   const twoslashResult = twoslasher(SYNAPSE_CODE_SNIPPET_TWOSLASH, 'ts', {
-    compilerOptions: {
-      module: 99,
-      target: 99,
-      moduleResolution: 100,
-      strict: true,
-    },
+    compilerOptions: { strict: true },
   })
 
   if (twoslashResult.errors.length > 0) {
@@ -33,33 +28,30 @@ export default async function WarmStorageService() {
     )
   }
 
-  // Render clean syntax highlighting (without twoslash type annotations)
   // Color replacements align the night-owl theme with the original design.
-  const highlightedCode = (
-    await codeToHtml(SYNAPSE_CODE_SNIPPET, {
-      lang: 'typescript',
-      theme: 'night-owl',
-    })
+  return codeToHtml(SYNAPSE_CODE_SNIPPET, {
+    lang: 'typescript',
+    theme: 'night-owl',
+  }).then((html) =>
+    html
+      .replaceAll('#011627', '#020203')
+      .replaceAll('#C792EA', '#3296B4')
+      .replaceAll('#7FDBCA', '#3296B4')
+      .replaceAll('#82AAFF', '#22B095')
+      .replaceAll('#FAF39F', '#22B095')
+      .replaceAll('#ECC48D', '#9FD1D1')
+      .replaceAll('#D9F5DD', '#9FD1D1')
+      .replace(
+        /font-style:italic;color:#D6DEEB/g,
+        'font-style:italic;color:#087A98',
+      ),
   )
-    // Background: navy -> near-black
-    .replaceAll('#011627', '#020203')
-    // Keywords (import, from, await, const, if, =, {, }, ','): purple -> blue-teal
-    .replaceAll('#C792EA', '#3296B4')
-    // `new`, `length`: teal -> blue-teal (same as keywords)
-    .replaceAll('#7FDBCA', '#3296B4')
-    // Function/method calls (create, upload, prepare, encode, etc.): blue -> green-teal
-    .replaceAll('#82AAFF', '#22B095')
-    // `storage` property: yellow -> green-teal (same as functions)
-    .replaceAll('#FAF39F', '#22B095')
-    // String contents: sandy -> light teal
-    .replaceAll('#ECC48D', '#9FD1D1')
-    // String delimiters (""): light green -> light teal (same as strings)
-    .replaceAll('#D9F5DD', '#9FD1D1')
-    // Class/type references (italic Synapse, synapse, data): light gray -> dark teal
-    .replace(
-      /font-style:italic;color:#D6DEEB/g,
-      'font-style:italic;color:#087A98',
-    )
+}
+
+const highlightedCodePromise = buildHighlightedCode()
+
+export default async function WarmStorageService() {
+  const highlightedCode = await highlightedCodePromise
 
   return (
     <>

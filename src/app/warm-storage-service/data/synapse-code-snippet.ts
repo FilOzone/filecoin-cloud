@@ -7,16 +7,19 @@ const synapse = Synapse.create({
 })
 const data = new TextEncoder().encode(\`🚀 Welcome to decentralized storage on Filecoin Onchain Cloud! Onchain Proof of Data Possession ensures your data is always verifiable.\`)
 
-const { transaction } = await 
-  synapse.storage.prepare({
-  dataSize: BigInt(data.length)})
-if (transaction) await transaction.execute()
+const { transaction } = await synapse.storage.prepare({
+  dataSize: BigInt(data.length),
+})
+
+if (transaction) {
+  await transaction.execute()
+}
 
 const { pieceCid } = await synapse.storage.upload(data)
 await synapse.storage.download({ pieceCid })`
 
-// Twoslash compiler directives are prepended for type verification at build time.
-// They are hidden from the rendered output by the twoslash transformer.
+// Twoslash compiler directives are prepended for build-time type verification only.
+// Rendering uses SYNAPSE_CODE_SNIPPET (without directives) via plain Shiki.
 const TWOSLASH_DIRECTIVES = `// @module: esnext
 // @target: esnext
 // @moduleResolution: bundler
