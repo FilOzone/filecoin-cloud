@@ -70,6 +70,7 @@ export default function Homepage() {
                   key="talk-to-team"
                   href={PATHS.CONTACT.path}
                   variant="ghost"
+                  className="!border-zinc-50/40 !bg-transparent hover:!border-zinc-50 hover:!bg-zinc-50/5"
                 >
                   Talk to our team
                 </Button>,
