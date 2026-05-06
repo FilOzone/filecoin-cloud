@@ -81,8 +81,13 @@ export async function submitContact(
     [GOOGLE_FORM_ENTRY_IDS.email]: values.email,
     [GOOGLE_FORM_ENTRY_IDS.projectLink]: values.projectLink,
     [GOOGLE_FORM_ENTRY_IDS.useCase]: values.useCase,
-    [GOOGLE_FORM_ENTRY_IDS.optIn]: values.optIn ? 'Yes' : '',
   })
+  if (values.optIn) {
+    body.append(
+      GOOGLE_FORM_ENTRY_IDS.optIn,
+      'I agree to receive other communications, including marketing information, from us.',
+    )
+  }
 
   try {
     await fetch(GOOGLE_FORM_URL, {
