@@ -20,5 +20,3 @@ export const GOOGLE_FORM_ENTRY_IDS = {
   useCase: 'entry.1762795784',
   optIn: 'entry.586019531',
 } as const
-
-export const IS_FORM_CONFIGURED = !GOOGLE_FORM_URL.includes('REPLACE_WITH')

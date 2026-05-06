@@ -1,4 +1,5 @@
 import { Description, Field, Input, Label } from '@headlessui/react'
+import { useId } from 'react'
 
 import { ErrorMessage } from '@/components/ErrorMessage'
 
@@ -28,6 +29,12 @@ export function TextInputField({
   description,
   error,
 }: TextInputFieldProps) {
+  const reactId = useId()
+  const descriptionId = description ? `${reactId}-description` : undefined
+  const errorId = error ? `${reactId}-error` : undefined
+  const describedBy =
+    [descriptionId, errorId].filter(Boolean).join(' ') || undefined
+
   return (
     <Field>
       <Label className="text-(--color-text-base) text-sm font-medium mb-1 inline-block">
@@ -39,7 +46,10 @@ export function TextInputField({
         )}
       </Label>
       {description && (
-        <Description className="text-(--color-paragraph-text) text-sm mb-1 block">
+        <Description
+          id={descriptionId}
+          className="text-(--color-paragraph-text) text-sm mb-1 block"
+        >
           {description}
         </Description>
       )}
@@ -52,9 +62,11 @@ export function TextInputField({
         autoComplete={autoComplete}
         invalid={Boolean(error)}
         aria-invalid={Boolean(error)}
+        aria-describedby={describedBy}
+        aria-errormessage={errorId}
         className={inputClassName}
       />
-      {error && <ErrorMessage message={error} />}
+      {error && <ErrorMessage id={errorId} message={error} />}
     </Field>
   )
 }

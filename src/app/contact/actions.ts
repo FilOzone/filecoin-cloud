@@ -1,10 +1,6 @@
 'use server'
 
-import {
-  GOOGLE_FORM_ENTRY_IDS,
-  GOOGLE_FORM_URL,
-  IS_FORM_CONFIGURED,
-} from './config'
+import { GOOGLE_FORM_ENTRY_IDS, GOOGLE_FORM_URL } from './config'
 
 export type ContactFormState = {
   status: 'idle' | 'success' | 'error'
@@ -55,23 +51,7 @@ export async function submitContact(
   }
 
   if (Object.keys(fieldErrors).length > 0) {
-    return {
-      status: 'error',
-      message: 'Please fix the errors below and try again.',
-      fieldErrors,
-    }
-  }
-
-  if (!IS_FORM_CONFIGURED) {
-    console.warn(
-      '[contact] Google Form is not yet configured. Submission was not forwarded.',
-      values,
-    )
-    return {
-      status: 'success',
-      message:
-        "Thanks — we'll be in touch shortly. (Note: form delivery is being configured; we received your details on our end.)",
-    }
+    return { status: 'error', fieldErrors }
   }
 
   const body = new URLSearchParams({
@@ -90,11 +70,21 @@ export async function submitContact(
   }
 
   try {
-    await fetch(GOOGLE_FORM_URL, {
+    const response = await fetch(GOOGLE_FORM_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body,
     })
+    if (!response.ok) {
+      console.error(
+        `[contact] Google Form rejected submission: ${response.status} ${response.statusText}`,
+      )
+      return {
+        status: 'error',
+        message:
+          'Something went wrong submitting your message. Please try again or email us directly.',
+      }
+    }
   } catch (error) {
     console.error('[contact] Failed to submit Google Form:', error)
     return {
