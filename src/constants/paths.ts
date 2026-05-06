@@ -10,6 +10,10 @@ export const PATHS = {
     path: '/agents',
     label: 'Agents',
   },
+  CONTACT: {
+    path: '/contact',
+    label: 'Talk to our team',
+  },
   HOMEPAGE: {
     path: '/',
     label: 'Homepage',

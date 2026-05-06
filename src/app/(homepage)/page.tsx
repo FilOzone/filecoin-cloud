@@ -58,14 +58,23 @@ export default function Homepage() {
               variant="highContrast"
               title="Bring the Cloud Onchain"
               description="Filecoin Onchain Cloud lets you build applications that own their data, payments, and logic."
-              cta={
+              cta={[
                 <Button
+                  key="start-building"
                   href={FOC_URLS.documentation.gettingStarted}
                   variant="primary"
                 >
                   Start building
-                </Button>
-              }
+                </Button>,
+                <Button
+                  key="talk-to-team"
+                  href={PATHS.CONTACT.path}
+                  variant="ghost"
+                  className="!border-zinc-50/40 !bg-transparent hover:!border-zinc-50 hover:!bg-zinc-50/5"
+                >
+                  Talk to our team
+                </Button>,
+              ]}
             />
           </div>
         </PageSection>
