@@ -11,10 +11,7 @@ import type {
 } from '@/config/abis'
 import { getChain, type Network } from '@/config/chains'
 import { getPublicClient } from '@/config/client'
-import {
-  providersSchema,
-  type ServiceProvider,
-} from '@/schemas/provider-schema'
+import { providerSchema, type ServiceProvider } from '@/schemas/provider-schema'
 import type { FetchProvidersOptions, ProviderFilter } from '@/types/providers'
 import { getCheckActivityUrl } from '@/utils/provider-urls'
 
@@ -124,15 +121,19 @@ async function enrichProviders(
     providersWithVersions.push(...batchResults)
   }
 
-  const result = providersSchema.safeParse(providersWithVersions)
-  if (!result.success) {
-    console.error('Provider validation failed:', {
-      errors: result.error.issues,
-      providers: providersWithVersions.map((p) => ({ id: p.id, name: p.name })),
-    })
-    throw new Error(`Provider validation failed: ${result.error.message}`)
+  const valid: ServiceProvider[] = []
+  for (const provider of providersWithVersions) {
+    const result = providerSchema.safeParse(provider)
+    if (result.success) {
+      valid.push(result.data)
+    } else {
+      console.warn(
+        `Skipping malformed provider ${provider.id} (${provider.name}):`,
+        result.error.issues,
+      )
+    }
   }
-  return result.data
+  return valid
 }
 
 /**
