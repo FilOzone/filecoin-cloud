@@ -39,6 +39,7 @@ const FOC_URLS = {
     repository: 'https://github.com/FilOzone/filecoin-cloud',
   },
   filecoinPay: 'https://pay.filecoin.cloud/mainnet',
+  status: 'https://status.filoz.org',
   payments: {
     contractSourceCode:
       'https://github.com/FilOzone/filecoin-pay/tree/main/src',

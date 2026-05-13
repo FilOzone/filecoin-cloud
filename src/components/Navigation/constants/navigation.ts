@@ -39,6 +39,10 @@ export const headerNavigationItems: Array<NavItem | NavigationMenuItem> = [
     href: FOC_URLS.documentation.home,
   },
   {
+    label: 'Status',
+    href: FOC_URLS.status,
+  },
+  {
     label: PATHS.CONTACT.label,
     href: PATHS.CONTACT.path,
   },
@@ -64,6 +68,10 @@ export const mobileNavigationItems: Array<NavItem> = [
   {
     label: 'Documentation',
     href: FOC_URLS.documentation.home,
+  },
+  {
+    label: 'Status',
+    href: FOC_URLS.status,
   },
   {
     label: PATHS.CONTACT.label,
