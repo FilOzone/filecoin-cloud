@@ -1,6 +1,15 @@
 'use server'
 
-import { GOOGLE_FORM_ENTRY_IDS, GOOGLE_FORM_URL } from './config'
+import { headers } from 'next/headers'
+
+import {
+  GOOGLE_FORM_ENTRY_IDS,
+  GOOGLE_FORM_URL,
+  HONEYPOT_FIELD_NAME,
+  TURNSTILE_VERIFY_URL,
+} from './config'
+
+const TURNSTILE_TEST_SECRET_PASS = '1x0000000000000000000000000000000AA'
 
 export type ContactFormState = {
   status: 'idle' | 'success' | 'error'
@@ -40,6 +49,13 @@ export async function submitContact(
     optIn: formData.get('optIn') === 'on',
   }
 
+  if (getString(formData, HONEYPOT_FIELD_NAME)) {
+    return {
+      status: 'success',
+      message: "Thanks — we'll be in touch shortly.",
+    }
+  }
+
   const fieldErrors: ContactFormState['fieldErrors'] = {}
   for (const field of REQUIRED_FIELDS) {
     if (!values[field]) {
@@ -52,6 +68,11 @@ export async function submitContact(
 
   if (Object.keys(fieldErrors).length > 0) {
     return { status: 'error', fieldErrors }
+  }
+
+  const turnstileError = await verifyTurnstile(formData)
+  if (turnstileError) {
+    return turnstileError
   }
 
   const body = new URLSearchParams({
@@ -103,4 +124,57 @@ export async function submitContact(
 function getString(formData: FormData, key: string): string {
   const value = formData.get(key)
   return typeof value === 'string' ? value.trim() : ''
+}
+
+async function verifyTurnstile(
+  formData: FormData,
+): Promise<ContactFormState | null> {
+  const token = getString(formData, 'cf-turnstile-response')
+  if (!token) {
+    return {
+      status: 'error',
+      message: 'Please complete the verification challenge before submitting.',
+    }
+  }
+
+  const secret = process.env.TURNSTILE_SECRET_KEY ?? TURNSTILE_TEST_SECRET_PASS
+  const verifyBody = new URLSearchParams({ secret, response: token })
+
+  const forwardedFor = (await headers()).get('x-forwarded-for')
+  const remoteIp = forwardedFor?.split(',')[0]?.trim()
+  if (remoteIp) {
+    verifyBody.append('remoteip', remoteIp)
+  }
+
+  try {
+    const response = await fetch(TURNSTILE_VERIFY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: verifyBody,
+    })
+    const result = (await response.json()) as {
+      success: boolean
+      'error-codes'?: Array<string>
+    }
+    if (!result.success) {
+      console.warn(
+        '[contact] Turnstile verification failed:',
+        result['error-codes'],
+      )
+      return {
+        status: 'error',
+        message:
+          'Verification failed. Please reload the page and try submitting again.',
+      }
+    }
+  } catch (error) {
+    console.error('[contact] Turnstile verification request errored:', error)
+    return {
+      status: 'error',
+      message:
+        'Verification could not be completed. Please reload the page and try submitting again.',
+    }
+  }
+
+  return null
 }
