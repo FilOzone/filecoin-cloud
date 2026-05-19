@@ -4,6 +4,7 @@ import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { Checkbox } from '@filecoin-foundation/ui-filecoin/Checkbox'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { Field, Label } from '@headlessui/react'
+import Script from 'next/script'
 import { useActionState, useState } from 'react'
 
 import { PATHS } from '@/constants/paths'
@@ -11,6 +12,11 @@ import { PATHS } from '@/constants/paths'
 import { TextareaField } from './TextareaField'
 import { TextInputField } from './TextInputField'
 import { type ContactFormState, submitContact } from '../actions'
+import {
+  HONEYPOT_FIELD_NAME,
+  TURNSTILE_SCRIPT_URL,
+  TURNSTILE_SITE_KEY,
+} from '../config'
 
 const INITIAL_STATE: ContactFormState = { status: 'idle' }
 
@@ -36,6 +42,22 @@ export function ContactForm() {
 
   return (
     <form action={formAction} className="space-y-6" noValidate>
+      <Script src={TURNSTILE_SCRIPT_URL} strategy="afterInteractive" async />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-[9999px] h-px w-px overflow-hidden"
+      >
+        <label htmlFor={HONEYPOT_FIELD_NAME}>
+          Leave this field blank
+          <input
+            id={HONEYPOT_FIELD_NAME}
+            name={HONEYPOT_FIELD_NAME}
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </label>
+      </div>
       <div className="grid gap-6 sm:grid-cols-2">
         <TextInputField
           name="firstName"
@@ -112,6 +134,12 @@ export function ContactForm() {
         </ExternalTextLink>
         .
       </p>
+
+      <div
+        className="cf-turnstile"
+        data-sitekey={TURNSTILE_SITE_KEY}
+        data-appearance="always"
+      />
 
       {state.status === 'error' && state.message && !state.fieldErrors && (
         <p role="alert" className="text-(--color-brand-error) text-sm">
