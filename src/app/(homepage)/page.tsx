@@ -1,4 +1,3 @@
-import { Announcement } from '@filecoin-foundation/ui-filecoin/Announcement'
 import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
@@ -46,37 +45,29 @@ export default function Homepage() {
 
         <Navigation backgroundVariant="transparentDark" />
         <PageSection backgroundVariant="transparentDark">
-          <div className="space-y-10">
-            <Announcement
-              href="https://pl-genesis-frontiers-of-collaboration-hackathon.devspot.app/?activeTab=challenges&challenge=466"
-              centered
-            >
-              PL_Genesis Hackathon · Feb 10 - Mar 31 · $2,500 Filecoin Bounty
-            </Announcement>
-            <PageHeader
-              centered
-              variant="highContrast"
-              title="Bring the Cloud Onchain"
-              description="Filecoin Onchain Cloud lets you build applications that own their data, payments, and logic."
-              cta={[
-                <Button
-                  key="start-building"
-                  href={FOC_URLS.documentation.gettingStarted}
-                  variant="primary"
-                >
-                  Start building
-                </Button>,
-                <Button
-                  key="talk-to-team"
-                  href={PATHS.CONTACT.path}
-                  variant="ghost"
-                  className="!border-zinc-50/40 !bg-transparent hover:!border-zinc-50 hover:!bg-zinc-50/5"
-                >
-                  Talk to our team
-                </Button>,
-              ]}
-            />
-          </div>
+          <PageHeader
+            centered
+            variant="highContrast"
+            title="Bring the Cloud Onchain"
+            description="Filecoin Onchain Cloud lets you build applications that own their data, payments, and logic."
+            cta={[
+              <Button
+                key="start-building"
+                href={FOC_URLS.documentation.gettingStarted}
+                variant="primary"
+              >
+                Start building
+              </Button>,
+              <Button
+                key="talk-to-team"
+                href={PATHS.CONTACT.path}
+                variant="ghost"
+                className="!border-zinc-50/40 !bg-transparent hover:!border-zinc-50 hover:!bg-zinc-50/5"
+              >
+                Talk to our team
+              </Button>,
+            ]}
+          />
         </PageSection>
       </div>
 
