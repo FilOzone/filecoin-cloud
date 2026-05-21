@@ -158,6 +158,37 @@ export const faqs: Array<Question> = [
     ),
   },
   {
+    question: 'Where can I get help or report a problem?',
+    answer: (
+      <>
+        <p>Use the channel that matches what you need:</p>
+        <ul>
+          <li>
+            For real-time troubleshooting, jump into the{' '}
+            <MarkdownLink href={FOC_URLS.social.slack}>
+              #fil-foc channel on Filecoin Slack
+            </MarkdownLink>
+            .
+          </li>
+          <li>
+            For reproducible bugs or persistent issues,{' '}
+            <MarkdownLink href={FOC_URLS.filecoinCloud.problemReports}>
+              report a FOC problem on GitHub
+            </MarkdownLink>{' '}
+            so the team can triage it without losing the context.
+          </li>
+          <li>
+            For outages or active incidents, check the{' '}
+            <MarkdownLink href={FOC_URLS.status}>
+              Filecoin Cloud status page
+            </MarkdownLink>
+            .
+          </li>
+        </ul>
+      </>
+    ),
+  },
+  {
     question: 'How can I get involved with the community?',
     answer: (
       <>

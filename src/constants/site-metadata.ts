@@ -36,6 +36,8 @@ const FOC_URLS = {
       'https://docs.filecoin.cloud/core-concepts/pdp-overview/',
   },
   filecoinCloud: {
+    problemReports:
+      'https://github.com/FilOzone/foc-problems/issues/new/choose',
     repository: 'https://github.com/FilOzone/filecoin-cloud',
   },
   filecoinPay: 'https://pay.filecoin.cloud/mainnet',

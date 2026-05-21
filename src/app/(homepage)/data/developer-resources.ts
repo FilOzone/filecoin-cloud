@@ -1,8 +1,10 @@
 import type { LinkCardData } from '@filecoin-foundation/ui-filecoin/LinkCard'
 import {
   BookOpenIcon,
+  GithubLogoIcon,
   GlobeIcon,
-  TelegramLogoIcon,
+  PulseIcon,
+  SlackLogoIcon,
   YoutubeLogoIcon,
 } from '@phosphor-icons/react/dist/ssr'
 
@@ -20,13 +22,23 @@ export const developerResources = [
     icon: BookOpenIcon,
   },
   {
+    title: 'Join #fil-foc on Slack',
+    href: FOC_URLS.social.slack,
+    icon: SlackLogoIcon,
+  },
+  {
+    title: 'Report a FOC problem',
+    href: FOC_URLS.filecoinCloud.problemReports,
+    icon: GithubLogoIcon,
+  },
+  {
+    title: 'Check service status',
+    href: FOC_URLS.status,
+    icon: PulseIcon,
+  },
+  {
     title: 'Explore our YouTube playlist',
     href: 'https://www.youtube.com/watch?v=0oD0J-4lIXg&list=PL_0VrY55uV181dWs7RfIpx0ZAUZeNMjE1',
     icon: YoutubeLogoIcon,
-  },
-  {
-    title: 'Join the community',
-    href: FOC_URLS.social.telegram,
-    icon: TelegramLogoIcon,
   },
 ] as const satisfies Array<LinkCardData>
