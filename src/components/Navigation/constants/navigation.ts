@@ -26,6 +26,11 @@ export const headerNavigationItems: Array<NavItem | NavigationMenuItem> = [
             label: PATHS.AGENTS.label,
             href: PATHS.AGENTS.path,
           },
+          {
+            description: 'Find the right support channel for FOC',
+            label: PATHS.SUPPORT.label,
+            href: PATHS.SUPPORT.path,
+          },
         ],
       },
     ],
@@ -72,6 +77,10 @@ export const mobileNavigationItems: Array<NavItem> = [
   {
     label: 'Status',
     href: FOC_URLS.status,
+  },
+  {
+    label: PATHS.SUPPORT.label,
+    href: PATHS.SUPPORT.path,
   },
   {
     label: PATHS.CONTACT.label,

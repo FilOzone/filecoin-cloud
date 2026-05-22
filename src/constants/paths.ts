@@ -26,6 +26,10 @@ export const PATHS = {
     path: '/service-providers',
     label: 'Service Providers',
   },
+  SUPPORT: {
+    path: '/support',
+    label: 'Support',
+  },
   TERMS_OF_USE: {
     path: '/terms-of-use',
     label: 'Terms of Use',
