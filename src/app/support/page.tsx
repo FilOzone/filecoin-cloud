@@ -9,6 +9,7 @@ import {
   GithubLogoIcon,
   LightbulbIcon,
   PulseIcon,
+  TelegramLogoIcon,
 } from '@phosphor-icons/react/dist/ssr'
 
 import { Navigation } from '@/components/Navigation/Navigation'
@@ -28,6 +29,13 @@ const supportOptions = [
       'Use #fil-foc on Filecoin Slack when you are stuck and need fast back-and-forth with the team or other builders.',
     href: FOC_URLS.social.slack,
     icon: ChatCircleIcon,
+  },
+  {
+    title: 'Join the builder community',
+    description:
+      'Use the FOC Builders Telegram group for community discussion, ideas, and updates with other builders.',
+    href: FOC_URLS.social.telegram,
+    icon: TelegramLogoIcon,
   },
   {
     title: 'Report a FOC problem',
@@ -64,7 +72,7 @@ export default function Support() {
         <PageHeader
           centered
           title="Support"
-          description="Find the right channel for Filecoin Onchain Cloud help, problem reports, service status, and product feedback."
+          description="Find the right channel for Filecoin Onchain Cloud help, community discussion, problem reports, service status, and product feedback."
         />
       </PageSection>
 
