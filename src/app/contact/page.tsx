@@ -2,6 +2,7 @@ import { Container } from '@filecoin-foundation/ui-filecoin/Container'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
+import { SmartTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/SmartTextLink'
 
 import { Navigation } from '@/components/Navigation/Navigation'
 import { StructuredDataScript } from '@/components/StructuredDataScript'
@@ -47,6 +48,13 @@ export default function Contact() {
                   </h2>
                   <p className="text-(--color-paragraph-text)">
                     Use the channel that best matches what you need.
+                  </p>
+                  <p className="text-(--color-paragraph-text)">
+                    For the full list of support and community channels, see the{' '}
+                    <SmartTextLink href={PATHS.SUPPORT.path}>
+                      Support page
+                    </SmartTextLink>
+                    .
                   </p>
                 </div>
 
