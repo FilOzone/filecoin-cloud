@@ -199,12 +199,12 @@ export const faqs: Array<Question> = [
             <MarkdownLink href={FOC_URLS.social.telegram}>
               FOC Builders group on Telegram
             </MarkdownLink>{' '}
-            to ask questions and get support.
+            to meet other builders.
           </li>
           <li>
             Jump into the{' '}
             <MarkdownLink href={FOC_URLS.social.slack}>
-              #FIL-FOC channel on Filecoin Slack
+              #fil-foc channel on Filecoin Slack
             </MarkdownLink>
             .
           </li>
