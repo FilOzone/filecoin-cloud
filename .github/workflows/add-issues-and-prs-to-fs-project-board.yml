@@ -15,7 +15,11 @@ on:
   issues:
     types:
       - opened
-  pull_request:
+  # Using "pull_request_target" instead of "pull_request" to support PRs from forks.
+  # Workflow runs triggered on PRs from forks do not have access to secrets, so "github-token" input below would otherwise be empty.
+  # This action does not check out nor execute user code so we should be safe.
+  # We also hardcode to specific hash to ensure no unintended changes underneath us.
+  pull_request_target:
     types:
       - opened
 
@@ -23,7 +27,6 @@ jobs:
   add-to-project:
     name: Add all issues and prs to project
     runs-on: ubuntu-latest
-    permissions: {}
     steps:
       - uses: actions/add-to-project@v1.0.2
         with:
