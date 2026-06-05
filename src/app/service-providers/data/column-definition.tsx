@@ -55,7 +55,6 @@ export const columns = [
     },
     sortingFn: sortSoftwareVersion,
     sortUndefined: 'last',
-    filterFn: reachableFilterFn,
   }),
   columnHelper.accessor('isActive', {
     id: 'serviceOffered',
@@ -121,5 +120,15 @@ export const columns = [
     },
     sortingFn: 'alphanumeric',
     sortUndefined: 'last',
+  }),
+  // Data-only column that backs the "reachable" filter (from the /pdp/ping probe).
+  // Kept hidden via columnVisibility in ServiceProvidersTable — it never renders,
+  // it just gives the filter its own column id instead of piggybacking on Version.
+  columnHelper.accessor('reachable', {
+    id: 'reachable',
+    header: 'Reachable',
+    enableSorting: false,
+    enableGlobalFilter: false,
+    filterFn: reachableFilterFn,
   }),
 ]

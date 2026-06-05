@@ -51,7 +51,7 @@ export function mapFilterStateToColumnFilters({
     columnFilters.push({ id: 'serviceOffered', value: serviceTier })
   }
   if (reachable.length > 0) {
-    columnFilters.push({ id: 'softwareVersion', value: reachable })
+    columnFilters.push({ id: 'reachable', value: reachable })
   }
 
   return columnFilters
