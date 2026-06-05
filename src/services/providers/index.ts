@@ -15,13 +15,14 @@ import { providerSchema, type ServiceProvider } from '@/schemas/provider-schema'
 import type { FetchProvidersOptions, ProviderFilter } from '@/types/providers'
 import { getCheckActivityUrl } from '@/utils/provider-urls'
 
-import { VERSION_FETCH_CONCURRENCY } from './constants'
+import { ENRICH_CONCURRENCY } from './constants'
 import {
   fetchApprovedProviderIds,
   fetchEndorsedProviderIds,
   fetchProviderById,
   fetchProvidersBulk,
 } from './contract'
+import { fetchReachable } from './ping'
 import type { BaseProviderData } from './types'
 import { fetchSoftwareVersion } from './version'
 
@@ -97,7 +98,7 @@ async function fetchProvidersByFilter(
 }
 
 /**
- * Enrich providers with additional information (software version and check activity URL)
+ * Enrich providers with additional information (software version, reachability, and check activity URL)
  */
 async function enrichProviders(
   providers: BaseProviderData[],
@@ -105,17 +106,20 @@ async function enrichProviders(
 ): Promise<ServiceProvider[]> {
   const providersWithVersions: ServiceProvider[] = []
 
-  // Process providers in batches
-  for (let i = 0; i < providers.length; i += VERSION_FETCH_CONCURRENCY) {
-    const batch = providers.slice(i, i + VERSION_FETCH_CONCURRENCY)
+  // Process providers in batches of ENRICH_CONCURRENCY (each fires /version + /pdp/ping)
+  for (let i = 0; i < providers.length; i += ENRICH_CONCURRENCY) {
+    const batch = providers.slice(i, i + ENRICH_CONCURRENCY)
     const batchResults = await Promise.all(
       batch.map(async (provider) => {
-        const softwareVersion = await fetchSoftwareVersion(provider.serviceUrl)
+        const [softwareVersion, reachable] = await Promise.all([
+          fetchSoftwareVersion(provider.serviceUrl),
+          fetchReachable(provider.serviceUrl),
+        ])
         const checkActivityUrl = getCheckActivityUrl(
           network,
           provider.payeeAddress,
         )
-        return { ...provider, softwareVersion, checkActivityUrl }
+        return { ...provider, softwareVersion, reachable, checkActivityUrl }
       }),
     )
     providersWithVersions.push(...batchResults)

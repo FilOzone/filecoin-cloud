@@ -27,6 +27,7 @@ export const providerSchema = z.object({
   peerId: z.string().optional(),
   pricingPerTb: z.bigint(),
   providerId: z.number(),
+  reachable: z.boolean(),
   serviceProviderAddress: ethereumAddressSchema,
   serviceStatus: z.string().optional(),
   serviceUrl: z.url(),
