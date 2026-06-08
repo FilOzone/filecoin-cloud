@@ -104,7 +104,7 @@ async function enrichProviders(
   providers: BaseProviderData[],
   network: Network,
 ): Promise<ServiceProvider[]> {
-  const providersWithVersions: ServiceProvider[] = []
+  const enrichedProviders: ServiceProvider[] = []
 
   // Process providers in batches of ENRICH_CONCURRENCY (each fires /version + /pdp/ping)
   for (let i = 0; i < providers.length; i += ENRICH_CONCURRENCY) {
@@ -122,11 +122,11 @@ async function enrichProviders(
         return { ...provider, softwareVersion, reachable, checkActivityUrl }
       }),
     )
-    providersWithVersions.push(...batchResults)
+    enrichedProviders.push(...batchResults)
   }
 
   const valid: ServiceProvider[] = []
-  for (const provider of providersWithVersions) {
+  for (const provider of enrichedProviders) {
     const result = providerSchema.safeParse(provider)
     if (result.success) {
       valid.push(result.data)
