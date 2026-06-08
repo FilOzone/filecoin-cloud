@@ -61,6 +61,8 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
     data,
     columns,
     enableMultiSort: false,
+    // Hide the filter-only `reachable` column (defined in column-definition).
+    initialState: { columnVisibility: { reachable: false } },
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
