@@ -1,4 +1,6 @@
-import { VERSION_FETCH_TIMEOUT, VERSION_PATTERN } from './constants'
+import { parseSoftwareVersion } from '@/utils/parse-software-version'
+
+import { VERSION_FETCH_TIMEOUT } from './constants'
 
 /**
  * Parse version from response text
@@ -19,10 +21,10 @@ function parseVersionFromResponse(responseText: string): string {
 }
 
 /**
- * Validate version string format
+ * Validate a version string using the same parser as the table display and CSV.
  */
 function isValidVersion(version: string): boolean {
-  return VERSION_PATTERN.test(version)
+  return parseSoftwareVersion(version) !== undefined
 }
 
 /**
