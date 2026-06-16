@@ -8,6 +8,3 @@ export const VERSION_FETCH_TIMEOUT = 5_000
 export const PING_FETCH_TIMEOUT = 5_000
 export const ENRICH_CONCURRENCY = 20
 export const PDP_PRODUCT_TYPE = 0
-
-export const VERSION_PATTERN =
-  /^\d+\.\d+\.\d+\+\w+\+git_[a-f0-9]+_\d{4}-\d{2}-\d{2}T[\d:+-]+$/

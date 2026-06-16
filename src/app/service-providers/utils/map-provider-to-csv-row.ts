@@ -1,14 +1,13 @@
-import { parseVersionString } from '@filecoin-foundation/ui-filecoin/Table/SoftwareVersion'
-
 import { CURIO_GITHUB_URL } from '@/constants/github-urls'
 import type { ServiceProvider } from '@/schemas/provider-schema'
+import { parseSoftwareVersion } from '@/utils/parse-software-version'
 
 export type MapProviderToCsvRowProps = {
   provider: ServiceProvider
 }
 
 export function mapProviderToCsvRow({ provider }: MapProviderToCsvRowProps) {
-  const versionInfo = parseVersionString(provider.softwareVersion || '')
+  const versionInfo = parseSoftwareVersion(provider.softwareVersion || '')
 
   const EMPTY_VALUE = ''
 
