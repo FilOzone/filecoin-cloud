@@ -16,7 +16,7 @@ import { useCallback, useMemo } from 'react'
 import { ProvidersEmptySearchState } from '@/components/ProvidersEmptySearchState'
 
 import { useSearchQueryState } from '@/hooks/use-search-query-state'
-import type { ServiceProvider } from '@/schemas/provider-schema'
+import type { ServiceProviderRow } from '@/schemas/provider-schema'
 import { globalTableSearchFn } from '@/utils/global-table-search'
 
 import { ExportToCsvLink } from './ExportToCsvLink'
@@ -28,7 +28,7 @@ import { useSortingQueryState } from '../hooks/use-sorting-query-state'
 import { mapFilterStateToColumnFilters } from '../utils/map-filter-state-to-column-filters'
 
 export type ServiceProvidersTableProps = {
-  data: Array<ServiceProvider>
+  data: Array<ServiceProviderRow>
 }
 
 export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
@@ -61,8 +61,6 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
     data,
     columns,
     enableMultiSort: false,
-    // Hide the filter-only `reachable` column (defined in column-definition).
-    initialState: { columnVisibility: { reachable: false } },
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -78,9 +76,13 @@ export function ServiceProvidersTable({ data }: ServiceProvidersTableProps) {
 
   const hasSearchResults = Boolean(table.getRowModel().rows.length)
 
+  // Depend on the row array itself (TanStack returns a new reference when the
+  // data or filters change) so the CSV export picks up runtime fields as each
+  // provider's probe resolves, rather than freezing on the initial render.
+  const filteredRows = table.getFilteredRowModel().rows
   const filteredProviders = useMemo(() => {
-    return table.getFilteredRowModel().rows.map((row) => row.original)
-  }, [table.getFilteredRowModel])
+    return filteredRows.map((row) => row.original)
+  }, [filteredRows])
 
   return (
     <BreakoutContainer>

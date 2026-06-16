@@ -1,12 +1,18 @@
 import type { FilterFn } from '@tanstack/react-table'
 
-import type { ServiceProvider } from '@/schemas/provider-schema'
+import type {
+  ServiceProvider,
+  ServiceProviderRow,
+} from '@/schemas/provider-schema'
 import { getServiceTier } from '@/utils/service-tier'
 
 import { getYesNoFromBoolean } from './get-yes-no-from-boolean'
 import type { Range } from './map-filter-state-to-column-filters'
 import type { FilterState } from '../hooks/use-filter-query-state'
 
+// Base filter fns read only on-chain fields, so they stay typed to
+// `ServiceProvider` and remain shared with the warm-storage table. Only
+// `reachableFilterFn` needs the runtime-augmented `ServiceProviderRow`.
 export const locationFilterFn: FilterFn<ServiceProvider> = (
   row,
   _columnId,
@@ -32,7 +38,7 @@ export const ipniFilterFn: FilterFn<ServiceProvider> = (
   return ipniArray.includes(ipniValue)
 }
 
-export const reachableFilterFn: FilterFn<ServiceProvider> = (
+export const reachableFilterFn: FilterFn<ServiceProviderRow> = (
   row,
   _columnId,
   filterValue,
@@ -41,6 +47,10 @@ export const reachableFilterFn: FilterFn<ServiceProvider> = (
   if (reachableArray.length === 0) return true
 
   // Reachability is determined by a live /pdp/ping probe (see services/providers/ping.ts).
+  // While that probe is still in flight, keep the row visible so a filtered
+  // view never hides a node just because its result hasn't arrived yet.
+  if (row.original.runtimeStatus === 'pending') return true
+
   const reachableValue: FilterState['reachable'][number] = row.original
     .reachable
     ? 'true'
@@ -68,27 +78,6 @@ export const capacityRangeFilterFn: FilterFn<ServiceProvider> = (
 
   if (hasMinFilter && capacityNum < min) return false
   if (hasMaxFilter && capacityNum > max) return false
-
-  return true
-}
-
-export const provingPeriodRangeFilterFn: FilterFn<ServiceProvider> = (
-  row,
-  _columnId,
-  filterValue,
-) => {
-  const { min, max } = filterValue as Range
-
-  const hasMinFilter = min !== null
-  const hasMaxFilter = max !== null
-
-  const noFilterApplied = !hasMinFilter && !hasMaxFilter
-  if (noFilterApplied) return true
-
-  const provingPeriodNum = Number(row.original.minProvingPeriod)
-
-  if (hasMinFilter && provingPeriodNum < min) return false
-  if (hasMaxFilter && provingPeriodNum > max) return false
 
   return true
 }

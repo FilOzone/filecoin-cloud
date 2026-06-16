@@ -2,13 +2,16 @@ import { ID } from '@filecoin-foundation/ui-filecoin/Table/ID'
 import { YesNoStatus } from '@filecoin-foundation/ui-filecoin/Table/YesNoStatus'
 import { createColumnHelper } from '@tanstack/react-table'
 
+import { CellLoadingSpinner } from '@/components/CellLoadingSpinner'
 import { CompactPeerID } from '@/components/compact-peer-id'
 import { PdpScanLink } from '@/components/PdpScanLink'
 import { ProviderOverview } from '@/components/ProviderOverview'
+import { ProviderReachability } from '@/components/ProviderReachability'
 import { ServiceOffered } from '@/components/ServiceOffered'
 import { SoftwareVersion } from '@/components/SoftwareVersion'
 
-import type { ServiceProvider } from '@/schemas/provider-schema'
+import type { ServiceProviderRow } from '@/schemas/provider-schema'
+import { sortReachability } from '@/utils/sort-reachability'
 import { sortServiceTier } from '@/utils/sort-service-tier'
 import { sortSoftwareVersion } from '@/utils/sort-software-version'
 
@@ -16,12 +19,11 @@ import {
   capacityRangeFilterFn,
   ipniFilterFn,
   locationFilterFn,
-  provingPeriodRangeFilterFn,
   reachableFilterFn,
   serviceTierFilterFn,
 } from '../utils/service-provider-filters'
 
-const columnHelper = createColumnHelper<ServiceProvider>()
+const columnHelper = createColumnHelper<ServiceProviderRow>()
 
 export const columns = [
   columnHelper.accessor('id', {
@@ -51,7 +53,12 @@ export const columns = [
     header: 'Version',
     cell: (info) => {
       const softwareVersion = info.getValue()
-      return softwareVersion ? <SoftwareVersion info={softwareVersion} /> : '-'
+      if (softwareVersion) return <SoftwareVersion info={softwareVersion} />
+      // Probe still running: show a spinner instead of an empty value.
+      if (info.row.original.runtimeStatus === 'pending') {
+        return <CellLoadingSpinner />
+      }
+      return '-'
     },
     sortingFn: sortSoftwareVersion,
     sortUndefined: 'last',
@@ -94,12 +101,21 @@ export const columns = [
     sortUndefined: 'last',
     filterFn: capacityRangeFilterFn,
   }),
-  columnHelper.accessor('minProvingPeriod', {
-    header: 'Proving Period (Epochs)',
-    cell: (info) => Number(info.getValue()).toLocaleString('en-US'),
-    sortingFn: 'basic',
-    sortUndefined: 'last',
-    filterFn: provingPeriodRangeFilterFn,
+  columnHelper.accessor('reachable', {
+    id: 'reachable',
+    header: 'Reachability',
+    cell: (info) => {
+      const { runtimeStatus, reachable, latencyMs } = info.row.original
+      return (
+        <ProviderReachability
+          status={runtimeStatus}
+          reachable={reachable}
+          latencyMs={latencyMs}
+        />
+      )
+    },
+    sortingFn: sortReachability,
+    filterFn: reachableFilterFn,
   }),
   columnHelper.accessor('ipniIpfs', {
     header: 'IPNI',
@@ -120,15 +136,5 @@ export const columns = [
     },
     sortingFn: 'alphanumeric',
     sortUndefined: 'last',
-  }),
-  // Data-only column that backs the "reachable" filter (from the /pdp/ping probe).
-  // Kept hidden via columnVisibility in ServiceProvidersTable — it never renders,
-  // it just gives the filter its own column id instead of piggybacking on Version.
-  columnHelper.accessor('reachable', {
-    id: 'reachable',
-    header: 'Reachable',
-    enableSorting: false,
-    enableGlobalFilter: false,
-    filterFn: reachableFilterFn,
   }),
 ]

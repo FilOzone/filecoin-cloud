@@ -12,8 +12,6 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
         location: [],
         capacityMin: 0,
         capacityMax: 0,
-        provingPeriodMin: 0,
-        provingPeriodMax: 0,
         ipni: [],
         serviceTier: [],
       }
@@ -25,8 +23,6 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
 
     let capacityMin = Infinity
     let capacityMax = -Infinity
-    let provingPeriodMin = Infinity
-    let provingPeriodMax = -Infinity
 
     for (const provider of data) {
       location.add(provider.location)
@@ -38,10 +34,6 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
         capacityMin = Math.min(capacityMin, cap)
         capacityMax = Math.max(capacityMax, cap)
       }
-
-      const pp = Number(provider.minProvingPeriod)
-      provingPeriodMin = Math.min(provingPeriodMin, pp)
-      provingPeriodMax = Math.max(provingPeriodMax, pp)
     }
 
     const noMinCapacityFound = capacityMin === Infinity
@@ -54,8 +46,6 @@ export function useFilterOptions(data: Array<ServiceProvider>) {
       location: Array.from(location).sort(),
       capacityMin,
       capacityMax,
-      provingPeriodMin,
-      provingPeriodMax,
       ipni: Array.from(ipni).sort(),
       serviceTier: Array.from(serviceTier).sort((a, b) => b - a),
     } as const

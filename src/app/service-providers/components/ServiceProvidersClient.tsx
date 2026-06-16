@@ -11,13 +11,13 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { ProvidersEmptyLoadingState } from '@/components/ProvidersEmptyLoadingState'
 import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 
-import { useProviders } from '@/app/warm-storage-service/hooks/use-providers'
 import { FOC_URLS } from '@/constants/site-metadata'
 
 import { ServiceProvidersTable } from './ServiceProvidersTable'
+import { useServiceProviders } from '../hooks/use-service-providers'
 
 export function ServiceProvidersClient() {
-  const { data: providers, isLoading, error, refetch } = useProviders()
+  const { data: providers, isLoading, error, refetch } = useServiceProviders()
 
   return (
     <>
