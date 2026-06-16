@@ -17,7 +17,6 @@ import { CountBadge } from '@/components/CountBadge'
 import { CapacityFilter } from './CapacityFilter'
 import { IpniFilter } from './IpniFilter'
 import { LocationFilter } from './LocationFilter'
-import { ProvingPeriodFilter } from './ProvingPeriodFilter'
 import { ReachableFilter } from './ReachableFilter'
 import { ServiceTierFilter } from './ServiceTierFilter'
 import type { useFilterOptions } from '../hooks/use-filter-options'
@@ -40,8 +39,6 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
     serviceTier: serviceTierOptions,
     capacityMin,
     capacityMax,
-    provingPeriodMin,
-    provingPeriodMax,
   } = options
 
   return (
@@ -71,10 +68,6 @@ export function MobileTableFilters({ options }: MobileTableFiltersProps) {
           )}
           <LocationFilter options={locationOptions} />
           <CapacityFilter capacityMin={capacityMin} capacityMax={capacityMax} />
-          <ProvingPeriodFilter
-            provingPeriodMin={provingPeriodMin}
-            provingPeriodMax={provingPeriodMax}
-          />
           <ReachableFilter />
 
           {ipniOptions.length > 1 && <IpniFilter options={ipniOptions} />}

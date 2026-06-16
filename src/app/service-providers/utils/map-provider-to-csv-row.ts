@@ -34,6 +34,16 @@ export function mapProviderToCsvRow({ provider }: MapProviderToCsvRowProps) {
     'Proving Period (Epochs)': provider.minProvingPeriod
       ? String(provider.minProvingPeriod)
       : EMPTY_VALUE,
+    Reachable:
+      provider.reachable === undefined
+        ? EMPTY_VALUE
+        : provider.reachable
+          ? 'True'
+          : 'False',
+    'Latency (ms)':
+      provider.latencyMs === undefined
+        ? EMPTY_VALUE
+        : String(provider.latencyMs),
     IPNI: provider.ipniIpfs ? 'True' : 'False',
     'Peer ID': provider.peerId || EMPTY_VALUE,
   }

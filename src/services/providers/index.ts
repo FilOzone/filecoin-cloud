@@ -22,8 +22,8 @@ import {
   fetchProviderById,
   fetchProvidersBulk,
 } from './contract'
-import { fetchReachable } from './ping'
-import type { BaseProviderData } from './types'
+import { fetchPingResult } from './ping'
+import type { BaseProviderData, ProviderRuntimeInfo } from './types'
 import { fetchSoftwareVersion } from './version'
 
 /**
@@ -98,36 +98,23 @@ async function fetchProvidersByFilter(
 }
 
 /**
- * Enrich providers with additional information (software version, reachability, and check activity URL)
+ * Attach the locally-computed check-activity URL to base contract data and
+ * validate it against the provider schema. Reachability and software version
+ * are intentionally left undefined here — they are probed separately (either
+ * progressively per row via `fetchProviderRuntime`, or in bulk via
+ * `enrichProviders`).
  */
-async function enrichProviders(
+function toServiceProviders(
   providers: BaseProviderData[],
   network: Network,
-): Promise<ServiceProvider[]> {
-  const enrichedProviders: ServiceProvider[] = []
-
-  // Process providers in batches of ENRICH_CONCURRENCY (each fires /version + /pdp/ping)
-  for (let i = 0; i < providers.length; i += ENRICH_CONCURRENCY) {
-    const batch = providers.slice(i, i + ENRICH_CONCURRENCY)
-    const batchResults = await Promise.all(
-      batch.map(async (provider) => {
-        const [softwareVersion, reachable] = await Promise.all([
-          fetchSoftwareVersion(provider.serviceUrl),
-          fetchReachable(provider.serviceUrl),
-        ])
-        const checkActivityUrl = getCheckActivityUrl(
-          network,
-          provider.payeeAddress,
-        )
-        return { ...provider, softwareVersion, reachable, checkActivityUrl }
-      }),
-    )
-    enrichedProviders.push(...batchResults)
-  }
-
+): ServiceProvider[] {
   const valid: ServiceProvider[] = []
-  for (const provider of enrichedProviders) {
-    const result = providerSchema.safeParse(provider)
+  for (const provider of providers) {
+    const candidate = {
+      ...provider,
+      checkActivityUrl: getCheckActivityUrl(network, provider.payeeAddress),
+    }
+    const result = providerSchema.safeParse(candidate)
     if (result.success) {
       valid.push(result.data)
     } else {
@@ -138,6 +125,57 @@ async function enrichProviders(
     }
   }
   return valid
+}
+
+/**
+ * Enrich providers with runtime information (software version + reachability).
+ * Used by the warm-storage page, which renders only once the full list is
+ * ready. The service-providers page instead loads this progressively per row
+ * (see `fetchProviderRuntime`).
+ */
+async function enrichProviders(
+  providers: ServiceProvider[],
+): Promise<ServiceProvider[]> {
+  const enriched: ServiceProvider[] = []
+
+  // Process providers in batches of ENRICH_CONCURRENCY (each fires /version + /pdp/ping)
+  for (let i = 0; i < providers.length; i += ENRICH_CONCURRENCY) {
+    const batch = providers.slice(i, i + ENRICH_CONCURRENCY)
+    const batchResults = await Promise.all(
+      batch.map(async (provider) => {
+        const { softwareVersion, reachable, latencyMs } =
+          await fetchProviderRuntime(provider.serviceUrl)
+        return { ...provider, softwareVersion, reachable, latencyMs }
+      }),
+    )
+    enriched.push(...batchResults)
+  }
+
+  return enriched
+}
+
+/**
+ * Probe a single provider's runtime endpoints (/version + /pdp/ping) in
+ * parallel. Designed to be called once per provider so the service-providers
+ * table can fill in each row independently as its probe resolves, isolating
+ * the impact of any one node's network jitter to that row.
+ *
+ * @param serviceUrl - Provider service URL
+ * @returns Software version, reachability, and ping latency
+ */
+export async function fetchProviderRuntime(
+  serviceUrl?: string,
+): Promise<ProviderRuntimeInfo> {
+  const [softwareVersion, ping] = await Promise.all([
+    fetchSoftwareVersion(serviceUrl),
+    fetchPingResult(serviceUrl),
+  ])
+
+  return {
+    softwareVersion,
+    reachable: ping.reachable,
+    latencyMs: ping.latencyMs,
+  }
 }
 
 /**
@@ -204,6 +242,26 @@ export async function fetchProviders(
   network: Network = 'calibration',
   options?: FetchProvidersOptions,
 ): Promise<ServiceProvider[]> {
+  const baseProviders = await fetchBaseProviders(network, options)
+
+  // Enrich with runtime information (software version + reachability)
+  return enrichProviders(baseProviders)
+}
+
+/**
+ * Fetch providers with only their on-chain (base) data, without probing the
+ * /version or /pdp/ping endpoints. This returns quickly so the
+ * service-providers table can render the full list immediately and then load
+ * each row's runtime info progressively (see `fetchProviderRuntime`).
+ *
+ * @param network - Network to fetch from (default: 'calibration')
+ * @param options - Filter options
+ * @returns Array of service providers with base data and check-activity URL
+ */
+export async function fetchBaseProviders(
+  network: Network = 'calibration',
+  options?: FetchProvidersOptions,
+): Promise<ServiceProvider[]> {
   const filter: ProviderFilter = options?.filter ?? 'approved'
 
   // Initialize contracts
@@ -217,6 +275,5 @@ export async function fetchProviders(
     serviceRegistry,
   })
 
-  // Enrich with additional information
-  return enrichProviders(fetchedProviders, network)
+  return toServiceProviders(fetchedProviders, network)
 }

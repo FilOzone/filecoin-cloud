@@ -19,21 +19,20 @@ export type FilterState = {
   location: Array<string>
   capacityMin: number | null
   capacityMax: number | null
-  provingPeriodMin: number | null
-  provingPeriodMax: number | null
   ipni: Array<string>
   serviceTier: Array<ServiceTier>
   reachable: Array<ReachableFilterValue>
 }
 
-const DEFAULT_REACHABLE_FILTER: Array<ReachableFilterValue> = ['true']
+// Show every node by default; reachability is probed progressively per row, so
+// the list must not hide nodes while their /pdp/ping result is still pending
+// (or fails transiently). Reachability becomes an opt-in filter instead.
+const DEFAULT_REACHABLE_FILTER: Array<ReachableFilterValue> = []
 
 const filterParsers = {
   location: parseAsArrayOf(parseAsString).withDefault([]),
   capacityMin: parseAsInteger,
   capacityMax: parseAsInteger,
-  provingPeriodMin: parseAsInteger,
-  provingPeriodMax: parseAsInteger,
   ipni: parseAsArrayOf(parseAsString).withDefault([]),
   serviceTier: parseAsArrayOf(parseAsServiceTier).withDefault([]),
   reachable: parseAsArrayOf(parseAsReachableFilterValue).withDefault(

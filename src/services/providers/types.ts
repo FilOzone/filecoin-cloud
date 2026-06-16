@@ -5,5 +5,14 @@ import type { ServiceProvider } from '@/schemas/provider-schema'
  */
 export type BaseProviderData = Omit<
   ServiceProvider,
-  'softwareVersion' | 'checkActivityUrl' | 'reachable'
+  'softwareVersion' | 'checkActivityUrl' | 'reachable' | 'latencyMs'
 >
+
+/**
+ * Runtime info probed from a provider's HTTP endpoints (/version + /pdp/ping).
+ */
+export type ProviderRuntimeInfo = {
+  softwareVersion?: string
+  reachable: boolean
+  latencyMs?: number
+}

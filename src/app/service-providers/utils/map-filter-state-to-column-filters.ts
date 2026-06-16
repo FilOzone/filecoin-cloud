@@ -18,8 +18,6 @@ export function mapFilterStateToColumnFilters({
   location,
   capacityMin,
   capacityMax,
-  provingPeriodMin,
-  provingPeriodMax,
   ipni,
   serviceTier,
   reachable,
@@ -36,15 +34,6 @@ export function mapFilterStateToColumnFilters({
     columnFilters.push({
       id: 'capacityTb',
       value: { min: capacityMin, max: capacityMax },
-    })
-  }
-  if (provingPeriodMin !== null || provingPeriodMax !== null) {
-    columnFilters.push({
-      id: 'minProvingPeriod',
-      value: {
-        min: provingPeriodMin,
-        max: provingPeriodMax,
-      },
     })
   }
   if (serviceTier.length > 0) {
