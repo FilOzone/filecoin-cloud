@@ -30,6 +30,9 @@ jobs:
             --max-retries 3
             --timeout 30
             --user-agent "Mozilla/5.0 (compatible; LinkChecker/1.0)"
+            --exclude '^https://github\.com/your-org/your-project$'
+            --exclude '^https://challenges\.cloudflare\.com/turnstile/v0/siteverify$'
+            --exclude '^https://api\.(calibration\.)?node\.glif\.io(/rpc/v1)?/?$'
             --verbose
             --no-progress
             "src/**/*.md"
