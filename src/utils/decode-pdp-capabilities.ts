@@ -73,13 +73,12 @@ function decodeCapacity(capacityHex?: Hex): bigint | undefined {
 
   try {
     // First decode the hex to string to check if it's a text value
-    const decodedValue = hexToString(capacityHex)
+    const decodedValue = hexToString(capacityHex).trim()
     // If it's a non-numeric string (like "enter available storage"), return undefined
-    if (Number.isNaN(Number(decodedValue))) {
+    if (decodedValue === '' || Number.isNaN(Number(decodedValue))) {
       return undefined
     }
-    // Otherwise, convert the original hex to BigInt
-    return BigInt(capacityHex)
+    return BigInt(decodedValue)
   } catch {
     return undefined
   }
