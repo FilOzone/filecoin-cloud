@@ -5,7 +5,8 @@ import { Checkbox } from '@filecoin-foundation/ui-filecoin/Checkbox'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
 import { Field, Label } from '@headlessui/react'
 import Script from 'next/script'
-import { useActionState, useState } from 'react'
+import { usePlausible } from 'next-plausible'
+import { useActionState, useEffect, useState } from 'react'
 
 import { PATHS } from '@/constants/paths'
 
@@ -26,6 +27,13 @@ export function ContactForm() {
     INITIAL_STATE,
   )
   const [optIn, setOptIn] = useState(false)
+  const plausible = usePlausible()
+
+  useEffect(() => {
+    if (state.status === 'success') {
+      plausible('Contact Form Submit')
+    }
+  }, [state.status, plausible])
 
   if (state.status === 'success') {
     return (
