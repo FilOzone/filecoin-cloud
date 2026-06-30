@@ -9,13 +9,29 @@ const ethereumAddressSchema = z
   )
   .transform((value) => getAddress(value) as Address)
 
+const deploymentContractSchema = z
+  .object({
+    initcode_hash: z.string().optional(),
+    artifact_contract: z.string().optional(),
+    libraries: z.record(z.string(), ethereumAddressSchema).optional(),
+    constructor_args: z.array(z.string()).optional(),
+    pinned: z.boolean().optional(),
+  })
+  .passthrough()
+
+const deploymentsMetadataSchema = z
+  .object({
+    note: z.string().optional(),
+    commit: z.string().optional(),
+    deployed_at: z.string().optional(),
+    fwss_version: z.string().optional(),
+    pdp_version: z.string().optional(),
+  })
+  .passthrough()
+
 const chainDeploymentsSchema = z
   .object({
-    metadata: z
-      .object({
-        note: z.string().optional(),
-      })
-      .optional(),
+    metadata: deploymentsMetadataSchema.optional(),
     FILECOIN_PAY_ADDRESS: ethereumAddressSchema,
     PDP_VERIFIER_PROXY_ADDRESS: ethereumAddressSchema,
     PDP_VERIFIER_IMPLEMENTATION_ADDRESS: ethereumAddressSchema,
@@ -27,6 +43,7 @@ const chainDeploymentsSchema = z
     FWSS_IMPLEMENTATION_ADDRESS: ethereumAddressSchema,
     FWSS_VIEW_ADDRESS: ethereumAddressSchema,
     ENDORSEMENT_SET_ADDRESS: ethereumAddressSchema,
+    contracts: z.record(z.string(), deploymentContractSchema).optional(),
   })
   .catchall(ethereumAddressSchema)
 
