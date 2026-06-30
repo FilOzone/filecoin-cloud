@@ -26,6 +26,10 @@ export const PATHS = {
     path: '/service-providers',
     label: 'Service Providers',
   },
+  SHOWCASE: {
+    path: '/showcase',
+    label: 'Showcase',
+  },
   SUPPORT: {
     path: '/support',
     label: 'Support',
