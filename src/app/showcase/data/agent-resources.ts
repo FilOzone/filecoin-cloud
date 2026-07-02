@@ -30,12 +30,12 @@ export const agentResources = [
     },
   },
   {
-    title: 'FOC Storage Skill',
+    title: 'FOC Agent Skills',
     description:
-      'An installable agent skill that wraps the FOC Storage MCP server for Clawdbot, so an agent can run Filecoin storage operations out of the box.',
-    badge: { text: 'Agent skill', variant: 'solid' },
+      'Two installable skills that ship with the FOC CLI. One runs storage and payment operations such as uploads, datasets, and USDFC funding; the other searches the FOC docs so agents can look up references before they build.',
+    badge: { text: 'Agent skills', variant: 'solid' },
     source: {
-      href: 'https://github.com/FIL-Builders/foc-storage-clawdbot-skill',
+      href: 'https://github.com/FIL-Builders/foc-cli/tree/main/skills',
       label: 'View code',
     },
   },
