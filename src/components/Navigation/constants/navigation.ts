@@ -22,6 +22,11 @@ export const headerNavigationItems: Array<NavItem | NavigationMenuItem> = [
         title: 'Resources',
         links: [
           {
+            description: 'Demos, SDKs, and agent tools built on FOC',
+            label: PATHS.SHOWCASE.label,
+            href: PATHS.SHOWCASE.path,
+          },
+          {
             description: 'Learn about the Filecoin Agents program',
             label: PATHS.AGENTS.label,
             href: PATHS.AGENTS.path,
@@ -61,6 +66,10 @@ export const mobileNavigationItems: Array<NavItem> = [
   {
     label: PATHS.SERVICE_PROVIDERS.label,
     href: PATHS.SERVICE_PROVIDERS.path,
+  },
+  {
+    label: PATHS.SHOWCASE.label,
+    href: PATHS.SHOWCASE.path,
   },
   {
     label: PATHS.AGENTS.label,
