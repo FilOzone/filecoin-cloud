@@ -34,6 +34,8 @@ export default function Contact() {
       <PageSection backgroundVariant="light" paddingVariant="topNone">
         <Container>
           <div className="mx-auto max-w-2xl space-y-10">
+            <ContactForm />
+
             <section
               aria-labelledby="technical-support-heading"
               className="border-y border-(--color-border-base) py-8"
@@ -49,13 +51,6 @@ export default function Contact() {
                   <p className="text-(--color-paragraph-text)">
                     Use the channel that best matches what you need.
                   </p>
-                  <p className="text-(--color-paragraph-text)">
-                    For the full list of support and community channels, see the{' '}
-                    <SmartTextLink href={PATHS.SUPPORT.path}>
-                      Support page
-                    </SmartTextLink>
-                    .
-                  </p>
                 </div>
 
                 <ul className="space-y-3 text-(--color-paragraph-text)">
@@ -63,7 +58,7 @@ export default function Contact() {
                     <strong className="font-medium text-(--color-text-base)">
                       Quick troubleshooting:
                     </strong>{' '}
-                    join the{' '}
+                    Join the{' '}
                     <ExternalTextLink href={FOC_URLS.social.slack}>
                       #fil-foc channel on Filecoin Slack
                     </ExternalTextLink>
@@ -76,7 +71,7 @@ export default function Contact() {
                     <ExternalTextLink
                       href={FOC_URLS.filecoinCloud.problemReports}
                     >
-                      report a FOC problem on GitHub
+                      Report a FOC problem on GitHub
                     </ExternalTextLink>
                     .
                   </li>
@@ -84,23 +79,23 @@ export default function Contact() {
                     <strong className="font-medium text-(--color-text-base)">
                       Outages or active incidents:
                     </strong>{' '}
-                    check the{' '}
+                    Check the{' '}
                     <ExternalTextLink href={FOC_URLS.status}>
                       Filecoin Cloud status page
                     </ExternalTextLink>
                     .
                   </li>
-                  <li>
-                    <strong className="font-medium text-(--color-text-base)">
-                      Use cases or product feedback:
-                    </strong>{' '}
-                    send the team a note below.
-                  </li>
                 </ul>
+
+                <p className="text-(--color-paragraph-text)">
+                  For the full list of support and community channels, see the{' '}
+                  <SmartTextLink href={PATHS.SUPPORT.path}>
+                    Support page
+                  </SmartTextLink>
+                  .
+                </p>
               </div>
             </section>
-
-            <ContactForm />
           </div>
         </Container>
       </PageSection>
