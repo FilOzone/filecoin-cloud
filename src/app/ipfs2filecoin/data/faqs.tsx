@@ -4,7 +4,7 @@ import type { Question } from '@/components/Faq'
 
 import { PATHS } from '@/constants/paths'
 
-import { LLMS_TXT_PATH } from '../constants/migration'
+import { RUNBOOK_PATH } from '../constants/migration'
 
 export const faqs: Array<Question> = [
   {
@@ -89,10 +89,10 @@ export const faqs: Array<Question> = [
       <>
         <p>
           All of the work, and none of the spending. The brief at{' '}
-          <MarkdownLink href={LLMS_TXT_PATH}>{LLMS_TXT_PATH}</MarkdownLink>{' '}
-          gives an agent the command sequence, the caps, and the prerequisites,
-          and the tool runs headless with JSON status output so it can read its
-          own progress and recover from failures.
+          <MarkdownLink href={RUNBOOK_PATH}>{RUNBOOK_PATH}</MarkdownLink> gives
+          an agent the command sequence, the caps, and the prerequisites, and
+          the tool runs headless with JSON status output so it can read its own
+          progress and recover from failures.
         </p>
         <p>
           What it hands back to you are the two steps that move money: funding

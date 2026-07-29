@@ -1,6 +1,6 @@
 import {
+  COORDINATION_VOLUME_LABEL,
   MAX_ITEM_SIZE_LABEL,
-  SELF_SERVE_VOLUME_CAP_LABEL,
 } from '../constants/migration'
 
 export const limits = [
@@ -14,9 +14,9 @@ export const limits = [
     description: `Individual assets larger than ${MAX_ITEM_SIZE_LABEL} cannot be moved yet, because splitting them would change their CID and that is the one thing we will not do. Large sets of small items are fine.`,
   },
   {
-    title: `Past ${SELF_SERVE_VOLUME_CAP_LABEL}, talk to us first`,
+    title: `Past ${COORDINATION_VOLUME_LABEL}, talk to us first`,
     description:
-      'A migration that size needs capacity and timing agreed with storage providers before it starts. We would rather scope it with you up front than have you discover the ceiling partway through a run.',
+      'Not a ceiling: there is no cap on how many CIDs an agent or the command line can migrate. But a run that size is worth agreeing with storage providers up front, so capacity and timing are arranged before you start rather than discovered partway through.',
   },
   {
     title: 'Filecoin uses its own identifier underneath',

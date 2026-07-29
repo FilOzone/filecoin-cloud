@@ -22,10 +22,7 @@ import { AgentPrompt } from './components/AgentPrompt'
 import { CidListChecker } from './components/CidListChecker'
 import { ComparisonTable } from './components/ComparisonTable'
 import { CostEstimator } from './components/CostEstimator'
-import {
-  LLMS_TXT_PATH,
-  SELF_SERVE_VOLUME_CAP_LABEL,
-} from './constants/migration'
+import { COORDINATION_VOLUME_LABEL, RUNBOOK_PATH } from './constants/migration'
 import { IPFS2FILECOIN_SEO } from './constants/seo'
 import { faqs } from './data/faqs'
 import { limits } from './data/limits'
@@ -154,9 +151,9 @@ export default function IpfsToFilecoin() {
               </Heading>
               <p className="text-(--color-paragraph-text)">
                 Give this line to Claude Code, Cursor, or any coding agent. It
-                reads the migration brief at{' '}
-                <SmartTextLink href={LLMS_TXT_PATH}>
-                  {LLMS_TXT_PATH}
+                reads the runbook at{' '}
+                <SmartTextLink href={RUNBOOK_PATH}>
+                  {RUNBOOK_PATH}
                 </SmartTextLink>
                 , works through your list, and reports back what landed.
               </p>
@@ -175,9 +172,10 @@ export default function IpfsToFilecoin() {
                 Talk to us
               </Heading>
               <p className="text-(--color-paragraph-text)">
-                For datasets over {SELF_SERVE_VOLUME_CAP_LABEL}, or sources that
-                are not reachable from a public gateway. Tell us what you are
-                holding and we will scope it with you.
+                For sources that are not reachable from a public gateway, or to
+                agree capacity and timing before a run over{' '}
+                {COORDINATION_VOLUME_LABEL}. That is coordination, not a
+                ceiling: the agent path has no cap on how many CIDs it migrates.
               </p>
               <Button
                 href={PATHS.CONTACT.path}
@@ -262,6 +260,6 @@ export const metadata: Metadata = {
      * So an agent pointed at the human URL discovers the migration brief
      * without being told the llms.txt convention.
      */
-    types: { 'text/markdown': LLMS_TXT_PATH },
+    types: { 'text/markdown': RUNBOOK_PATH },
   },
 }

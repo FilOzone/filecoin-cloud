@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local test fixtures, not part of the site
+dapper-labs-nba-topshots-cids.txt
