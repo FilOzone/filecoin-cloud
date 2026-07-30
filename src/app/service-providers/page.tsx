@@ -9,6 +9,8 @@ import { ServiceProvidersClient } from './components/ServiceProvidersClient'
 import { SERVICE_PROVIDERS_SEO } from './constants/seo'
 import { generateStructuredData } from './utils/generate-structured-data'
 
+// Unreachable: redirected to "/" in next.config.ts while this page is hidden.
+// Kept in place so it can be restored by removing that redirect.
 export default function ServiceProviders() {
   return (
     <>
