@@ -19,6 +19,17 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [75, 100],
   },
+  async redirects() {
+    return [
+      // Page temporarily hidden; route code kept at src/app/service-providers.
+      // Remove this entry to restore it.
+      {
+        source: '/service-providers',
+        destination: '/',
+        permanent: false,
+      },
+    ]
+  },
   webpack: (config) => {
     config.module.rules.push(svgrRule)
     config.module.rules.push(markdownRule)
