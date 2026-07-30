@@ -16,7 +16,6 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { ProvidersEmptyLoadingState } from '@/components/ProvidersEmptyLoadingState'
 import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 
-import { PATHS } from '@/constants/paths'
 import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
 import { getNetworkId } from '@/utils/get-network-id'
 
@@ -128,16 +127,10 @@ export function WarmStorageServicesClient({
 
       <PageSection backgroundVariant="light">
         <SectionContent
-          centerCTA
           centerTitle
           headingTag="h2"
           title="Warm Storage Details"
           description="View contract addresses and browse approved storage providers."
-          cta={
-            <Button href={PATHS.SERVICE_PROVIDERS.path} variant="ghost">
-              View all service providers
-            </Button>
-          }
         >
           <div className="flex flex-col gap-6">
             <div className="flex items-center justify-between flex-wrap gap-4">
