@@ -76,8 +76,11 @@ Install once, then every command below runs as \`${CLI_PACKAGE} ...\`:
 
 \`\`\`bash
 npm install -g ${CLI_PACKAGE}@${CLI_VERSION}
-${CLI_PACKAGE} --version
+${CLI_PACKAGE} --help
 \`\`\`
+
+\`--help\` is the install check. There is no \`--version\` subcommand; it exits
+non-zero as an unknown command, which reads like a broken install when it is not.
 
 If you cannot install globally, prefix **every** command in this document with
 \`npx -y ${CLI_PACKAGE}@${CLI_VERSION}\` instead. Do not mix the two forms: a bare
@@ -207,19 +210,27 @@ mention ${CONTACT_URL} as an option and continue if the user wants to.
 
 ### Choosing a packing path
 
-Providers enforce a **minimum piece size** (commonly 1 MiB) and a pull limit of
-roughly ${MAX_ITEM_SIZE_LABEL} raw per item. Read the actual values for your
-chosen provider from \`https://pdp.vxb.ai/\${NETWORK}/providers\` before deciding.
+Providers advertise a **minimum piece size** (commonly 1 MiB) and enforce a pull
+limit of roughly ${MAX_ITEM_SIZE_LABEL} raw per item. Read the actual values for
+your chosen provider from \`https://pdp.vxb.ai/\${NETWORK}/providers\`.
+
+The two limits behave differently, and this matters:
+
+- The **minimum** is advisory. \`pdp-submit\` warns and proceeds by default; pass
+  \`--strict-piece-size\` to refuse instead. So small items are a packing
+  efficiency question, not a blocker.
+- The **pull limit** is hard. An item above it cannot be migrated, because
+  splitting it would change its CID. Hold those out and report them.
 
 Evaluate against the per-probe \`bytes\` in the \`analyze\` JSON:
 
 - **Few sampled items below the provider minimum** → single-asset path
   (the default). Each CID becomes one passthrough item pulled straight from the
   gateway. No staging disk needed.
-- **A meaningful share below the minimum** → multi-asset path, or those CIDs
-  fail at pull time. Needs disk for assembled CARs, and rules out the relay.
-- **Any item above the pull limit** → cannot be migrated; splitting it would
-  change its CID. Hold those out and report them to the user.
+- **A large share below the minimum** → consider the multi-asset path, which
+  batches them into fewer, larger pieces. It needs disk for the assembled CARs
+  and rules out the relay, so it is a trade rather than an obligation. Say which
+  you chose and why.
 
 ## Stage 3 — plan
 
@@ -313,7 +324,7 @@ to declare.
 | --- | --- | --- |
 | \`probe\` reports \`WARN\` | gateway does not serve deterministic CARs | pick another gateway |
 | \`plan\` reports \`oversized\` | padded size exceeds the aggregate budget | hold that CID out, report it |
-| \`below provider min piece size\` | items under the minimum on the passthrough path | switch to the multi-asset path |
+| \`below provider min piece size\` warning | items under the advertised minimum | expected; it proceeds. Use the multi-asset path only to pack more efficiently |
 | provider rejects the pull | \`--source-base\` has a path, or is not a public IP | pass origin only, recheck ingress |
 | submission pauses on \`spike\` | base fee above the gate | wait it out; this is expected |
 | \`set PRIVATE_KEY\` error | key not in that shell's environment | the user exports it in their own terminal |
