@@ -1,9 +1,12 @@
 'use client'
 
 import { Button } from '@filecoin-foundation/ui-filecoin/Button'
+import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
 import { Field, Input, Label, Select } from '@headlessui/react'
+import { CaretDownIcon } from '@phosphor-icons/react/dist/ssr'
+import { clsx } from 'clsx'
 import { usePlausible } from 'next-plausible'
-import { useId, useState } from 'react'
+import { type ChangeEvent, type ReactNode, useId, useState } from 'react'
 
 import {
   BUFFER_DAYS,
@@ -29,10 +32,11 @@ const DURATION_OPTIONS = [
 const fieldClassName =
   'focus:brand-outline block w-full rounded-lg border border-(--input-border-color) p-3 text-(--color-text-base) placeholder:text-(--input-placeholder-color)'
 
+const labelClassName =
+  'mb-1 inline-block font-medium text-(--color-text-base) text-sm'
+
 export function CostEstimator() {
   const volumeId = useId()
-  const unitId = useId()
-  const durationId = useId()
   const plausible = usePlausible()
 
   const [volume, setVolume] = useState('1')
@@ -67,12 +71,9 @@ export function CostEstimator() {
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,2fr)]">
         <Field>
-          <Label
-            htmlFor={volumeId}
-            className="mb-1 inline-block font-medium text-(--color-text-base) text-sm"
-          >
+          <Label htmlFor={volumeId} className={labelClassName}>
             How much data
           </Label>
           <Input
@@ -87,44 +88,30 @@ export function CostEstimator() {
           />
         </Field>
 
-        <Field>
-          <Label
-            htmlFor={unitId}
-            className="mb-1 inline-block font-medium text-(--color-text-base) text-sm"
-          >
-            Unit
-          </Label>
-          <Select
-            id={unitId}
-            value={unit}
-            onChange={(event) => setUnit(event.target.value as VolumeUnit)}
-            className={fieldClassName}
-          >
-            <option value="GiB">GiB</option>
-            <option value="TiB">TiB</option>
-          </Select>
-        </Field>
+        <SelectField
+          label="Unit"
+          value={unit}
+          onChange={(event) => setUnit(event.target.value as VolumeUnit)}
+        >
+          <option value="GiB">GiB</option>
+          <option value="TiB">TiB</option>
+        </SelectField>
+        <p className="text-(--color-paragraph-text-subtle) text-sm sm:col-span-3">
+          Total across everything you are storing, not per CID. 1 TiB is 1,024
+          GiB.
+        </p>
 
-        <Field>
-          <Label
-            htmlFor={durationId}
-            className="mb-1 inline-block font-medium text-(--color-text-base) text-sm"
-          >
-            Funded for
-          </Label>
-          <Select
-            id={durationId}
-            value={days}
-            onChange={(event) => setDays(Number(event.target.value))}
-            className={fieldClassName}
-          >
-            {DURATION_OPTIONS.map(({ label, days: value }) => (
-              <option key={value} value={value}>
-                {label}
-              </option>
-            ))}
-          </Select>
-        </Field>
+        <SelectField
+          label="Funded for"
+          value={days}
+          onChange={(event) => setDays(Number(event.target.value))}
+        >
+          {DURATION_OPTIONS.map(({ label, days: value }) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
+          ))}
+        </SelectField>
       </div>
 
       <Button type="button" variant="primary" onClick={handleEstimate}>
@@ -148,6 +135,43 @@ export function CostEstimator() {
         it.
       </p>
     </div>
+  )
+}
+
+type SelectFieldProps = {
+  label: string
+  value: string | number
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => void
+  children: ReactNode
+}
+
+/**
+ * A native select styled to match the inputs beside it. The browser's own arrow
+ * is replaced so the caret keeps the same inset as the field's text instead of
+ * sitting hard against the border.
+ */
+function SelectField({ label, value, onChange, children }: SelectFieldProps) {
+  const id = useId()
+
+  return (
+    <Field>
+      <Label htmlFor={id} className={labelClassName}>
+        {label}
+      </Label>
+      <div className="relative">
+        <Select
+          id={id}
+          value={value}
+          onChange={onChange}
+          className={clsx(fieldClassName, 'appearance-none pr-11')}
+        >
+          {children}
+        </Select>
+        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-(--color-paragraph-text)">
+          <Icon component={CaretDownIcon} size={20} />
+        </span>
+      </div>
+    </Field>
   )
 }
 
@@ -180,9 +204,9 @@ function EstimateBreakdown({ estimate }: { estimate: CostEstimate }) {
       aria-live="polite"
       className="overflow-x-auto rounded-xl border border-(--color-border-muted)"
     >
-      <table className="w-full text-left text-sm">
+      <table className="w-full text-left text-base">
         <thead>
-          <tr className="border-(--color-border-muted) border-b text-(--color-paragraph-text)">
+          <tr className="border-(--color-border-muted) border-b text-(--color-paragraph-text) text-sm">
             <th scope="col" className="px-5 py-4 font-medium">
               Line
             </th>
@@ -198,13 +222,13 @@ function EstimateBreakdown({ estimate }: { estimate: CostEstimate }) {
           {rows.map(({ label, amount, note }) => (
             <tr key={label} className="border-(--color-border-muted) border-b">
               <td className="px-5 py-4">{label}</td>
-              <td className="px-5 py-4 font-mono">{amount}</td>
+              <td className="px-5 py-4 tabular-nums">{amount}</td>
               <td className="px-5 py-4">{note}</td>
             </tr>
           ))}
           <tr className="text-(--color-text-base)">
             <td className="px-5 py-4 font-medium">Deposit</td>
-            <td className="px-5 py-4 font-medium font-mono text-lg">
+            <td className="px-5 py-4 font-medium text-lg tabular-nums">
               {formatUsd(estimate.deposit)}
             </td>
             <td className="px-5 py-4">
