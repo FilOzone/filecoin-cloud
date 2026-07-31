@@ -22,6 +22,15 @@ const PLACEHOLDER = [
   'QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG',
 ].join('\n')
 
+/** The free-check facts, broken out so they scan as features rather than fine print. */
+const CHECK_FACTS = [
+  'Free, no wallet',
+  `Up to ${BROWSER_CHECK_ITEM_CAP.toLocaleString()} items`,
+  `${MAX_ITEM_SIZE_LABEL} per item`,
+  'Runs in your browser',
+  'Your list is never sent anywhere',
+]
+
 type Verdict =
   | { kind: 'empty' }
   | { kind: 'unreadable'; summary: CidListSummary }
@@ -90,22 +99,23 @@ export function CidListChecker() {
       <Field>
         <Label
           htmlFor={inputId}
-          className="mb-2 inline-block text-(--color-paragraph-text) text-sm"
+          className="mb-2 flex flex-wrap items-baseline gap-x-2 text-(--color-paragraph-text) text-sm"
         >
           Paste the CIDs you want to move
+          <span className="font-medium text-brand-500">one per line</span>
         </Label>
         <Textarea
           id={inputId}
           value={value}
           spellCheck={false}
-          rows={5}
+          rows={4}
           placeholder={PLACEHOLDER}
           onChange={(event) => setValue(event.target.value)}
-          className="focus:brand-outline block min-h-32 w-full resize-y rounded-lg border border-(--input-border-color) p-3 font-mono text-(--color-text-base) text-sm placeholder:text-(--input-placeholder-color)"
+          className="focus:brand-outline block min-h-24 w-full resize-y rounded-lg border border-(--input-border-color) p-3 font-mono text-(--color-text-base) text-sm placeholder:text-(--input-placeholder-color)"
         />
       </Field>
 
-      <div className="mt-3">
+      <div className="mt-3 flex justify-center">
         <Button type="button" variant="primary" onClick={handleCheck}>
           Check my list
         </Button>
@@ -121,17 +131,35 @@ export function CidListChecker() {
         </div>
       )}
 
-      <p className="mt-3 text-(--color-paragraph-text) text-sm/relaxed">
-        Checking is free and needs no wallet, up to{' '}
-        {BROWSER_CHECK_ITEM_CAP.toLocaleString()} items and{' '}
-        {MAX_ITEM_SIZE_LABEL} per item. It runs entirely in your browser, so
-        your list is never sent anywhere. Past that,{' '}
+      <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-(--color-paragraph-text) text-sm">
+        {CHECK_FACTS.map((fact) => (
+          <li key={fact}>{fact}</li>
+        ))}
+      </ul>
+
+      <p className="mt-2 text-(--color-paragraph-text) text-sm/relaxed">
+        Past that,{' '}
         <SmartTextLink href={`${PATHS.IPFS_TO_FILECOIN.path}#agent`}>
           hand the migration to your agent
         </SmartTextLink>
         .
       </p>
     </div>
+  )
+}
+
+/** Offers the cleaned, deduped list as the cids.txt the runbook expects. */
+function DownloadCidsLink({ cids }: { cids: ReadonlyArray<string> }) {
+  const href = `data:text/plain;charset=utf-8,${encodeURIComponent(`${cids.join('\n')}\n`)}`
+
+  return (
+    <a
+      href={href}
+      download="cids.txt"
+      className="text-link focus-visible:brand-outline"
+    >
+      Download cids.txt
+    </a>
   )
 }
 
@@ -174,18 +202,30 @@ function VerdictMessage({ verdict }: { verdict: Verdict }) {
           Hand the list to your agent instead: no cap, and it resumes if it
           stops. {notes}
         </p>
+        <DownloadCidsLink cids={summary.uniqueCids} />
         <AgentPrompt source="verdict" />
       </div>
     )
   }
 
   return (
-    <p>
-      <strong className="font-medium text-(--color-text-base)">
-        {count.toLocaleString()} {pluralize(count, 'CID')} ready to check.
-      </strong>{' '}
-      Estimate what they cost to store below, then hand the list to your agent
-      to fetch, measure, and migrate them. {notes}
-    </p>
+    <div className="space-y-3">
+      <p>
+        <strong className="font-medium text-(--color-text-base)">
+          {count.toLocaleString()} {pluralize(count, 'CID')} ready.
+        </strong>{' '}
+        Give this line to your agent and it will fetch each one, measure it, and
+        migrate it. {notes}
+      </p>
+      <AgentPrompt source="verdict" cids={summary.uniqueCids} />
+      <p>
+        <DownloadCidsLink cids={summary.uniqueCids} />
+      </p>
+      <p className="text-(--color-paragraph-text-subtle)">
+        A check reads the CIDs themselves, not the data behind them, so it
+        cannot tell how many bytes you are holding. Enter that in the estimator
+        below to price it.
+      </p>
+    </div>
   )
 }
