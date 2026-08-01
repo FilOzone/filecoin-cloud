@@ -1,7 +1,6 @@
 import { Button } from '@filecoin-foundation/ui-filecoin/Button'
 import { Card } from '@filecoin-foundation/ui-filecoin/Card'
 import { CardGrid } from '@filecoin-foundation/ui-filecoin/CardGrid'
-import { Container } from '@filecoin-foundation/ui-filecoin/Container'
 import { Heading } from '@filecoin-foundation/ui-filecoin/Heading'
 import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
@@ -22,6 +21,7 @@ import { AgentPrompt } from './components/AgentPrompt'
 import { CidListChecker } from './components/CidListChecker'
 import { ComparisonTable } from './components/ComparisonTable'
 import { CostEstimator } from './components/CostEstimator'
+import { StepList } from './components/StepList'
 import { COORDINATION_VOLUME_LABEL, RUNBOOK_PATH } from './constants/migration'
 import { IPFS2FILECOIN_SEO } from './constants/seo'
 import { faqs } from './data/faqs'
@@ -32,6 +32,14 @@ import { generateStructuredData } from './utils/generate-structured-data'
 
 const ghostOnDark =
   '!border-zinc-50/40 !bg-transparent hover:!border-zinc-50 hover:!bg-zinc-50/5'
+
+/**
+ * `ExternalTextLink` sizes its arrow for button-style links: a fixed 16px glyph
+ * set `ml-1` off the label. Inside a 14px paragraph that reads as oversized and
+ * detached, so pull it in and scale it to the text. Fix belongs upstream in
+ * ui-filecoin; this keeps the footnote legible until then.
+ */
+const inlineExternalLink = '[&>span]:ml-0.5 [&_svg]:size-3.5'
 
 export default function IpfsToFilecoin() {
   return (
@@ -49,11 +57,9 @@ export default function IpfsToFilecoin() {
           title="Move your pinned IPFS data to Filecoin"
           description="Same CIDs, a fraction of what pinning services charge, and an onchain receipt you can verify yourself."
         />
-        <Container>
-          <div className="mt-10">
-            <CidListChecker />
-          </div>
-        </Container>
+        <div className="mt-10">
+          <CidListChecker />
+        </div>
       </PageSection>
 
       <PageSection backgroundVariant="gray">
@@ -63,12 +69,13 @@ export default function IpfsToFilecoin() {
           description="Your data keeps working the way it does today. What changes is the price, the proof, and who owns it."
         >
           <CardGrid as="ul" variant="lgTwoWide">
-            {reasons.map(({ title, description }) => (
+            {reasons.map(({ title, description, icon }) => (
               <Card
                 key={title}
                 as="li"
                 title={title}
                 description={description}
+                icon={icon}
               />
             ))}
           </CardGrid>
@@ -88,11 +95,17 @@ export default function IpfsToFilecoin() {
               Filecoin Warm Storage is $2.50 per TiB per month per copy at two
               copies. Other rates are published list overage rates as of 27 July
               2026, from{' '}
-              <ExternalTextLink href="https://filebase.com/pricing/">
+              <ExternalTextLink
+                className={inlineExternalLink}
+                href="https://filebase.com/pricing/"
+              >
                 Filebase
               </ExternalTextLink>{' '}
               and{' '}
-              <ExternalTextLink href="https://pinata.cloud/pricing">
+              <ExternalTextLink
+                className={inlineExternalLink}
+                href="https://pinata.cloud/pricing"
+              >
                 Pinata
               </ExternalTextLink>
               . Filecoin includes two replicas; the other services do not
@@ -103,20 +116,18 @@ export default function IpfsToFilecoin() {
       </PageSection>
 
       <PageSection backgroundVariant="light" paddingVariant="topNone">
-        <Container>
-          <div className="max-w-4xl space-y-6">
-            <Heading tag="h2" variant="card-heading">
-              Estimate your deposit
-            </Heading>
-            <p className="text-(--color-paragraph-text)">
-              Storage is charged continuously while your data sits there, so you
-              deposit for a period rather than paying a monthly bill. Enter
-              roughly how much you are holding and how long you want to be
-              covered. This runs in your browser and nothing is sent anywhere.
-            </p>
-            <CostEstimator />
-          </div>
-        </Container>
+        <div className="max-w-4xl space-y-6">
+          <Heading tag="h2" variant="card-heading">
+            Estimate your deposit
+          </Heading>
+          <p className="text-(--color-paragraph-text)">
+            Storage is charged continuously while your data sits there, so you
+            deposit for a period rather than paying a monthly bill. Enter
+            roughly how much you are holding and how long you want to be
+            covered. This runs in your browser and nothing is sent anywhere.
+          </p>
+          <CostEstimator />
+        </div>
       </PageSection>
 
       <PageSection backgroundVariant="gray">
@@ -125,16 +136,7 @@ export default function IpfsToFilecoin() {
           title="How it works"
           description="Four steps, and the first two are free."
         >
-          <CardGrid as="ul" variant="smTwoLgThreeWider">
-            {steps.map(({ number, title, description }) => (
-              <Card
-                key={title}
-                as="li"
-                title={`${number}. ${title}`}
-                description={description}
-              />
-            ))}
-          </CardGrid>
+          <StepList steps={steps} />
         </SectionContent>
       </PageSection>
 
@@ -144,8 +146,8 @@ export default function IpfsToFilecoin() {
           title="Nobody should migrate an archive by clicking"
           description="Real migrations run unattended, so that is the path this is built around. Check a list for free, get your account funded in one pass, then hand the work to your agent or to us."
         >
-          <div className="grid gap-8 lg:grid-cols-2">
-            <div id="agent" className="scroll-mt-24 space-y-4">
+          <div className="grid gap-10 lg:grid-cols-3 lg:gap-15">
+            <div id="agent" className="scroll-mt-24 space-y-4 lg:col-span-2">
               <Heading tag="h3" variant="card-heading">
                 Ask your agent to do it
               </Heading>
@@ -167,7 +169,7 @@ export default function IpfsToFilecoin() {
               <AgentPrompt source="agent-door" />
             </div>
 
-            <div className="space-y-4">
+            <div className="h-fit space-y-4 rounded-xl border border-(--color-border-base) bg-(--color-card-background) p-6">
               <Heading tag="h3" variant="card-heading">
                 Talk to us
               </Heading>
@@ -195,7 +197,7 @@ export default function IpfsToFilecoin() {
           title="What this does not do"
           description="The things worth knowing up front, so nothing surprises you halfway through a run."
         >
-          <dl className="divide-y divide-(--color-border-muted) border-(--color-border-muted) border-t">
+          <dl className="max-w-5xl divide-y divide-(--color-border-muted) border-(--color-border-muted) border-t">
             {limits.map(({ title, description }) => (
               <div
                 key={title}

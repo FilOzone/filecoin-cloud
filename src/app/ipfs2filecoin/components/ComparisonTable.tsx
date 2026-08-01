@@ -5,9 +5,9 @@ import { pricingComparison } from '../data/pricing-comparison'
 export function ComparisonTable() {
   return (
     <div className="overflow-x-auto rounded-xl border border-(--color-border-muted)">
-      <table className="w-full min-w-140 text-left text-sm">
+      <table className="w-full min-w-140 text-left text-base">
         <thead>
-          <tr className="border-(--color-border-muted) border-b text-(--color-paragraph-text)">
+          <tr className="border-(--color-border-muted) border-b text-(--color-paragraph-text) text-sm">
             <th scope="col" className="px-5 py-4 font-medium">
               Where the data lives
             </th>
@@ -26,10 +26,15 @@ export function ComparisonTable() {
                 key={service}
                 className="border-(--color-border-muted) border-b last:border-b-0"
               >
+                {/*
+                  Service names carry the same typeface as the figures on purpose.
+                  They were previously monospace, which read as a size jump and
+                  made the names look smaller than the numbers beside them.
+                */}
                 <th
                   scope="row"
                   className={clsx(
-                    'px-5 py-4 font-normal',
+                    'px-5 py-4 font-normal text-lg',
                     highlighted && 'font-medium text-(--color-text-base)',
                   )}
                 >
@@ -37,13 +42,14 @@ export function ComparisonTable() {
                 </th>
                 <td
                   className={clsx(
-                    'px-5 py-4 font-mono whitespace-nowrap',
-                    highlighted && 'text-(--color-text-base) text-lg',
+                    'whitespace-nowrap px-5 py-4 tabular-nums',
+                    highlighted &&
+                      'font-medium text-(--color-text-base) text-lg',
                   )}
                 >
                   {storagePerTbMonth}
                 </td>
-                <td className="px-5 py-4 font-mono whitespace-nowrap">
+                <td className="whitespace-nowrap px-5 py-4 tabular-nums">
                   {egress}
                 </td>
               </tr>
