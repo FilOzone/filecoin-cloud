@@ -9,6 +9,7 @@ import {
   BUFFER_DAYS,
   COPIES,
   PLAUSIBLE_EVENTS,
+  USD_FLAT_PER_DATA_SET_MONTH,
   USD_PER_TIB_MONTH_PER_COPY,
 } from '../constants/migration'
 import {
@@ -141,11 +142,11 @@ export function CostEstimator() {
 
       <p className="text-(--color-paragraph-text) text-sm/relaxed">
         Based on {formatUsd(USD_PER_TIB_MONTH_PER_COPY)} per TiB per month per
-        copy plus proving, across {COPIES} copies. Gas is separate, so you also
-        need a small amount of FIL. A deposit funds a rate rather than a term:
-        storing more data later spends the balance faster and moves your
-        funded-until date earlier. The exact deposit is shown before you approve
-        it.
+        copy, plus a flat {formatUsd(USD_FLAT_PER_DATA_SET_MONTH)} per data set
+        per month, across {COPIES} copies. Gas is separate, so you also need a
+        small amount of FIL. A deposit funds a rate rather than a term: storing
+        more data later spends the balance faster and moves your funded-until
+        date earlier. The exact deposit is shown before you approve it.
       </p>
     </div>
   )
@@ -158,7 +159,7 @@ function EstimateBreakdown({ estimate }: { estimate: CostEstimate }) {
 
   const rows = [
     {
-      label: `Storage and proving for ${durationLabel}`,
+      label: `Storage for ${durationLabel}`,
       amount: formatUsd(estimate.storage),
       note: 'No, this is the cost',
     },

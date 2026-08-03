@@ -11,9 +11,9 @@ import {
   DAYS_PER_MONTH,
   MAX_ITEM_SIZE_LABEL,
   RUNBOOK_PATH,
+  USD_FLAT_PER_DATA_SET_MONTH,
   USD_LIFECYCLE_RESERVE_PER_DATA_SET,
   USD_PER_TIB_MONTH_PER_COPY,
-  USD_PROVING_PER_TIB_MONTH_PER_COPY,
 } from '../constants/migration'
 
 const CONTACT_URL = `${BASE_URL}${PATHS.CONTACT.path}`
@@ -178,13 +178,16 @@ completion time. Derive those as below; do not invent a formula.
 
 ### Cost formula
 
-Storage is ${USD_PER_TIB_MONTH_PER_COPY} USDFC per TiB per month per copy plus
-${USD_PROVING_PER_TIB_MONTH_PER_COPY} proving, across ${COPIES} copies by default:
+Storage is ${USD_PER_TIB_MONTH_PER_COPY} USDFC per TiB per month per copy, plus
+a flat ${USD_FLAT_PER_DATA_SET_MONTH} per data set per month, across ${COPIES}
+copies by default. The flat fee is added ONCE per data set, not multiplied by
+size. Folding it into a per-TiB rate is exact at 1 TiB and wrong at every other
+size, badly so below it:
 
 \`\`\`
-burn_per_TiB_month = (${USD_PER_TIB_MONTH_PER_COPY} + ${USD_PROVING_PER_TIB_MONTH_PER_COPY}) × ${COPIES}
-storage   = size_TiB × burn_per_TiB_month × (days_funded ÷ ${DAYS_PER_MONTH})
-buffer    = size_TiB × burn_per_TiB_month          # ${BUFFER_DAYS} days, refundable
+burn_per_month = (size_TiB × ${USD_PER_TIB_MONTH_PER_COPY} + ${USD_FLAT_PER_DATA_SET_MONTH}) × ${COPIES}
+storage   = burn_per_month × (days_funded ÷ ${DAYS_PER_MONTH})
+buffer    = burn_per_month                         # ${BUFFER_DAYS} days, refundable
 reserve   = ${USD_LIFECYCLE_RESERVE_PER_DATA_SET} × ${COPIES}                     # per data set, unused portion returns
 deposit   = storage + buffer + reserve
 \`\`\`

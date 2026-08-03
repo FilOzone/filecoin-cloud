@@ -31,8 +31,14 @@ export const CLI_VERIFIED_FROM = '0.4.0'
 export const USD_PER_TIB_MONTH_PER_COPY = 2.5
 export const COPIES = 2
 
-/** Proving buffer charged alongside storage, per TiB per month per copy. */
-export const USD_PROVING_PER_TIB_MONTH_PER_COPY = 0.024
+/**
+ * Flat fee per data set per month, charged alongside the size-based rate. It
+ * does NOT scale with stored size: a data set's monthly rate is
+ * `size_TiB * USD_PER_TIB_MONTH_PER_COPY + USD_FLAT_PER_DATA_SET_MONTH`.
+ * Verified against live mainnet rail 2286, which stores 1.511356 TiB and pays
+ * 3.8023902 USDFC/month, matching that formula to five decimal places.
+ */
+export const USD_FLAT_PER_DATA_SET_MONTH = 0.024
 
 /** Held per data set, and one data set is created per copy. Unused portion returns. */
 export const USD_LIFECYCLE_RESERVE_PER_DATA_SET = 0.1
