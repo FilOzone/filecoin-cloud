@@ -86,8 +86,7 @@ export default function IpfsToFilecoin() {
 
             <p className="text-(--color-paragraph-text) text-sm/relaxed">
               Filecoin Warm Storage is $2.50 per TiB per month per copy at two
-              copies. Other rates are published list overage rates as of 27 July
-              2026, from{' '}
+              copies. Other rates are the published list overage rates from{' '}
               <ExternalTextLink href="https://filebase.com/pricing/">
                 Filebase
               </ExternalTextLink>{' '}
