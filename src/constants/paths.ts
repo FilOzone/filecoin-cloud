@@ -18,6 +18,10 @@ export const PATHS = {
     path: '/',
     label: 'Homepage',
   },
+  IPFS_TO_FILECOIN: {
+    path: '/ipfs2filecoin',
+    label: 'IPFS to Filecoin',
+  },
   PRIVACY_POLICY: {
     path: '/privacy-policy',
     label: 'Privacy Policy',
