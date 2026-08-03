@@ -15,10 +15,17 @@ export const MAX_ITEM_SIZE_LABEL = '1 GiB'
  */
 export const COORDINATION_VOLUME_LABEL = '500 GiB'
 
-/** The ipfs2foc release this runbook's commands and flags were verified against. */
 export const CLI_PACKAGE = 'ipfs2foc'
-export const CLI_VERSION = '0.6.0'
 export const CLI_REPO_URL = 'https://github.com/FilOzone/ipfs2foc'
+
+/**
+ * Do not pin the install to an exact version here. The repo runs ahead of npm
+ * (0.6.0 in tree while 0.4.0 was the published latest), so a pin to the tree
+ * version resolves to nothing and the very first command an agent runs fails
+ * with ETARGET. Every command and flag this runbook uses is present from
+ * 0.4.0 onward, so installing latest is both correct and safe.
+ */
+export const CLI_VERIFIED_FROM = '0.4.0'
 
 /** Warm storage list price, per copy. Two copies are stored by default. */
 export const USD_PER_TIB_MONTH_PER_COPY = 2.5

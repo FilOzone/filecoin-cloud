@@ -5,7 +5,7 @@ import {
   BUFFER_DAYS,
   CLI_PACKAGE,
   CLI_REPO_URL,
-  CLI_VERSION,
+  CLI_VERIFIED_FROM,
   COORDINATION_VOLUME_LABEL,
   COPIES,
   DAYS_PER_MONTH,
@@ -21,13 +21,14 @@ const LANDING_URL = `${BASE_URL}${PATHS.IPFS_TO_FILECOIN.path}`
 
 /**
  * The executable procedure served at {@link RUNBOOK_PATH}. This is the product
- * for the agent audience, so it names the tool, pins the version its flags were
- * verified against, and states its stop conditions explicitly. Every claim here
- * should be checkable against the ipfs2foc README.
+ * for the agent audience, so it names the tool, states the version its commands
+ * are known to work from, and makes its stop conditions explicit. Every claim
+ * here should be checkable against the ipfs2foc CLI itself, not just its README:
+ * the two have disagreed before.
  */
 export const MIGRATION_RUNBOOK = `---
 tool: ${CLI_PACKAGE}
-tool_version: "${CLI_VERSION}"
+tool_min_version: "${CLI_VERIFIED_FROM}"
 tool_repo: ${CLI_REPO_URL}
 node: ">=26"
 default_network: mainnet
@@ -52,8 +53,8 @@ never:
 > commitment or packing pipeline of your own — the on-chain add rejects a
 > mismatched commitment, so an improvised pipeline fails late and expensively.
 
-Verified against \`${CLI_PACKAGE}@${CLI_VERSION}\`. Full command reference:
-${CLI_REPO_URL}
+Every command and flag below is present from \`${CLI_PACKAGE}@${CLI_VERIFIED_FROM}\`
+onward. Full command reference: ${CLI_REPO_URL}
 
 ## Rules
 
@@ -75,7 +76,7 @@ ${CLI_REPO_URL}
 Install once, then every command below runs as \`${CLI_PACKAGE} ...\`:
 
 \`\`\`bash
-npm install -g ${CLI_PACKAGE}@${CLI_VERSION}
+npm install -g ${CLI_PACKAGE}
 ${CLI_PACKAGE} --help
 \`\`\`
 
@@ -83,7 +84,7 @@ ${CLI_PACKAGE} --help
 non-zero as an unknown command, which reads like a broken install when it is not.
 
 If you cannot install globally, prefix **every** command in this document with
-\`npx -y ${CLI_PACKAGE}@${CLI_VERSION}\` instead. Do not mix the two forms: a bare
+\`npx -y ${CLI_PACKAGE}@latest\` instead. Do not mix the two forms: a bare
 \`${CLI_PACKAGE}\` after only an \`npx\` check is the most common first failure.
 
 Set the network once and pass it to every on-chain command:
