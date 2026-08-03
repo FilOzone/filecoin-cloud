@@ -6,8 +6,12 @@ import { BASE_URL } from '@/constants/site-metadata'
  */
 export const BROWSER_CHECK_ITEM_CAP = 500
 
-/** A hard limit: a larger item cannot be split without changing its CID. */
-export const MAX_ITEM_SIZE_LABEL = '1 GiB'
+/**
+ * A hard limit: an item's CAR must fit one uploadable piece, capped at
+ * 1,065,353,216 bytes (1016 MiB) by the storage SDK. A larger item cannot be
+ * split without changing its CID.
+ */
+export const MAX_ITEM_SIZE_LABEL = '1016 MiB'
 
 /**
  * Above this, capacity and timing are worth agreeing with providers before a
@@ -22,10 +26,13 @@ export const CLI_REPO_URL = 'https://github.com/FilOzone/ipfs2foc'
  * Do not pin the install to an exact version here. The repo runs ahead of npm
  * (0.6.0 in tree while 0.4.0 was the published latest), so a pin to the tree
  * version resolves to nothing and the very first command an agent runs fails
- * with ETARGET. Every command and flag this runbook uses is present from
- * 0.4.0 onward, so installing latest is both correct and safe.
+ * with ETARGET. Installing latest is both correct and safe.
+ *
+ * The `upload` command this runbook is built on ships in the release cut from
+ * FilOzone/ipfs2foc#71. GATE: do not merge/deploy this page until npm serves
+ * a version >= this constant (`npm view ipfs2foc version`).
  */
-export const CLI_VERIFIED_FROM = '0.4.0'
+export const CLI_VERIFIED_FROM = '0.8.0'
 
 /** Warm storage list price, per copy. Two copies are stored by default. */
 export const USD_PER_TIB_MONTH_PER_COPY = 2.5

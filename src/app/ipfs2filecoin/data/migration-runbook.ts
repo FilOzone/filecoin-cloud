@@ -25,6 +25,11 @@ const LANDING_URL = `${BASE_URL}${PATHS.IPFS_TO_FILECOIN.path}`
  * are known to work from, and makes its stop conditions explicit. Every claim
  * here should be checkable against the ipfs2foc CLI itself, not just its README:
  * the two have disagreed before.
+ *
+ * Built on the direct-upload flow (`ipfs2foc upload`, FilOzone/ipfs2foc#71):
+ * the client downloads, packs multi-root CARs locally, streams each straight to
+ * the storage providers, and batches the on-chain adds. No public HTTPS origin,
+ * tunnel, or relay is involved anywhere in this procedure.
  */
 export const MIGRATION_RUNBOOK = `---
 tool: ${CLI_PACKAGE}
@@ -35,9 +40,8 @@ default_network: mainnet
 input: a text file of IPFS CIDs, one per line
 item_size_limit: ${MAX_ITEM_SIZE_LABEL}
 item_count_limit: none
-stop_and_ask:
-  - stage 0, before exposing a local port to the internet
-  - stage 4, before any transaction that spends
+disk: free space roughly the size of the data being migrated, for staged CARs
+stop_and_ask: stage 3, before any transaction that spends
 never:
   - re-chunk or alter content
   - delete data from the existing provider
@@ -47,11 +51,16 @@ never:
 # Migrate IPFS data to Filecoin — agent runbook
 
 > You are migrating already-pinned IPFS CIDs onto Filecoin warm storage using
-> the \`${CLI_PACKAGE}\` CLI. Each CID stays byte-identical and, on a data set
-> created with IPFS indexing, keeps resolving over IPFS afterwards. This
-> document is the whole procedure. Run these commands. Do not build a
-> commitment or packing pipeline of your own — the on-chain add rejects a
-> mismatched commitment, so an improvised pipeline fails late and expensively.
+> the \`${CLI_PACKAGE}\` CLI. Each CID stays byte-identical and, because data
+> sets are created with IPFS indexing, keeps resolving over IPFS afterwards.
+> This document is the whole procedure. Run these commands. Do not build a
+> commitment, packing, or upload pipeline of your own — the on-chain add
+> rejects a mismatched commitment, so an improvised pipeline fails late and
+> expensively.
+
+The migration runs entirely from this machine: download, pack, and upload
+straight to ${COPIES} storage providers. Nothing here requires a public HTTPS
+origin, a tunnel, or inbound connectivity of any kind.
 
 Every command and flag below is present from \`${CLI_PACKAGE}@${CLI_VERIFIED_FROM}\`
 onward. Full command reference: ${CLI_REPO_URL}
@@ -63,9 +72,10 @@ onward. Full command reference: ${CLI_REPO_URL}
 2. **Never delete data from the current provider.** Verification comes first;
    deletion is the user's decision afterwards.
 3. **Never take a private key into your context.** Not in chat, not in a file
-   you read. Stage 4 is executed by the user in their own terminal.
-4. **Stop and ask at the two gates below.** Exposing a local port (stage 0) and
-   spending (stage 4) are the user's decisions.
+   you read. The key lives in a shell environment; stage 3 is executed by the
+   user in their own terminal.
+4. **Stop and ask at the funding gate (stage 3).** Spending is the user's
+   decision.
 5. **The deposit is the ceiling.** A key that can sign on the account can draw
    against its balance. Advise a wallet kept for this purpose, holding what this
    migration needs and nothing else.
@@ -96,44 +106,20 @@ NETWORK=mainnet        # or: NETWORK=calibration, to rehearse on the testnet
 Rehearsing the whole flow on calibration first is strongly recommended before
 spending real funds.
 
-### Needed now (stages 0-3)
+### Needed now (stages 1-2)
 
 - Node 26 or newer. Hard requirement. Check with \`node --version\`.
 - A CID list, one per line. Blank lines and \`#\` comments are ignored.
 - A trustless gateway that serves deterministic CARs. Stage 1 verifies this.
+- Free disk roughly the size of the data being migrated. Stage 4 stages packed
+  CAR files under \`--car-store\` and deletes each one as soon as every copy is
+  committed onchain.
 
-### Needed before stage 4, not before
+### Needed before stage 3, not before
 
-- A wallet holding USDFC for storage and FIL for gas. **The user holds this
-  key. You never see it.**
-- A provider id from \`https://pdp.vxb.ai/\${NETWORK}/providers\`.
-
-Do not block stages 0-3 on the wallet. Those stages are free and need no key.
-
-## Stage 0 — settle ingress before computing anything
-
-At submission the storage provider pulls each piece from a public HTTPS origin.
-Private, loopback, and CGNAT addresses are rejected. **Resolve this first.**
-Discovering it after the commitment pass wastes that entire pass, which on a
-large list is hours of work.
-
-| Option | Flag | Requires | Works with |
-| --- | --- | --- | --- |
-| Cloudflare quick tunnel | \`--ingress cloudflared\` | \`cloudflared\` on PATH, no account | any path |
-| Tailscale Funnel or a VPS | \`--ingress funnel\` | you front the port yourself | any path |
-| Shared relay | \`--source-relay <url>\` | a relay base URL | single-asset path only |
-
-\`\`\`bash
-command -v cloudflared
-\`\`\`
-
-The relay is **only** valid for the single-asset path. If stage 2 sends you to
-the multi-asset path, the provider must pull assembled CAR files from your own
-origin, and the relay cannot serve them.
-
-**Gate.** If no option is available, stop and tell the user. A tunnel exposes a
-local port to the internet; that is their decision to make, not yours. Do not
-install a tunnel binary on their behalf.
+A wallet holding USDFC for storage and FIL for gas. **The user holds this key.
+You never see it.** Do not block stages 1-2 on the wallet — those stages are
+free and need no key.
 
 ## Stage 1 — confirm the gateway serves deterministic CARs
 
@@ -144,8 +130,8 @@ ${CLI_PACKAGE} probe <one-cid-from-the-list> --gateway https://trustless-gateway
 \`WARN\` means the bytes did not re-hash to the requested CID, or the response was
 not a CAR. That gateway cannot be a source. Try another before continuing; the
 repo's \`docs/sources.md\` lists per-provider notes. Do not proceed on a \`WARN\`:
-the provider re-fetches and recomputes, so a non-deterministic source fails
-every piece.
+stage 4 re-fetches and recomputes, so a non-deterministic source fails every
+piece it touches.
 
 ## Stage 2 — measure, then tell the user what they are in for
 
@@ -160,20 +146,24 @@ probing every CID is affordable; it is the only way to get an exact per-CID
 result at this stage.
 
 The JSON gives you \`input.totalCount\`, \`input.estimatedTotalSizeBytes\`,
-\`sourceGateway.successRate\`, \`sourceGateway.latencyP50Ms\`, per-probe \`bytes\`,
-and a \`persona\` block of recommended flags. It does **not** give you a cost or a
-completion time. Derive those as below; do not invent a formula.
+\`sourceGateway.successRate\`, \`sourceGateway.latencyP50Ms\`, and per-probe
+\`bytes\`. It does **not** give you a cost or a completion time. Derive those as
+below; do not invent a formula.
 
 ### What to report back before going further
 
 - CID count, and the sampled retrieval success rate. If you sampled, say so —
   you know which CIDs failed **in the sample**, not across the whole list. The
-  exact per-CID result comes out of stage 3.
+  exact per-CID result comes out of stage 4.
 - Projected total size, from \`estimatedTotalSizeBytes\`.
-- **Projected wall-clock time.** A rough lower bound for the commitment pass is
-  \`totalCount × latencyP50Ms ÷ concurrency\`. State it as approximate, and say
-  that the provider's pull rate — not this pass — dominates the total for a
-  large run.
+- **Projected wall-clock time.** The run downloads everything once and uploads
+  it once, so a rough lower bound is total size ÷ the slower of download and
+  upload bandwidth. State it as approximate. Upload bandwidth usually
+  dominates on residential connections.
+- The disk requirement: free space roughly the projected total size, freed
+  progressively as pieces commit.
+- Items above ${MAX_ITEM_SIZE_LABEL}. These cannot be migrated — splitting
+  them would change their CID — so hold them out and name them.
 - Estimated storage cost, using the formula below.
 
 ### Cost formula
@@ -206,136 +196,101 @@ alone.
 - A command that runs for hours is working, not hung. Do not kill it. State is
   kept in SQLite and a stopped run resumes where it left off.
 - Run on a machine that stays awake. A sleeping laptop stalls the run.
-- Use the flags \`analyze\` recommends in its \`persona\` block rather than guessing.
 
 Above roughly ${COORDINATION_VOLUME_LABEL}, capacity and timing are worth
 agreeing with providers before starting. That is coordination, not a ceiling:
 mention ${CONTACT_URL} as an option and continue if the user wants to.
 
-### Choosing a packing path
-
-Providers advertise a **minimum piece size** (commonly 1 MiB) and enforce a pull
-limit of roughly ${MAX_ITEM_SIZE_LABEL} raw per item. Read the actual values for
-your chosen provider from \`https://pdp.vxb.ai/\${NETWORK}/providers\`.
-
-The two limits behave differently, and this matters:
-
-- The **minimum** is advisory. \`pdp-submit\` warns and proceeds by default; pass
-  \`--strict-piece-size\` to refuse instead. So small items are a packing
-  efficiency question, not a blocker.
-- The **pull limit** is hard. An item above it cannot be migrated, because
-  splitting it would change its CID. Hold those out and report them.
-
-Evaluate against the per-probe \`bytes\` in the \`analyze\` JSON:
-
-- **Few sampled items below the provider minimum** → single-asset path
-  (the default). Each CID becomes one passthrough item pulled straight from the
-  gateway. No staging disk needed.
-- **A large share below the minimum** → consider the multi-asset path, which
-  batches them into fewer, larger pieces. It needs disk for the assembled CARs
-  and rules out the relay, so it is a trade rather than an obligation. Say which
-  you chose and why.
-
-## Stage 3 — plan
-
-\`\`\`bash
-# single-asset (default)
-${CLI_PACKAGE} plan --cids cids.txt --db migrate.db
-
-# multi-asset, when many items fall below the provider minimum
-${CLI_PACKAGE} plan --cids cids.txt --db migrate.db --no-auto-pack
-${CLI_PACKAGE} pack-cars --db migrate.db --car-store ./cars --pack-target-size 512MiB
-\`\`\`
-
-\`plan\` is insert-only and resumable: re-running it computes only CIDs not yet
-done and never disturbs committed state. This stage produces the **exact**
-per-CID result, including anything unretrievable or \`oversized\`. Report that to
-the user; it supersedes the stage 2 sample.
-
-Check progress at any time with \`${CLI_PACKAGE} status --json\`.
-
-## Stage 4 — funding (the user runs this, not you)
+## Stage 3 — funding (the user runs this, not you)
 
 **Gate. This stage spends money and requires a private key.**
 
 Stop. Give the user these commands to run **in their own terminal**, and ask
-them to paste back only the printed \`dataSetId\`. Do not offer to run these for
-them, and do not accept a key if one is offered — a key pasted into a chat is a
-key in a transcript.
+them to confirm when both succeed. Do not offer to run these for them, and do
+not accept a key if one is offered — a key pasted into a chat is a key in a
+transcript.
 
 \`\`\`bash
 export PRIVATE_KEY=0x...                                  # user's terminal only
 npx filecoin-pin@latest payments setup --auto --network "$NETWORK"
 npx filecoin-pin@latest payments status --network "$NETWORK"
-${CLI_PACKAGE} create-data-set --provider-id <id> --network "$NETWORK"
 \`\`\`
 
-\`create-data-set\` reverts if the USDFC deposit or the operator approval is
-insufficient. Remind the user that the deposited amount is the ceiling on
-everything downstream.
+No data set needs to be provisioned by hand: stage 4 creates one per provider
+copy on its first onchain commit, with IPFS indexing enabled. Remind the user
+that the deposited amount is the ceiling on everything downstream.
 
-**Resume only when the user confirms funding succeeded and gives you the
-\`dataSetId\`.** Submission in stage 5 also signs, so it needs the same key
-available in the environment where it runs. If the user wants to keep the key
-off your machine entirely, stage 5 is theirs to run too, and you read back the
-report from stage 6.
+**Resume only when the user confirms funding succeeded.** Stage 4 signs with
+the same key, so it must run in a shell where \`PRIVATE_KEY\` is exported. If
+the user wants to keep the key off your machine entirely, stage 4 is theirs to
+run too, and you read back the summary it prints.
 
-## Stage 5 — submit
+## Stage 4 — upload
 
-Two processes. The pull source must stay running for the whole submission.
+One command owns the rest of the migration: it downloads each CID, packs
+multi-root CAR pieces (up to ~1000 MiB each), streams every piece straight to
+the primary provider, has the second provider copy from the first, and commits
+the adds onchain in batches of up to 40 pieces per transaction. Providers are
+chosen automatically; the batching timer commits early rather than risk a
+provider expiring an uncommitted piece.
 
 \`\`\`bash
-# Start in the background and read its log until it prints the public URL.
-${CLI_PACKAGE} redirect-serve --db migrate.db --port 4322 --ingress cloudflared
-# logs: "cloudflared ingress: ready at https://<words>.trycloudflare.com"
+${CLI_PACKAGE} upload --cids cids.txt --db migrate.db --car-store ./cars --network "$NETWORK"
 \`\`\`
 
-Extract that HTTPS origin from the log output and pass it as \`--source-base\`.
-It is the **origin only** — scheme and host, no path. Then:
+- The run is resumable: re-running the same command continues where it
+  stopped, never re-uploads what is already committed, and never
+  double-commits.
+- Staged CARs under \`./cars\` are deleted during the run as each piece's
+  copies are all committed. Do not delete them by hand mid-run.
+- \`collected:\` lines mean a provider expired a piece before it was committed;
+  the run re-uploads it automatically and tightens its timing for that
+  provider. Informational, not a failure.
+- Check progress from another shell at any time with
+  \`${CLI_PACKAGE} status --db migrate.db --json\`.
 
-\`\`\`bash
-${CLI_PACKAGE} pdp-submit --db migrate.db --data-set-id <id> \\
-  --source-base https://<public-host> --network "$NETWORK"
-\`\`\`
+The final JSON summary lists, per provider, the data set id, the counts of
+committed and failed pieces, and how many staged CARs were cleaned up. Save it;
+stage 5 uses the data set ids.
 
-With a relay instead of your own ingress (single-asset path only):
+## Stage 5 — verify
 
-\`\`\`bash
-${CLI_PACKAGE} pdp-submit --db migrate.db --data-set-id <id> \\
-  --source-relay <relay-base> --network "$NETWORK"
-\`\`\`
+Verification is against the chain and real retrievals, not the tool's own
+bookkeeping.
 
-\`pdp-submit\` is resumable and will not double-submit. It pauses when the network
-base fee is above \`--max-base-fee\`; that is congestion backoff, not a failure.
-Check with \`${CLI_PACKAGE} gas --network "$NETWORK"\`.
+1. **Onchain.** Open each data set from the stage 4 summary at
+   \`https://pdp.vxb.ai/\${NETWORK}/dataset/<dataSetId>\` and confirm it is live
+   and holds the expected pieces. There is one data set per copy, so with the
+   default ${COPIES} copies there are ${COPIES} ids.
+2. **Retrieval.** Fetch a handful of the user's original CIDs — spread across
+   the list, not just the first few — and confirm the bytes come back. IPFS
+   indexing announces migrated CIDs to the public IPFS network (via IPNI), so
+   after indexing completes they resolve through ordinary IPFS gateways and
+   \`https://cid.contact/routing/v1/providers/<cid>\` lists the new providers.
+   Indexing lag of minutes to hours after commit is normal.
+3. **Accounting.** Compare committed piece counts in the summary against the
+   CID count, and name every CID that was held out or failed.
 
-## Stage 6 — verify
-
-\`\`\`bash
-${CLI_PACKAGE} report --db migrate.db --data-set-id <id> --network "$NETWORK" --json
-\`\`\`
-
-This reconciles local state against the pieces the data set actually holds on
-chain. Hand the user the report, the data set id, and the path to \`migrate.db\`.
-
-Tell them explicitly: **check retrieval of a few of their own CIDs, and keep the
-old pinning plan until they have.** Verification is theirs to accept, not yours
-to declare.
+Hand the user the summary, the data set ids, and the path to \`migrate.db\`.
+Tell them explicitly: **check retrieval of a few of their own CIDs, and keep
+the old pinning plan until they have.** Verification is theirs to accept, not
+yours to declare.
 
 ## Failure modes
 
 | Symptom | Meaning | Action |
 | --- | --- | --- |
 | \`probe\` reports \`WARN\` | gateway does not serve deterministic CARs | pick another gateway |
-| \`plan\` reports \`oversized\` | padded size exceeds the aggregate budget | hold that CID out, report it |
-| \`below provider min piece size\` warning | items under the advertised minimum | expected; it proceeds. Use the multi-asset path only to pack more efficiently |
-| provider rejects the pull | \`--source-base\` has a path, or is not a public IP | pass origin only, recheck ingress |
-| submission pauses on \`spike\` | base fee above the gate | wait it out; this is expected |
+| \`exceeds ... upload cap; not migrated\` | item larger than ${MAX_ITEM_SIZE_LABEL} | hold that CID out, report it |
+| \`collected:\` during upload | provider expired an uncommitted piece | none — it re-uploads and adapts automatically |
+| \`warn: secondary ... failed to pull\`, persistent | that provider cannot fetch from the primary | re-run; if it persists, pin different providers with \`--provider-id\` (ids at \`https://pdp.vxb.ai/\${NETWORK}/providers\`) |
+| \`batch left add_unconfirmed\` | an onchain add's outcome is unknown | re-run the same command; it reconciles against the provider before retrying |
 | \`set PRIVATE_KEY\` error | key not in that shell's environment | the user exports it in their own terminal |
-| aggregate stuck \`failed\` | see the repo's recovery commands | \`reset-failed-aggregates\` |
+| disk fills during the run | staged CARs plus data exceed free space | free space or use a larger disk for \`--car-store\`; committed pieces are already cleaned up |
 
-One unretrievable item fails everything batched with it, which is why stages 2
-and 3 validate retrievability before anything is submitted.
+One unretrievable item fails the piece it was packed into, which is why stages
+1-2 validate retrievability before anything is uploaded, and why the run names
+every affected CID rather than dropping it.
 
 ## Links
 

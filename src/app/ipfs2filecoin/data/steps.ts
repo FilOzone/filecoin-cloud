@@ -21,6 +21,6 @@ export const steps = [
     number: '04',
     title: 'Migrate',
     description:
-      'Storage providers pull the data and commit it onchain. You get a receipt, explorer links, and a manifest of everything that landed.',
+      'Your machine streams the data straight to two storage providers, and the adds are committed onchain in batches. You get explorer links and a summary of everything that landed.',
   },
 ] as const
