@@ -24,12 +24,17 @@ import { CidListChecker } from './components/CidListChecker'
 import { ComparisonTable } from './components/ComparisonTable'
 import { CostEstimator } from './components/CostEstimator'
 import { StepList } from './components/StepList'
-import { COORDINATION_VOLUME_LABEL, RUNBOOK_PATH } from './constants/migration'
+import {
+  COORDINATION_VOLUME_LABEL,
+  RUNBOOK_PATH,
+  USD_PER_TIB_MONTH_PER_COPY,
+} from './constants/migration'
 import { IPFS2FILECOIN_SEO } from './constants/seo'
 import { faqs } from './data/faqs'
 import { limits } from './data/limits'
 import { reasons } from './data/reasons'
 import { steps } from './data/steps'
+import { formatUsd } from './utils/estimate-cost'
 import { generateStructuredData } from './utils/generate-structured-data'
 
 const ghostOnDark =
@@ -123,9 +128,9 @@ export default function IpfsToFilecoin() {
               <ComparisonTable />
 
               <p className="text-(--color-paragraph-text) text-sm/relaxed">
-                Filecoin Warm Storage is $2.50 per TiB per month per copy at two
-                copies. Other rates are published list overage rates as of 27
-                July 2026, from{' '}
+                Filecoin Warm Storage is {formatUsd(USD_PER_TIB_MONTH_PER_COPY)}{' '}
+                per TiB per month per copy at two copies. Other rates are
+                published list overage rates as of 27 July 2026, from{' '}
                 <ExternalTextLink
                   className={inlineExternalLink}
                   href="https://filebase.com/pricing/"
