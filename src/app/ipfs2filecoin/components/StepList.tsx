@@ -14,7 +14,9 @@ type StepListProps = {
  */
 export function StepList({ steps }: StepListProps) {
   return (
-    <ol className="grid gap-10 md:grid-cols-2 md:gap-x-15">
+    // Four across on desktop so the sequence reads left to right in one pass.
+    // Two-up in between, where four columns would be too narrow for the copy.
+    <ol className="grid gap-10 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-4 lg:gap-x-8">
       {steps.map(({ number, title, description }) => (
         <li key={title} className="space-y-3">
           <span
