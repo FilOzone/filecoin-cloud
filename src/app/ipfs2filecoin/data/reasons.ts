@@ -5,6 +5,9 @@ import {
   WalletIcon,
 } from '@phosphor-icons/react/dist/ssr'
 
+import { USD_PER_TIB_MONTH_PER_COPY } from '../constants/migration'
+import { formatUsd } from '../utils/estimate-cost'
+
 export const reasons = [
   {
     title: 'Your CIDs do not change',
@@ -14,8 +17,7 @@ export const reasons = [
   },
   {
     title: 'A fraction of pinning-service pricing',
-    description:
-      '$2.50 per TiB per month per copy, two copies by default. You pay storage providers directly, streamed per epoch, with no plan tiers and no minimum commitment.',
+    description: `${formatUsd(USD_PER_TIB_MONTH_PER_COPY)} per TiB per month per copy, two copies by default. You pay storage providers directly, streamed per epoch, with no plan tiers and no minimum commitment.`,
     icon: CurrencyDollarIcon,
   },
   {
