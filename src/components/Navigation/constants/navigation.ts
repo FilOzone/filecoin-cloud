@@ -12,10 +12,6 @@ export const headerNavigationItems: Array<NavItem | NavigationMenuItem> = [
     href: PATHS.WARM_STORAGE_SERVICE.path,
   },
   {
-    label: PATHS.SERVICE_PROVIDERS.label,
-    href: PATHS.SERVICE_PROVIDERS.path,
-  },
-  {
     label: 'Resources',
     items: [
       {
@@ -62,10 +58,6 @@ export const mobileNavigationItems: Array<NavItem> = [
   {
     label: PATHS.WARM_STORAGE_SERVICE.label,
     href: PATHS.WARM_STORAGE_SERVICE.path,
-  },
-  {
-    label: PATHS.SERVICE_PROVIDERS.label,
-    href: PATHS.SERVICE_PROVIDERS.path,
   },
   {
     label: PATHS.SHOWCASE.label,

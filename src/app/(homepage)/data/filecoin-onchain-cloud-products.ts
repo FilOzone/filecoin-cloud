@@ -4,7 +4,6 @@ import { PATHS } from '@/constants/paths'
 import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
 import aurora from '@/public/assets/aurora.webp'
 import spaceStation from '@/public/assets/space-station.webp'
-import spiralGalaxy from '@/public/assets/spiral-galaxy.webp'
 import stellarExplosionNebula from '@/public/assets/stellar-explosion-nebula.webp'
 
 const CTA_TEXT = 'Learn more'
@@ -47,16 +46,6 @@ export const filecoinOnchainCloudProducts: Array<SimpleCardWithImageProps> = [
     image: {
       data: aurora,
       alt: "View of colorful aurora over Earth's atmosphere seen from space with part of a spacecraft arm visible.",
-    },
-  },
-  {
-    title: 'Service Providers',
-    description:
-      'A global network of operators running Filecoin Onchain Cloud nodes delivering resilient, high-availability storage infrastructure.',
-    cta: { href: PATHS.SERVICE_PROVIDERS.path, text: CTA_TEXT },
-    image: {
-      data: spiralGalaxy,
-      alt: 'Bright spiral galaxy with glowing core and extended spiral arms filled with stars.',
     },
   },
 ] as const satisfies Array<SimpleCardWithImageProps>
