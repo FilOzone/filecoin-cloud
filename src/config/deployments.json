@@ -108,18 +108,13 @@
         "initcode_hash": "0xfe70d1438fdd7b7b5813842bb4c324aa65737efe0156b2d618bc8d08dc248a90",
         "artifact_contract": "src/FilecoinWarmStorageServiceStateView.sol:FilecoinWarmStorageServiceStateView",
         "libraries": {},
-        "constructor_args": [
-          "0x8408502033C418E1bbC97cE9ac48E5528F371A9f"
-        ]
+        "constructor_args": ["0x8408502033C418E1bbC97cE9ac48E5528F371A9f"]
       },
       "PDP_VERIFIER_IMPLEMENTATION": {
         "initcode_hash": "0xeafb9469e2aa231a3b2db2f01c79a0de89a8e45535d7688a6e64b83083ae57c9",
         "artifact_contract": "lib/pdp/src/PDPVerifier.sol:PDPVerifier",
         "libraries": {},
-        "constructor_args": [
-          "3",
-          "150"
-        ],
+        "constructor_args": ["3", "150"],
         "pinned": true
       }
     },
@@ -181,9 +176,7 @@
         "initcode_hash": "0x3d0559eb40bca9c43617e7cb88789905f2814d8e67634f054f89a84b6a60501d",
         "artifact_contract": "src/FilecoinWarmStorageServiceStateView.sol:FilecoinWarmStorageServiceStateView",
         "libraries": {},
-        "constructor_args": [
-          "0x02925630df557F957f70E112bA06e50965417CA0"
-        ]
+        "constructor_args": ["0x02925630df557F957f70E112bA06e50965417CA0"]
       },
       "FWSS_IMPLEMENTATION": {
         "initcode_hash": "0x7f63ba6b7953c05644cc59e5fbcafb451ea210a47d1f1d8b48bfb5a14f292a54",
@@ -206,19 +199,14 @@
         "initcode_hash": "0xa42a013d8cde960793803edda950822224a5ea5beb373c46a6b048b74326e99d",
         "artifact_contract": "lib/pdp/src/PDPVerifier.sol:PDPVerifier",
         "libraries": {},
-        "constructor_args": [
-          "3",
-          "10"
-        ],
+        "constructor_args": ["3", "10"],
         "pinned": true
       },
       "SERVICE_PROVIDER_REGISTRY_IMPLEMENTATION": {
         "initcode_hash": "0xd0999d49e64712aa62f6139d4d98c4f1fab903734a713308bab3ef1a6397f542",
         "artifact_contract": "src/ServiceProviderRegistry.sol:ServiceProviderRegistry",
         "libraries": {},
-        "constructor_args": [
-          "3"
-        ]
+        "constructor_args": ["3"]
       },
       "PDP_VERIFIER_PROXY": {
         "initcode_hash": "0x460ab109982867b4e11bd02e84d83dfaef4aad379625b07382854b7199beab09",
