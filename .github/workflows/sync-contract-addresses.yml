@@ -47,6 +47,10 @@ jobs:
         if: steps.check.outputs.changed == 'true'
         run: npx tsx scripts/sync-contract-addresses.ts
 
+      - name: Format synced contract addresses
+        if: steps.check.outputs.changed == 'true'
+        run: npx biome format --write src/config/deployments.json
+
       - name: Create Pull Request
         if: steps.check.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v8
