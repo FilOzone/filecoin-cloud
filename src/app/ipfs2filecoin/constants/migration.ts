@@ -32,7 +32,7 @@ export const CLI_REPO_URL = 'https://github.com/FilOzone/ipfs2foc'
  * FilOzone/ipfs2foc#71. GATE: do not merge/deploy this page until npm serves
  * a version >= this constant (`npm view ipfs2foc version`).
  */
-export const CLI_VERIFIED_FROM = '0.8.0'
+export const CLI_VERIFIED_FROM = '0.8.1'
 
 /** Warm storage list price, per copy. Two copies are stored by default. */
 export const USD_PER_TIB_MONTH_PER_COPY = 2.5

@@ -35,7 +35,7 @@ export const MIGRATION_RUNBOOK = `---
 tool: ${CLI_PACKAGE}
 tool_min_version: "${CLI_VERIFIED_FROM}"
 tool_repo: ${CLI_REPO_URL}
-node: ">=26"
+node: ">=24"
 default_network: mainnet
 input: a text file of IPFS CIDs, one per line
 item_size_limit: ${MAX_ITEM_SIZE_LABEL}
@@ -108,7 +108,7 @@ spending real funds.
 
 ### Needed now (stages 1-2)
 
-- Node 26 or newer. Hard requirement. Check with \`node --version\`.
+- Node 24 or newer. Hard requirement. Check with \`node --version\`.
 - A CID list, one per line. Blank lines and \`#\` comments are ignored.
 - A trustless gateway that serves deterministic CARs. Stage 1 verifies this.
 - Free disk roughly the size of the data being migrated. Stage 4 stages packed
