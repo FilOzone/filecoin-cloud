@@ -58,9 +58,10 @@ export const faqs: Array<Question> = [
     question: 'What happens if the run stops halfway?',
     answer: (
       <p>
-        State is kept, so closing the tab does not lose the work and the run
-        picks up where it left off. Anything not yet stored stays in the
-        manifest so you can finish it here or carry it to the command line.
+        The CLI keeps its state in a local database, so an interrupted run loses
+        nothing: re-run the same command and it picks up where it left off.
+        Anything not yet stored stays in the manifest, so you can finish it in a
+        later run.
       </p>
     ),
   },
