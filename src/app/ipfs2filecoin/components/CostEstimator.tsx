@@ -1,9 +1,12 @@
 'use client'
 
 import { Button } from '@filecoin-foundation/ui-filecoin/Button'
+import { Icon } from '@filecoin-foundation/ui-filecoin/Icon'
 import { Field, Input, Label, Select } from '@headlessui/react'
+import { CaretDownIcon } from '@phosphor-icons/react/dist/ssr'
+import { clsx } from 'clsx'
 import { usePlausible } from 'next-plausible'
-import { useId, useState } from 'react'
+import { type ChangeEvent, type ReactNode, useId, useState } from 'react'
 
 import {
   BUFFER_DAYS,
@@ -30,10 +33,11 @@ const DURATION_OPTIONS = [
 const fieldClassName =
   'focus:brand-outline block w-full rounded-lg border border-(--input-border-color) p-3 text-(--color-text-base) placeholder:text-(--input-placeholder-color)'
 
+const labelClassName =
+  'mb-1 inline-block font-medium text-(--color-text-base) text-sm'
+
 export function CostEstimator() {
   const volumeId = useId()
-  const unitId = useId()
-  const durationId = useId()
   const plausible = usePlausible()
 
   const [volume, setVolume] = useState('1')
@@ -68,67 +72,76 @@ export function CostEstimator() {
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-4 sm:grid-cols-3">
-        <Field>
-          <Label
-            htmlFor={volumeId}
-            className="mb-1 inline-block font-medium text-(--color-text-base) text-sm"
-          >
-            How much data
-          </Label>
-          <Input
-            id={volumeId}
-            type="number"
-            min="0"
-            step="any"
-            inputMode="decimal"
-            value={volume}
-            onChange={(event) => setVolume(event.target.value)}
-            className={fieldClassName}
-          />
-        </Field>
+      {/*
+        Two controls for two questions, sharing one row inside the card. The
+        amount carries its unit inside one bordered box rather than beside a
+        separate field, so "How much data" reads as a single control; the "Unit"
+        label goes with it, since a select holding "TiB" needs no caption. A
+        two-column grid keeps the pair side by side and lets each fill its half
+        rather than being sized to the few characters it holds.
+      */}
+      <div className="space-y-2">
+        <div className="grid grid-cols-2 items-end gap-3">
+          <Field>
+            <Label htmlFor={volumeId} className={labelClassName}>
+              How much data
+            </Label>
+            <div className="focus-within:brand-outline flex w-full items-stretch rounded-lg border border-(--input-border-color)">
+              <Input
+                id={volumeId}
+                type="number"
+                min="0"
+                step="any"
+                inputMode="decimal"
+                value={volume}
+                onChange={(event) => setVolume(event.target.value)}
+                className="w-full min-w-0 border-0 bg-transparent p-3 text-(--color-text-base) focus:outline-none"
+              />
+              <div className="relative flex items-center border-(--input-border-color) border-l">
+                <Select
+                  aria-label="Unit"
+                  value={unit}
+                  onChange={(event) =>
+                    setUnit(event.target.value as VolumeUnit)
+                  }
+                  className="appearance-none bg-transparent py-3 pr-10 pl-3 text-(--color-text-base) focus:outline-none"
+                >
+                  <option value="GiB">GiB</option>
+                  <option value="TiB">TiB</option>
+                </Select>
+                <span className="pointer-events-none absolute right-0 flex items-center pr-3 text-(--color-paragraph-text)">
+                  <Icon component={CaretDownIcon} size={20} />
+                </span>
+              </div>
+            </div>
+          </Field>
 
-        <Field>
-          <Label
-            htmlFor={unitId}
-            className="mb-1 inline-block font-medium text-(--color-text-base) text-sm"
-          >
-            Unit
-          </Label>
-          <Select
-            id={unitId}
-            value={unit}
-            onChange={(event) => setUnit(event.target.value as VolumeUnit)}
-            className={fieldClassName}
-          >
-            <option value="GiB">GiB</option>
-            <option value="TiB">TiB</option>
-          </Select>
-        </Field>
-
-        <Field>
-          <Label
-            htmlFor={durationId}
-            className="mb-1 inline-block font-medium text-(--color-text-base) text-sm"
-          >
-            Funded for
-          </Label>
-          <Select
-            id={durationId}
+          <SelectField
+            className="w-full"
+            label="Funded for"
             value={days}
             onChange={(event) => setDays(Number(event.target.value))}
-            className={fieldClassName}
           >
             {DURATION_OPTIONS.map(({ label, days: value }) => (
               <option key={value} value={value}>
                 {label}
               </option>
             ))}
-          </Select>
-        </Field>
+          </SelectField>
+        </div>
+
+        <p className="text-(--color-paragraph-text-subtle) text-sm">
+          Total across everything you are storing, not per CID. 1 TiB is 1,024
+          GiB.
+        </p>
       </div>
 
-      <Button type="button" variant="primary" onClick={handleEstimate}>
+      <Button
+        type="button"
+        variant="primary"
+        onClick={handleEstimate}
+        className="w-full"
+      >
         Estimate my deposit
       </Button>
 
@@ -152,6 +165,51 @@ export function CostEstimator() {
   )
 }
 
+type SelectFieldProps = {
+  label: string
+  value: string | number
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => void
+  children: ReactNode
+  /** Width of the field, set by the caller so it matches what it holds. */
+  className?: string
+}
+
+/**
+ * A native select styled to match the inputs beside it. The browser's own arrow
+ * is replaced so the caret keeps the same inset as the field's text instead of
+ * sitting hard against the border.
+ */
+function SelectField({
+  label,
+  value,
+  onChange,
+  children,
+  className,
+}: SelectFieldProps) {
+  const id = useId()
+
+  return (
+    <Field className={className}>
+      <Label htmlFor={id} className={labelClassName}>
+        {label}
+      </Label>
+      <div className="relative">
+        <Select
+          id={id}
+          value={value}
+          onChange={onChange}
+          className={clsx(fieldClassName, 'appearance-none pr-11')}
+        >
+          {children}
+        </Select>
+        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-(--color-paragraph-text)">
+          <Icon component={CaretDownIcon} size={20} />
+        </span>
+      </div>
+    </Field>
+  )
+}
+
 function EstimateBreakdown({ estimate }: { estimate: CostEstimate }) {
   const durationLabel =
     DURATION_OPTIONS.find(({ days }) => days === estimate.days)?.label ??
@@ -161,65 +219,55 @@ function EstimateBreakdown({ estimate }: { estimate: CostEstimate }) {
     {
       label: `Storage for ${durationLabel}`,
       amount: formatUsd(estimate.storage),
-      note: 'No, this is the cost',
+      note: 'Not refundable, this is the cost',
     },
     {
       label: `Buffer held while data is live (${BUFFER_DAYS} days of charges)`,
       amount: formatUsd(estimate.buffer),
-      note: 'Yes, refundable',
+      note: 'Refundable',
     },
     {
       label: 'Lifecycle reserve, per data set',
       amount: formatUsd(estimate.lifecycleReserve),
-      note: 'Yes, unused portion',
+      note: 'Unused portion refundable',
     },
   ]
 
+  // Stacked rather than a table: the card column is too narrow for the
+  // three-column breakdown, so each line reads label over its refundable note
+  // on the left and the figure on the right, the way a receipt totals up.
   return (
     <div
       role="status"
       aria-live="polite"
-      className="overflow-x-auto rounded-xl border border-(--color-border-muted)"
+      className="space-y-4 rounded-xl border border-(--color-border-muted) bg-(--color-card-background) p-5"
     >
-      <table className="w-full text-left text-sm">
-        <thead>
-          <tr className="border-(--color-border-muted) border-b text-(--color-paragraph-text)">
-            <th scope="col" className="px-5 py-4 font-medium">
-              Line
-            </th>
-            <th scope="col" className="px-5 py-4 font-medium">
-              Amount
-            </th>
-            <th scope="col" className="px-5 py-4 font-medium">
-              Yours again afterwards
-            </th>
-          </tr>
-        </thead>
-        <tbody className="text-(--color-paragraph-text)">
-          {rows.map(({ label, amount, note }) => (
-            <tr key={label} className="border-(--color-border-muted) border-b">
-              <td className="px-5 py-4">{label}</td>
-              <td className="px-5 py-4 font-mono">{amount}</td>
-              <td className="px-5 py-4">{note}</td>
-            </tr>
-          ))}
-          <tr className="text-(--color-text-base)">
-            <td className="px-5 py-4 font-medium">Deposit</td>
-            <td className="px-5 py-4 font-medium font-mono text-lg">
-              {formatUsd(estimate.deposit)}
-            </td>
-            <td className="px-5 py-4">
-              {formatUsd(estimate.refundable)} comes back
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p className="px-5 py-4 text-(--color-paragraph-text) text-xs/relaxed">
-        The buffer is set aside, not spent, and you get back whatever is unused.
-        Treat your funded-until date as the date to act by rather than the date
-        service stops: if the balance runs out, providers can end the service
-        and keep the buffer. Depositing for longer is not a discount, it just
-        means fewer trips back.
+      <dl className="space-y-3 text-(--color-paragraph-text)">
+        {rows.map(({ label, amount, note }) => (
+          <div
+            key={label}
+            className="flex items-baseline justify-between gap-4"
+          >
+            <dt>
+              <span className="block text-sm">{label}</span>
+              <span className="block text-(--color-paragraph-text-subtle) text-xs">
+                {note}
+              </span>
+            </dt>
+            <dd className="shrink-0 text-sm tabular-nums">{amount}</dd>
+          </div>
+        ))}
+        <div className="flex items-baseline justify-between gap-4 border-(--color-border-muted) border-t pt-3 text-(--color-text-base)">
+          <dt className="font-medium">Deposit</dt>
+          <dd className="shrink-0 font-medium text-lg tabular-nums">
+            {formatUsd(estimate.deposit)}
+          </dd>
+        </div>
+      </dl>
+      <p className="text-(--color-paragraph-text) text-xs/relaxed">
+        {formatUsd(estimate.refundable)} of this comes back. The buffer is set
+        aside, not spent. Treat your funded-until date as the date to act by: if
+        the balance runs out, providers can end the service and keep the buffer.
       </p>
     </div>
   )

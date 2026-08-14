@@ -22,7 +22,7 @@ function AccordionItem({
     <AccordionPrimitive.Item
       data-slot="accordion-item"
       className={clsx(
-        'group/accordion border-b last:border-b-0 py-4',
+        'group/accordion border-(--color-border-base) border-b last:border-b-0 py-4',
         className,
       )}
       {...props}
@@ -46,7 +46,7 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <span className="transition-transform duration-200 group-data-[state=open]/accordion:rotate-180 text-zinc-200">
+        <span className="transition-transform duration-200 group-data-[state=open]/accordion:rotate-180 text-(--color-text-base)">
           <Icon component={CaretDownIcon} color="inherit" />
         </span>
       </AccordionPrimitive.Trigger>
@@ -62,7 +62,7 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="data-[state=closed]:animate-slide-up data-[state=open]:animate-slide-down overflow-hidden text-zinc-300"
+      className="data-[state=closed]:animate-slide-up data-[state=open]:animate-slide-down overflow-hidden text-(--color-paragraph-text)"
       {...props}
     >
       <div className={clsx('pb-4', className)}>{children}</div>

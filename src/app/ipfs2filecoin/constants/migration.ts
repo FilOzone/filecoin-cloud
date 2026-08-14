@@ -73,6 +73,20 @@ export const LLMS_TXT_URL = `${BASE_URL}${LLMS_TXT_PATH}`
 /** The one line a user hands to a coding agent. Copying it is signal, so it is tracked. */
 export const AGENT_PROMPT = `Migrate my IPFS data to Filecoin: read ${RUNBOOK_URL} and follow it. My CIDs are in cids.txt.`
 
+/**
+ * The same instruction with the user's own list inlined, so a checked list is
+ * something you can act on rather than just a count. Falls back to the
+ * cids.txt form when there is no list yet, which is also the right shape for
+ * lists too long to paste into a prompt.
+ */
+export function buildAgentPrompt(cids?: ReadonlyArray<string>): string {
+  if (!cids || cids.length === 0) {
+    return AGENT_PROMPT
+  }
+
+  return `Migrate my IPFS data to Filecoin: read ${RUNBOOK_URL} and follow it. My CIDs are:\n${cids.join('\n')}`
+}
+
 export const PLAUSIBLE_EVENTS = {
   cidListChecked: 'IPFS2Filecoin CID List Checked',
   estimateViewed: 'IPFS2Filecoin Estimate Viewed',

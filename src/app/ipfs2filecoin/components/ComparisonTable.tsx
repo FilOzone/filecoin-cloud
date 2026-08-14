@@ -4,10 +4,70 @@ import { pricingComparison } from '../data/pricing-comparison'
 
 export function ComparisonTable() {
   return (
-    <div className="overflow-x-auto rounded-xl border border-(--color-border-muted)">
-      <table className="w-full min-w-140 text-left text-sm">
+    <>
+      <MobileComparisonCards />
+      <DesktopComparisonTable />
+    </>
+  )
+}
+
+/**
+ * The three columns do not fit a phone, and the egress value is a full sentence
+ * rather than a figure, so the table would clip it and scroll sideways. Each
+ * provider becomes a stacked card instead: the name and tier on top, then the
+ * two figures as labelled rows, so nothing is hidden. The table returns at md,
+ * where the columns have room.
+ */
+function MobileComparisonCards() {
+  return (
+    <ul className="space-y-3 md:hidden">
+      {pricingComparison.map(
+        ({ service, detail, storagePerTbMonth, egress, highlighted }) => (
+          <li
+            key={`${service} ${detail}`}
+            className={clsx(
+              'rounded-xl border border-(--color-border-muted) p-4',
+              highlighted && 'bg-(--color-card-background-hover)',
+            )}
+          >
+            <div
+              className={clsx(
+                highlighted && 'font-semibold text-(--color-text-base)',
+              )}
+            >
+              <p className="text-lg">{service}</p>
+              <p className="mt-0.5 font-normal text-(--color-paragraph-text) text-sm">
+                {detail}
+              </p>
+            </div>
+            <dl className="mt-3 space-y-2 border-(--color-border-muted) border-t pt-3 text-sm text-(--color-paragraph-text)">
+              <div className="flex items-baseline justify-between gap-4">
+                <dt>Storage, per TB per month</dt>
+                <dd className="shrink-0 tabular-nums">{storagePerTbMonth}</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4">
+                <dt>Egress</dt>
+                <dd className="text-right">{egress}</dd>
+              </div>
+            </dl>
+          </li>
+        ),
+      )}
+    </ul>
+  )
+}
+
+function DesktopComparisonTable() {
+  return (
+    <div className="hidden overflow-x-auto rounded-xl border border-(--color-border-muted) md:block">
+      <table className="w-full min-w-140 text-left text-base">
         <thead>
-          <tr className="border-(--color-border-muted) border-b text-(--color-paragraph-text)">
+          {/*
+            `card-background-hover` is the only subtle-surface value the token
+            set has: zinc-50 on light sections, a lift rather than a wash on
+            dark ones. Named for hover, used here as a static header tint.
+          */}
+          <tr className="border-(--color-border-muted) border-b bg-(--color-card-background-hover) text-(--color-paragraph-text) text-sm">
             <th scope="col" className="px-5 py-4 font-medium">
               Where the data lives
             </th>
@@ -21,29 +81,40 @@ export function ComparisonTable() {
         </thead>
         <tbody className="text-(--color-paragraph-text)">
           {pricingComparison.map(
-            ({ service, storagePerTbMonth, egress, highlighted }) => (
+            ({ service, detail, storagePerTbMonth, egress, highlighted }) => (
+              // Weight and colour sit on the row so the highlighted line reads
+              // as one emphasised entry rather than two bold cells and a third
+              // that quietly drops back to the body colour.
               <tr
-                key={service}
-                className="border-(--color-border-muted) border-b last:border-b-0"
+                key={`${service} ${detail}`}
+                className={clsx(
+                  'border-(--color-border-muted) border-b last:border-b-0',
+                  highlighted && 'font-semibold text-(--color-text-base)',
+                )}
               >
+                {/*
+                  Service names carry the same typeface as the figures on purpose.
+                  They were previously monospace, which read as a size jump and
+                  made the names look smaller than the numbers beside them.
+                */}
                 <th
                   scope="row"
-                  className={clsx(
-                    'px-5 py-4 font-normal',
-                    highlighted && 'font-medium text-(--color-text-base)',
-                  )}
+                  className={clsx('px-5 py-4', !highlighted && 'font-normal')}
                 >
-                  {service}
+                  <span className="block text-lg">{service}</span>
+                  <span className="mt-0.5 block font-normal text-(--color-paragraph-text) text-sm">
+                    {detail}
+                  </span>
                 </th>
                 <td
                   className={clsx(
-                    'px-5 py-4 font-mono whitespace-nowrap',
-                    highlighted && 'text-(--color-text-base) text-lg',
+                    'whitespace-nowrap px-5 py-4 tabular-nums',
+                    highlighted && 'text-lg',
                   )}
                 >
                   {storagePerTbMonth}
                 </td>
-                <td className="px-5 py-4 font-mono whitespace-nowrap">
+                <td className="whitespace-nowrap px-5 py-4 tabular-nums">
                   {egress}
                 </td>
               </tr>
