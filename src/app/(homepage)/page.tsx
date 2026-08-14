@@ -143,7 +143,7 @@ export default function Homepage() {
           title="Compose the Building Blocks"
           description="Modular services you can mix, match, and deploy, all built for openness, performance, and control."
         >
-          <CardGrid as="ul" variant="smTwoXlFourWider">
+          <CardGrid as="ul" variant="smTwoLgThreeWider">
             {filecoinOnchainCloudProducts.map(
               ({ title, description, cta, image }) => (
                 <SimpleCardWithImage
