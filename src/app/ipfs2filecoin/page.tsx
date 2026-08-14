@@ -129,8 +129,8 @@ export default function IpfsToFilecoin() {
 
               <p className="text-(--color-paragraph-text) text-sm/relaxed">
                 Filecoin Warm Storage is {formatUsd(USD_PER_TIB_MONTH_PER_COPY)}{' '}
-                per TiB per month per copy at two copies. Other rates are
-                published list overage rates as of 27 July 2026, from{' '}
+                per TiB per month per copy at two copies. Other rates are the
+                published list overage rates from{' '}
                 <ExternalTextLink
                   className={inlineExternalLink}
                   href="https://filebase.com/pricing/"

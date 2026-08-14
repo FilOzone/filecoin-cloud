@@ -17,9 +17,11 @@ export type PricingRow = {
 }
 
 /**
- * Third-party rates are published list overage rates, captured 27 July 2026.
- * Overage is the rate that matters once you are past a plan's included
- * allowance, which anyone migrating a real archive already is.
+ * Third-party rates are published list overage rates, re-verified 3 August 2026
+ * against filebase.com/pricing and pinata.cloud/pricing. Overage is the rate
+ * that matters once you are past a plan's included allowance, which anyone
+ * migrating a real archive already is. These move without notice; re-check
+ * before each campaign push.
  */
 export const pricingComparison: Array<PricingRow> = [
   {

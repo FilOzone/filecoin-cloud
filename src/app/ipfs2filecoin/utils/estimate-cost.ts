@@ -2,9 +2,9 @@ import {
   BUFFER_DAYS,
   COPIES,
   DAYS_PER_MONTH,
+  USD_FLAT_PER_DATA_SET_MONTH,
   USD_LIFECYCLE_RESERVE_PER_DATA_SET,
   USD_PER_TIB_MONTH_PER_COPY,
-  USD_PROVING_PER_TIB_MONTH_PER_COPY,
 } from '../constants/migration'
 
 const BYTES_PER_TIB = 1024 ** 4
@@ -20,15 +20,20 @@ export const USD_STORAGE_PER_TIB_MONTH = USD_PER_TIB_MONTH_PER_COPY * COPIES
 export const USD_PER_TB_MONTH =
   USD_STORAGE_PER_TIB_MONTH * (BYTES_PER_TB / BYTES_PER_TIB)
 
-/**
- * What actually gets charged per epoch: storage plus the proving buffer, on
- * every copy. Used for the deposit, not for the headline comparison.
- */
-export const USD_BURN_PER_TIB_MONTH =
-  (USD_PER_TIB_MONTH_PER_COPY + USD_PROVING_PER_TIB_MONTH_PER_COPY) * COPIES
-
 /** One data set is created per copy, each holding its own lifecycle reserve. */
 export const USD_LIFECYCLE_RESERVE = USD_LIFECYCLE_RESERVE_PER_DATA_SET * COPIES
+
+/**
+ * What actually gets charged, across every copy. The flat fee is per data set
+ * and is added once, not multiplied by size: folding it into a per-TiB rate
+ * happens to be exact at 1 TiB and wrong everywhere else, badly so below it.
+ */
+export function usdBurnPerMonth(tebibytes: number) {
+  return (
+    (tebibytes * USD_PER_TIB_MONTH_PER_COPY + USD_FLAT_PER_DATA_SET_MONTH) *
+    COPIES
+  )
+}
 
 export type VolumeUnit = 'GiB' | 'TiB'
 
@@ -52,7 +57,7 @@ export function toTebibytes(volume: number, unit: VolumeUnit) {
 }
 
 export function estimateCost(tebibytes: number, days: number): CostEstimate {
-  const perMonth = tebibytes * USD_BURN_PER_TIB_MONTH
+  const perMonth = usdBurnPerMonth(tebibytes)
   const storage = perMonth * (days / DAYS_PER_MONTH)
   const buffer = perMonth * (BUFFER_DAYS / DAYS_PER_MONTH)
   const lifecycleReserve = USD_LIFECYCLE_RESERVE

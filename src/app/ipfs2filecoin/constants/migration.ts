@@ -6,8 +6,12 @@ import { BASE_URL } from '@/constants/site-metadata'
  */
 export const BROWSER_CHECK_ITEM_CAP = 500
 
-/** A hard limit: a larger item cannot be split without changing its CID. */
-export const MAX_ITEM_SIZE_LABEL = '1 GiB'
+/**
+ * A hard limit: an item's CAR must fit one uploadable piece, capped at
+ * 1,065,353,216 bytes (1016 MiB) by the storage SDK. A larger item cannot be
+ * split without changing its CID.
+ */
+export const MAX_ITEM_SIZE_LABEL = '1016 MiB'
 
 /**
  * Above this, capacity and timing are worth agreeing with providers before a
@@ -15,17 +19,33 @@ export const MAX_ITEM_SIZE_LABEL = '1 GiB'
  */
 export const COORDINATION_VOLUME_LABEL = '500 GiB'
 
-/** The ipfs2foc release this runbook's commands and flags were verified against. */
 export const CLI_PACKAGE = 'ipfs2foc'
-export const CLI_VERSION = '0.6.0'
 export const CLI_REPO_URL = 'https://github.com/FilOzone/ipfs2foc'
+
+/**
+ * Do not pin the install to an exact version here. The repo runs ahead of npm
+ * (0.6.0 in tree while 0.4.0 was the published latest), so a pin to the tree
+ * version resolves to nothing and the very first command an agent runs fails
+ * with ETARGET. Installing latest is both correct and safe.
+ *
+ * The `upload` command this runbook is built on ships in the release cut from
+ * FilOzone/ipfs2foc#71. GATE: do not merge/deploy this page until npm serves
+ * a version >= this constant (`npm view ipfs2foc version`).
+ */
+export const CLI_VERIFIED_FROM = '0.8.0'
 
 /** Warm storage list price, per copy. Two copies are stored by default. */
 export const USD_PER_TIB_MONTH_PER_COPY = 2.5
 export const COPIES = 2
 
-/** Proving buffer charged alongside storage, per TiB per month per copy. */
-export const USD_PROVING_PER_TIB_MONTH_PER_COPY = 0.024
+/**
+ * Flat fee per data set per month, charged alongside the size-based rate. It
+ * does NOT scale with stored size: a data set's monthly rate is
+ * `size_TiB * USD_PER_TIB_MONTH_PER_COPY + USD_FLAT_PER_DATA_SET_MONTH`.
+ * Verified against live mainnet rail 2286, which stores 1.511356 TiB and pays
+ * 3.8023902 USDFC/month, matching that formula to five decimal places.
+ */
+export const USD_FLAT_PER_DATA_SET_MONTH = 0.024
 
 /** Held per data set, and one data set is created per copy. Unused portion returns. */
 export const USD_LIFECYCLE_RESERVE_PER_DATA_SET = 0.1
