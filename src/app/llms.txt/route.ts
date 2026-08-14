@@ -15,7 +15,6 @@ const LLMS_TXT = `# Filecoin Onchain Cloud
 ## Services
 
 - [Warm storage service](${BASE_URL}${PATHS.WARM_STORAGE_SERVICE.path}): verifiable storage backed by Proof of Data Possession, with pricing and live provider data.
-- [Service providers](${BASE_URL}${PATHS.SERVICE_PROVIDERS.path}): registry of providers, their capabilities, locations, and availability.
 - [Filecoin Pay](${FOC_URLS.filecoinPay}): payment rails that settle storage per epoch.
 
 ## Migrate to Filecoin

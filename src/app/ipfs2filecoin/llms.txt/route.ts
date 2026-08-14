@@ -30,7 +30,6 @@ the complete procedure, and the rest of these links are background.
 
 - [IPFS to Filecoin](${BASE_URL}${PATHS.IPFS_TO_FILECOIN.path}): what this is, what it costs, and what it does not do. Includes a free in-browser CID check.
 - [Warm storage service](${BASE_URL}${PATHS.WARM_STORAGE_SERVICE.path}): the storage product underneath, and its pricing.
-- [Service providers](${BASE_URL}${PATHS.SERVICE_PROVIDERS.path}): the providers that store and prove the data.
 - [Documentation](${FOC_URLS.documentation.home}): Filecoin Onchain Cloud docs.
 
 ## Limits
