@@ -11,7 +11,7 @@ import {
 import { PATHS } from '@/constants/paths'
 
 import { AgentPrompt } from './AgentPrompt'
-import { BROWSER_CHECK_ITEM_CAP } from '../constants/migration'
+import { PROMPT_INLINE_CAP } from '../constants/migration'
 import type { CidListSummary } from '../utils/parse-cid-list'
 import { pluralize } from '../utils/pluralize'
 
@@ -19,7 +19,6 @@ export type Verdict =
   | { kind: 'empty' }
   | { kind: 'unreadable'; summary: CidListSummary }
   | { kind: 'ok'; summary: CidListSummary }
-  | { kind: 'over-cap'; summary: CidListSummary }
 
 export function getVerdict(summary: CidListSummary): Verdict {
   if (summary.totalLines === 0) {
@@ -28,16 +27,12 @@ export function getVerdict(summary: CidListSummary): Verdict {
   if (summary.uniqueCids.length === 0) {
     return { kind: 'unreadable', summary }
   }
-  if (summary.uniqueCids.length > BROWSER_CHECK_ITEM_CAP) {
-    return { kind: 'over-cap', summary }
-  }
   return { kind: 'ok', summary }
 }
 
 /**
  * Tone per outcome, in tokens rather than literals so the panel survives being
- * mounted on a light section. Over-cap is informational, not a failure: the
- * list is fine, it just routes to the agent instead of the browser.
+ * mounted on a light section.
  */
 const TONE = {
   empty: { icon: InfoIcon, className: 'text-(--color-paragraph-text)' },
@@ -45,7 +40,6 @@ const TONE = {
     icon: WarningCircleIcon,
     className: 'text-(--color-brand-error)',
   },
-  'over-cap': { icon: InfoIcon, className: 'text-(--color-paragraph-text)' },
   ok: { icon: CheckCircleIcon, className: 'text-(--color-icon-success)' },
 } as const
 
@@ -166,30 +160,10 @@ function VerdictBody({ verdict }: { verdict: Verdict }) {
     )
   }
 
-  if (verdict.kind === 'over-cap') {
-    return (
-      <>
-        <Headline>
-          {count.toLocaleString()} CIDs is more than a browser check handles
-        </Headline>
-        <Adjustments summary={summary} />
-        <p>
-          The limit here is {BROWSER_CHECK_ITEM_CAP.toLocaleString()} items.
-          Hand the list to your agent instead: no cap, and it resumes if it
-          stops.
-        </p>
-        <AgentPrompt source="verdict" />
-        <p className="text-(--color-paragraph-text) text-xs">
-          That prompt reads your list from a file, so{' '}
-          <DownloadCidsLink
-            cids={summary.uniqueCids}
-            label="download cids.txt"
-          />{' '}
-          and keep it in the folder your agent runs from.
-        </p>
-      </>
-    )
-  }
+  // Past this size the copied prompt points at cids.txt rather than inlining
+  // the list (see buildAgentPrompt), so the download stops being optional and
+  // the copy has to say so.
+  const promptReadsFromFile = count > PROMPT_INLINE_CAP
 
   return (
     <>
@@ -202,11 +176,25 @@ function VerdictBody({ verdict }: { verdict: Verdict }) {
         migrate it.
       </p>
       <AgentPrompt source="verdict" cids={summary.uniqueCids} />
-      <p className="text-(--color-paragraph-text) text-xs">
-        Running the migration yourself instead?{' '}
-        <DownloadCidsLink cids={summary.uniqueCids} label="Download cids.txt" />{' '}
-        for the same list, cleaned and deduped, in the file the runbook reads.
-      </p>
+      {promptReadsFromFile ? (
+        <p className="text-(--color-paragraph-text) text-xs">
+          That prompt reads your list from a file, so{' '}
+          <DownloadCidsLink
+            cids={summary.uniqueCids}
+            label="download cids.txt"
+          />{' '}
+          and keep it in the folder your agent runs from.
+        </p>
+      ) : (
+        <p className="text-(--color-paragraph-text) text-xs">
+          Running the migration yourself instead?{' '}
+          <DownloadCidsLink
+            cids={summary.uniqueCids}
+            label="Download cids.txt"
+          />{' '}
+          for the same list, cleaned and deduped, in the file the runbook reads.
+        </p>
+      )}
       <p className="text-(--color-paragraph-text) text-xs">
         A check reads the CIDs themselves, not the data behind them, so it
         cannot tell how many bytes you are holding. Enter that in{' '}

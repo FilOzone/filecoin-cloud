@@ -1,10 +1,12 @@
 import { BASE_URL } from '@/constants/site-metadata'
 
 /**
- * Cap on the in-browser check only. The agent and CLI paths have no item cap,
- * so this must never be presented as a limit on migration itself.
+ * Above this, the copied agent prompt points at a downloaded cids.txt instead
+ * of inlining the list: a clipboard string is the wrong shape for thousands of
+ * lines. A bound on the prompt's form only. The check, the agent, and the CLI
+ * have no item cap.
  */
-export const BROWSER_CHECK_ITEM_CAP = 500
+export const PROMPT_INLINE_CAP = 500
 
 /**
  * A hard limit: an item's CAR must fit one uploadable piece, capped at
@@ -60,15 +62,11 @@ export const DAYS_PER_MONTH = 30
 export const BUFFER_DAYS = 30
 
 /**
- * The executable runbook. Named for what it is: llms.txt is specified as a
- * documentation index, not a procedure, so the procedure lives at its own URL.
+ * The executable runbook, at its own markdown URL. Named for what it is: a
+ * procedure an agent follows, not a documentation index.
  */
 export const RUNBOOK_PATH = '/ipfs2filecoin/migrate.md'
 export const RUNBOOK_URL = `${BASE_URL}${RUNBOOK_PATH}`
-
-/** Spec-conformant index for this campaign, pointing at the runbook. */
-export const LLMS_TXT_PATH = '/ipfs2filecoin/llms.txt'
-export const LLMS_TXT_URL = `${BASE_URL}${LLMS_TXT_PATH}`
 
 /** The one line a user hands to a coding agent. Copying it is signal, so it is tracked. */
 export const AGENT_PROMPT = `Migrate my IPFS data to Filecoin: read ${RUNBOOK_URL} and follow it. My CIDs are in cids.txt.`
@@ -76,11 +74,11 @@ export const AGENT_PROMPT = `Migrate my IPFS data to Filecoin: read ${RUNBOOK_UR
 /**
  * The same instruction with the user's own list inlined, so a checked list is
  * something you can act on rather than just a count. Falls back to the
- * cids.txt form when there is no list yet, which is also the right shape for
- * lists too long to paste into a prompt.
+ * cids.txt form when there is no list yet, or when the list is too long to
+ * belong in a clipboard prompt.
  */
 export function buildAgentPrompt(cids?: ReadonlyArray<string>): string {
-  if (!cids || cids.length === 0) {
+  if (!cids || cids.length === 0 || cids.length > PROMPT_INLINE_CAP) {
     return AGENT_PROMPT
   }
 

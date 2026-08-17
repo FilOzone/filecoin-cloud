@@ -6,11 +6,7 @@ import { usePlausible } from 'next-plausible'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { CidListVerdict, getVerdict, type Verdict } from './CidListVerdict'
-import {
-  BROWSER_CHECK_ITEM_CAP,
-  MAX_ITEM_SIZE_LABEL,
-  PLAUSIBLE_EVENTS,
-} from '../constants/migration'
+import { MAX_ITEM_SIZE_LABEL, PLAUSIBLE_EVENTS } from '../constants/migration'
 import { parseCidList } from '../utils/parse-cid-list'
 import { pluralize } from '../utils/pluralize'
 
@@ -25,7 +21,7 @@ const PLACEHOLDER =
 /** The free-check facts, broken out so they scan as features rather than fine print. */
 const CHECK_FACTS = [
   'Free, no wallet required',
-  `Up to ${BROWSER_CHECK_ITEM_CAP.toLocaleString()} items`,
+  'No list-size limit',
   `${MAX_ITEM_SIZE_LABEL} per item`,
   'Runs in your browser',
   'Never sent anywhere',
