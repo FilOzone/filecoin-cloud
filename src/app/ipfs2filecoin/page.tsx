@@ -327,8 +327,8 @@ export const metadata: Metadata = {
   alternates: {
     ...baseMetadata.alternates,
     /**
-     * So an agent pointed at the human URL discovers the migration brief
-     * without being told the llms.txt convention.
+     * So an agent pointed at the human URL discovers the runbook without
+     * being told where it lives.
      */
     types: { 'text/markdown': RUNBOOK_PATH },
   },
