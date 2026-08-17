@@ -2,6 +2,7 @@ import { PATHS } from '@/constants/paths'
 import { BASE_URL } from '@/constants/site-metadata'
 
 import {
+  AGENT_PROMPT,
   BUFFER_DAYS,
   CLI_PACKAGE,
   CLI_REPO_URL,
@@ -57,6 +58,11 @@ never:
 > commitment, packing, or upload pipeline of your own — the on-chain add
 > rejects a mismatched commitment, so an improvised pipeline fails late and
 > expensively.
+
+If you are a human reading this: you do not have to run the procedure
+yourself. Hand your coding agent this one line and it does the rest.
+
+    ${AGENT_PROMPT}
 
 The migration runs entirely from this machine: download, pack, and upload
 straight to ${COPIES} storage providers. Nothing here requires a public HTTPS
