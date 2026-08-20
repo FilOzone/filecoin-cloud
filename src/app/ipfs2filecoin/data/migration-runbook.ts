@@ -247,6 +247,12 @@ ${CLI_PACKAGE} upload --cids cids.txt --db migrate.db --car-store ./cars --netwo
 - The run is resumable: re-running the same command continues where it
   stopped, never re-uploads what is already committed, and never
   double-commits.
+- The run creates fresh data sets by default, and that is what you want:
+  data sets created before the network's 2026-08-24 contract upgrade miss its
+  gas optimizations, so every commit into one costs more. Only pass
+  \`--data-set-id\` to reuse a set this wallet created after that upgrade;
+  a set's creation date is on its explorer page at
+  \`https://pdp.vxb.ai/\${NETWORK}/dataset/<dataSetId>\`.
 - Staged CARs under \`./cars\` are deleted during the run as each piece's
   copies are all committed. Do not delete them by hand mid-run.
 - \`collected:\` lines mean a provider expired a piece before it was committed;
