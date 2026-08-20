@@ -31,19 +31,40 @@ function normalizeLine(line: string) {
   return trimmed.replace(GATEWAY_PREFIX_PATTERN, '').split(/[?#/]/)[0]
 }
 
+/**
+ * Single pass over the raw text. A pasted list can run to millions of lines,
+ * so the parse never materializes an intermediate array of them: each line is
+ * sliced out, normalized, and folded into the counts before the next one is
+ * looked at. Peak extra memory is the unique set, not a multiple of the input.
+ */
 export function parseCidList(input: string): CidListSummary {
-  const lines = input
-    .split('\n')
-    .map(normalizeLine)
-    .filter((line) => line && !line.startsWith('#'))
+  const uniqueCids: Array<string> = []
+  const seen = new Set<string>()
+  let totalLines = 0
+  let duplicateCount = 0
+  let invalidCount = 0
 
-  const valid = lines.filter((line) => CID_PATTERN.test(line))
-  const uniqueCids = [...new Set(valid)]
-
-  return {
-    totalLines: lines.length,
-    uniqueCids,
-    duplicateCount: valid.length - uniqueCids.length,
-    invalidCount: lines.length - valid.length,
+  let cursor = 0
+  while (cursor <= input.length) {
+    let newline = input.indexOf('\n', cursor)
+    if (newline === -1) {
+      newline = input.length
+    }
+    const line = normalizeLine(input.slice(cursor, newline))
+    cursor = newline + 1
+    if (!line || line.startsWith('#')) {
+      continue
+    }
+    totalLines += 1
+    if (!CID_PATTERN.test(line)) {
+      invalidCount += 1
+    } else if (seen.has(line)) {
+      duplicateCount += 1
+    } else {
+      seen.add(line)
+      uniqueCids.push(line)
+    }
   }
+
+  return { totalLines, uniqueCids, duplicateCount, invalidCount }
 }
