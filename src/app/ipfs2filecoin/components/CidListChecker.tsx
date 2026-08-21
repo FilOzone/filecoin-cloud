@@ -157,7 +157,8 @@ export function CidListChecker() {
 
           <div className="flex flex-col items-stretch gap-3 border-(--color-border-muted) border-t px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-x-4">
             <Description className="text-(--color-paragraph-text) text-xs">
-              One per line. Gateway URLs are fine, the prefix is stripped.
+              One per line. Gateway URLs are fine, the prefix is stripped. Your
+              list never leaves the browser; only the count is measured.
             </Description>
             <Button
               type="button"
