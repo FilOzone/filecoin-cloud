@@ -121,8 +121,9 @@ NETWORK=mainnet
   CAR files under \`--car-store\` and deletes each one as soon as every copy is
   committed onchain.
 - Telemetry: each CLI command reports one anonymous run event, the command
-  name and whether it succeeded — never CIDs, addresses, or paths. Disable
-  with \`DO_NOT_TRACK=1\`, and tell the user if you do.
+  name and whether it succeeded, and a finished upload reports its totals
+  (CID count, migrated count, bytes stored) — never CIDs, addresses, or
+  paths. Disable with \`DO_NOT_TRACK=1\`, and tell the user if you do.
 
 ### Needed before stage 3, not before
 
