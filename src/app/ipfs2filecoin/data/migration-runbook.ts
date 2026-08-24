@@ -310,7 +310,6 @@ every affected CID rather than dropping it.
 ## Links
 
 - Tool, full command reference, and troubleshooting: ${CLI_REPO_URL}
-- Rehearse on the testnet first: \`docs/tutorial-first-migration.md\` in that repo
 - Landing page: ${LANDING_URL}
 - Talk to the team about capacity: ${CONTACT_URL}
 - This runbook: ${BASE_URL}${RUNBOOK_PATH}
