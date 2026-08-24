@@ -1,4 +1,3 @@
-import { BASE_URL } from '@/constants/site-metadata'
 
 /**
  * Above this, the copied agent prompt points at a downloaded cids.txt instead
@@ -66,7 +65,15 @@ export const BUFFER_DAYS = 30
  * procedure an agent follows, not a documentation index.
  */
 export const RUNBOOK_PATH = '/ipfs2filecoin/migrate.md'
-export const RUNBOOK_URL = `${BASE_URL}${RUNBOOK_PATH}`
+/**
+ * TEMPORARY, REMOVE BEFORE MERGE (tracked in the PR checklist): the copied
+ * prompt points at the branch preview so testers can run the flow end to end.
+ * filecoin.cloud/ipfs2filecoin/migrate.md does not exist until this PR merges,
+ * so a prod URL here sends every tester's agent into a 404.
+ */
+const PREVIEW_BASE_URL =
+  'https://filecoin-cloud-git-feat-ipfs2filecoin-landing-page-filoz.vercel.app'
+export const RUNBOOK_URL = `${PREVIEW_BASE_URL}${RUNBOOK_PATH}`
 
 /** The one line a user hands to a coding agent. Copying it is signal, so it is tracked. */
 export const AGENT_PROMPT = `Migrate my IPFS data to Filecoin: read ${RUNBOOK_URL} and follow it.`
