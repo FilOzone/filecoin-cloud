@@ -88,6 +88,16 @@ export default function IpfsToFilecoin() {
       <PageSection backgroundVariant="gray">
         <SectionContent
           headingTag="h2"
+          title="How it works"
+          description="Four steps, and the first two are free."
+        >
+          <StepList steps={steps} />
+        </SectionContent>
+      </PageSection>
+
+      <PageSection backgroundVariant="light">
+        <SectionContent
+          headingTag="h2"
           title="Why move to Filecoin warm storage"
           description="Your data keeps working the way it does today. What changes is the price, the proof, and who owns it."
         >
@@ -110,7 +120,7 @@ export default function IpfsToFilecoin() {
         </SectionContent>
       </PageSection>
 
-      <PageSection backgroundVariant="light">
+      <PageSection backgroundVariant="gray">
         <SectionContent
           headingTag="h2"
           title="What it costs"
@@ -166,16 +176,6 @@ export default function IpfsToFilecoin() {
               </div>
             </div>
           </div>
-        </SectionContent>
-      </PageSection>
-
-      <PageSection backgroundVariant="gray">
-        <SectionContent
-          headingTag="h2"
-          title="How it works"
-          description="Four steps, and the first two are free."
-        >
-          <StepList steps={steps} />
         </SectionContent>
       </PageSection>
 
@@ -237,8 +237,8 @@ export default function IpfsToFilecoin() {
                 Talk to us
               </Heading>
               <p className="text-(--color-paragraph-text)">
-                For sources that are not reachable from a public gateway, or to
-                agree capacity and timing before a run over{' '}
+                For sources that are not reachable from the public IPFS network,
+                or to agree capacity and timing before a run over{' '}
                 {COORDINATION_VOLUME_LABEL}. That is coordination, not a
                 ceiling: the agent path has no cap on how many CIDs it migrates.
               </p>

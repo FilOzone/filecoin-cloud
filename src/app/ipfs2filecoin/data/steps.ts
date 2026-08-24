@@ -3,7 +3,7 @@ export const steps = [
     number: '01',
     title: 'Hand over the list',
     description:
-      'Give your agent a cids.txt, or paste a list here first to see what you are dealing with. Checking costs nothing.',
+      'Paste a list here to see what you are dealing with, or let your agent pull it straight from your pinning service, whose dashboard and API list every pinned CID. Checking costs nothing.',
   },
   {
     number: '02',

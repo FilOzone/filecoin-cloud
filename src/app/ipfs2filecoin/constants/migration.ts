@@ -69,13 +69,14 @@ export const RUNBOOK_PATH = '/ipfs2filecoin/migrate.md'
 export const RUNBOOK_URL = `${BASE_URL}${RUNBOOK_PATH}`
 
 /** The one line a user hands to a coding agent. Copying it is signal, so it is tracked. */
-export const AGENT_PROMPT = `Migrate my IPFS data to Filecoin: read ${RUNBOOK_URL} and follow it. My CIDs are in cids.txt.`
+export const AGENT_PROMPT = `Migrate my IPFS data to Filecoin: read ${RUNBOOK_URL} and follow it.`
 
 /**
  * The same instruction with the user's own list inlined, so a checked list is
- * something you can act on rather than just a count. Falls back to the
- * cids.txt form when there is no list yet, or when the list is too long to
- * belong in a clipboard prompt.
+ * something you can act on rather than just a count. Falls back to the bare
+ * prompt when there is no list yet, or when the list is too long to belong
+ * in a clipboard prompt; the runbook covers getting a list from the pinning
+ * service.
  */
 export function buildAgentPrompt(cids?: ReadonlyArray<string>): string {
   if (!cids || cids.length === 0 || cids.length > PROMPT_INLINE_CAP) {

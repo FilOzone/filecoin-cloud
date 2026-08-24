@@ -7,7 +7,7 @@ export const limits = [
   {
     title: 'Your source has to be publicly readable',
     description:
-      'Each CID is fetched through a public gateway that serves verifiable content. Private pinning accounts, authenticated endpoints, and custom storage are not reachable this way, so those go through the contact form.',
+      'Each CID has to be retrievable from the public IPFS network; the migration fetches it through a public gateway that serves verifiable content. Private pinning accounts, authenticated endpoints, and custom storage are not reachable this way, so those go through the contact form.',
   },
   {
     title: `${MAX_ITEM_SIZE_LABEL} per item`,

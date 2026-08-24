@@ -106,16 +106,16 @@ If you cannot install globally, prefix **every** command in this document with
 Set the network once and pass it to every on-chain command:
 
 \`\`\`bash
-NETWORK=mainnet        # or: NETWORK=calibration, to rehearse on the testnet
+NETWORK=mainnet
 \`\`\`
-
-Rehearsing the whole flow on calibration first is strongly recommended before
-spending real funds.
 
 ### Needed now (stages 1-2)
 
 - Node 24 or newer. Hard requirement. Check with \`node --version\`.
-- A CID list, one per line. Blank lines and \`#\` comments are ignored.
+- A CID list, one per line, saved as \`cids.txt\`. Blank lines and \`#\` comments
+  are ignored. If the user does not have a list, get it from their pinning
+  service first: dashboards export pinned CIDs, and services implementing the
+  IPFS Pinning Service API list them at its \`/pins\` endpoint.
 - A trustless gateway that serves deterministic CARs. Stage 1 verifies this.
 - Free disk roughly the size of the data being migrated. Stage 4 stages packed
   CAR files under \`--car-store\` and deletes each one as soon as every copy is
