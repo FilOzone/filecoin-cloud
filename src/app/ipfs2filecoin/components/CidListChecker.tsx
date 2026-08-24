@@ -166,7 +166,7 @@ export function CidListChecker() {
               size="compact"
               onClick={handleCheck}
               disabled={!hasInput}
-              className="w-full sm:w-auto"
+              className="w-full whitespace-nowrap sm:w-auto sm:shrink-0"
             >
               Check my list
               {/* Pointer-only: a shortcut is noise without a modifier key. */}
