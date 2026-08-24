@@ -10,7 +10,7 @@ import { buildAgentPrompt, PLAUSIBLE_EVENTS } from '../constants/migration'
 
 type AgentPromptProps = {
   /** Where on the page the prompt was copied from, so the two spots stay distinguishable. */
-  source: 'verdict' | 'agent-door'
+  source: 'hero' | 'verdict' | 'agent-door'
   /**
    * The user's checked list. When present it is inlined into the prompt so the
    * copied line carries the actual CIDs instead of pointing at a cids.txt the

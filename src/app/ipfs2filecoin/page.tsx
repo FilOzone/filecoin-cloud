@@ -79,8 +79,25 @@ export default function IpfsToFilecoin() {
             title="Move your pinned IPFS data to Filecoin"
             description="Same CIDs, a fraction of what pinning services charge, and an onchain receipt you can verify yourself."
           />
-          <div className="mt-10">
-            <CidListChecker />
+          {/*
+            The agent prompt is the page's terminal state, so it leads. The
+            checker moved beside the estimator: paste and estimate are one
+            interaction, and this link is the path down to it.
+          */}
+          <div className="mx-auto mt-10 max-w-2xl space-y-4">
+            <p className="text-center text-(--color-paragraph-text)">
+              Give this line to Claude Code, Cursor, or any coding agent. It
+              reads the runbook, works through your list, and reports back what
+              landed.
+            </p>
+            <AgentPrompt source="hero" />
+            <p className="text-center text-(--color-paragraph-text) text-sm/relaxed">
+              It signs from a key you provide and can spend up to your deposit,
+              so use a wallet kept for this migration and nothing else.{' '}
+              <SmartTextLink href="#check">
+                Or check your list first: free, in your browser.
+              </SmartTextLink>
+            </p>
           </div>
         </PageSection>
       </div>
@@ -133,6 +150,10 @@ export default function IpfsToFilecoin() {
             costs"; stacked below that, where a 2fr/1fr split leaves the table
             too narrow to hold its columns.
           */}
+          <div id="check" className="mx-auto mb-12 max-w-2xl scroll-mt-24">
+            <CidListChecker />
+          </div>
+
           <div className="grid gap-8 lg:grid-cols-3 lg:items-start">
             <div className="space-y-6 lg:col-span-2">
               <ComparisonTable />
