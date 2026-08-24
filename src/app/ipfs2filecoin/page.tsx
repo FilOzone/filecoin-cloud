@@ -16,7 +16,6 @@ import { Navigation } from '@/components/Navigation/Navigation'
 import { StructuredDataScript } from '@/components/StructuredDataScript'
 
 import { PATHS } from '@/constants/paths'
-import { FOC_URLS } from '@/constants/site-metadata'
 import { createMetadata } from '@/utils/create-metadata'
 
 import { AgentPrompt } from './components/AgentPrompt'
@@ -315,12 +314,8 @@ export default function IpfsToFilecoin() {
           title="Find out what your archive costs before you move it"
           description="Checking is free and needs nothing but a list. You get a real number and the one line that hands the job to your agent."
           cta={[
-            <Button
-              key="read-the-brief"
-              href={FOC_URLS.documentation.gettingStarted}
-              variant="primary"
-            >
-              Read the docs
+            <Button key="check-my-list" href="#check" variant="primary">
+              Check my list free
             </Button>,
             <Button
               key="talk-to-us"
