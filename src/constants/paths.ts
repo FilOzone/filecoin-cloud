@@ -10,6 +10,10 @@ export const PATHS = {
     path: '/agents',
     label: 'Agents',
   },
+  COLD_STORAGE_SERVICE: {
+    path: '/cold-storage-service',
+    label: 'Cold Storage',
+  },
   CONTACT: {
     path: '/contact',
     label: 'Talk to our team',
@@ -30,6 +34,10 @@ export const PATHS = {
     path: '/showcase',
     label: 'Showcase',
   },
+  STORE: {
+    path: '/store',
+    label: 'Store',
+  },
   SUPPORT: {
     path: '/support',
     label: 'Support',
@@ -40,6 +48,6 @@ export const PATHS = {
   },
   WARM_STORAGE_SERVICE: {
     path: '/warm-storage-service',
-    label: 'Store',
+    label: 'Warm Storage',
   },
 } as const satisfies Record<string, PathConfig>

@@ -10,11 +10,11 @@ const CTA_TEXT = 'Learn more'
 
 export const filecoinOnchainCloudProducts: Array<SimpleCardWithImageProps> = [
   {
-    title: 'Filecoin Warm Storage',
+    title: 'Storage Marketplace',
     description:
-      'A storage layer that keeps data accessible while maintaining verifiable persistence across the Filecoin network. Powered by onchain contracts for storage and payments.',
+      'Warm storage for active data and cold storage for large archives, both verified onchain and settled through Filecoin Pay. Compare Filecoin Warm Storage and Filecoin Cold Storage and pick the fit for your data.',
     cta: {
-      href: PATHS.WARM_STORAGE_SERVICE.path,
+      href: PATHS.STORE.path,
       text: CTA_TEXT,
     },
     image: {
@@ -25,7 +25,7 @@ export const filecoinOnchainCloudProducts: Array<SimpleCardWithImageProps> = [
   {
     title: 'Filecoin Pay',
     description:
-      'Enables onchain payments tied to service delivery. Smart contracts automatically confirm performance before releasing funds — unlocking fair, pay-for-what-works models.',
+      'The payment rail underneath every service in the marketplace. Smart contracts automatically confirm performance before releasing funds — unlocking fair, pay-for-what-works models.',
     cta: {
       href: FOC_URLS.filecoinPay,
       text: CTA_TEXT,
