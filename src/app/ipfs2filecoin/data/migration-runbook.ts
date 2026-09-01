@@ -93,11 +93,13 @@ Install once, then every command below runs as \`${CLI_PACKAGE} ...\`:
 
 \`\`\`bash
 npm install -g ${CLI_PACKAGE}
-${CLI_PACKAGE} --help
+${CLI_PACKAGE} --version
 \`\`\`
 
-\`--help\` is the install check. There is no \`--version\` subcommand; it exits
-non-zero as an unknown command, which reads like a broken install when it is not.
+\`--version\` is the install check, and it prints what you installed. It exists
+from ${CLI_VERIFIED_FROM}; on an older build it exits non-zero as an unknown
+command, which means the install is stale rather than broken. Upgrade with
+\`npm install -g ${CLI_PACKAGE}@latest\` and run it again.
 
 If you cannot install globally, prefix **every** command in this document with
 \`npx -y ${CLI_PACKAGE}@latest\` instead. Do not mix the two forms: a bare
@@ -296,10 +298,18 @@ stage 5 uses the data set ids.
 Verification is against the chain and real retrievals, not the tool's own
 bookkeeping.
 
-1. **Onchain.** Open each data set from the stage 4 summary at
-   \`https://pdp.vxb.ai/\${NETWORK}/dataset/<dataSetId>\` and confirm it is live
-   and holds the expected pieces. There is one data set per copy, so with the
-   default ${COPIES} copies there are ${COPIES} ids.
+1. **Onchain.** Reconcile each data set from the stage 4 summary against chain
+   state. There is one data set per copy, so with the default ${COPIES} copies
+   there are ${COPIES} ids.
+
+   \`\`\`bash
+   ${CLI_PACKAGE} report --data-set-id <dataSetId> --db migrate.db --network "$NETWORK" --json
+   \`\`\`
+
+   It exits non-zero when the run is incomplete, so treat a zero exit plus
+   \`"complete": true\` as the pass. The same data set is viewable at
+   \`https://pdp.vxb.ai/\${NETWORK}/dataset/<dataSetId>\` if the user wants to
+   see it themselves.
 2. **Retrieval.** Fetch a handful of the user's original CIDs — spread across
    the list, not just the first few — and confirm the bytes come back. IPFS
    indexing announces migrated CIDs to the public IPFS network (via IPNI), so
