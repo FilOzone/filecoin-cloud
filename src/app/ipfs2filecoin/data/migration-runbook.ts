@@ -46,7 +46,7 @@ stop_and_ask: stage 3, before any transaction that spends
 never:
   - re-chunk or alter content
   - delete data from the existing provider
-  - accept a private key into your context
+  - resolve a private key; substitute the user's key file into the command
 ---
 
 # Migrate IPFS data to Filecoin — agent runbook
@@ -77,9 +77,9 @@ onward. Full command reference: ${CLI_REPO_URL}
    point of the migration.
 2. **Never delete data from the current provider.** Verification comes first;
    deletion is the user's decision afterwards.
-3. **Never resolve a private key.** Never ask for one in chat, never print
-   one, never read one back. Passing a key file into a command without
-   inspecting it is the one permitted use; everything else is off limits.
+3. **Pass the key, never resolve it.** The key reaches the CLI by being
+   substituted from a file into a command you run. That substitution is your
+   only contact with it: not asked for in chat, not printed, not read back.
 4. **Stop and ask at the funding gate (stage 3).** Spending is the user's
    decision.
 5. **The deposit is the ceiling.** A key that can sign on the account can draw
@@ -115,9 +115,9 @@ NETWORK=mainnet
 - A CID list, one per line, saved as \`cids.txt\`. Blank lines and \`#\` comments
   are ignored. If the user does not have a list, stop and ask them for one:
   you have neither their credentials nor the name of their service. Tell them
-  where to look — a pinning dashboard can usually export its pinned CIDs, and
+  where to look. A pinning dashboard can usually export its pinned CIDs, and
   services implementing the IPFS Pinning Service API list them at its
-  \`/pins\` endpoint — and wait for the file.
+  \`/pins\` endpoint. Then wait for the file.
 - A trustless gateway that serves deterministic CARs. Stage 1 verifies this.
 - Free disk roughly the size of the data being migrated. Stage 4 stages packed
   CAR files under \`--car-store\` and deletes each one as soon as every copy is
@@ -233,10 +233,7 @@ copy on its first onchain commit, with IPFS indexing enabled. Remind the user
 that the deposited amount is the ceiling on everything downstream.
 
 **Resume only when the user confirms funding succeeded.** Stage 4 signs with
-the same key, so it must run in a shell where \`PRIVATE_KEY\` is exported. Your
-shell almost certainly does not keep exported variables between commands, and
-you must not ask for the key directly, so have the user write it to a file once
-and read it inline on the stage 4 command:
+the same key, so have the user write it to a file once:
 
 \`\`\`bash
 # user, once, in their own terminal. Typed, not echoed: the key never appears
@@ -244,17 +241,18 @@ and read it inline on the stage 4 command:
 (umask 077; read -rs -p 'private key: ' K && printf '%s' "$K" > ~/.foc-key && unset K)
 \`\`\`
 
-Then every command you run substitutes it without the key ever entering your
-context or the transcript:
+Substitute that file into each command you run. The key stays out of your
+context and out of the transcript, and your shell does not have to keep an
+exported variable between commands:
 
 \`\`\`bash
 PRIVATE_KEY=$(cat ~/.foc-key) ${CLI_PACKAGE} upload --cids cids.txt --db migrate.db --car-store ./cars --network "$NETWORK"
 \`\`\`
 
-When the migration is verified, tell the user to delete that file. Do not
-delete it yourself. If the user would rather keep the key off your machine
-entirely, stage 4 is theirs to run too, and you read back the summary it
-prints.
+When the migration is verified, tell the user to delete that file; removing
+it is theirs to do, like every other action on the key. If they would rather
+keep the key off your machine entirely, stage 4 is theirs to run too, and you
+read back the summary it prints.
 
 ## Stage 4 — upload
 
