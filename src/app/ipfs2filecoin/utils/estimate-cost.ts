@@ -35,7 +35,7 @@ export function usdBurnPerMonth(tebibytes: number) {
   )
 }
 
-export type VolumeUnit = 'GiB' | 'TiB'
+export type VolumeUnit = 'MiB' | 'GiB' | 'TiB'
 
 export type CostEstimate = {
   tebibytes: number
@@ -52,8 +52,14 @@ export type CostEstimate = {
   refundable: number
 }
 
+const TEBIBYTES_PER_UNIT: Record<VolumeUnit, number> = {
+  TiB: 1,
+  GiB: 1 / 1024,
+  MiB: 1 / (1024 * 1024),
+}
+
 export function toTebibytes(volume: number, unit: VolumeUnit) {
-  return unit === 'TiB' ? volume : volume / 1024
+  return volume * TEBIBYTES_PER_UNIT[unit]
 }
 
 export function estimateCost(tebibytes: number, days: number): CostEstimate {
@@ -79,5 +85,21 @@ export function formatUsd(amount: number) {
     currency: 'USD',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
+  })
+}
+
+/**
+ * Rates below a cent, shown at the precision they are actually charged at.
+ * `formatUsd` fixes two decimals because every total on this page is a dollar
+ * amount; the per-data-set flat fee is the one input small enough that two
+ * decimals would misstate it, so it gets its own formatter rather than
+ * loosening the one the deposit table depends on.
+ */
+export function formatUsdRate(amount: number) {
+  return amount.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 3,
   })
 }

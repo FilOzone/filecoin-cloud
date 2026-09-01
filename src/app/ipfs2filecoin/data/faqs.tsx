@@ -31,8 +31,9 @@ export const faqs: Array<Question> = [
     answer: (
       <p>
         No, and we would suggest you do not until you have verified the
-        migration yourself. Run the retrieval check on the receipt, keep the
-        manifest, and cancel your old plan when you are satisfied.
+        migration yourself. Fetch a few of your own CIDs, check the data set ids
+        the run reports against the chain, and cancel your old plan when you are
+        satisfied.
       </p>
     ),
   },
@@ -60,8 +61,8 @@ export const faqs: Array<Question> = [
       <p>
         The CLI keeps its state in a local database, so an interrupted run loses
         nothing: re-run the same command and it picks up where it left off.
-        Anything not yet stored stays in the manifest, so you can finish it in a
-        later run.
+        Anything not yet stored is still recorded there, so a later run finishes
+        it rather than starting over.
       </p>
     ),
   },
@@ -89,16 +90,19 @@ export const faqs: Array<Question> = [
     answer: (
       <>
         <p>
-          All of the work, and none of the spending. The brief at{' '}
+          All of the work, up to the deposit you set. The brief at{' '}
           <MarkdownLink href={RUNBOOK_PATH}>{RUNBOOK_PATH}</MarkdownLink> gives
           an agent the command sequence, the caps, and the prerequisites, and
           the tool runs headless with JSON status output so it can read its own
           progress and recover from failures.
         </p>
         <p>
-          What it hands back to you are the two steps that move money: funding
-          the run and signing it. If a migration is too large or your source is
-          not publicly reachable,{' '}
+          What it hands back to you are the two things that need your key: you
+          put the key in a file it can pass along without reading, and you fund
+          the account in your own terminal while it waits for you to confirm.
+          After that it signs the migration itself, and the deposit you set is
+          the ceiling on what it can spend. If a migration is too large or your
+          source is not publicly reachable,{' '}
           <MarkdownLink href={PATHS.CONTACT.path}>
             talk to our team
           </MarkdownLink>{' '}

@@ -77,9 +77,9 @@ onward. Full command reference: ${CLI_REPO_URL}
    point of the migration.
 2. **Never delete data from the current provider.** Verification comes first;
    deletion is the user's decision afterwards.
-3. **Never take a private key into your context.** Not in chat, not in a file
-   you read. The key lives in a shell environment; stage 3 is executed by the
-   user in their own terminal.
+3. **Never resolve a private key.** Never ask for one in chat, never print
+   one, never read one back. Passing a key file into a command without
+   inspecting it is the one permitted use; everything else is off limits.
 4. **Stop and ask at the funding gate (stage 3).** Spending is the user's
    decision.
 5. **The deposit is the ceiling.** A key that can sign on the account can draw
@@ -113,9 +113,11 @@ NETWORK=mainnet
 
 - Node 24 or newer. Hard requirement. Check with \`node --version\`.
 - A CID list, one per line, saved as \`cids.txt\`. Blank lines and \`#\` comments
-  are ignored. If the user does not have a list, get it from their pinning
-  service first: dashboards export pinned CIDs, and services implementing the
-  IPFS Pinning Service API list them at its \`/pins\` endpoint.
+  are ignored. If the user does not have a list, stop and ask them for one:
+  you have neither their credentials nor the name of their service. Tell them
+  where to look — a pinning dashboard can usually export its pinned CIDs, and
+  services implementing the IPFS Pinning Service API list them at its
+  \`/pins\` endpoint — and wait for the file.
 - A trustless gateway that serves deterministic CARs. Stage 1 verifies this.
 - Free disk roughly the size of the data being migrated. Stage 4 stages packed
   CAR files under \`--car-store\` and deletes each one as soon as every copy is
@@ -231,9 +233,28 @@ copy on its first onchain commit, with IPFS indexing enabled. Remind the user
 that the deposited amount is the ceiling on everything downstream.
 
 **Resume only when the user confirms funding succeeded.** Stage 4 signs with
-the same key, so it must run in a shell where \`PRIVATE_KEY\` is exported. If
-the user wants to keep the key off your machine entirely, stage 4 is theirs to
-run too, and you read back the summary it prints.
+the same key, so it must run in a shell where \`PRIVATE_KEY\` is exported. Your
+shell almost certainly does not keep exported variables between commands, and
+you must not ask for the key directly, so have the user write it to a file once
+and read it inline on the stage 4 command:
+
+\`\`\`bash
+# user, once, in their own terminal. Typed, not echoed: the key never appears
+# on a command line, so it never reaches shell history.
+(umask 077; read -rs -p 'private key: ' K && printf '%s' "$K" > ~/.foc-key && unset K)
+\`\`\`
+
+Then every command you run substitutes it without the key ever entering your
+context or the transcript:
+
+\`\`\`bash
+PRIVATE_KEY=$(cat ~/.foc-key) ${CLI_PACKAGE} upload --cids cids.txt --db migrate.db --car-store ./cars --network "$NETWORK"
+\`\`\`
+
+When the migration is verified, tell the user to delete that file. Do not
+delete it yourself. If the user would rather keep the key off your machine
+entirely, stage 4 is theirs to run too, and you read back the summary it
+prints.
 
 ## Stage 4 — upload
 
@@ -245,8 +266,11 @@ chosen automatically; the batching timer commits early rather than risk a
 provider expiring an uncommitted piece.
 
 \`\`\`bash
-${CLI_PACKAGE} upload --cids cids.txt --db migrate.db --car-store ./cars --network "$NETWORK"
+PRIVATE_KEY=$(cat ~/.foc-key) ${CLI_PACKAGE} upload --cids cids.txt --db migrate.db --car-store ./cars --network "$NETWORK"
 \`\`\`
+
+Drop the \`PRIVATE_KEY=\` prefix only if the user is running this command
+themselves in a shell where they have already exported the key.
 
 - The run is resumable: re-running the same command continues where it
   stopped, never re-uploads what is already committed, and never
@@ -301,7 +325,7 @@ yours to declare.
 | \`collected:\` during upload | provider expired an uncommitted piece | none — it re-uploads and adapts automatically |
 | \`warn: secondary ... failed to pull\`, persistent | that provider cannot fetch from the primary | re-run; if it persists, pin different providers with \`--provider-id\` (ids at \`https://pdp.vxb.ai/\${NETWORK}/providers\`) |
 | \`batch left add_unconfirmed\` | an onchain add's outcome is unknown | re-run the same command; it reconciles against the provider before retrying |
-| \`set PRIVATE_KEY\` error | key not in that shell's environment | the user exports it in their own terminal |
+| \`set PRIVATE_KEY\` error | key not in that command's environment | re-run it prefixed with \`PRIVATE_KEY=$(cat ~/.foc-key)\`, or hand the command to the user |
 | disk fills during the run | staged CARs plus data exceed free space | free space or use a larger disk for \`--car-store\`; committed pieces are already cleaned up |
 
 One unretrievable item fails the piece it was packed into, which is why stages

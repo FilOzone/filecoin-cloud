@@ -79,8 +79,16 @@ export const AGENT_PROMPT = `Migrate my IPFS data to Filecoin: read ${RUNBOOK_UR
  * service.
  */
 export function buildAgentPrompt(cids?: ReadonlyArray<string>): string {
-  if (!cids || cids.length === 0 || cids.length > PROMPT_INLINE_CAP) {
+  if (!cids || cids.length === 0) {
     return AGENT_PROMPT
+  }
+
+  // Past the cap the list moves to a file, so the prompt has to name the file.
+  // Falling back to the bare prompt here would hand the largest lists — the
+  // ones most likely to stall an agent — a prompt with no input at all, and
+  // would make the verdict's "reads your list from a file" untrue.
+  if (cids.length > PROMPT_INLINE_CAP) {
+    return `Migrate my IPFS data to Filecoin: read ${RUNBOOK_URL} and follow it. My CIDs are in cids.txt in the folder you are running from.`
   }
 
   return `Migrate my IPFS data to Filecoin: read ${RUNBOOK_URL} and follow it. My CIDs are:\n${cids.join('\n')}`

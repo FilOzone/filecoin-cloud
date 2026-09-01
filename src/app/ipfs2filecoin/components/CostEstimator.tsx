@@ -19,6 +19,7 @@ import {
   type CostEstimate,
   estimateCost,
   formatUsd,
+  formatUsdRate,
   toTebibytes,
   type VolumeUnit,
 } from '../utils/estimate-cost'
@@ -108,6 +109,7 @@ export function CostEstimator() {
                 >
                   <option value="GiB">GiB</option>
                   <option value="TiB">TiB</option>
+                  <option value="MiB">MiB</option>
                 </Select>
                 <span className="pointer-events-none absolute right-0 flex items-center pr-3 text-(--color-paragraph-text)">
                   <Icon component={CaretDownIcon} size={20} />
@@ -132,7 +134,7 @@ export function CostEstimator() {
 
         <p className="text-(--color-paragraph-text-subtle) text-sm">
           Total across everything you are storing, not per CID. 1 TiB is 1,024
-          GiB.
+          GiB, and 1 GiB is 1,024 MiB.
         </p>
       </div>
 
@@ -155,11 +157,12 @@ export function CostEstimator() {
 
       <p className="text-(--color-paragraph-text) text-sm/relaxed">
         Based on {formatUsd(USD_PER_TIB_MONTH_PER_COPY)} per TiB per month per
-        copy, plus a flat {formatUsd(USD_FLAT_PER_DATA_SET_MONTH)} per data set
-        per month, across {COPIES} copies. Gas is separate, so you also need a
-        small amount of FIL. A deposit funds a rate rather than a term: storing
-        more data later spends the balance faster and moves your funded-until
-        date earlier. The exact deposit is shown before you approve it.
+        copy, plus a flat {formatUsdRate(USD_FLAT_PER_DATA_SET_MONTH)} per data
+        set per month, across {COPIES} copies. Gas is separate, so you also need
+        a small amount of FIL. A deposit funds a rate rather than a term:
+        storing more data later spends the balance faster and moves your
+        funded-until date earlier. The exact deposit is shown before you approve
+        it.
       </p>
     </div>
   )

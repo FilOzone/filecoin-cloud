@@ -87,15 +87,17 @@ export default function IpfsToFilecoin() {
             <p className="text-center text-(--color-paragraph-text)">
               Give this line to Claude Code, Cursor, or any coding agent. It
               reads the runbook, works through your list, and reports back what
-              landed.
+              landed. The first thing it will ask you for is the list of CIDs to
+              migrate, so have one ready or{' '}
+              <SmartTextLink href="#check">
+                paste yours into the checker
+              </SmartTextLink>{' '}
+              and copy the prompt it builds with your CIDs already in it.
             </p>
             <AgentPrompt source="hero" />
             <p className="text-center text-(--color-paragraph-text) text-sm/relaxed">
               It signs from a key you provide and can spend up to your deposit,
-              so use a wallet kept for this migration and nothing else.{' '}
-              <SmartTextLink href="#check">
-                Or check your list first: free, in your browser.
-              </SmartTextLink>
+              so use a wallet kept for this migration and nothing else.
             </p>
           </div>
         </PageSection>
