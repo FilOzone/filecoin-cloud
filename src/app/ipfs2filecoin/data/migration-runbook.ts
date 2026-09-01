@@ -275,12 +275,11 @@ themselves in a shell where they have already exported the key.
 - The run is resumable: re-running the same command continues where it
   stopped, never re-uploads what is already committed, and never
   double-commits.
-- The run creates fresh data sets by default, and that is what you want:
-  data sets created before the network's 2026-08-24 contract upgrade miss its
-  gas optimizations, so every commit into one costs more. Only pass
-  \`--data-set-id\` to reuse a set this wallet created after that upgrade;
-  a set's creation date is on its explorer page at
-  \`https://pdp.vxb.ai/\${NETWORK}/dataset/<dataSetId>\`.
+- The run creates fresh data sets by default. Keep that default. Data sets
+  created before the network's gas-optimization upgrade cost more on every
+  commit, the upgrade lands on each network on its own date, and a fresh set
+  is correct either way. Pass \`--data-set-id\` only if the user asks you to
+  reuse a specific set and accepts that it may be a pre-upgrade one.
 - Staged CARs under \`./cars\` are deleted during the run as each piece's
   copies are all committed. Do not delete them by hand mid-run.
 - \`collected:\` lines mean a provider expired a piece before it was committed;
