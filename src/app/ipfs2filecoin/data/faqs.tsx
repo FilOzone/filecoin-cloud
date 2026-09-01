@@ -4,7 +4,7 @@ import type { Question } from '@/components/Faq'
 
 import { PATHS } from '@/constants/paths'
 
-import { RUNBOOK_PATH } from '../constants/migration'
+import { DOCS_GUIDE_URL, RUNBOOK_PATH } from '../constants/migration'
 
 export const faqs: Array<Question> = [
   {
@@ -101,8 +101,13 @@ export const faqs: Array<Question> = [
           put the key in a file it can pass along without reading, and you fund
           the account in your own terminal while it waits for you to confirm.
           After that it signs the migration itself, and the deposit you set is
-          the ceiling on what it can spend. If a migration is too large or your
-          source is not publicly reachable,{' '}
+          the ceiling on what it can spend.
+        </p>
+        <p>
+          Rather run it yourself? The same migration is written out step by step
+          in the{' '}
+          <MarkdownLink href={DOCS_GUIDE_URL}>Filecoin docs</MarkdownLink>. If a
+          migration is too large or your source is not publicly reachable,{' '}
           <MarkdownLink href={PATHS.CONTACT.path}>
             talk to our team
           </MarkdownLink>{' '}

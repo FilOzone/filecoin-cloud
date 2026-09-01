@@ -25,6 +25,14 @@ export const CLI_PACKAGE = 'ipfs2foc'
 export const CLI_REPO_URL = 'https://github.com/FilOzone/ipfs2foc'
 
 /**
+ * The same migration written for a person to follow rather than an agent. The
+ * runbook at RUNBOOK_PATH is the agent's copy; this is the one to hand someone
+ * who would rather read the steps and run them.
+ */
+export const DOCS_GUIDE_URL =
+  'https://docs.filecoin.io/build-on-filecoin/cookbook/filecoin-pin/migrate-ipfs-pins'
+
+/**
  * Do not pin the install to an exact version here. The repo runs ahead of npm
  * (0.6.0 in tree while 0.4.0 was the published latest), so a pin to the tree
  * version resolves to nothing and the very first command an agent runs fails
