@@ -21,7 +21,7 @@ export function Faq({ questions }: FaqProps) {
   return (
     <div className="max-w-4xl">
       <SectionContent headingTag="h2" title="Frequently asked questions">
-        <Accordion type="single" collapsible className="divide-white/20">
+        <Accordion type="single" collapsible>
           {questions.map(({ question, answer }) => {
             return (
               <Accordion.Item key={question} value={question} className="py-4">
