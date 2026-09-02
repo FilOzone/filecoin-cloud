@@ -8,8 +8,8 @@ import { FOC_URLS } from '@/constants/site-metadata'
 
 export const headerNavigationItems: Array<NavItem | NavigationMenuItem> = [
   {
-    label: PATHS.WARM_STORAGE_SERVICE.label,
-    href: PATHS.WARM_STORAGE_SERVICE.path,
+    label: PATHS.STORE.label,
+    href: PATHS.STORE.path,
   },
   {
     label: 'Resources',
@@ -56,8 +56,8 @@ export const headerNavigationItems: Array<NavItem | NavigationMenuItem> = [
 
 export const mobileNavigationItems: Array<NavItem> = [
   {
-    label: PATHS.WARM_STORAGE_SERVICE.label,
-    href: PATHS.WARM_STORAGE_SERVICE.path,
+    label: PATHS.STORE.label,
+    href: PATHS.STORE.path,
   },
   {
     label: PATHS.SHOWCASE.label,

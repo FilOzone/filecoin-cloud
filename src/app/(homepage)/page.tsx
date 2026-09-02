@@ -8,6 +8,7 @@ import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 
 import { BackgroundVideo } from '@/components/BackgroundVideo'
+import { ComparisonTable } from '@/components/ComparisonTable'
 import { Faq } from '@/components/Faq'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { Phase } from '@/components/Phase'
@@ -31,6 +32,11 @@ import { faqs } from './data/faqs'
 import { filecoinOnchainCloudProducts } from './data/filecoin-onchain-cloud-products'
 import { focFeatures } from './data/foc-features'
 import { runningOnFilecoinOnchainCloud } from './data/running-on-filecoin-onchain-cloud'
+import { warmStorageIntegrations } from './data/warm-storage-integrations'
+import {
+  WHY_FOC_COLUMN_LABELS,
+  whyFocComparison,
+} from './data/why-foc-comparison'
 import { generateStructuredData } from './utils/generate-structured-data'
 
 export default function Homepage() {
@@ -112,9 +118,44 @@ export default function Homepage() {
 
       <PageSection backgroundVariant="light">
         <SectionContent
+          centerTitle
           headingTag="h2"
-          title="Running on Filecoin Onchain Cloud"
-          description="Projects using Filecoin Onchain Cloud to power verifiable, onchain applications and infrastructure."
+          title="Why Filecoin Onchain Cloud"
+          description="Not just cheaper storage — storage you can independently verify, with no single vendor holding your data hostage."
+        >
+          <ComparisonTable
+            caption="Comparison of traditional cloud storage and Filecoin Onchain Cloud"
+            columnLabels={[...WHY_FOC_COLUMN_LABELS]}
+            rows={whyFocComparison}
+          />
+        </SectionContent>
+      </PageSection>
+
+      <PageSection backgroundVariant="light" paddingVariant="topNone">
+        <SectionContent
+          headingTag="h2"
+          title="Two ways to integrate Warm Storage"
+          description="Both are entry points into the same Filecoin Warm Storage Service (FWSS) — pick the one that matches your workflow."
+        >
+          <CardGrid as="ul" variant="smTwoLgThreeWider">
+            {warmStorageIntegrations.map(({ title, description, icon }) => (
+              <Card
+                key={title}
+                as="li"
+                title={title}
+                description={description}
+                icon={icon}
+              />
+            ))}
+          </CardGrid>
+        </SectionContent>
+      </PageSection>
+
+      <PageSection backgroundVariant="dark">
+        <SectionContent
+          headingTag="h2"
+          title="Built on Filecoin Onchain Cloud"
+          description="Third-party products and communities running on FOC's storage, payments, and verification — proof it works in production, not just in a demo."
         >
           <CardGrid as="ul" variant="smTwoLgThreeWider">
             {runningOnFilecoinOnchainCloud.map(
