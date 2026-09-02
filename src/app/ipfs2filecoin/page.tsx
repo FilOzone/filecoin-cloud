@@ -25,6 +25,7 @@ import { CostEstimator } from './components/CostEstimator'
 import { StepList } from './components/StepList'
 import {
   COORDINATION_VOLUME_LABEL,
+  DOCS_GUIDE_URL,
   RUNBOOK_PATH,
   USD_PER_TIB_MONTH_PER_COPY,
 } from './constants/migration'
@@ -252,6 +253,20 @@ export default function IpfsToFilecoin() {
                   </strong>
                 </p>
               </div>
+
+              {/*
+                The manual path, stated where someone is choosing how to run
+                this. It was only in an FAQ answer, which is collapsed by
+                default, so in practice the docs were unreachable from the page.
+              */}
+              <p className="text-(--color-paragraph-text) text-sm/relaxed">
+                Rather run it yourself? The same migration is written out step
+                by step in the{' '}
+                <SmartTextLink href={DOCS_GUIDE_URL}>
+                  Filecoin docs
+                </SmartTextLink>
+                .
+              </p>
             </div>
 
             <div className="h-fit space-y-4 lg:border-(--color-border-muted) lg:border-l lg:pl-14">
