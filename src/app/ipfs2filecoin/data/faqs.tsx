@@ -104,10 +104,12 @@ export const faqs: Array<Question> = [
           the ceiling on what it can spend.
         </p>
         <p>
-          Rather run it yourself? The same migration is written out step by step
-          in the{' '}
-          <MarkdownLink href={DOCS_GUIDE_URL}>Filecoin docs</MarkdownLink>. If a
-          migration is too large or your source is not publicly reachable,{' '}
+          Rather run it yourself? The same migration is written out in the{' '}
+          <MarkdownLink href={DOCS_GUIDE_URL}>
+            step-by-step command-line guide
+          </MarkdownLink>
+          . If a migration is too large or your source is not publicly
+          reachable,{' '}
           <MarkdownLink href={PATHS.CONTACT.path}>
             talk to our team
           </MarkdownLink>{' '}

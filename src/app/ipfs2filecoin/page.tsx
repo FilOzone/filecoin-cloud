@@ -25,6 +25,7 @@ import { CostEstimator } from './components/CostEstimator'
 import { StepList } from './components/StepList'
 import {
   COORDINATION_VOLUME_LABEL,
+  DOCS_OVERVIEW_URL,
   RUNBOOK_PATH,
   USD_PER_TIB_MONTH_PER_COPY,
 } from './constants/migration'
@@ -93,6 +94,22 @@ export default function IpfsToFilecoin() {
                 paste yours into the checker
               </SmartTextLink>{' '}
               and copy the prompt it builds with your CIDs already in it.
+            </p>
+            {/*
+              Above the prompt, not below it: the read-first step comes before
+              the action it leads to. Points at how the migration works rather
+              than the manual commands, so it builds confidence in handing the
+              work over instead of offering a way around it.
+            */}
+            <p className="text-center text-(--color-paragraph-text) text-sm/relaxed">
+              Want to know what it will do first? Read{' '}
+              <ExternalTextLink
+                className={inlineExternalLink}
+                href={DOCS_OVERVIEW_URL}
+              >
+                how the migration works
+              </ExternalTextLink>
+              .
             </p>
             <AgentPrompt source="hero" />
             <p className="text-center text-(--color-paragraph-text) text-sm/relaxed">
