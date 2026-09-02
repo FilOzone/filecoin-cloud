@@ -25,7 +25,7 @@ import { CostEstimator } from './components/CostEstimator'
 import { StepList } from './components/StepList'
 import {
   COORDINATION_VOLUME_LABEL,
-  DOCS_GUIDE_URL,
+  DOCS_OVERVIEW_URL,
   RUNBOOK_PATH,
   USD_PER_TIB_MONTH_PER_COPY,
 } from './constants/migration'
@@ -94,6 +94,22 @@ export default function IpfsToFilecoin() {
                 paste yours into the checker
               </SmartTextLink>{' '}
               and copy the prompt it builds with your CIDs already in it.
+            </p>
+            {/*
+              Above the prompt, not below it: the read-first step comes before
+              the action it leads to. Points at how the migration works rather
+              than the manual commands, so it builds confidence in handing the
+              work over instead of offering a way around it.
+            */}
+            <p className="text-center text-(--color-paragraph-text) text-sm/relaxed">
+              Want to know what it will do first? Read{' '}
+              <ExternalTextLink
+                className={inlineExternalLink}
+                href={DOCS_OVERVIEW_URL}
+              >
+                how the migration works
+              </ExternalTextLink>
+              .
             </p>
             <AgentPrompt source="hero" />
             <p className="text-center text-(--color-paragraph-text) text-sm/relaxed">
@@ -253,23 +269,6 @@ export default function IpfsToFilecoin() {
                   </strong>
                 </p>
               </div>
-
-              {/*
-                Keep a docs link outside the FAQ. That accordion is collapsed by
-                default, so a link living only in an answer is unreachable
-                without knowing which question to open.
-              */}
-              <p className="text-(--color-paragraph-text) text-sm/relaxed">
-                Rather run it yourself? The same migration is written out step
-                by step in the{' '}
-                <ExternalTextLink
-                  className={inlineExternalLink}
-                  href={DOCS_GUIDE_URL}
-                >
-                  Filecoin docs
-                </ExternalTextLink>
-                .
-              </p>
             </div>
 
             <div className="h-fit space-y-4 lg:border-(--color-border-muted) lg:border-l lg:pl-14">

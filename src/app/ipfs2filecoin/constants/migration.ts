@@ -34,6 +34,15 @@ export const DOCS_GUIDE_URL =
   'https://docs.filecoin.io/build-on-filecoin/cookbook/filecoin-pin/migrate-ipfs-pins/command-line'
 
 /**
+ * How the migration works, without the commands. This is the one to offer
+ * someone deciding whether to trust an agent with it; the walkthrough above
+ * is the manual procedure, which is the thing this page argues against doing
+ * by hand, so it does not belong in front of a first-time reader.
+ */
+export const DOCS_OVERVIEW_URL =
+  'https://docs.filecoin.io/build-on-filecoin/cookbook/filecoin-pin/migrate-ipfs-pins'
+
+/**
  * Do not pin the install to an exact version here. The repo runs ahead of npm
  * (0.6.0 in tree while 0.4.0 was the published latest), so a pin to the tree
  * version resolves to nothing and the very first command an agent runs fails
