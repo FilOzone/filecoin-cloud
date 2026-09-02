@@ -255,16 +255,19 @@ export default function IpfsToFilecoin() {
               </div>
 
               {/*
-                The manual path, stated where someone is choosing how to run
-                this. It was only in an FAQ answer, which is collapsed by
-                default, so in practice the docs were unreachable from the page.
+                Keep a docs link outside the FAQ. That accordion is collapsed by
+                default, so a link living only in an answer is unreachable
+                without knowing which question to open.
               */}
               <p className="text-(--color-paragraph-text) text-sm/relaxed">
                 Rather run it yourself? The same migration is written out step
                 by step in the{' '}
-                <SmartTextLink href={DOCS_GUIDE_URL}>
+                <ExternalTextLink
+                  className={inlineExternalLink}
+                  href={DOCS_GUIDE_URL}
+                >
                   Filecoin docs
-                </SmartTextLink>
+                </ExternalTextLink>
                 .
               </p>
             </div>
