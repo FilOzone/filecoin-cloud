@@ -243,7 +243,10 @@ function EstimateBreakdown({ estimate }: { estimate: CostEstimate }) {
     <div
       role="status"
       aria-live="polite"
-      className="space-y-4 rounded-xl border border-(--color-border-muted) bg-(--color-card-background) p-5"
+      // Inset rather than another card: this panel sits inside the estimator's
+      // own card, and `card-background` there is the same white, so the two
+      // surfaces were separated by nothing but a hairline.
+      className="space-y-4 rounded-xl border border-(--color-border-muted) bg-(--color-surface-muted) p-5"
     >
       <dl className="space-y-3 text-(--color-paragraph-text)">
         {rows.map(({ label, amount, note }) => (
