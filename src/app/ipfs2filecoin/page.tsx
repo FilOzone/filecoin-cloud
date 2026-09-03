@@ -200,7 +200,7 @@ export default function IpfsToFilecoin() {
 
             <div
               id="estimate"
-              className="scroll-mt-24 rounded-xl border border-(--color-border-muted) bg-(--color-card-background-hover) p-6"
+              className="scroll-mt-24 rounded-xl border border-(--color-border-muted) bg-(--color-card-background) p-6"
             >
               <Heading tag="h3" variant="card-heading">
                 Estimate your deposit

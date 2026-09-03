@@ -27,7 +27,9 @@ function MobileComparisonCards() {
             key={`${service} ${detail}`}
             className={clsx(
               'rounded-xl border border-(--color-border-muted) p-4',
-              highlighted && 'bg-(--color-card-background-hover)',
+              highlighted
+                ? 'bg-(--color-surface-accent)'
+                : 'bg-(--color-card-background)',
             )}
           >
             <div
@@ -59,15 +61,16 @@ function MobileComparisonCards() {
 
 function DesktopComparisonTable() {
   return (
-    <div className="hidden overflow-x-auto rounded-xl border border-(--color-border-muted) md:block">
+    <div className="hidden overflow-x-auto rounded-xl border border-(--color-border-muted) bg-(--color-card-background) md:block">
       <table className="w-full min-w-140 text-left text-base">
         <thead>
           {/*
-            `card-background-hover` is the only subtle-surface value the token
-            set has: zinc-50 on light sections, a lift rather than a wash on
-            dark ones. Named for hover, used here as a static header tint.
+            `surface-muted` is the local subtle-surface token, one step off the
+            card the table sits on in every section variant. Not
+            `card-background-hover`, which collapses to white inside a `gray`
+            section and painted the header lighter than the rows below it.
           */}
-          <tr className="border-(--color-border-muted) border-b bg-(--color-card-background-hover) text-(--color-paragraph-text) text-sm">
+          <tr className="border-(--color-border-muted) border-b bg-(--color-surface-muted) text-(--color-paragraph-text) text-sm">
             <th scope="col" className="px-5 py-4 font-medium">
               Where the data lives
             </th>
@@ -82,14 +85,18 @@ function DesktopComparisonTable() {
         <tbody className="text-(--color-paragraph-text)">
           {pricingComparison.map(
             ({ service, detail, storagePerTbMonth, egress, highlighted }) => (
-              // Weight and colour sit on the row so the highlighted line reads
-              // as one emphasised entry rather than two bold cells and a third
-              // that quietly drops back to the body colour.
+              // Weight, colour and fill sit on the row so the highlighted line
+              // reads as one emphasised entry rather than two bold cells and a
+              // third that quietly drops back to the body colour. The fill is
+              // the brand tint rather than `surface-muted`: sharing the header's
+              // tint would merge the two, since the highlighted row is the first
+              // one under it.
               <tr
                 key={`${service} ${detail}`}
                 className={clsx(
                   'border-(--color-border-muted) border-b last:border-b-0',
-                  highlighted && 'font-semibold text-(--color-text-base)',
+                  highlighted &&
+                    'bg-(--color-surface-accent) font-semibold text-(--color-text-base)',
                 )}
               >
                 {/*
