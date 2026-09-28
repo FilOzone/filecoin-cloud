@@ -91,6 +91,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Ensure the label exists before creating or finding an issue.
+          gh label create "synapse-sdk-update" \
+            --description "Synapse SDK update failures" \
+            --color "0366d6" --force
+
           # Comment on existing open issue if one exists; otherwise create a new one
           EXISTING=$(gh issue list --label "synapse-sdk-update" --state open --json number --jq '.[0].number')
           if [ -n "$EXISTING" ]; then
@@ -115,3 +120,9 @@ jobs:
               --label "synapse-sdk-update,bug" \
               --body-file issue-body.md
           fi
+
+      - name: Fail workflow on build failure
+        if: ${{ always() && steps.build.outcome == 'failure' }}
+        run: |
+          echo "::error::Build failed with the latest Synapse SDK. See the Build project step for details."
+          exit 1
