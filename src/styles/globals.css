@@ -12,3 +12,25 @@
   --animate-slide-down: slideDown 300ms ease-out;
   --animate-slide-up: slideUp 300ms ease-out;
 }
+
+/*
+  Two surface tints the ui-filecoin token set has no value for.
+  `--color-card-background-hover` looks like the subtle-surface token but is not
+  one: inside a `gray` section it collapses to white, so using it as a header
+  tint or a highlight painted the emphasised part lighter than the card around
+  it. These resolve one step off the card surface in every section variant.
+*/
+:root,
+.light-section {
+  --color-surface-muted: var(--color-zinc-50);
+  --color-surface-accent: var(--color-brand-50);
+}
+
+.gray-section {
+  --color-surface-muted: var(--color-zinc-100);
+}
+
+.dark-section {
+  --color-surface-muted: var(--color-zinc-800);
+  --color-surface-accent: var(--color-brand-950);
+}
