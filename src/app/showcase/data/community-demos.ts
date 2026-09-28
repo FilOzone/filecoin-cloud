@@ -48,10 +48,6 @@ export const communityDemos = [
       href: 'https://compose.market',
       label: 'Open Compose',
     },
-    source: {
-      href: 'https://github.com/compose-market/mesh',
-      label: 'View code',
-    },
   },
   {
     title: 'Spawn Protocol',

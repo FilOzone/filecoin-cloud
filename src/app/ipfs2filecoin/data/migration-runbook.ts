@@ -307,7 +307,7 @@ bookkeeping.
 
    It exits non-zero when the run is incomplete, so treat a zero exit plus
    \`"complete": true\` as the pass. The same data set is viewable at
-   \`https://pdp.vxb.ai/\${NETWORK}/dataset/<dataSetId>\` if the user wants to
+   \`https://pdp.filecoin.cloud/\${NETWORK}/dataset/<dataSetId>\` if the user wants to
    see it themselves.
 2. **Retrieval.** Fetch a handful of the user's original CIDs — spread across
    the list, not just the first few — and confirm the bytes come back. IPFS
@@ -330,7 +330,7 @@ yours to declare.
 | \`probe\` reports \`WARN\` | gateway does not serve deterministic CARs | pick another gateway |
 | \`exceeds ... upload cap; not migrated\` | item larger than ${MAX_ITEM_SIZE_LABEL} | hold that CID out, report it |
 | \`collected:\` during upload | provider expired an uncommitted piece | none — it re-uploads and adapts automatically |
-| \`warn: secondary ... failed to pull\`, persistent | that provider cannot fetch from the primary | re-run; if it persists, pin different providers with \`--provider-id\` (ids at \`https://pdp.vxb.ai/\${NETWORK}/providers\`) |
+| \`warn: secondary ... failed to pull\`, persistent | that provider cannot fetch from the primary | re-run; if it persists, pin different providers with \`--provider-id\` (ids at \`https://pdp.filecoin.cloud/\${NETWORK}/providers\`) |
 | \`batch left add_unconfirmed\` | an onchain add's outcome is unknown | re-run the same command; it reconciles against the provider before retrying |
 | \`set PRIVATE_KEY\` error | key not in that command's environment | re-run it prefixed with \`PRIVATE_KEY=$(cat ~/.foc-key)\`, or hand the command to the user |
 | disk fills during the run | staged CARs plus data exceed free space | free space or use a larger disk for \`--car-store\`; committed pieces are already cleaned up |
