@@ -256,7 +256,8 @@ function EstimateBreakdown({ estimate }: { estimate: CostEstimate }) {
           >
             <dt>
               <span className="block text-sm">{label}</span>
-              <span className="block text-(--color-paragraph-text-subtle) text-xs">
+              {/* Keep the small notes above 4.5:1 contrast on the muted surface. */}
+              <span className="block text-(--color-paragraph-text) text-xs">
                 {note}
               </span>
             </dt>
