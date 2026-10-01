@@ -29,6 +29,9 @@ const FOC_URLS = {
       'https://docs.filecoin.io/builder-cookbook/filecoin-pin/erc-8004-agent-registration',
     plgenesis: 'https://www.plgenesis.com/',
   },
+  coldStorageService: {
+    externalSite: 'https://clients.fcss.fidl.tech',
+  },
   documentation: {
     gettingStarted: 'https://docs.filecoin.cloud/getting-started/',
     home: 'https://docs.filecoin.cloud',
@@ -41,6 +44,7 @@ const FOC_URLS = {
     repository: 'https://github.com/FilOzone/filecoin-cloud',
   },
   filecoinPay: 'https://pay.filecoin.cloud/mainnet',
+  filecoinPin: 'https://pin.filecoin.cloud/',
   status: 'https://status.filecoin.cloud',
   payments: {
     contractSourceCode:

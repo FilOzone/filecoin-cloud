@@ -1,22 +1,10 @@
 import akaveCloudLogo from '@/public/assets/running-on-foc-section/akave-cloud-logo.webp'
 import ensLogo from '@/public/assets/running-on-foc-section/ens-logo.webp'
 import erc8004Logo from '@/public/assets/running-on-foc-section/erc-8004-logo.webp'
-import filecoinPinLogo from '@/public/assets/running-on-foc-section/filecoin-pin-logo.webp'
 import kyveLogo from '@/public/assets/running-on-foc-section/kyve-logo.webp'
 import storachaLogo from '@/public/assets/running-on-foc-section/storacha-logo.webp'
 
 export const runningOnFilecoinOnchainCloud = [
-  {
-    title: 'Filecoin Pin',
-    description:
-      'Makes Interplanetary File System (IPFS) content easy to persist, keep online, and verify — simple tools, familiar workflows.',
-    image: {
-      data: filecoinPinLogo,
-      alt: 'Filecoin Pin logo on a cosmic background',
-    },
-
-    link: 'https://pin.filecoin.cloud/',
-  },
   {
     title: 'Akave Cloud',
     description:
