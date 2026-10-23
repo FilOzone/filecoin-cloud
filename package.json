@@ -55,7 +55,7 @@
     "abitype": "^1.2.0",
     "fast-glob": "^3.3.3",
     "frontmatter-markdown-loader": "^3.7.0",
-    "postcss": "^8.5.8",
+    "postcss": "^8.5.10",
     "schema-dts": "^2.0.0",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
