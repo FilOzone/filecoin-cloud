@@ -26,7 +26,7 @@ const FOC_URLS = {
   agents: {
     agent0Docs: 'https://sdk.ag0.xyz/docs',
     erc8004Tutorial:
-      'https://docs.filecoin.io/builder-cookbook/filecoin-pin/erc-8004-agent-registration',
+      'https://docs.filecoin.io/build-on-filecoin/cookbook/filecoin-pin/erc-8004-agent-registration',
     plgenesis: 'https://www.plgenesis.com/',
   },
   documentation: {
@@ -75,8 +75,8 @@ const FOC_URLS = {
     serviceProviderRegistryCode:
       'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/ServiceProviderRegistry.sol',
     sourceCode:
-      'https://github.com/FilOzone/filecoin-services/blob/main/service_contracts/src/FilecoinWarmStorageService.sol',
-    spDocumentation: 'https://docs.filecoin.io/storage-providers/pdp',
+      'https://github.com/FilOzone/filecoin-services/tree/main/service_contracts/src/modules',
+    spDocumentation: 'https://docs.filecoin.io/provide-storage/pdp',
     synapseSdk: 'https://github.com/FilOzone/synapse-sdk',
   },
 }

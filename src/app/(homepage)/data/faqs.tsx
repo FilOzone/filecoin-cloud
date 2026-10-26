@@ -128,7 +128,7 @@ export const faqs: Array<Question> = [
         <p>
           Yes. A growing number of teams are already integrating and building on
           Filecoin Onchain Cloud successfully.{' '}
-          <MarkdownLink href="https://filecoin.io/blog/posts/introducing-filecoin-onchain-cloud">
+          <MarkdownLink href="https://filecoin.io/blog/introducing-filecoin-onchain-cloud">
             Read more about these teams
           </MarkdownLink>
           .
