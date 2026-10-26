@@ -40,7 +40,7 @@
     "slugify": "^1.6.8",
     "twoslash": "^0.3.7",
     "viem": "^2.47.6",
-    "zod": "^4.3.5"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.9",
