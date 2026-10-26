@@ -10,3 +10,6 @@ https://filecoin-testnet.blockscout.com/address/$
 
 # GitHub commit URL - requires commit hash to be appended
 https://github.com/filecoin-project/curio/commit/$
+
+# IPNI documentation example - requires a CID after /providers/
+^https://cid\.contact/routing/v1/providers/?$

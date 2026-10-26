@@ -32,7 +32,7 @@ export const buildersLogos: Array<LogoItemProps> = [
   {
     logo: ERC8004Logo,
     alt: 'ERC-8004 Logo',
-    href: 'https://docs.filecoin.io/builder-cookbook/filecoin-pin/erc-8004-agent-registration',
+    href: 'https://docs.filecoin.io/build-on-filecoin/cookbook/filecoin-pin/erc-8004-agent-registration',
   },
   {
     logo: SafeLogo,
@@ -68,7 +68,7 @@ export const buildersLogos: Array<LogoItemProps> = [
   {
     logo: GeoLogo,
     alt: 'Geo Logo',
-    href: 'https://geoweb.network/',
+    href: 'https://github.com/Geo-Web-Project',
     size: 56,
   },
   {
