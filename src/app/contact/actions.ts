@@ -8,6 +8,12 @@ import {
   HONEYPOT_FIELD_NAME,
   TURNSTILE_VERIFY_URL,
 } from './config'
+import {
+  CUSTOMERS_OPTIONS,
+  INTENT_OPTIONS,
+  TIMING_OPTIONS,
+  VOLUME_OPTIONS,
+} from './constants/qualifying-questions'
 
 const TURNSTILE_TEST_SECRET_PASS = '1x0000000000000000000000000000000AA'
 
@@ -23,15 +29,31 @@ type ContactField =
   | 'company'
   | 'email'
   | 'projectLink'
+  | 'intent'
   | 'useCase'
+  | 'volume'
+  | 'timing'
+  | 'customers'
+  | 'roadmap'
 
 const REQUIRED_FIELDS: Array<ContactField> = [
   'firstName',
   'lastName',
   'company',
   'email',
+  'intent',
   'useCase',
+  'volume',
+  'timing',
+  'customers',
 ]
+
+const SELECT_OPTIONS: Partial<Record<ContactField, ReadonlyArray<string>>> = {
+  intent: INTENT_OPTIONS,
+  volume: VOLUME_OPTIONS,
+  timing: TIMING_OPTIONS,
+  customers: CUSTOMERS_OPTIONS,
+}
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -45,7 +67,12 @@ export async function submitContact(
     company: getString(formData, 'company'),
     email: getString(formData, 'email'),
     projectLink: getString(formData, 'projectLink'),
+    intent: getString(formData, 'intent'),
     useCase: getString(formData, 'useCase'),
+    volume: getString(formData, 'volume'),
+    timing: getString(formData, 'timing'),
+    customers: getString(formData, 'customers'),
+    roadmap: getString(formData, 'roadmap'),
     optIn: formData.get('optIn') === 'on',
   }
 
@@ -65,6 +92,12 @@ export async function submitContact(
   if (values.email && !EMAIL_PATTERN.test(values.email)) {
     fieldErrors.email = 'Please enter a valid email address.'
   }
+  for (const [field, options] of Object.entries(SELECT_OPTIONS)) {
+    const value = values[field as ContactField]
+    if (value && !options.includes(value)) {
+      fieldErrors[field as ContactField] = 'Please choose one of the options.'
+    }
+  }
 
   if (Object.keys(fieldErrors).length > 0) {
     return { status: 'error', fieldErrors }
@@ -81,7 +114,12 @@ export async function submitContact(
     [GOOGLE_FORM_ENTRY_IDS.company]: values.company,
     [GOOGLE_FORM_ENTRY_IDS.email]: values.email,
     [GOOGLE_FORM_ENTRY_IDS.projectLink]: values.projectLink,
+    [GOOGLE_FORM_ENTRY_IDS.intent]: values.intent,
     [GOOGLE_FORM_ENTRY_IDS.useCase]: values.useCase,
+    [GOOGLE_FORM_ENTRY_IDS.volume]: values.volume,
+    [GOOGLE_FORM_ENTRY_IDS.timing]: values.timing,
+    [GOOGLE_FORM_ENTRY_IDS.customers]: values.customers,
+    [GOOGLE_FORM_ENTRY_IDS.roadmap]: values.roadmap,
   })
   if (values.optIn) {
     body.append(
