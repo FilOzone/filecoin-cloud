@@ -10,6 +10,7 @@ import { useActionState, useEffect, useState } from 'react'
 
 import { PATHS } from '@/constants/paths'
 
+import { SelectField } from './SelectField'
 import { TextareaField } from './TextareaField'
 import { TextInputField } from './TextInputField'
 import { type ContactFormState, submitContact } from '../actions'
@@ -18,6 +19,12 @@ import {
   TURNSTILE_SCRIPT_URL,
   TURNSTILE_SITE_KEY,
 } from '../config'
+import {
+  CUSTOMERS_OPTIONS,
+  INTENT_OPTIONS,
+  TIMING_OPTIONS,
+  VOLUME_OPTIONS,
+} from '../constants/qualifying-questions'
 
 const INITIAL_STATE: ContactFormState = { status: 'idle' }
 
@@ -114,12 +121,52 @@ export function ContactForm() {
         error={state.fieldErrors?.projectLink}
       />
 
+      <SelectField
+        name="intent"
+        label="What are you looking to do?"
+        options={INTENT_OPTIONS}
+        required
+        error={state.fieldErrors?.intent}
+      />
+
       <TextareaField
         name="useCase"
         label="Tell us about your use case"
         required
         placeholder="What are you building, and where could Filecoin Onchain Cloud help?"
         error={state.fieldErrors?.useCase}
+      />
+
+      <SelectField
+        name="volume"
+        label="How much data do you expect to store in the next 12 months?"
+        options={VOLUME_OPTIONS}
+        required
+        error={state.fieldErrors?.volume}
+      />
+
+      <SelectField
+        name="timing"
+        label="When will you be ready to start storing data?"
+        options={TIMING_OPTIONS}
+        required
+        error={state.fieldErrors?.timing}
+      />
+
+      <SelectField
+        name="customers"
+        label="Do you have paying customers today?"
+        options={CUSTOMERS_OPTIONS}
+        required
+        error={state.fieldErrors?.customers}
+      />
+
+      <TextareaField
+        name="roadmap"
+        label="What's on your roadmap for the next six months?"
+        placeholder="Milestones, launches, or the point where you expect to start storing data."
+        rows={3}
+        error={state.fieldErrors?.roadmap}
       />
 
       <Field className="flex items-start gap-3">

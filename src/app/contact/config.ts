@@ -19,6 +19,11 @@ export const GOOGLE_FORM_ENTRY_IDS = {
   projectLink: 'entry.1001477030',
   useCase: 'entry.1762795784',
   optIn: 'entry.586019531',
+  intent: 'entry.531390041',
+  volume: 'entry.428130196',
+  timing: 'entry.214155348',
+  customers: 'entry.1640164736',
+  roadmap: 'entry.1040334345',
 } as const
 
 /**
