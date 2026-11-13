@@ -10,12 +10,14 @@ import { PageHeader } from '@filecoin-foundation/ui-filecoin/PageHeader'
 import { PageSection } from '@filecoin-foundation/ui-filecoin/PageSection'
 import { SectionContent } from '@filecoin-foundation/ui-filecoin/SectionContent'
 import { ExternalTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/ExternalTextLink'
+import { SmartTextLink } from '@filecoin-foundation/ui-filecoin/TextLink/SmartTextLink'
 
 import { BecomeProviderSection } from '@/components/BecomeProviderSection'
 import { Navigation } from '@/components/Navigation/Navigation'
 import { ProvidersEmptyLoadingState } from '@/components/ProvidersEmptyLoadingState'
 import { ProvidersLoadingError } from '@/components/ProvidersLoadingError'
 
+import { PATHS } from '@/constants/paths'
 import { FIL_BEAM_URL, FOC_URLS } from '@/constants/site-metadata'
 import { getNetworkId } from '@/utils/get-network-id'
 
@@ -50,7 +52,7 @@ export function WarmStorageServicesClient({
       <PageSection backgroundVariant="dark">
         <PageHeader
           centered
-          title="Warm Storage Service"
+          title="Filecoin Warm Storage Service (FWSS)"
           variant="highContrast"
           description={
             <p>
@@ -64,6 +66,10 @@ export function WarmStorageServicesClient({
               <ExternalTextLink href={FIL_BEAM_URL}>
                 Filecoin Beam
               </ExternalTextLink>
+              . Archiving large, infrequently-accessed datasets instead?{' '}
+              <SmartTextLink href={PATHS.COLD_STORAGE_SERVICE.path}>
+                See Filecoin Cold Storage
+              </SmartTextLink>
               .
             </p>
           }
@@ -74,6 +80,13 @@ export function WarmStorageServicesClient({
               variant="primary"
             >
               Get started with Synapse SDK
+            </Button>,
+            <Button
+              key="talk-to-our-team"
+              href={PATHS.CONTACT.path}
+              variant="ghost"
+            >
+              Talk to our team
             </Button>,
             <Button
               key="view-contract-source-code"
