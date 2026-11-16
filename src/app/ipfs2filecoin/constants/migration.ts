@@ -68,8 +68,12 @@ export const COPIES = 2
  */
 export const USD_FLAT_PER_DATA_SET_MONTH = 0.12
 
-/** Held per data set, and one data set is created per copy. Unused portion returns. */
-export const USD_LIFECYCLE_RESERVE_PER_DATA_SET = 0.1
+/**
+ * Held per data set, and one data set is created per copy. Unused portion
+ * returns. Raised from 0.10 to 0.50 in filecoin-services v1.4.0; matches
+ * `lifecycleReserveTarget` from `getPriceList()` on mainnet, read 2026-11-16.
+ */
+export const USD_LIFECYCLE_RESERVE_PER_DATA_SET = 0.5
 
 /** A billing month is a 30-day period, matching how storage is charged. */
 export const DAYS_PER_MONTH = 30
