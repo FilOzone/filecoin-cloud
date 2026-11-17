@@ -62,13 +62,18 @@ export const COPIES = 2
  * Flat fee per data set per month, charged alongside the size-based rate. It
  * does NOT scale with stored size: a data set's monthly rate is
  * `size_TiB * USD_PER_TIB_MONTH_PER_COPY + USD_FLAT_PER_DATA_SET_MONTH`.
- * Verified against live mainnet rail 2286, which stores 1.511356 TiB and pays
- * 3.8023902 USDFC/month, matching that formula to five decimal places.
+ * Raised from 0.024 to 0.12 in filecoin-services v1.4.0. Matches
+ * `datasetFeePerMonth` returned by `getPriceList()` on the mainnet FWSS view
+ * contract (0xcf184Ab1FD8D1a563054d30Aa1fFb08136998172), read 2026-11-16.
  */
-export const USD_FLAT_PER_DATA_SET_MONTH = 0.024
+export const USD_FLAT_PER_DATA_SET_MONTH = 0.12
 
-/** Held per data set, and one data set is created per copy. Unused portion returns. */
-export const USD_LIFECYCLE_RESERVE_PER_DATA_SET = 0.1
+/**
+ * Held per data set, and one data set is created per copy. Unused portion
+ * returns. Raised from 0.10 to 0.50 in filecoin-services v1.4.0; matches
+ * `lifecycleReserveTarget` from `getPriceList()` on mainnet, read 2026-11-16.
+ */
+export const USD_LIFECYCLE_RESERVE_PER_DATA_SET = 0.5
 
 /** A billing month is a 30-day period, matching how storage is charged. */
 export const DAYS_PER_MONTH = 30
