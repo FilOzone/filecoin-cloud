@@ -89,11 +89,8 @@ export function formatUsd(amount: number) {
 }
 
 /**
- * Rates below a cent, shown at the precision they are actually charged at.
- * `formatUsd` fixes two decimals because every total on this page is a dollar
- * amount; the per-data-set flat fee is the one input small enough that two
- * decimals would misstate it, so it gets its own formatter rather than
- * loosening the one the deposit table depends on.
+ * Per-unit rates, shown with up to three decimals so a sub-cent rate is not
+ * rounded away. `formatUsd` stays at two decimals for the totals.
  */
 export function formatUsdRate(amount: number) {
   return amount.toLocaleString('en-US', {
