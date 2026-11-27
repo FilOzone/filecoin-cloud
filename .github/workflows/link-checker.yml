@@ -24,7 +24,7 @@ jobs:
         id: lychee
         with:
           args: |
-            --accept 100..=103,200..=299,403,429
+            --accept 100..=103,200..=299
             --base-url ${{ env.BASE_URL }}
             --retry-wait-time 3
             --max-retries 3
