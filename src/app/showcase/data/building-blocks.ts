@@ -20,10 +20,6 @@ export const buildingBlocks = [
     description:
       'A production Next.js starter for FOC storage apps, with multi-file uploads, CDN and Filecoin Pin modes, USDFC management, and a live dashboard.',
     badge: { text: 'Starter dApp', variant: 'primary' },
-    primary: {
-      href: 'https://foc-demo.filbuilders.eth.limo',
-      label: 'Try the demo',
-    },
     source: {
       href: 'https://github.com/FIL-Builders/foc-upload-dapp',
       label: 'View code',
